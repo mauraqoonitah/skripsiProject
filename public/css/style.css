@@ -1,3 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@font-face {
+    font-family: "EUROSTIB";
+    src: url(../fonts/EUROSTIB.ttf);
+}
+
+:root {
+    --header-height: 3rem;
+    --nav-width: 324px;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+    /* color */
+    --first-color: #B52C51;
+    --first-color-dark: #3a3a55;
+    --first-color-darken: #290F09;
+    --text-color: #141C3A;
+    --first-color-light: #FF9637;
+    --first-color-lighten: #FFFFFF;
+    /* font size*/
+    /* --body-font: 'Roboto', sans-serif; */
+    --body-font: 'Rubik', sans-serif;
+    --body-font-new: 'EUROSTIB', sans-serif;
+    --large-font-size: 1.9rem;
+    --h1-font-size: 1.75rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+    /* margin */
+    --mb-1: .5rem;
+    --mb-2: 1rem;
+    --mb-3: 1.5rem;
+    --mb-4: 2rem;
+    --mb-5: 2.5rem;
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 768px) {
+     :root {
+        /* font size*/
+        --large-font-size: 2rem;
+        --h1-font-size: 1.75rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.3rem;
+        --normal-font-size: 1.2rem;
+        --small-font-size: 1rem;
+        --smaller-font-size: .8rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        padding: 12px;
+    }
+}
+
+*,
+ ::before,
+ ::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-weight: var(--font-medium);
+    background-color: var(--first-color-lighten);
+    color: var(--text-color);
+    line-height: 1.7;
+    font-size: var(--normal-font-size);
+}
+
+.jumbotron {
+    background-color: #00000087;
+    background-image: url(/img/jumbotron-unj.jpg);
+    background-size: cover;
+    background-blend-mode: darken;
+    background-position: center;
+    color: #fafafa;
+    padding: 4rem 1rem 4rem 1rem;
+}
+
+.shadow {
+    box-shadow: 0 7px 20px -10px rgba(51, 51, 51, 0.5);
+}
+
 .navbar {
-    background-image: url(/img/unj.png);
+    background-color: #006F45;
+}
+
+.section-title {
+    text-align: center;
+    padding: 1rem;
+    margin: 2rem 0 2rem 0;
+    font-weight: var(--font-semi-bold);
+}
+
+.obyek-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    font-weight: var(--font-semi-bold);
+}
+
+.menu {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.obyek-list {
+    background-color: #e4e4de;
+    text-align: center;
+    padding: 1rem 0 1rem 0;
+    border: solid 1px rgba(130, 127, 127, 0.386);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.instrumen-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    font-weight: var(--font-semi-bold);
+}
+
+.instrumen-list {
+    background-color: #e4e4de;
+    text-align: center;
+    padding: 1rem;
+    border: solid 1px rgba(130, 127, 127, 0.386);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.obyek-list:hover,
+.instrumen-list:hover {
+    background-color: #f8f8f8;
+    box-shadow: 7px 7px 20px -10px rgba(51, 51, 51, 0.5);
 }
