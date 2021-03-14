@@ -5,9 +5,9 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <section class="menu">
+            <section>
                 <div class="container">
-                    <h1>Form K1</h1>
+                    <h3 class="section-title" id="instrumen-menu">Dosen</h3>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
                         <label class="form-check-label" for="flexRadioDefault1">
@@ -22,7 +22,6 @@
                     </div>
                 </div>
             </section>
-
         </div>
     </div>
 </div>

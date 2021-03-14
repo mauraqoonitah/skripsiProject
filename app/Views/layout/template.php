@@ -12,7 +12,8 @@
     <link href="/img/unj.png" rel="shortcut icon" type="image/ico" />
     <!-- my css -->
     <link rel="stylesheet" href="/css/style.css">
-
+    <!-- icon bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
     <title><?= $title; ?></title>
 </head>
@@ -36,6 +37,15 @@
     -->
 
 
+
 </body>
+
+<footer>
+    <p>
+        Created by Maura
+    </p>
+</footer>
+
+
 
 </html>

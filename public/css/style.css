@@ -18,7 +18,7 @@
     --first-color-darken: #290F09;
     --text-color: #141C3A;
     --first-color-light: #FF9637;
-    --first-color-lighten: #FFFFFF;
+    --first-color-lighten: #fafafa;
     /* font size*/
     /* --body-font: 'Roboto', sans-serif; */
     --body-font: 'Rubik', sans-serif;
@@ -68,13 +68,25 @@ html {
     scroll-behavior: smooth;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     font-family: var(--body-font);
     font-weight: var(--font-medium);
     background-color: var(--first-color-lighten);
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.6;
     font-size: var(--normal-font-size);
+}
+
+footer {
+    background-color: #006F45;
+    padding: 1rem .25rem;
+    color: white;
+    margin-top: 5rem;
+    text-align: center;
 }
 
 .jumbotron {
@@ -109,11 +121,6 @@ body {
     justify-content: center;
     gap: 1.2rem;
     font-weight: var(--font-semi-bold);
-}
-
-.menu {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
 }
 
 .obyek-list {
