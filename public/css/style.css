@@ -91,7 +91,7 @@ footer {
 
 .jumbotron {
     background-color: #00000087;
-    background-image: url(/img/jumbotron-unj.jpg);
+    background-image: url("../img/jumbotron-unj.jpg");
     background-size: cover;
     background-blend-mode: darken;
     background-position: center;
@@ -134,7 +134,7 @@ footer {
 
 .instrumen-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
     align-items: center;
     justify-content: center;
     gap: 1.2rem;

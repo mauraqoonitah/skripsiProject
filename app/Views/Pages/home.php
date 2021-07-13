@@ -25,7 +25,7 @@
     <div class="container">
         <h3 class="section-title " id="obyek-menu">Obyek Instrumen</h3>
         <div class="row obyek-menu">
-            <a href="/pages/about" class="obyek-list col-sm text-reset"> Dosen
+            <a href="./about.php" class="obyek-list col-sm text-reset"> Dosen
             </a>
             <div class="obyek-list col-sm">
                 Tenaga Kependidikan

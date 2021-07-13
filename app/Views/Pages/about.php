@@ -9,7 +9,7 @@
                 <div class="container">
                     <h3 class="section-title" id="instrumen-menu">Dosen</h3>
                     <div class="row instrumen-menu">
-                        <a href="/pages/form_K1" class="instrumen-list col-sm"> Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ Oleh Pemangku Kepentingan
+                        <a href="./form_K1.php" class="instrumen-list col-sm"> Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ Oleh Pemangku Kepentingan
                         </a>
                         <div class="instrumen-list col-sm">
                             Instrumen Kepuasan atas Layanan Manajemen UNJ-TATA KELOLA, TATA PAMONG, DAN KERJASAMA
