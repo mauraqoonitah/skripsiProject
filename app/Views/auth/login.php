@@ -1,6 +1,6 @@
 <?= $this->extend('auth/templates/index'); ?>
 
-<?= $this->section('dashboardAdmin'); ?>
+<?= $this->section('authContent'); ?>
 <div class="container">
 
     <!-- Outer Row -->
@@ -45,4 +45,4 @@
 
 </div>
 
-<?= $this->endSection('dashboardAdmin'); ?>
+<?= $this->endSection('authContent'); ?>

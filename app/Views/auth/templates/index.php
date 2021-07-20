@@ -22,7 +22,7 @@
 
 <body class="bg-gradient-primary">
 
-    <?= $this->renderSection('dashboardAdmin'); ?>
+    <?= $this->renderSection('authContent'); ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url(); ?>/vendor/jquery/jquery.min.js"></script>

@@ -1,6 +1,6 @@
 <?= $this->extend('auth/templates/index'); ?>
 
-<?= $this->section('dashboardAdmin'); ?>
+<?= $this->section('authContent'); ?>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -54,4 +54,4 @@
     </div>
 
 </div>
-<?= $this->endSection('dashboardAdmin'); ?>
+<?= $this->endSection('authContent'); ?>
