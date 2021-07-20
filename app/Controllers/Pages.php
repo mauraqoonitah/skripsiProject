@@ -23,6 +23,22 @@ class Pages extends BaseController
         ];
         return view('pages/about', $data);
     }
+    public function login()
+    {
+        $data = [
+            'title' => 'Login | SIMINTU'
+
+        ];
+        return view('auth/login', $data);
+    }
+    public function register()
+    {
+        $data = [
+            'title' => 'Register | SIMINTU'
+
+        ];
+        return view('auth/register', $data);
+    }
 
     public function form_k1()
     {

@@ -11,6 +11,7 @@
             <div class="navbar-nav text-white ms-auto">
                 <a class="nav-link active" aria-current="page" href="/">Beranda</a>
                 <a class="nav-link" href="../pages/about.php">About</a>
+                <a class="nav-link" href="../auth/login.php">Login</a>
             </div>
         </div>
     </div>
