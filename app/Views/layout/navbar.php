@@ -10,8 +10,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav text-white ms-auto">
                 <a class="nav-link active" aria-current="page" href="/">Beranda</a>
-                <a class="nav-link" href="../pages/about.php">About</a>
-                <a class="nav-link" href="../auth/login.php">Login</a>
+                <a class="nav-link" href="../pages/about">About</a>
+                <a class="nav-link" href="../auth/login">Login</a>
             </div>
         </div>
     </div>

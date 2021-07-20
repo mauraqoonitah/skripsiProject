@@ -39,6 +39,14 @@ class Pages extends BaseController
         ];
         return view('auth/register', $data);
     }
+    public function user()
+    {
+        $data = [
+            'title' => 'user | SIMINTU'
+
+        ];
+        return view('user/index', $data);
+    }
 
     public function form_k1()
     {
