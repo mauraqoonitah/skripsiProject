@@ -7,12 +7,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="display-6">Sistem Informasi Penjaminan Mutu </h1>
-                <h5 class="">Jurusan Matematika - Universitas Negeri Jakarta </h5>
+                <h5 class="">Fakultas Matematika dan Ilmu Pengetahuan Alam <br> Universitas Negeri Jakarta </h5>
 
                 <hr class="my-4">
                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
 
-                <a class="btn btn-light" href="#obyek-menu" role="button">Isi Kuesioner</a>
+                <a class="btn btn-light" href="#obyek-menu" role="button">Isi Survei</a>
 
             </div>
         </div>
