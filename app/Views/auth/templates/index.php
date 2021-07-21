@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin</title>
+    <title> Auth</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
 
 <body class="bg-gradient-primary">
 
-    <?= $this->renderSection('authContent'); ?>
+    <?= $this->renderSection('auth-content'); ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?= base_url(); ?>/vendor/jquery/jquery.min.js"></script>

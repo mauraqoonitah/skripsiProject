@@ -9,9 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <!-- Favicon-->
-    <link href="./img/unj.png" rel="shortcut icon" type="image/icon" />
+    <link href="<?= base_url(); ?>/img/unj.png" rel="shortcut icon" type="image/icon" />
     <!-- my css -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>/css/style.css">
     <!-- icon bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
