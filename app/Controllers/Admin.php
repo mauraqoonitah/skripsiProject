@@ -13,4 +13,9 @@ class Admin extends BaseController
         ];
         return view('admin/index', $data);
     }
+    public function hasilSurveiResponden()
+    {
+
+        return view('admin/hasil-survei/responden');
+    }
 }

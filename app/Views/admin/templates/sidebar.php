@@ -22,7 +22,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="<?= base_url(); ?>/admin" class="nav-link">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>
                             Dashboard
@@ -40,7 +40,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../charts/chartjs.html" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/hasilSurveiResponden" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Responden</p>
                             </a>

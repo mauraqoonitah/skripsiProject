@@ -41,6 +41,8 @@ $routes->get('/home/user', 'Pages::user');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/index', 'Admin::index');
 
+$routes->get('/admin/hasil-survei/index', 'Admin::hasilSurveiResponden');
+
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
 // $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);
 
