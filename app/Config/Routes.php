@@ -37,6 +37,15 @@ $routes->get('/auth/login', 'Pages::login');
 $routes->get('/auth/register', 'Pages::register');
 $routes->get('/home/user', 'Pages::user');
 
+// admin
+$routes->get('/admin', 'Admin::index');
+$routes->get('/admin/index', 'Admin::index');
+
+// $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
+// $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

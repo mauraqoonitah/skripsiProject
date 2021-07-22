@@ -26,7 +26,7 @@ class Pages extends BaseController
     public function login()
     {
         $data = [
-            'title' => 'Login | SIMINTU'
+            'title' => 'Login | SIJAMU'
 
         ];
         return view('auth/login', $data);
@@ -34,7 +34,7 @@ class Pages extends BaseController
     public function register()
     {
         $data = [
-            'title' => 'Register | SIMINTU'
+            'title' => 'Register | SIJAMU'
 
         ];
         return view('auth/register', $data);
@@ -42,7 +42,7 @@ class Pages extends BaseController
     public function user()
     {
         $data = [
-            'title' => 'user | SIMINTU'
+            'title' => 'user | SIJAMU'
 
         ];
         return view('user/index', $data);
