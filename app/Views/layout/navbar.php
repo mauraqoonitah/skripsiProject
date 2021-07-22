@@ -13,7 +13,7 @@
                 <a class="nav-link" href="../pages/about">About</a>
 
                 <?php if (logged_in()) : ?>
-                    <a class="nav-link" href="<?= base_url('home/admin'); ?>">Admin</a>
+                    <a class="nav-link" href="<?= base_url('admin'); ?>">Admin</a>
                     <a class="nav-link" href="<?= base_url('logout'); ?>">Logout</a>
                 <?php else : ?>
                     <a class="nav-link" href="<?= base_url('login'); ?>">Login</a>
