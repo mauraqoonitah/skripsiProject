@@ -18,4 +18,9 @@ class Admin extends BaseController
 
         return view('admin/hasil-survei/responden');
     }
+    public function lihatResponden()
+    {
+
+        return view('admin/hasil-survei/lihat_responden');
+    }
 }

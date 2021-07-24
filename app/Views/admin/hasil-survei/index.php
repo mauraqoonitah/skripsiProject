@@ -22,7 +22,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        <?= $this->include('admin/templates/topbar'); ?>
+        <?= $this->include('admin/templates/navbar'); ?>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->

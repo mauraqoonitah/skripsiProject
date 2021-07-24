@@ -41,7 +41,11 @@ $routes->get('/home/user', 'Pages::user');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/index', 'Admin::index');
 
+// admin sidebar hasil survei-responden
 $routes->get('/admin/hasil-survei/index', 'Admin::hasilSurveiResponden');
+
+// admin sidebar hasil survei-responden-lihat tanggapan
+$routes->get('/admin/hasil-survei/lihat_responden', 'Admin::lihatResponden');
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
 // $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);

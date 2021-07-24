@@ -36,7 +36,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <?= $this->include('user/templates/topbar'); ?>
+                <?= $this->include('user/templates/navbar'); ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

@@ -52,8 +52,16 @@
                                     <td>C.6</td>
                                     <td>
                                         <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
+                                            <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-primary text-decoration-none">
+                                                Lihat
+                                            </a>
+                                            <form action="" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Hapus Data Responden?');">Hapus</button>
+                                            </form>
+
+
                                         </div>
                                     </td>
                                 </tr>
