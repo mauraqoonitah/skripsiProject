@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="<?= base_url(); ?>/../../index3.html" class="brand-link text-decoration-none">
         <img src="<?= base_url(); ?>/img/unj.png" alt="UNJ Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">SIJAMU - FMIPA UNJ</span>
+        <span class="brand-text font-weight-light">Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -46,7 +46,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../charts/flot.html" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/hasilSurveiInstrumen" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>
