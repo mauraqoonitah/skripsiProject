@@ -57,7 +57,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../charts/flot.html" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/kelolaKategori" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kategori</p>
                             </a>

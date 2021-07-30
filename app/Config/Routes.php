@@ -41,17 +41,15 @@ $routes->get('/home/user', 'Pages::user');
 $routes->get('/admin', 'Admin::index');
 $routes->get('/admin/index', 'Admin::index');
 
-// admin sidebar hasil survei-responden
+// admin sidebar hasil survei
 $routes->get('/admin/hasil-survei/index', 'Admin::hasilSurveiResponden');
-
-// admin sidebar hasil survei-responden-lihat tanggapan
 $routes->get('/admin/hasil-survei/lihat_responden', 'Admin::lihatResponden');
-
-// admin sidebar hasil survei-instrumen
 $routes->get('/admin/hasil-survei/instrumen', 'Admin::hasilSurveiInstrumen');
-
-// admin sidebar hasil survei-responden-lihat tanggapan
 $routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
+
+// admin sidebar kelola survei
+$routes->get('/admin/kelola-survei/index', 'Admin::kelolaKategori');
+$routes->get('/admin/kelola-survei/kategori', 'Admin::kelolaKategori');
 
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);

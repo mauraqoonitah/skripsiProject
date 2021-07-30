@@ -58,6 +58,7 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
 
+
 </body>
 
 </html>

@@ -33,4 +33,9 @@ class Admin extends BaseController
 
         return view('admin/hasil-survei/lihat_instrumen');
     }
+    public function kelolaKategori()
+    {
+
+        return view('admin/kelola-survei/kategori');
+    }
 }

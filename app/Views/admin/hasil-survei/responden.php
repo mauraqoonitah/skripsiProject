@@ -34,11 +34,11 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Tgl Pengisian</th>
+                                    <th>Tgl<br>Pengisian</th>
                                     <th>No. Identitas</th>
                                     <th>Nama Lengkap</th>
-                                    <th>Jenis Responden</th>
-                                    <th>Kode Instrumen</th>
+                                    <th>Jenis<br>Responden</th>
+                                    <th>Kode<br>Instrumen</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
