@@ -65,6 +65,9 @@
         $(document).ready(function() {
             $('#tableResponden').DataTable();
         });
+        $(document).ready(function() {
+            $('#tabel-lihat-instrumen').DataTable();
+        });
     </script>
 </body>
 
