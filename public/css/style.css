@@ -1,11 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
-@font-face {
-    font-family: "EUROSTIB";
-    src: url(../fonts/EUROSTIB.ttf);
-}
-
 :root {
     --header-height: 3rem;
     --nav-width: 324px;
@@ -20,9 +14,7 @@
     --first-color-light: #FF9637;
     --first-color-lighten: #fafafa;
     /* font size*/
-    /* --body-font: 'Roboto', sans-serif; */
     --body-font: 'Rubik', sans-serif;
-    --body-font-new: 'EUROSTIB', sans-serif;
     --large-font-size: 1.9rem;
     --h1-font-size: 1.75rem;
     --h2-font-size: 1.5rem;
@@ -72,8 +64,17 @@ a {
     text-decoration: none;
 }
 
-body {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--body-font);
+}
+
+body {
+    font-family: 'Open Sans', sans-serif !important;
     font-weight: var(--font-medium);
     background-color: var(--first-color-lighten);
     color: var(--text-color);
