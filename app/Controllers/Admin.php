@@ -53,14 +53,21 @@ class Admin extends BaseController
     }
     public function kelolaKategori()
     {
-        $category = $this->adminModel->findAll();
+        // $category = $this->adminModel->findAll();
 
         $data = [
             'title' => 'Kelola Kategori',
-            'category' => $category
+            'category' => $this->adminModel->getCategory()
         ];
 
-
         return view('admin/kelola-survei/kategori', $data);
+    }
+    public function editKategori($slug)
+    {
+        $data = [
+            'title' => 'Detail Kategori',
+            'category' => $this->adminModel->getCategory($slug)
+        ];
+        return view('admin/kelola-survei/edit_kategori', $data);
     }
 }

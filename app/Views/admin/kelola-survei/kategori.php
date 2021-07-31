@@ -59,7 +59,7 @@
                                         <td><?= $ctg['peruntukkanCategory']; ?></td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="<?= base_url(); ?>/admin/editKategori/<?= $ctg['slug']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusKategori">
