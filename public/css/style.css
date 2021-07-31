@@ -71,6 +71,7 @@ h4,
 h5,
 h6 {
     font-family: var(--body-font);
+    font-weight: bolder;
 }
 
 body {
@@ -84,6 +85,10 @@ body {
 
 .center {
     margin: 0 auto;
+}
+
+.modal-title {
+    font-weight: bold !important;
 }
 
 footer {
