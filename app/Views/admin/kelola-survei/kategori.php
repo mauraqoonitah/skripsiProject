@@ -50,56 +50,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>C.2</td>
-                                    <td> Instrumen Kepuasan atas Layanan Manajemen UNJ </td>
-                                    <td>Dosen, Tenaga Kependidikan, Mahasiswa, Alumni/Lulusan, Pengguna Lulusan, Mitra, Mitra Luar</td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusKategori">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>C.6</td>
-                                    <td>Instrumen Kepuasan Atas Proses Pendidikan oleh Mahasiswa </td>
-                                    <td>Mahasiswa</td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>C.7</td>
-                                    <td> Instrumen Kepuasan Atas Proses Penelitian </td>
-                                    <td>Peneliti, Mitra</td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
+                                <?php $i = 1; ?>
+                                <?php foreach ($category as $ctg) : ?>
+                                    <tr>
+                                        <td><?= $i++; ?></td>
+                                        <td><?= $ctg['kodeCategory']; ?></td>
+                                        <td> <?= $ctg['namaCategory']; ?> </td>
+                                        <td><?= $ctg['peruntukkanCategory']; ?></td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusKategori">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

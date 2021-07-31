@@ -2,9 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\AdminModel;
+
 class Admin extends BaseController
 {
-
+    protected $adminModel;
+    public function __construct()
+    {
+        $this->adminModel = new AdminModel();
+    }
     public function index()
     {
         $data = [
@@ -47,10 +53,14 @@ class Admin extends BaseController
     }
     public function kelolaKategori()
     {
-        $data = [
-            'title' => 'Kelola Kategori'
+        $category = $this->adminModel->findAll();
 
+        $data = [
+            'title' => 'Kelola Kategori',
+            'category' => $category
         ];
+
+
         return view('admin/kelola-survei/kategori', $data);
     }
 }
