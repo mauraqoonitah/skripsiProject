@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="<?= base_url(); ?>/../../dist/css/adminlte.min.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- datatables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -29,7 +31,7 @@
 
 
         <!-- Content Wrapper. Contains page content -->
-        <?= $this->renderSection('admin-dashboard-content'); ?>
+        <?= $this->renderSection('admin-body-content'); ?>
 
         <!-- /.content-wrapper -->
 
@@ -57,6 +59,46 @@
     <script src="<?= base_url(); ?>/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
+    <!-- datatables -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tableResponden').DataTable();
+        });
+        $(document).ready(function() {
+            $('#tabel-lihat-instrumen').DataTable();
+        });
+        $(document).ready(function() {
+            $('#table-kelola-kategori').DataTable();
+        });
+    </script>
+
+    <!-- tooltip -->
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+    <!-- modal -->
+    <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function() {
+            myInput.focus()
+        })
+    </script>
+
+    <!-- popovers -->
+    <script>
+        var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl)
+        })
+    </script>
 
 
 </body>

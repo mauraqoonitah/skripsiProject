@@ -1,6 +1,6 @@
 <?= $this->extend('admin/templates/index'); ?>
 
-<?= $this->section('admin-dashboard-content'); ?>
+<?= $this->section('admin-body-content'); ?>
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
