@@ -51,7 +51,6 @@ $routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
 $routes->get('/admin/kelola-survei/index', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/kategori', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/instrumen', 'Admin::kelolaInstrumen');
-$routes->get('/admin/kelola-survei/tambah_instrumen', 'Admin::tambahInstrumen');
 
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);

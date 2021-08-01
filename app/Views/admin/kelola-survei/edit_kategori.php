@@ -84,7 +84,7 @@
                         <!-- end form edit kategori -->
 
                         <div class="d-flex align-items-center ">
-                            <button type="button" class="btn btn-success mr-auto mt-3">
+                            <button type="button" class="btn btn-block btn-success mr-auto mt-5">
                                 <i class="fas fa-save"></i> Simpan
                             </button>
                         </div>

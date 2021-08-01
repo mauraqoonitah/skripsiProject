@@ -84,13 +84,13 @@ class Admin extends BaseController
 
         return view('admin/kelola-survei/instrumen', $data);
     }
-    public function tambahInstrumen()
+    public function editInstrumen($id)
     {
         $data = [
-            'title' => 'Tambah Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen()
+            'title' => 'Edit Instrumen',
+            'instrumen' => $this->instrumenModel->getInstrumen($id)
         ];
 
-        return view('admin/kelola-survei/tambah_instrumen', $data);
+        return view('admin/kelola-survei/edit_instrumen', $data);
     }
 }
