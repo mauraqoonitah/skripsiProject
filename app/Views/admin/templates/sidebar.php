@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../charts/flot.html" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/kelolaInstrumen" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>

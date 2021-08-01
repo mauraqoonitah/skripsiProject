@@ -3,13 +3,16 @@
 namespace App\Controllers;
 
 use App\Models\AdminModel;
+use App\Models\InstrumenModel;
 
 class Admin extends BaseController
 {
     protected $adminModel;
+    protected $instrumenModel;
     public function __construct()
     {
         $this->adminModel = new AdminModel();
+        $this->instrumenModel = new InstrumenModel();
     }
     public function index()
     {
@@ -69,5 +72,17 @@ class Admin extends BaseController
             'category' => $this->adminModel->getCategory($slug)
         ];
         return view('admin/kelola-survei/edit_kategori', $data);
+    }
+
+    public function kelolaInstrumen()
+    {
+        // $category = $this->adminModel->findAll();
+
+        $data = [
+            'title' => 'Kelola Instrumen',
+            'instrumen' => $this->instrumenModel->getInstrumen()
+        ];
+
+        return view('admin/kelola-survei/instrumen', $data);
     }
 }
