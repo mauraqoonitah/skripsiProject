@@ -13,9 +13,11 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
+                <?php
+                $uri = current_url(true);
+                ?>
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>/admin" class="nav-link">
+                    <a href="<?= base_url(); ?>/admin" class="nav-link <?= $uri->getSegment(2) == 'admin' and $uri->getSegment(3) == '' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>
                             Dashboard
@@ -24,7 +26,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?= $uri->getSegment(3) == 'hasilSurveiResponden' || $uri->getSegment(3) == 'hasilSurveiInstrumen' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Hasil Survei
@@ -33,13 +35,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/hasilSurveiResponden" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/hasilSurveiResponden" class="nav-link <?= $uri->getSegment(3) == 'hasilSurveiResponden' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Responden</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/hasilSurveiInstrumen" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/hasilSurveiInstrumen" class="nav-link <?= $uri->getSegment(3) == 'hasilSurveiInstrumen' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>
@@ -48,7 +50,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?= $uri->getSegment(3) == 'kelolaKategori' || $uri->getSegment(3) == 'kelolaInstrumen'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Kelola Survei
@@ -57,13 +59,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelolaKategori" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/kelolaKategori" class="nav-link <?= $uri->getSegment(3) == 'kelolaKategori' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kategori</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelolaInstrumen" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/kelolaInstrumen" class="nav-link <?= $uri->getSegment(3) == 'kelolaInstrumen' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>

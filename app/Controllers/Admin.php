@@ -9,6 +9,7 @@ class Admin extends BaseController
 {
     protected $adminModel;
     protected $instrumenModel;
+
     public function __construct()
     {
         $this->adminModel = new AdminModel();

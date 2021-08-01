@@ -83,6 +83,10 @@ body {
     font-size: var(--normal-font-size);
 }
 
+.navbar-cyan {
+    background-color: #007c91 !important;
+}
+
 .center {
     margin: 0 auto;
 }
