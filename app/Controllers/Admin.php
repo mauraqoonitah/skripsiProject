@@ -77,13 +77,20 @@ class Admin extends BaseController
 
     public function kelolaInstrumen()
     {
-        // $category = $this->adminModel->findAll();
-
         $data = [
             'title' => 'Kelola Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen()
         ];
 
         return view('admin/kelola-survei/instrumen', $data);
+    }
+    public function tambahInstrumen()
+    {
+        $data = [
+            'title' => 'Tambah Instrumen',
+            'instrumen' => $this->instrumenModel->getInstrumen()
+        ];
+
+        return view('admin/kelola-survei/tambah_instrumen', $data);
     }
 }
