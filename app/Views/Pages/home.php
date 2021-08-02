@@ -2,24 +2,42 @@
 
 <?= $this->section('content'); ?>
 
-<section class="jumbotron text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="display-6">Sistem Informasi Penjaminan Mutu </h1>
-                <h5 class="">Fakultas Matematika dan Ilmu Pengetahuan Alam <br> Universitas Negeri Jakarta </h5>
+<section class="landing-page">
+    <div class="content">
+        <div class="textBox">
+            <h2> <span>Survei Kepuasan 9 Kriteria</span> <br>
+                Penjaminan Mutu Internal<br>
+                <h3>Fakultas Matematika dan Ilmu Pengetahuan Alam UNJ</h3>
+            </h2>
 
-                <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos excepturi omnis placeat nisi corporis quisquam sed tempora nostrum aspernatur ut.</p>
 
-                <a class="btn btn-light" href="#obyek-menu" role="button">Isi Survei</a>
-
-            </div>
+            <a class="" href="#obyek-menu" role="button">
+                <button type="button" class="btn btn-primary ">Isi Survei</button>
+            </a>
+        </div>
+        <div class="imgBox">
+            <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" class="jumbotron-image">
         </div>
     </div>
+    <ul class="thumbnail-bar">
+        <li>
+            <img src="<?= base_url(); ?>/img/jumbotron-unj.jpg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/default.svg');changeCircleColor('#017143')">
+        </li>
+        <li>
+            <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_1.svg');changeCircleColor('#eb7495')">
+        </li>
+        <li>
+            <img src="<?= base_url(); ?>/img/unj.png" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_2.svg');changeCircleColor('#d752b1')">
+        </li>
+    </ul>
 
+    <ul class="thumbnail-bar-content">
+        <li><a href=""><i class="fas fa-paperclip"></i></a> </li>
+        <li> <a href=""><i class="fas fa-chart-bar"></i></a></li>
+        <li><a href=""><i class="fas fa-user"></i></a> </li>
+    </ul>
 </section>
-
 
 <section class="menu">
     <div class="container">
@@ -52,6 +70,17 @@
     </div>
 </section>
 
+
+<script type="text/javascript">
+    function itemSlider(item) {
+        document.querySelector('.jumbotron-image').src = item;
+    }
+
+    function changeCircleColor(color) {
+        const circle = document.querySelector('.circle-clip-path');
+        circle.style.background = color;
+    }
+</script>
 
 
 <?= $this->endSection(); ?>
