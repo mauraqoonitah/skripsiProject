@@ -7,13 +7,13 @@
         <div class="textBox">
             <h2> <span>Survei Kepuasan 9 Kriteria</span> <br>
                 Penjaminan Mutu Internal<br>
-                <h3>Fakultas Matematika dan Ilmu Pengetahuan Alam UNJ</h3>
+                <h3>FMIPA UNJ</h3>
             </h2>
 
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos excepturi omnis placeat nisi corporis quisquam sed tempora nostrum aspernatur ut.</p>
 
             <a class="" href="#obyek-menu" role="button">
-                <button type="button" class="btn btn-primary ">Isi Survei</button>
+                <button type="button" class="btn btn-primary btn-jumbotron ">Isi Survei</button>
             </a>
         </div>
         <div class="imgBox">
@@ -22,13 +22,13 @@
     </div>
     <ul class="thumbnail-bar">
         <li>
-            <img src="<?= base_url(); ?>/img/jumbotron-unj.jpg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/default.svg');changeCircleColor('#017143')">
+            <img src="<?= base_url(); ?>/img/dot-circle-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/default.svg');changeCircleColor('#dce775')">
         </li>
         <li>
-            <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_1.svg');changeCircleColor('#eb7495')">
+            <img src="<?= base_url(); ?>/img/chart-bar-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_1.svg');changeCircleColor('#64b5f6')">
         </li>
         <li>
-            <img src="<?= base_url(); ?>/img/unj.png" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_2.svg');changeCircleColor('#d752b1')">
+            <img src="<?= base_url(); ?>/img/file-alt-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_2.svg');changeCircleColor('#7e57c2')">
         </li>
     </ul>
 
