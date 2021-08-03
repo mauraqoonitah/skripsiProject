@@ -4,16 +4,19 @@ namespace App\Controllers;
 
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
+use App\Models\QuestionModel;
 
 class Admin extends BaseController
 {
     protected $adminModel;
     protected $instrumenModel;
+    protected $questionModel;
 
     public function __construct()
     {
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
+        $this->questionModel = new QuestionModel();
     }
     public function index()
     {
@@ -92,5 +95,14 @@ class Admin extends BaseController
         ];
 
         return view('admin/kelola-survei/edit_instrumen', $data);
+    }
+    public function kelolaButirPernyataan()
+    {
+        $data = [
+            'title' => 'Kelola Butir Pernyataan',
+            'question' => $this->questionModel->getButirPernyataan()
+        ];
+
+        return view('admin/kelola-survei/question', $data);
     }
 }
