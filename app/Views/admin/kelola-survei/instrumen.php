@@ -116,17 +116,14 @@ views nya instrumen.php
                             <label for="nama-instrumen" class="col-sm-2 col-form-label">Nama instrumen:</label>
 
                             <div class="col-sm-10">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <input type="text" readonly class="form-control-plaintext" id="nama-instrumen" value="Instrumen Kepuasan atas Visi Misi">
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="nama-instrumen">
-                                        <textarea class="form-control" id="nama-instrumen" placeholder="Isi dengan nama yang lain" cols="100"></textarea>
+                                <select class="form-select" id="peruntukkan-kategori">
+                                    <option selected class="text-muted">Pilih </option>
+                                    <option value="">ins2 </option>
+                                    <option value=""> ins1</option>
+                                    <option value="">ins3</option>
+                                    <option value="">ins4</option>
 
-                                    </label>
-                                </div>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -137,7 +134,7 @@ views nya instrumen.php
                             <label for="kode-instrumen" class="col-sm-2 col-form-label">Kode instrumen:</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kode-instrumen" placeholder="C.4">
+                                <input type="text" class="form-control" id="kode-instrumen" placeholder="C.4.2">
                             </div>
                         </div>
                     </div>
@@ -167,7 +164,7 @@ views nya instrumen.php
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <a href="<?= base_url(); ?>/admin/kelolaInstrumen"> <button type="button" class="btn btn-success">Simpan</button></a>
-
+                <small>nanti ini direct ke halaman tambah butir pernyataannya</small>
             </div>
 
         </div>

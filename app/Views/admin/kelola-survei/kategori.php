@@ -115,18 +115,54 @@
                     <!-- peruntukkan kategori -->
                     <div class="form-group">
                         <label for="peruntukkan-kategori" class="col-form-label">Peruntukkan:</label>
-                        <select class="form-select" id="peruntukkan-kategori">
-                            <option selected class="text-muted">Pilih Responden yang dapat mengisi kuesioner </option>
-                            <option value="Dosen">Dosen</option>
-                            <option value="Tenaga Pendidik">Tenaga Pendidik</option>
-                            <option value="Mahasiswa">Mahasiswa</option>
-                            <option value="Mahasiswa">Alumni/Lulusan</option>
-                            <option value="Mahasiswa">Pengguna Lulusan</option>
-                            <option value="Mahasiswa">Mitra</option>
-                            <option value="Mahasiswa">Pengabdi</option>
-                            <option value="Mahasiswa">Peneliti</option>
-                        </select>
-
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Dosen
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Tenaga Pendidik
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Mahasiswa
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Alumni/Lulusan
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Pengguna Lulusan
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Mitra
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Pengabdi
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <label class="form-check-label" for="flexCheckChecked">
+                                Peneliti
+                            </label>
+                        </div>
                     </div>
                 </form>
                 <!-- end form tambah kategori -->
@@ -134,7 +170,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <a href="<?= base_url(); ?>/admin/kelolaKategori"> <button type="button" class="btn btn-success">Simpan</button></a>
-
             </div>
         </div>
     </div>
