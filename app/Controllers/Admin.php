@@ -105,4 +105,13 @@ class Admin extends BaseController
 
         return view('admin/kelola-survei/question', $data);
     }
+    public function editButirPernyataan($id)
+    {
+        $data = [
+            'title' => 'Edit Butir Pernyataan Instrumen',
+            'question' => $this->questionModel->getButirPernyataan($id)
+        ];
+
+        return view('admin/kelola-survei/edit_butir', $data);
+    }
 }

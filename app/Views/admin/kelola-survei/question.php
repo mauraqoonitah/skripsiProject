@@ -51,7 +51,7 @@ views nya instrumen.php
                                 <?php foreach ($question as $q) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $q['pertanyaan']; ?></td>
+                                        <td><?= $q['pernyataan']; ?></td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="<?= base_url(); ?>/admin/editButirPernyataan/<?= $q['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
