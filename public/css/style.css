@@ -114,40 +114,23 @@ footer {
     background-color: #fafafa;
 }
 
-.nav-link {
-    font-weight: 600;
-}
 
-.navbar {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-}
-
-nav ul {
-    position: relative;
-    display: flex;
-}
-
-nav ul li {
-    list-style: none;
-    transform: translateX(-50%);
-}
+/* navbar */
 
 nav ul li a {
-    display: inline-block;
-    font-weight: 500;
-    margin-left: 40px;
     text-decoration: none;
     letter-spacing: 1.6px;
     transition: .5s;
+    font-weight: 600;
+    color: #000;
 }
 
 nav ul li a:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
+}
+
+.navbar-brand {
+    font-weight: 600;
 }
 
 
@@ -260,6 +243,9 @@ nav ul li a:hover {
 /* Medium devices (tablets, less than 992px) */
 
 @media (max-width: 991.98px) {
+    body {
+        margin-top: 20px;
+    }
     .circle-clip-path {
         clip-path: circle(500px at center bottom);
     }
