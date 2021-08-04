@@ -58,6 +58,11 @@ class Admin extends BaseController
         ];
         return view('admin/hasil-survei/lihat_instrumen', $data);
     }
+
+    // ---------------- MENU KELOLA SURVEI --------------------------
+
+    // ---------------- kategori --------------------------
+
     public function kelolaKategori()
     {
         // $category = $this->adminModel->findAll();
@@ -75,8 +80,42 @@ class Admin extends BaseController
             'title' => 'Detail Kategori',
             'category' => $this->adminModel->getCategory($slug)
         ];
+
+        //jika url diketik asal dan kategori tidak ada di tabel
+        // menampilkan custom error page 
+
+        if (empty($data['category'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Kategori ' . $slug .
+                ' Tidak Ditemukan');
+        }
         return view('admin/kelola-survei/edit_kategori', $data);
     }
+    public function tambahKategori()
+    {
+        $data = [
+            'title' => 'Tambah Data Kategori',
+            'category' => $this->adminModel->getCategory()
+        ];
+        return view('admin/kelola-survei/kategori', $data);
+    }
+    public function saveKategori()
+    {
+        $slug = url_title($this->request->getVar('kodeCategory'), '-', true);
+        $this->adminModel->save(
+            [
+                'slug' => $slug,
+                'kodeCategory' => $this->request->getVar('kodeCategory'),
+                'namaCategory' => $this->request->getVar('namaCategory')
+
+            ]
+        );
+
+        session()->setFlashdata('msgKategori', 'Data kategori berhasil ditambahkan');
+
+        return redirect()->to('/admin/kelolaKategori');
+    }
+    // ---------------- instrumen --------------------------
+
 
     public function kelolaInstrumen()
     {
@@ -96,6 +135,9 @@ class Admin extends BaseController
 
         return view('admin/kelola-survei/edit_instrumen', $data);
     }
+
+    // ---------------- butir pernyataan --------------------------
+
     public function kelolaButirPernyataan()
     {
         $data = [

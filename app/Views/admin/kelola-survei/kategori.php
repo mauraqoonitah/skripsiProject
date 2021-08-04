@@ -23,8 +23,23 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="alert alert-primary fw-bold mb-3" role="alert">
-                Menampilkan seluruh kriteria instrumen kepuasan</div>
+            <!-- flash success tambah data  -->
+            <?php if (session()->getFlashdata('msgKategori')) :  ?>
+                <div class="alert alert-success d-flex align-items-center fw-bold mb-3" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </symbol>
+                    </svg>
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <div>
+                        <?= session()->getFlashData('msgKategori'); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <!-- ./ flash success tambah data  -->
 
             <div class="card mt-5">
                 <div class="card-header d-flex align-items-center py-4">
@@ -89,17 +104,19 @@
             </div>
             <div class="modal-body">
                 <!-- form tambah kategori -->
-                <form>
+                <form action="<?= base_url(); ?>/admin/saveKategori" method="post">
+                    <?= csrf_field(); ?>
+
                     <!-- nama kategori -->
                     <div class="form-group">
                         <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
-                        <textarea class="form-control" id="nama-kategori" placeholder="Instrumen Kepuasan atas Manajemen Layanan"></textarea>
+                        <textarea class="form-control" id="namaCategory" name="namaCategory" placeholder="Instrumen Kepuasan atas Manajemen Layanan"></textarea>
                     </div>
                     <!-- kode kategori -->
                     <div class="form-group">
                         <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="kode-kategori" placeholder="C.4">
+                            <input type="text" class="form-control" id="kodeCategory" name="kodeCategory" placeholder="C.4">
                             <!-- popover -->
                             <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
                                 <i class="fas fa-info"></i>
@@ -116,60 +133,60 @@
                     <div class="form-group">
                         <label for="peruntukkan-kategori" class="col-form-label">Peruntukkan:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked>
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory" checked>
                             <label class="form-check-label" for="flexCheckDefault">
                                 Dosen
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Tenaga Pendidik
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Mahasiswa
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Alumni/Lulusan
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Pengguna Lulusan
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Mitra
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Pengabdi
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
                             <label class="form-check-label" for="flexCheckChecked">
                                 Peneliti
                             </label>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </div>
                 </form>
                 <!-- end form tambah kategori -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <a href="<?= base_url(); ?>/admin/kelolaKategori"> <button type="button" class="btn btn-success">Simpan</button></a>
             </div>
         </div>
     </div>
