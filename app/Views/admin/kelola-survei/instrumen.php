@@ -120,10 +120,12 @@ views nya instrumen.php
                         <div class="mb-3 row">
                             <label for="kode-kategori" class="col-sm-2 col-form-label">Kategori:</label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="kode-kategori">
-                                    <option value="Instrumen Kepuasan atas Visi Misi">C.1 Instrumen Kepuasan atas Visi Misi</option>
-                                    <option value="C.3">C.3</option>
-                                    <option value="C.6">C.6</option>
+                                <select class="form-select" id="kodeCategory" name="kodeCategory">
+                                    <?php foreach ($category as $ctg => $value) :  ?>
+                                        <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?> - <?= $value['namaCategory']; ?></option>
+
+                                    <?php endforeach; ?>
+
                                 </select>
                             </div>
                         </div>

@@ -124,7 +124,8 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Kelola Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen()
+            'instrumen' => $this->instrumenModel->getInstrumen(),
+            'category' => $this->adminModel->getCategory()
         ];
 
         return view('admin/kelola-survei/instrumen', $data);
@@ -182,5 +183,25 @@ class Admin extends BaseController
         ];
 
         return view('admin/kelola-survei/edit_butir', $data);
+    }
+    public function tambahButirPernyataan()
+    {
+        $data = [
+            'title' => 'Tambah Data Butir Pernyataan',
+            'question' => $this->questionModel->getButirPernyataan()
+        ];
+        return view('admin/kelola-survei/question', $data);
+    }
+    public function saveButirPernyataan()
+    {
+        $this->questionModel->save(
+            [
+                'pernyataan' => $this->mRequest->getVar('pernyataan'),
+            ]
+        );
+
+        session()->setFlashdata('msgButir', 'Data Butir Pernyataan berhasil ditambahkan!');
+
+        return redirect()->to('/admin/kelolaButirPernyataan');
     }
 }

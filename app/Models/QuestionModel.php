@@ -8,6 +8,7 @@ class QuestionModel extends Model
 {
     protected $table      = 'questions';
     protected $userTimestamps = true;
+    protected $allowedFields = ['pernyataan'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
