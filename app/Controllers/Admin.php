@@ -5,12 +5,14 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
 use App\Models\QuestionModel;
+use App\Models\RespondenModel;
 
 class Admin extends BaseController
 {
     protected $adminModel;
     protected $instrumenModel;
     protected $questionModel;
+    protected $respondenModel;
     protected $mRequest;
 
 
@@ -19,6 +21,7 @@ class Admin extends BaseController
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->questionModel = new QuestionModel();
+        $this->respondenModel = new RespondenModel();
         $this->mRequest = service("request");
     }
 
@@ -73,7 +76,8 @@ class Admin extends BaseController
 
         $data = [
             'title' => 'Kelola Kategori',
-            'category' => $this->adminModel->getCategory()
+            'category' => $this->adminModel->getCategory(),
+            'responden' => $this->respondenModel->getResponden(),
         ];
 
         return view('admin/kelola-survei/kategori', $data);
@@ -98,7 +102,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Tambah Data Kategori',
-            'category' => $this->adminModel->getCategory()
+            'category' => $this->adminModel->getCategory(),
         ];
         return view('admin/kelola-survei/kategori', $data);
     }

@@ -22,6 +22,14 @@
 
     <!-- Main content -->
     <section class="content">
+        <table>
+            <th>Jenis Responden</th>
+            <?php foreach ($responden as $resp) : ?>
+                <tr>
+                    <td> <?= $resp['responden']; ?> </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
         <div class="container-fluid">
             <!-- flash success tambah data  -->
             <?php if (session()->getFlashdata('msgKategori')) :  ?>
@@ -132,54 +140,14 @@
                     <!-- peruntukkan kategori -->
                     <div class="form-group">
                         <label for="peruntukkan-kategori" class="col-form-label">Peruntukkan:</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory" checked>
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Dosen
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Tenaga Pendidik
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Mahasiswa
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Alumni/Lulusan
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Pengguna Lulusan
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Mitra
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Pengabdi
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="peruntukkanCategory" name="peruntukkanCategory">
-                            <label class="form-check-label" for="flexCheckChecked">
-                                Peneliti
-                            </label>
-                        </div>
+                        <?php foreach ($responden as $resp) : ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory" checked>
+                                <label class="form-check-label" for="peruntukkanCategory">
+                                    <?= $resp['responden']; ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
