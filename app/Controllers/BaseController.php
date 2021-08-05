@@ -29,6 +29,7 @@ class BaseController extends Controller
 	 */
 	protected $helpers = ['auth', 'uri'];
 
+
 	/**
 	 * Constructor.
 	 *

@@ -20,14 +20,32 @@ views nya instrumen.php
 
             </div>
         </div><!-- /.container-fluid -->
+
+        <!-- flash success tambah data  -->
+        <?php if (session()->getFlashdata('msgInstrumen')) :  ?>
+            <div class="alert alert-success d-flex align-items-center fw-bold mb-3" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                    </symbol>
+                </svg>
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                    <use xlink:href="#check-circle-fill" />
+                </svg>
+                <div>
+                    <?= session()->getFlashData('msgInstrumen'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <!-- ./ flash success tambah data  -->
+
+
+
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="alert alert-primary fw-bold mb-3" role="alert">
-                Menampilkan seluruh instrumen kepuasan</div>
-
             <div class="card mt-5">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Instrumen Kepuasan</h5>
@@ -95,7 +113,8 @@ views nya instrumen.php
             </div>
             <div class="modal-body">
                 <!-- form tambah instrumen -->
-                <form>
+                <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post">
+                    <?= csrf_field(); ?>
                     <!-- pilih kode kategori -->
                     <div class="form-group">
                         <div class="mb-3 row">
@@ -134,7 +153,7 @@ views nya instrumen.php
                             <label for="kode-instrumen" class="col-sm-2 col-form-label">Kode instrumen:</label>
 
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kode-instrumen" placeholder="C.4.2">
+                                <input type="text" class="form-control" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2">
                             </div>
                         </div>
                     </div>
@@ -158,13 +177,12 @@ views nya instrumen.php
                         </div>
                     </div>
 
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </div>
                 </form>
                 <!-- end form tambah instrumen -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <a href="<?= base_url(); ?>/admin/kelolaInstrumen"> <button type="button" class="btn btn-success">Simpan</button></a>
-                <small>nanti ini direct ke halaman tambah butir pernyataannya</small>
             </div>
 
         </div>

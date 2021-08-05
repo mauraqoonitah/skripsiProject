@@ -13,13 +13,15 @@ class Admin extends BaseController
     protected $questionModel;
     protected $mRequest;
 
+
     public function __construct()
     {
-        $this->mRequest = service("request");
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->questionModel = new QuestionModel();
+        $this->mRequest = service("request");
     }
+
     public function index()
     {
         $data = [
@@ -118,7 +120,6 @@ class Admin extends BaseController
     }
     // ---------------- instrumen --------------------------
 
-
     public function kelolaInstrumen()
     {
         $data = [
@@ -136,6 +137,30 @@ class Admin extends BaseController
         ];
 
         return view('admin/kelola-survei/edit_instrumen', $data);
+    }
+    public function tambahInstrumen()
+    {
+        $data = [
+            'title' => 'Tambah Data Instrumen',
+            'instrumen' => $this->instrumenModel->getInstrumen()
+        ];
+        return view('admin/kelola-survei/instrumen', $data);
+    }
+
+    public function saveInstrumen()
+    {
+        $this->instrumenModel->save(
+            [
+                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+
+            ]
+        );
+
+        session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil ditambahkan');
+
+        return redirect()->to('/admin/kelolaInstrumen');
     }
 
     // ---------------- butir pernyataan --------------------------
