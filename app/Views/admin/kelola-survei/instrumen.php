@@ -76,7 +76,7 @@ views nya instrumen.php
                                     <tr>
                                         <td><?= $i++; ?></td>
                                         <td>
-                                            [kodeCategory]
+                                            <?= $ins['kodeCategory']; ?>
                                         </td>
                                         <td><?= $ins['kodeInstrumen']; ?></td>
                                         <td><?= $ins['namaInstrumen']; ?></td>
@@ -92,6 +92,7 @@ views nya instrumen.php
                                             </div>
                                         </td>
                                     </tr>
+
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

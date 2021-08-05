@@ -170,7 +170,9 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Kelola Butir Pernyataan',
-            'question' => $this->questionModel->getButirPernyataan()
+            'question' => $this->questionModel->getButirPernyataan(),
+            'category' => $this->adminModel->getCategory(),
+            'instrumen' => $this->instrumenModel->getInstrumen()
         ];
 
         return view('admin/kelola-survei/question', $data);
