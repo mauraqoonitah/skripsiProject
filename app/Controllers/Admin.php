@@ -11,9 +11,11 @@ class Admin extends BaseController
     protected $adminModel;
     protected $instrumenModel;
     protected $questionModel;
+    protected $mRequest;
 
     public function __construct()
     {
+        $this->mRequest = service("request");
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->questionModel = new QuestionModel();
@@ -100,12 +102,12 @@ class Admin extends BaseController
     }
     public function saveKategori()
     {
-        $slug = url_title($this->request->getVar('kodeCategory'), '-', true);
+        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
         $this->adminModel->save(
             [
                 'slug' => $slug,
-                'kodeCategory' => $this->request->getVar('kodeCategory'),
-                'namaCategory' => $this->request->getVar('namaCategory')
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'namaCategory' => $this->mRequest->getVar('namaCategory')
 
             ]
         );
