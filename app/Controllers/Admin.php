@@ -6,6 +6,7 @@ use App\Models\AdminModel;
 use App\Models\InstrumenModel;
 use App\Models\QuestionModel;
 use App\Models\RespondenModel;
+use App\Models\ResponseModel;
 
 class Admin extends BaseController
 {
@@ -13,6 +14,7 @@ class Admin extends BaseController
     protected $instrumenModel;
     protected $questionModel;
     protected $respondenModel;
+    protected $responseModel;
     protected $mRequest;
 
 
@@ -22,6 +24,7 @@ class Admin extends BaseController
         $this->instrumenModel = new InstrumenModel();
         $this->questionModel = new QuestionModel();
         $this->respondenModel = new RespondenModel();
+        $this->responseModel = new ResponseModel();
         $this->mRequest = service("request");
     }
 
@@ -35,10 +38,11 @@ class Admin extends BaseController
     }
     // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
 
-    public function hasilSurveiResponden()
+    public function hasilSurveiResponden($fullname = 'fullname')
     {
         $data = [
-            'title' => 'Tanggapan Responden'
+            'title' => 'Tanggapan Responden',
+            'response' => $this->responseModel->getResponse(),
 
         ];
         return view('admin/hasil-survei/responden', $data);

@@ -43,169 +43,33 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>2-06-21 </td>
-                                    <td>1313617009</td>
-                                    <td>Haniya Hughes</td>
-                                    <td>Mahasiswa </td>
-                                    <td>C.6</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-primary text-decoration-none">
-                                                Lihat
-                                            </a>
-                                            <form action="" method="post" class="d-inline">
-                                                <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Hapus Data Responden?');">Hapus</button>
-                                            </form>
+                                <?php $i = 1; ?>
+                                <?php foreach ($response as $rps) : ?>
+
+                                    <tr>
+                                        <td><?= $i++; ?></td>
+                                        <td><?= $rps['created_at']; ?></td>
+                                        <td><?= $rps['noIdentitas']; ?></td>
+                                        <td><?= $rps['fullname']; ?></td>
+                                        <td><?= $rps['responden']; ?> </td>
+                                        <td><?= $rps['kodeInstrumen']; ?></td>
+                                        <td>
+                                            <div class="d-grid gap-2 d-md-block">
+                                                <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-primary text-decoration-none">
+                                                    Lihat
+                                                </a>
+                                                <form action="" method="post" class="d-inline">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Hapus Data Responden?');">Hapus</button>
+                                                </form>
 
 
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>2-06-21 </td>
-                                    <td>15249444393 </td>
-                                    <td>Elina Ramirez</td>
-                                    <td>Dosen </td>
-                                    <td>C.2</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>12-06-21 </td>
-                                    <td>336690447 </td>
-                                    <td>Raditya Kuswoyo</td>
-                                    <td>Tenaga Kependidikan </td>
-                                    <td>C.5</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>7-06-21</td>
-                                    <td>-</td>
-                                    <td>Maida Hariyah</td>
-                                    <td>Mitra</td>
-                                    <td>C.7</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>9-06-21</td>
-                                    <td>-</td>
-                                    <td>Garan Hutapea</td>
-                                    <td>Pengguna Lulusan</td>
-                                    <td>C.9</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>7-06-21</td>
-                                    <td>13123734</td>
-                                    <td>Dara Andrisa</td>
-                                    <td>Dosen</td>
-                                    <td>C.7</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>9-06-21</td>
-                                    <td>-</td>
-                                    <td>Garan Hutapea</td>
-                                    <td>Pengguna Lulusan</td>
-                                    <td>C.9</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>7-06-21</td>
-                                    <td>-</td>
-                                    <td>Raisa Andriana</td>
-                                    <td>Alumni</td>
-                                    <td>C.7</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>9-06-21</td>
-                                    <td>-</td>
-                                    <td>Garan Putu</td>
-                                    <td>Pengguna Lulusan</td>
-                                    <td>C.9</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>7-06-21</td>
-                                    <td>-</td>
-                                    <td>Maida Hariyah</td>
-                                    <td>Mitra</td>
-                                    <td>C.7</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-outline-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>11</td>
-                                    <td>9-06-21</td>
-                                    <td>-</td>
-                                    <td>Adiba Sarni</td>
-                                    <td>Peneliti</td>
-                                    <td>C.9</td>
-                                    <td>
-                                        <div class="d-grid gap-2 d-md-block">
-                                            <button class="btn btn-sm btn-primary" type="button">Lihat</button>
-                                            <button class="btn btn-sm btn-danger" type="button">Hapus</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                            </div>
+                                        </td>
+                                    </tr>
 
+                                <?php endforeach; ?>
                             </tbody>
 
                         </table>
