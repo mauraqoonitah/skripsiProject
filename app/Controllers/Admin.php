@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
-use App\Models\QuestionModel;
+use App\Models\PernyataanModel;
 use App\Models\RespondenModel;
 use App\Models\ResponseModel;
 
@@ -12,7 +12,7 @@ class Admin extends BaseController
 {
     protected $adminModel;
     protected $instrumenModel;
-    protected $questionModel;
+    protected $pernyataanModel;
     protected $respondenModel;
     protected $responseModel;
     protected $mRequest;
@@ -22,7 +22,7 @@ class Admin extends BaseController
     {
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
-        $this->questionModel = new QuestionModel();
+        $this->pernyataanModel = new PernyataanModel();
         $this->respondenModel = new RespondenModel();
         $this->responseModel = new ResponseModel();
         $this->mRequest = service("request");
@@ -232,37 +232,37 @@ class Admin extends BaseController
 
     // ---------------- butir pernyataan --------------------------
 
-    public function kelolaButirPernyataan()
+    public function kelolaPernyataan()
     {
         $data = [
             'title' => 'Kelola Butir Pernyataan',
-            'question' => $this->questionModel->getButirPernyataan(),
+            'pernyataan' => $this->pernyataanModel->getButirPernyataan(),
             'category' => $this->adminModel->getCategory(),
             'instrumen' => $this->instrumenModel->getInstrumen()
         ];
 
-        return view('admin/kelola-survei/question', $data);
+        return view('admin/kelola-survei/pernyataan', $data);
     }
-    public function editButirPernyataan($id)
+    public function editPernyataan($id)
     {
         $data = [
             'title' => 'Edit Butir Pernyataan Instrumen',
-            'question' => $this->questionModel->getButirPernyataan($id)
+            'pernyataan' => $this->pernyataanModel->getButirPernyataan($id)
         ];
 
-        return view('admin/kelola-survei/edit_butir', $data);
+        return view('admin/kelola-survei/edit_pernyataan', $data);
     }
-    public function tambahButirPernyataan()
+    public function tambahPernyataan()
     {
         $data = [
             'title' => 'Tambah Data Butir Pernyataan',
-            'question' => $this->questionModel->getButirPernyataan()
+            'pernyataan' => $this->pernyataanModel->getButirPernyataan()
         ];
-        return view('admin/kelola-survei/question', $data);
+        return view('admin/kelola-survei/pernyataan', $data);
     }
     public function saveButirPernyataan()
     {
-        $this->questionModel->save(
+        $this->pernyataanModel->save(
             [
                 'pernyataan' => $this->mRequest->getVar('pernyataan'),
             ]
@@ -270,6 +270,6 @@ class Admin extends BaseController
 
         session()->setFlashdata('msgButir', 'Data Butir Pernyataan berhasil ditambahkan!');
 
-        return redirect()->to('/admin/kelolaButirPernyataan');
+        return redirect()->to('/admin/kelolaPernyataan');
     }
 }

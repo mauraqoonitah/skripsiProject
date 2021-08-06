@@ -53,7 +53,7 @@
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Kategori Kuesioner</h5>
                     <!-- Button trigger modal -->
-                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_kategori" class="ml-auto">
+                    <a href="<?= base_url(); ?>/admin/tambahKategori" class="ml-auto">
                         <button type="button" class="btn btn-warning ">
                             <i class="fas fa-plus"></i> Tambah Kategori
                         </button></a>
