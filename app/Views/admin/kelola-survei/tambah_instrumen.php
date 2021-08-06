@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Buat Instrumen</h1>
+                    <h1 class="fw-bold">Kelola Instrumen</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -18,6 +18,10 @@
 
             </div>
         </div><!-- /.container-fluid -->
+        <!-- previous page -->
+        <a href="<?= base_url(); ?>/admin/kelolaInstrumen">
+            <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
+        </a>
 
         <!-- flash success tambah data  -->
         <?php if (session()->getFlashdata('msgInstrumen')) :  ?>
@@ -45,6 +49,9 @@
     <section class="content col-lg-10 mx-auto">
         <div class="container-fluid">
             <div class="card mt-2">
+                <div class="card-header d-flex align-items-center py-4">
+                    <h5 class="">Tambah Instrumen</h5>
+                </div>
                 <div class="card-body py-4">
                     <!-- form tambah instrumen -->
                     <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post">

@@ -18,6 +18,10 @@
 
             </div>
         </div><!-- /.container-fluid -->
+        <!-- previous page -->
+        <a href="<?= base_url(); ?>/admin/kelolaKategori">
+            <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
+        </a>
     </section>
     <!-- Main content -->
     <section class="content col-lg-10 mx-auto">
@@ -43,6 +47,9 @@
             <?php endif; ?>
 
             <div class="card">
+                <div class="card-header d-flex align-items-center py-4">
+                    <h5 class="">Buat Kategori Instrumen</h5>
+                </div>
                 <div class="card-body">
                     <form action="<?= base_url(); ?>/admin/saveKategori" method="post">
                         <?= csrf_field(); ?>
@@ -100,19 +107,6 @@
         </div>
     </section>
     <!-- /.content -->
-
-
-</div>
-
-<!-- modal tambah kategori -->
-<div class="header">
-    <h5>Buat Kategori Instrumen</h5>
-</div>
-<div class="card-body">
-    <!-- form tambah kategori -->
-
-    <!-- end form tambah kategori -->
-
 </div>
 
 <?= $this->endSection(); ?>
