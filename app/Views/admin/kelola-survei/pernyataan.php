@@ -40,7 +40,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="card mt-5">
+            <div class="card">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Butir Pernyataan</h5>
                     <!-- Button trigger modal -->
@@ -99,7 +99,7 @@
             </div>
             <div class="modal-body">
                 <!-- form tambah butir -->
-                <form action="<?= base_url(); ?>/admin/saveButirPernyataan" method="post">
+                <form action="<?= base_url(); ?>/admin/savePernyataan" method="post">
                     <?= csrf_field(); ?>
 
                     <!-- pilih kode kategori -->

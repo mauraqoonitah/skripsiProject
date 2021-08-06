@@ -256,11 +256,13 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Tambah Data Butir Pernyataan',
-            'pernyataan' => $this->pernyataanModel->getPernyataan()
+            'pernyataan' => $this->pernyataanModel->getPernyataan(),
+            'category' => $this->adminModel->getCategory(),
+
         ];
-        return view('admin/kelola-survei/pernyataan', $data);
+        return view('admin/kelola-survei/tambah_pernyataan', $data);
     }
-    public function saveButirPernyataan()
+    public function savePernyataan()
     {
         $this->pernyataanModel->save(
             [
