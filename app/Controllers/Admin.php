@@ -165,7 +165,9 @@ class Admin extends BaseController
         $data = [
             'title' => 'Kelola Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
-            'category' => $this->adminModel->getCategory()
+            'category' => $this->adminModel->getCategory(),
+
+            'validation' => \Config\Services::validation()
         ];
 
         return view('admin/kelola-survei/instrumen', $data);
@@ -183,13 +185,37 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Tambah Data Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen()
+            'instrumen' => $this->instrumenModel->getInstrumen(),
+            'category' => $this->adminModel->getCategory(),
+
+            'validation' => \Config\Services::validation()
+
         ];
-        return view('admin/kelola-survei/instrumen', $data);
+        return view('admin/kelola-survei/tambah_instrumen', $data);
     }
 
     public function saveInstrumen()
     {
+        // validasi input
+        if (!$this->validate([
+            'kodeInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
+                'errors' => [
+                    'required' => 'Kode Instrumen harus diisi.',
+                    'is_unique' => 'Kode Instrumen ini sudah terdaftar.'
+                ]
+            ],
+            // 'namaInstrumen' => [
+            //     'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
+            //     'errors' => [
+            //         'required' => 'Nama Instrumen harus diisi.',
+            //         'is_unique' => 'Nama Instrumen ini sudah terdaftar.'
+            //     ]
+            // ],
+        ])) {
+            return redirect()->to('admin/kelola-survei/tambah_instrumen')->withInput();
+        }
+
         $this->instrumenModel->save(
             [
                 'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),

@@ -52,6 +52,7 @@ $routes->get('/admin/kelola-survei/index', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/kategori', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin::tambahKategori');
 $routes->get('/admin/kelola-survei/instrumen', 'Admin::kelolaInstrumen');
+$routes->get('/admin/kelola-survei/tambah_instrumen', 'Admin::tambahInstrumen');
 $routes->get('/admin/kelola-survei/question', 'Admin::kelolaButirPernyataan');
 
 

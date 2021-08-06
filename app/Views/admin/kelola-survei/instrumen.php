@@ -1,5 +1,3 @@
-views nya instrumen.php
-
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
@@ -39,20 +37,19 @@ views nya instrumen.php
         <?php endif; ?>
         <!-- ./ flash success tambah data  -->
 
-
-
     </section>
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="card mt-5">
+            <div class="card ">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Instrumen Kepuasan</h5>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning ml-auto" data-bs-toggle="modal" data-bs-target="#tambahInstrumenModal">
-                        <i class="fas fa-plus"></i> Tambah Instrumen
-                    </button>
+                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen" class="ml-auto">
+                        <button type="button" class="btn btn-warning ">
+                            <i class=" fas fa-plus"></i> Tambah Instrumen
+                        </button></a>
 
                 </div>
 
@@ -103,96 +100,6 @@ views nya instrumen.php
     </section>
     <!-- /.content -->
 </div>
-
-<!-- modal tambah instrumen -->
-<div class="modal fade" id="tambahInstrumenModal" tabindex="-1" aria-labelledby="tambahInstrumenLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahInstrumenLabel">Tambah Instrumen</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- form tambah instrumen -->
-                <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post">
-                    <?= csrf_field(); ?>
-                    <!-- pilih kode kategori -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="kode-kategori" class="col-sm-2 col-form-label">Kategori:</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="kodeCategory" name="kodeCategory">
-                                    <?php foreach ($category as $ctg => $value) :  ?>
-                                        <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?> - <?= $value['namaCategory']; ?></option>
-
-                                    <?php endforeach; ?>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- nama instrumen -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="nama-instrumen" class="col-sm-2 col-form-label">Nama instrumen:</label>
-
-                            <div class="col-sm-10">
-                                <select class="form-select" id="peruntukkan-kategori">
-                                    <option selected class="text-muted">Pilih </option>
-                                    <option value="">ins2 </option>
-                                    <option value=""> ins1</option>
-                                    <option value="">ins3</option>
-                                    <option value="">ins4</option>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- kode instrumen -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="kode-instrumen" class="col-sm-2 col-form-label">Kode instrumen:</label>
-
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- peruntukkan instrumen -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="peruntukkan-instrumen" class="col-sm-2 col-form-label">Peruntukkan:</label>
-                            <div class="col-sm-10">
-                                <select class="form-select" id="peruntukkan-instrumen">
-                                    <option value="Dosen">Dosen</option>
-                                    <option value="Tenaga Pendidik">Tenaga Pendidik</option>
-                                    <option value="Mahasiswa">Mahasiswa</option>
-                                    <option value="Mahasiswa">Alumni/Lulusan</option>
-                                    <option value="Mahasiswa">Pengguna Lulusan</option>
-                                    <option value="Mahasiswa">Mitra</option>
-                                    <option value="Mahasiswa">Pengabdi</option>
-                                    <option value="Mahasiswa">Peneliti</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                    </div>
-                </form>
-                <!-- end form tambah instrumen -->
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- end modal tambah instrumen -->
-
 
 <!-- modal hapus instrumen -->
 <div class="modal fade" id="hapusInstrumen" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
