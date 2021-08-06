@@ -236,7 +236,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Kelola Butir Pernyataan',
-            'pernyataan' => $this->pernyataanModel->getButirPernyataan(),
+            'pernyataan' => $this->pernyataanModel->getPernyataan(),
             'category' => $this->adminModel->getCategory(),
             'instrumen' => $this->instrumenModel->getInstrumen()
         ];
@@ -247,7 +247,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Edit Butir Pernyataan Instrumen',
-            'pernyataan' => $this->pernyataanModel->getButirPernyataan($id)
+            'pernyataan' => $this->pernyataanModel->getPernyataan($id)
         ];
 
         return view('admin/kelola-survei/edit_pernyataan', $data);
@@ -256,7 +256,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Tambah Data Butir Pernyataan',
-            'pernyataan' => $this->pernyataanModel->getButirPernyataan()
+            'pernyataan' => $this->pernyataanModel->getPernyataan()
         ];
         return view('admin/kelola-survei/pernyataan', $data);
     }
