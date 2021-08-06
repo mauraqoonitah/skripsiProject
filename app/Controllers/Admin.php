@@ -38,7 +38,7 @@ class Admin extends BaseController
     }
     // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
 
-    public function hasilSurveiResponden($fullname = 'fullname')
+    public function hasilSurveiResponden()
     {
         $data = [
             'title' => 'Tanggapan Responden',
@@ -88,6 +88,9 @@ class Admin extends BaseController
             'title' => 'Kelola Kategori',
             'category' => $this->adminModel->getCategory(),
             'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
+
         ];
 
         return view('admin/kelola-survei/kategori', $data);
@@ -113,11 +116,34 @@ class Admin extends BaseController
         $data = [
             'title' => 'Tambah Data Kategori',
             'category' => $this->adminModel->getCategory(),
+            'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
         ];
-        return view('admin/kelola-survei/kategori', $data);
+        return view('admin/kelola-survei/tambah_kategori', $data);
     }
     public function saveKategori()
     {
+        // validasi input
+        if (!$this->validate([
+            'kodeCategory' => [
+                'rules'  => 'required|is_unique[category_instrumen.kodeCategory]',
+                'errors' => [
+                    'required' => 'Kode Kategori harus diisi.',
+                    'is_unique' => 'Kode Kategori ini sudah terdaftar.'
+                ]
+            ],
+            'namaCategory' => [
+                'rules'  => 'required|is_unique[category_instrumen.namaCategory]',
+                'errors' => [
+                    'required' => 'Nama Kategori harus diisi.',
+                    'is_unique' => 'Nama Kategori ini sudah terdaftar.'
+                ]
+            ],
+        ])) {
+            return redirect()->to('admin/kelola-survei/tambah_kategori')->withInput();
+        }
+
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
         $this->adminModel->save(
             [

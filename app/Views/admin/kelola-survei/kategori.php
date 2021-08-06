@@ -53,9 +53,10 @@
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Kategori Kuesioner</h5>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning ml-auto" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">
-                        <i class="fas fa-plus"></i> Tambah Kategori
-                    </button>
+                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_kategori" class="ml-auto">
+                        <button type="button" class="btn btn-warning ">
+                            <i class="fas fa-plus"></i> Tambah Kategori
+                        </button></a>
 
                 </div>
 
@@ -101,65 +102,6 @@
     </section>
     <!-- /.content -->
 </div>
-
-<!-- modal tambah kategori -->
-<div class="modal fade" id="tambahKategoriModal" tabindex="-1" aria-labelledby="tambahKategoriLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="tambahKategoriLabel">Buat Kategori Instrumen</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- form tambah kategori -->
-                <form action="<?= base_url(); ?>/admin/saveKategori" method="post">
-                    <?= csrf_field(); ?>
-
-                    <!-- nama kategori -->
-                    <div class="form-group">
-                        <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
-                        <textarea class="form-control" id="namaCategory" name="namaCategory" placeholder="Instrumen Kepuasan atas Manajemen Layanan"></textarea>
-                    </div>
-                    <!-- kode kategori -->
-                    <div class="form-group">
-                        <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="kodeCategory" name="kodeCategory" placeholder="C.4">
-                            <!-- popover -->
-                            <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
-                                <i class="fas fa-info"></i>
-                            </span>
-                        </div>
-                        <div class="collapse" id="popover-kode-kategori">
-                            <p class="font-monospace text-secondary">
-                                test popover - Masukkan kode kategori
-                            </p>
-                        </div>
-                        <!-- end popover -->
-                    </div>
-                    <!-- peruntukkan kategori -->
-                    <div class="form-group">
-                        <label for="peruntukkan-kategori" class="col-form-label">Peruntukkan:</label>
-                        <?php foreach ($responden as $resp) : ?>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory" checked>
-                                <label class="form-check-label" for="peruntukkanCategory">
-                                    <?= $resp['responden']; ?>
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                    </div>
-                </form>
-                <!-- end form tambah kategori -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end modal tambah kategori -->
 
 
 <!-- modal hapus kategori -->

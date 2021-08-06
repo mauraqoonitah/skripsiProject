@@ -49,5 +49,8 @@ class BaseController extends Controller
 
 		// kalo dibutuhin semua controller,lebih baik taruh disini, contoh: 
 		// $this->adminModel = new \App\Models\AdminModel();
+
+		//session utk ambil inputan saat validation 
+		session();
 	}
 }
