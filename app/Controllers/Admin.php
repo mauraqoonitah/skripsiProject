@@ -33,6 +33,8 @@ class Admin extends BaseController
         ];
         return view('admin/index', $data);
     }
+    // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
+
     public function hasilSurveiResponden()
     {
         $data = [
@@ -49,10 +51,14 @@ class Admin extends BaseController
         ];
         return view('admin/hasil-survei/lihat_responden', $data);
     }
+    // ---------------- MENU HASIL SURVEI - INSTRUMEN --------------------------
+
     public function hasilSurveiInstrumen()
     {
         $data = [
-            'title' => 'Hasil Survei Per-Instrumen'
+            'title' => 'Hasil Survei Per-Instrumen',
+            'instrumen' => $this->instrumenModel->getInstrumen(),
+
 
         ];
         return view('admin/hasil-survei/instrumen', $data);

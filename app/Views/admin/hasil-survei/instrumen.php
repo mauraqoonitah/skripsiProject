@@ -27,31 +27,15 @@
 
             <div class="col-lg-8">
                 <div class="list-group center">
-                    <a href="<?= base_url(); ?>/admin/lihatInstrumen" class="list-group-item list-group-item-action" aria-current="true">
-                        <div class="w-100">
-                            <p class="mb-1 py-2 text-center">Instrumen Tingkat Pemahaman Visi, Misi, Tujuan, Strategi UNJ</p>
-                        </div>
-                    </a>
-                    <a href="<?= base_url(); ?>/admin/lihatInstrumen" class="list-group-item list-group-item-action">
-                        <div class="w-100">
-                            <p class="mb-1 py-2 text-center">Instrumen Kepuasan atas Layanan Manajemen</p>
-                        </div>
-                    </a>
-                    <a href="<?= base_url(); ?>/admin/lihatInstrumen" class=" list-group-item list-group-item-action">
-                        <div class="w-100">
-                            <p class="mb-1 py-2 text-center">Instrumen Kepuasan atas Standar Layanan Mahasiswa</p>
-                        </div>
-                    </a>
-                    <a href="<?= base_url(); ?>/admin/lihatInstrumen" class=" list-group-item list-group-item-action">
-                        <div class="w-100">
-                            <p class="mb-1 py-2 text-center">Instrumen Kepuasan atas Proses Pendidikan</p>
-                        </div>
-                    </a>
-                    <a href="<?= base_url(); ?>/admin/lihatInstrumen" class=" list-group-item list-group-item-action">
-                        <div class="w-100">
-                            <p class="mb-1 py-2 text-center">Instrumen Kepuasan atas Pengelolaan Keuangan dan Sarana Prasarana</p>
-                        </div>
-                    </a>
+                    <?php foreach ($instrumen as $inst) : ?>
+                        <a href="<?= base_url(); ?>/admin/lihatInstrumen" class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="w-100">
+                                <p class="mb-1 py-2 text-center"><?= $inst['namaInstrumen']; ?></p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+
+
                 </div>
             </div>
         </div>
