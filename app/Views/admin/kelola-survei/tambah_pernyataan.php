@@ -53,6 +53,7 @@
                     <h5 class="">Buat Butir Pernyataan</h5>
                 </div>
                 <div class="card-body py-4">
+                    <?php $validation->listErrors(); ?>
                     <!-- form tambah pernyataan -->
                     <form action="<?= base_url(); ?>/admin/savePernyataan" method="post">
                         <?= csrf_field(); ?>
@@ -97,7 +98,10 @@
                             <div class="mb-3 row">
                                 <label for="pernyataan" class="col-sm-2 col-form-label">Isi Butir Pernyataan:</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="pernyataan" name="pernyataan" rows="3"></textarea>
+                                    <textarea class="form-control <?= $validation->hasError('pernyataan') ? 'is-invalid' : ''; ?>" id="pernyataan" name="pernyataan" rows="3" value="<?= old('pernyataan'); ?>"></textarea>
+                                    <div class="invalid-feedback">
+                                        <?= $validation->getError('pernyataan'); ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>

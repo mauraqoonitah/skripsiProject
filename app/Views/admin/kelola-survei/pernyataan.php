@@ -43,11 +43,11 @@
             <div class="card">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Butir Pernyataan</h5>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning ml-auto" data-bs-toggle="modal" data-bs-target="#tambahButirModal">
-                        <i class="fas fa-plus"></i> Tambah
-                    </button>
-
+                    <a href="<?= base_url(); ?>/admin/tambahPernyataan" class="ml-auto">
+                        <button type="button" class="btn btn-warning ">
+                            <i class="fas fa-plus"></i> Tambah
+                        </button>
+                    </a>
                 </div>
 
                 <div class="card-body">

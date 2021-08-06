@@ -259,11 +259,28 @@ class Admin extends BaseController
             'pernyataan' => $this->pernyataanModel->getPernyataan(),
             'category' => $this->adminModel->getCategory(),
 
+            'validation' => \Config\Services::validation()
+
+
         ];
         return view('admin/kelola-survei/tambah_pernyataan', $data);
     }
     public function savePernyataan()
     {
+
+        //validasi input
+        if (!$this->validate([
+            'pernyataan' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Butir pernyataan harus di isi.'
+                ]
+            ],
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->to('admin/tambahPernyataan')->withInput();
+        }
+
         $this->pernyataanModel->save(
             [
                 'pernyataan' => $this->mRequest->getVar('pernyataan'),
