@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Rubik&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic&family=Palanquin+Dark&display=swap');
 *,
  ::before,
  ::after {
@@ -8,6 +7,7 @@
 
 html {
     scroll-behavior: smooth;
+    background-color: #fafafa;
 }
 
 a {
@@ -20,16 +20,15 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Palanquin Dark', sans-serif;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif !important;
-    font-weight: 500;
-    background-color: #f8f9fa;
+    font-family: 'Andika New Basic', sans-serif !important;
+    background-color: #fafafa;
     color: #141C3A;
     line-height: 1.6;
-    font-size: 16px;
+    font-size: 16.4px;
 }
 
 .navbar-cyan {
@@ -60,6 +59,12 @@ footer {
     box-shadow: 0 7px 20px -10px rgba(51, 51, 51, 0.5);
 }
 
+.menu {
+    min-height: 100vh;
+    padding-bottom: 3rem;
+    margin-bottom: 5rem;
+}
+
 .section-title {
     text-align: center;
     padding: 1rem;
@@ -69,20 +74,24 @@ footer {
 
 .obyek-menu {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-    align-items: center;
+    grid-template-columns: 1fr 1fr;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 2rem;
     font-weight: 600;
 }
 
 .obyek-list {
     background-color: #e4e4de;
     text-align: center;
-    padding: 1rem 0 1rem 0;
+    padding: 1rem 20px;
     border: solid 1px rgba(130, 127, 127, 0.386);
     border-radius: .5rem;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.list-kategori {
+    text-transform: capitalize !important;
 }
 
 .instrumen-menu {
@@ -115,7 +124,6 @@ footer {
 .landing-page {
     min-height: 100vh;
     padding: 20px;
-    background-color: #fafafa;
 }
 
 
@@ -123,6 +131,15 @@ footer {
 
 .navbar {
     background-color: #fafafa;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    color: #017143;
 }
 
 nav ul li a {
@@ -215,7 +232,8 @@ nav ul li a:hover {
     max-width: 60px;
 }
 
-.thumbnail-bar-content {
+
+/* .thumbnail-bar-content {
     position: absolute;
     top: 50%;
     right: 30px;
@@ -237,7 +255,7 @@ nav ul li a:hover {
     font-size: 40px;
     color: #000;
     filter: invert(1);
-}
+} */
 
 .circle-clip-path {
     position: absolute;
@@ -283,20 +301,18 @@ nav ul li a:hover {
     }
     .content {
         flex-direction: column;
-        margin-top: 10vh;
+        margin-top: 2vh;
     }
     .content .textBox {
         padding: 0;
     }
     .content .textBox h2 {
-        font-size: 1.2rem;
+        font-size: 26px;
     }
     .content .textBox h3 {
-        font-size: 16px;
         font-weight: 500;
     }
     .content .textBox p {
-        font-size: 14px;
         font-weight: 500;
         ;
     }
@@ -322,6 +338,15 @@ nav ul li a:hover {
     }
     .nav-item {
         padding: 0;
+    }
+    .menu {
+        min-height: 100vh;
+        padding: 0 18px;
+    }
+    .obyek-menu {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.6rem;
     }
 }
 

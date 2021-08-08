@@ -8,11 +8,50 @@
             <div class="textBox">
                 <h2> <span>Survei Kepuasan 9 Kriteria</span> <br>
                     Penjaminan Mutu Internal<br>
-                    <h3>FMIPA UNJ</h3>
                 </h2>
+                <div class="col-lg-12 col-md-10 col-sm-10">
 
-                <p class="col-lg-12 col-md-10 col-sm-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos excepturi omnis placeat nisi corporis quisquam sed tempora nostrum aspernatur ut.</p>
+                    <!-- carousel -->
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators" style="top: 100%; margin-top: 1rem;">
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        <div class="carousel-inner p-2">
+                            <div class="carousel-item active" data-bs-interval="5000">
+                                <div class="d-md-block">
+                                    <p>Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
 
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <div class="d-md-block">
+                                    <p> Sistem penjaminan mutu pendidikan tinggi terdiri atas sistem penjaminan mutu internal yang dikembangkan oleh perguruan tinggi dan sistem penjaminan mutu eksternal yang dilakukan melalui akreditasi. <i>(Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 Tentang Pendidikan Tinggi)
+                                        </i>
+
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <div class="d-md-block">
+                                    <p> Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan. SPMI direncanakan, dilaksanakan, dievaluasi, dikendalikan, dan dikembangkan oleh perguruan tinggi.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" style="top: 100%; margin-top: 1rem;" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" style="top: 100%; margin-top: 1rem;" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- ./carousel -->
+                </div>
                 <a class="" href="#obyek-menu" role="button">
                     <button type="button" class="btn btn-success btn-jumbotron ">Isi Survei</button>
                 </a>
@@ -25,6 +64,7 @@
     <ul class="thumbnail-bar">
         <li>
             <img src="<?= base_url(); ?>/img/dot-circle-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/default.svg');changeCircleColor('#017143')">
+
         </li>
         <li>
             <img src="<?= base_url(); ?>/img/chart-bar-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_1.svg');changeCircleColor('#64b5f6')">
@@ -34,40 +74,28 @@
         </li>
     </ul>
 
-    <ul class="thumbnail-bar-content">
-        <li><a href=""><i class="fas fa-paperclip"></i></a> </li>
-        <li> <a href=""><i class="fas fa-chart-bar "></i></a></li>
-        <li><a href=""><i class="fas fa-user"></i></a> </li>
-    </ul>
 </section>
 
-<section class="menu">
-    <div class="container">
-        <h3 class="section-title " id="obyek-menu">Responden Survei</h3>
+<section class="menu col-lg-8 mx-auto">
+    <div class="container" id="instrumen">
+        <h3 class="section-title" id="obyek-menu">Kriteria Kepuasan</h3>
         <div class="row obyek-menu">
-            <a href="./about.php" class="obyek-list col-sm text-reset"> Dosen
-            </a>
-            <div class="obyek-list col-sm">
-                Tenaga Kependidikan
-            </div>
-            <div class="obyek-list col-sm">
-                Mahasiswa
-            </div>
-            <div class="obyek-list col-sm">
-                Alumni/Lulusan
-            </div>
-            <div class="obyek-list col-sm">
-                Pengguna Lulusan
-            </div>
-            <div class="obyek-list col-sm">
-                Mitra
-            </div>
-            <div class="obyek-list col-sm">
-                Peneliti
-            </div>
-            <div class="obyek-list col-sm">
-                Pengabdi
-            </div>
+            <?php foreach ($category as $ctg) :  ?>
+                <div class="obyek-list col-sm">
+                    <a href="./about.php" class="list-kategori"> <?= $ctg['namaCategory']; ?></a>
+                </div>
+            <?php endforeach; ?>
+
+        </div>
+    </div>
+</section>
+
+<section class="menu col-lg-8 mx-auto">
+    <div class="container">
+        <h3 class="section-title" id="obyek-menu">Grafik Kepuasan</h3>
+
+
+        <div class="row obyek-menu">
         </div>
     </div>
 </section>

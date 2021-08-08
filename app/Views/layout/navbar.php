@@ -13,7 +13,7 @@
                     <a class="nav-link active" href="<?= base_url(); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#instrumen">Instrumen</a>
                 </li>
                 <li class="nav-item">
                     <?php if (logged_in()) : ?>
