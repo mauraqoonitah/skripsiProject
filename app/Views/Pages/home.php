@@ -90,5 +90,22 @@
     </div>
 </section>
 
+<button id="scrollToTopBtn" class=""><i class="fas fa-chevron-up"></i></button>
+
 </section>
+
+<script>
+    // scroll to top
+    var scrollToTopBtn = document.getElementById("scrollToTopBtn")
+    var rootElement = document.documentElement
+
+    function scrollToTop() {
+        rootElement.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
+    scrollToTopBtn.addEventListener("click", scrollToTop)
+</script>
 <?= $this->endSection(); ?>
