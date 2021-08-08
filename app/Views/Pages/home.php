@@ -61,27 +61,19 @@
             <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" class="img-fluid jumbotron-image">
         </div>
     </div>
-    <ul class="thumbnail-bar">
-        <li>
-            <img src="<?= base_url(); ?>/img/dot-circle-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/default.svg');changeCircleColor('#017143')">
-
-        </li>
-        <li>
-            <img src="<?= base_url(); ?>/img/chart-bar-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_1.svg');changeCircleColor('#64b5f6')">
-        </li>
-        <li>
-            <img src="<?= base_url(); ?>/img/file-alt-solid.svg" alt="" width="40" height="40" onclick="itemSlider('<?= base_url(); ?>/img/undraw_profile_2.svg');changeCircleColor('#7e57c2')">
-        </li>
-    </ul>
 
 </section>
 
-<section class="menu col-lg-8 mx-auto">
-    <div class="container" id="instrumen">
-        <h3 class="section-title" id="obyek-menu">Kriteria Kepuasan</h3>
+<section class="menu col-lg-8 mx-auto" id="instrumen">
+    <!-- sticky scrolled -->
+    <div id=passageWrapper>
+        <h3 class="section-title">Kriteria Kepuasan</h3>
+    </div>
+    <div class="container pt-5">
+        <!-- ./sticky scrolled -->
         <div class="row obyek-menu">
             <?php foreach ($category as $ctg) :  ?>
-                <div class="obyek-list col-sm">
+                <div class="obyek-list col-sm shadow-sm">
                     <a href="./about.php" class="list-kategori"> <?= $ctg['namaCategory']; ?></a>
                 </div>
             <?php endforeach; ?>
@@ -93,24 +85,10 @@
 <section class="menu col-lg-8 mx-auto">
     <div class="container">
         <h3 class="section-title" id="obyek-menu">Grafik Kepuasan</h3>
-
-
         <div class="row obyek-menu">
         </div>
     </div>
 </section>
 
-
-<script type="text/javascript">
-    function itemSlider(item) {
-        document.querySelector('.jumbotron-image').src = item;
-    }
-
-    function changeCircleColor(color) {
-        const circle = document.querySelector('.circle-clip-path');
-        circle.style.background = color;
-    }
-</script>
-
-
+</section>
 <?= $this->endSection(); ?>
