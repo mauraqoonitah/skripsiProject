@@ -90,8 +90,7 @@
     </div>
 </section>
 
-<button id="scrollToTopBtn" class=""><i class="fas fa-chevron-up"></i></button>
-
+<button id="scrollToTopBtn" class=""><i class="fas fa-angle-double-up"></i></button>
 </section>
 
 <script>
