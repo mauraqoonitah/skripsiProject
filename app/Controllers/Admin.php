@@ -150,7 +150,8 @@ class Admin extends BaseController
             [
                 'slug' => $slug,
                 'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                'namaCategory' => $this->mRequest->getVar('namaCategory')
+                'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                'peruntukkanCategory' => $this->mRequest->getVar('peruntukkanCategory')
 
             ]
         );
