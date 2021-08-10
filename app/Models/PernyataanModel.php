@@ -8,7 +8,7 @@ class PernyataanModel extends Model
 {
     protected $table      = 'questions';
     protected $userTimestamps = true;
-    protected $allowedFields = ['pernyataan'];
+    protected $allowedFields = ['kodeCategory', 'namaInstrumen', 'pernyataan'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori

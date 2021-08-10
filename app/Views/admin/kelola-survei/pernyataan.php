@@ -41,15 +41,10 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header d-flex align-items-center py-4">
-                    <h5 class="">Butir Pernyataan</h5>
-                    <a href="<?= base_url(); ?>/admin/tambahPernyataan" class="ml-auto">
-                        <button type="button" class="btn btn-warning ">
-                            <i class="fas fa-plus"></i> Tambah
-                        </button>
-                    </a>
+                <div class="alert alert-info" role="alert">
+                    Pilih instrumen untuk melihat butir pernyataan
                 </div>
-
+                <!-- butir pernyataan per instrumen -->
                 <div class="card-body">
                     <div class="table-responsive">
                         <!-- datatables -->
@@ -57,19 +52,24 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Butir Pernyataan</th>
+                                    <th>Instrumen</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($pernyataan as $q) : ?>
+                                <?php foreach ($instrumen as $ins) : ?>
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $q['pernyataan']; ?></td>
+                                        <td><a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="nanti masuk ke detail lihat semua butir pada instrumen ini"><?= $ins['namaInstrumen']; ?></a></td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editButirPernyataan/<?= $q['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="<?= base_url(); ?>/admin/tambahPernyataan" class="ml-auto mr-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Pernyataan">
+                                                    <button type="button" class="btn btn-warning ">
+                                                        <i class="fas fa-plus"></i> Tambah
+                                                    </button>
+                                                </a>
+                                                <a href="<?= base_url(); ?>/admin/editButirPernyataan/id" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusButir">
@@ -83,10 +83,54 @@
                         </table>
                     </div>
                 </div>
+                <!-- ./butir pernyataan per instrumen -->
+
             </div>
         </div>
     </section>
     <!-- /.content -->
+    <br><br><br><br><br>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <!-- butir pernyataan per instrumen -->
+    <div class="card-body">
+        <div class="table-responsive">
+            <!-- datatables -->
+            <table id="table-kelola-instrumen" class="stripe hover row-border" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Butir Pernyataan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php $i = 1; ?>
+                    <?php foreach ($pernyataan as $q) : ?>
+                        <tr>
+                            <td><?= $i++; ?></td>
+                            <td><?= $q['pernyataan']; ?></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="<?= base_url(); ?>/admin/editButirPernyataan/<?= $q['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusButir">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- ./butir pernyataan per instrumen -->
+
 </div>
 
 <!-- modal tambah butir -->
