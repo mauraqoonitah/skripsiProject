@@ -293,4 +293,18 @@ class Admin extends BaseController
 
         return redirect()->to('/admin/kelolaPernyataan');
     }
+
+    // --------------------------- kelola responden ---------------------------------------------
+    public function kelolaResponden()
+    {
+        $data = [
+            'title' => 'Kelola Responden',
+            'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
+
+        ];
+
+        return view('admin/kelola-survei/jenis_responden', $data);
+    }
 }

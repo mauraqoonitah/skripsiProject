@@ -27,7 +27,7 @@
 
                 <li class="nav-item">
                     <a href="#" class="nav-link <?= $uri->getSegment(3) == 'hasilSurveiResponden' || $uri->getSegment(3) == 'hasilSurveiInstrumen' ? 'active"' : '' ?>">
-                        <i class="nav-icon fas fa-users"></i>
+                        <i class="nav-icon fas fa-poll-h"></i>
                         <p>
                             Hasil Survei
                             <i class="right fas fa-angle-left"></i>
@@ -77,6 +77,15 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= base_url(); ?>/admin/kelolaResponden" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Kelola Responden
+                        </p>
+                    </a>
                 </li>
 
                 <li class="nav-item">
