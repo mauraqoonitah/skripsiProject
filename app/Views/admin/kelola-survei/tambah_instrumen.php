@@ -63,10 +63,8 @@
                                 <div class="col-sm-10">
                                     <select class="form-select <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory">
                                         <?php foreach ($category as $ctg => $value) :  ?>
-                                            <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?> - <?= $value['namaCategory']; ?></option>
-
-                                        <?php endforeach; ?>
-
+                                            <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?></option>
+                                  <?php endforeach; ?>
                                     </select>
                                     <div class=" invalid-feedback">
                                         <?= $validation->getError('namaCategory'); ?>
@@ -82,10 +80,13 @@
 
                                 <div class="col-sm-10">
                                     <select class="form-select <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" id="namaInstrumen" name="namaInstrumen">
-                                        <option value="">ins2 </option>
-                                        <option value=""> ins1</option>
-                                        <option value="">ins3</option>
-                                        <option value="">ins4</option>
+                                    <?php foreach ($category as $ctg) :  ?>
+                                            <option value="belum">belum</option>
+                                    <?php endforeach; ?>
+
+                                        <!-- <option value="ins1val"> ins1</option>
+                                        <option value="ins3val">ins3</option>
+                                        <option value="ins4val">ins4</option> -->
 
                                     </select>
                                     <div class=" invalid-feedback">
@@ -112,9 +113,9 @@
                         <!-- peruntukkan instrumen -->
                         <div class="form-group">
                             <div class="mb-3 row">
-                                <label for="peruntukkan-instrumen" class="col-sm-2 col-form-label">Peruntukkan:</label>
+                                <label for="peruntukkanInstrumen" class="col-sm-2 col-form-label">Peruntukkan:</label>
                                 <div class="col-sm-10">
-                                    <select class="form-select" id="peruntukkan-instrumen">
+                                    <select class="form-select" id="peruntukkanInstrumen" name="peruntukkanInstrumen">
                                         <option value="Dosen">Dosen</option>
                                         <option value="Tenaga Pendidik">Tenaga Pendidik</option>
                                         <option value="Mahasiswa">Mahasiswa</option>

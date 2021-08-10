@@ -8,7 +8,7 @@ class InstrumenModel extends Model
 {
     protected $table      = 'instrumen';
     protected $userTimestamps = true;
-    protected $allowedFields = ['kodeInstrumen'];
+    protected $allowedFields = ['kodeCategory', 'kodeInstrumen', 'namaInstrumen', 'peruntukkanInstrumen' ];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori

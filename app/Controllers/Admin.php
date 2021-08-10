@@ -145,6 +145,7 @@ class Admin extends BaseController
         }
 
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
         $this->adminModel->save(
             [
                 'slug' => $slug,
@@ -218,6 +219,7 @@ class Admin extends BaseController
 
         $this->instrumenModel->save(
             [
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
                 'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
                 'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
                 'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
