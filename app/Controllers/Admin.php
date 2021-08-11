@@ -160,6 +160,14 @@ class Admin extends BaseController
 
         return redirect()->to('/admin/kelolaKategori');
     }
+
+    public function deleteKategori($id)
+    {
+        $this->adminModel->delete($id);
+        session()->setFlashdata('msgKategori', 'Data kategori berhasil dihapus');
+
+        return redirect()->to('/admin/kelolaKategori');
+    }
     // ---------------- instrumen --------------------------
 
     public function kelolaInstrumen()
