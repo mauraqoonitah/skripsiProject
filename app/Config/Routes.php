@@ -57,6 +57,8 @@ $routes->get('/admin/kelolaKategori/(:num)', 'Admin::deleteKategori/$1');
 
 $routes->get('/admin/kelola-survei/instrumen', 'Admin::kelolaInstrumen');
 $routes->get('/admin/kelola-survei/tambah_instrumen', 'Admin::tambahInstrumen');
+$routes->get('/admin/kelolaInstrumen/(:num)', 'Admin::deleteInstrumen/$1');
+
 
 $routes->get('/admin/kelola-survei/pernyataan', 'Admin::kelolaPernyataan');
 

@@ -241,6 +241,14 @@ class Admin extends BaseController
         return redirect()->to('/admin/kelolaInstrumen');
     }
 
+    public function deleteInstrumen($id)
+    {
+        $this->instrumenModel->delete($id);
+        session()->setFlashdata('msgInstrumen', 'Data Instrumen berhasil dihapus');
+
+        return redirect()->to('/admin/kelolaInstrumen');
+    }
+
     // ---------------- butir pernyataan --------------------------
 
     public function kelolaPernyataan()
