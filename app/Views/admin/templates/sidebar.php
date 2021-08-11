@@ -112,8 +112,8 @@
                 </li>
 
                 <li class=" nav-item">
-                    <a href="<?= base_url('logout'); ?>" class="nav-link">
-                        <i class="nav-icon fas fa-power-off"></i>
+                    <a href="<?= base_url('logout'); ?>" class="nav-link" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                        <i class=" fas fa-sign-out-alt mx-2"></i>
                         <p>Keluar
                         </p>
                     </a>
