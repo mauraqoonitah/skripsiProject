@@ -56,6 +56,7 @@
                     <div class="table-responsive">
                         <!-- datatables -->
                         <table id="table-kelola-instrumen" class="stripe hover row-border" style="width:100%">
+
                             <thead>
                                 <tr>
                                     <th>No.</th>

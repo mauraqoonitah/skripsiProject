@@ -213,10 +213,32 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Edit Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen($id)
+            'instrumen' => $this->instrumenModel->getInstrumen($id),
+            'category' => $this->adminModel->getCategory(),
+
+
+            'validation' => \Config\Services::validation()
         ];
 
         return view('admin/kelola-survei/edit_instrumen', $data);
+    }
+
+    public function updateInstrumen($id)
+    {
+        $this->instrumenModel->save(
+            [
+                'id' => $id,
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+
+            ]
+        );
+
+        session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil diubah');
+
+        return redirect()->to('/admin/kelolaInstrumen');
     }
     public function tambahInstrumen()
     {

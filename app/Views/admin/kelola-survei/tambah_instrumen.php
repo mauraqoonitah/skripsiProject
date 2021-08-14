@@ -64,7 +64,7 @@
                                     <select class="form-select <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory">
                                         <?php foreach ($category as $ctg => $value) :  ?>
                                             <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?></option>
-                                  <?php endforeach; ?>
+                                        <?php endforeach; ?>
                                     </select>
                                     <div class=" invalid-feedback">
                                         <?= $validation->getError('namaCategory'); ?>
@@ -80,9 +80,9 @@
 
                                 <div class="col-sm-10">
                                     <select class="form-select <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" id="namaInstrumen" name="namaInstrumen">
-                                    <?php foreach ($category as $ctg) :  ?>
+                                        <?php foreach ($category as $ctg) :  ?>
                                             <option value="belum">belum</option>
-                                    <?php endforeach; ?>
+                                        <?php endforeach; ?>
 
                                         <!-- <option value="ins1val"> ins1</option>
                                         <option value="ins3val">ins3</option>

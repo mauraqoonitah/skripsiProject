@@ -29,32 +29,30 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
+                    <form action="<?= base_url(); ?>/admin/updateInstrumen/<?= $instrumen['id']; ?>" method="post">
+                        <?= csrf_field(); ?>
 
-                    <div class="mb-3 row">
-                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                        <!-- pilih kode kategori -->
+                        <div class="form-group">
+                            <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
+                            <div class="input-group mb-3">
+                                <select class="form-select" id="kodeCategory" name="kodeCategory">
+                                    <?php foreach ($category as $ctg => $value) :  ?>
+                                        <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword">
-                        </div>
-                    </div>
-
-                    <hr>
-                    <form>
                         <!-- nama instrumen -->
                         <div class="form-group">
                             <label for="nama-instrumen" class="col-form-label">Nama instrumen:</label>
-                            <input type="text" class="form-control" id="nama-instrumen" value="<?= $instrumen['namaInstrumen']; ?> ">
+                            <input type="text" class="form-control" id="nama-instrumen" name="namaInstrumen" value="<?= (old('namaInstrumen')) ? old('namaInstrumen') : $instrumen['namaInstrumen']; ?> ">
                         </div>
                         <!-- kode instrumen -->
                         <div class="form-group">
                             <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="kode-instrumen" value="<?= $instrumen['kodeInstrumen']; ?>">
+                                <input type="text" class="form-control" id="kode-instrumen" name="kodeInstrumen" value="<?= (old('kodeInstrumen')) ? old('kodeInstrumen') : $instrumen['kodeInstrumen']; ?> ">
                                 <!-- popover -->
                                 <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-instrumen" aria-expanded="false" aria-controls="popover-kode-instrumen" style="cursor: pointer;">
                                     <i class="fas fa-info"></i>
@@ -77,32 +75,23 @@
                         </div>
                         <!-- peruntukkan instrumen -->
                         <div class="form-group">
-                            <label for="peruntukkan-instrumen" class="col-form-label">Peruntukkan:</label>
-                            <input type="text" class="form-control" id="peruntukkan-instrumen" value="<?= $instrumen['peruntukkanInstrumen']; ?>">
+                            <label for="peruntukkanInstrumen" class="col-form-label">Peruntukkan:</label>
 
-                            <select class="form-select" id="peruntukkan-instrumen">
-                                <option selected class="text-muted">Pilih Responden yang dapat mengisi kuesioner </option>
-                                <option value="Dosen">Dosen</option>
-                                <option value="Tenaga Pendidik">Tenaga Pendidik</option>
-                                <option value="Mahasiswa">Mahasiswa</option>
-                                <option value="Mahasiswa">Alumni/Lulusan</option>
-                                <option value="Mahasiswa">Pengguna Lulusan</option>
-                                <option value="Mahasiswa">Mitra</option>
-                                <option value="Mahasiswa">Pengabdi</option>
-                                <option value="Mahasiswa">Peneliti</option>
-                            </select>
+                            <div class="input-group mb-3">
+                                <select class="form-select" id="peruntukkanInstrumen" name="peruntukkanInstrumen">
+                                    <?php foreach ($category as $ctg) :  ?>
+                                        <option value="<?= $ctg['peruntukkanCategory']; ?>"><?= $ctg['peruntukkanCategory']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
 
                         </div>
+                        <div class="d-flex align-items-center ">
+                            <button type="submit" class="btn btn-success btn-block mr-auto mt-5">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
                     </form>
-
-
-                    <div class="d-flex align-items-center ">
-                        <button type="button" class="btn btn-success btn-block mr-auto mt-5">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
-                    </div>
-
-
                 </div>
             </div>
         </div>

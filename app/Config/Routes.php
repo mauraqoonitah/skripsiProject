@@ -51,13 +51,14 @@ $routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
 $routes->get('/admin/kelola-survei/index', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/kategori', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin::tambahKategori');
-$routes->get('/admin/kelola-survei/edit_kategori', 'Admin::tambahKategori');
+$routes->get('/admin/kelola-survei/edit_kategori', 'Admin::kelolaKategori');
 $routes->get('/admin/kelolaKategori/(:num)', 'Admin::deleteKategori/$1');
 
 
 
 $routes->get('/admin/kelola-survei/instrumen', 'Admin::kelolaInstrumen');
 $routes->get('/admin/kelola-survei/tambah_instrumen', 'Admin::tambahInstrumen');
+$routes->get('/admin/kelola-survei/edit_instrumen', 'Admin::kelolaKategori');
 $routes->get('/admin/kelolaInstrumen/(:num)', 'Admin::deleteInstrumen/$1');
 
 
