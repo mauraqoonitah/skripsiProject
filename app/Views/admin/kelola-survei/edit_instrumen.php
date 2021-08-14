@@ -1,5 +1,3 @@
-views nya instrumen.php
-
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>

@@ -13,9 +13,9 @@
 
                             <div class="card">
                                 <div class="text-center">
-                                    <h2 class="card-header"><?= lang('Auth.loginTitle') ?></h2>
+                                    <h3 class="card-header py-3"><?= lang('Auth.loginTitle') ?></h3>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body p-5">
 
                                     <?= view('Myth\Auth\Views\_message_block') ?>
 
@@ -23,14 +23,14 @@
                                         <?= csrf_field() ?>
 
                                         <?php if ($config->validFields === ['email']) : ?>
-                                            <div class="form-group">
+                                            <div class="form-group mb-3">
                                                 <input type="email" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.email') ?>">
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.login') ?>
                                                 </div>
                                             </div>
                                         <?php else : ?>
-                                            <div class="form-group">
+                                            <div class="form-group mb-3">
                                                 <input type="text" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>">
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.login') ?>
@@ -38,7 +38,7 @@
                                             </div>
                                         <?php endif; ?>
 
-                                        <div class="form-group">
+                                        <div class="form-group mb-3">
                                             <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
                                             <div class="invalid-feedback">
                                                 <?= session('errors.password') ?>
@@ -54,15 +54,14 @@
                                             </div>
                                         <?php endif; ?>
 
-                                        <br>
-
-                                        <button type="submit" class="btn btn-primary btn-user btn-block "><?= lang('Auth.loginAction') ?></button>
+                                        <div class="d-grid gap-2">
+                                            <button type="submit" class="btn btn-primary btn-user btn-block "><?= lang('Auth.loginAction') ?></button>
+                                        </div>
                                     </form>
-
                                     <hr>
                                     <div class="text-center">
                                         <?php if ($config->allowRegistration) : ?>
-                                            <p>
+                                            <p class="text-muted small">
                                                 <?= lang('Auth.needAnAccount') ?> <a href="<?= route_to('register') ?>"><?= lang('Auth.register') ?>
                                                 </a>
                                             </p>
