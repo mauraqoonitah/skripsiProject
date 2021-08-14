@@ -31,30 +31,32 @@
                 <div class="card-body">
                     <div class="modal-body">
                         <!-- form edit kategori -->
-                        <form>
+                        <form action="<?= base_url(); ?>/admin/updateKategori/<?= $category['id']; ?>" method="post">
+                            <?= csrf_field(); ?>
+                            <p>slug :</p>
+                            <input type="text" name="slug" value="<?= $category['slug']; ?>">
+
                             <!-- nama kategori -->
                             <div class="form-group">
-                                <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
-                                <input type="text" class="form-control" id="nama-kategori" value="<?= $category['namaCategory']; ?> ">
+                                <label for="namaCategory" class="col-form-label">Nama Kategori:</label>
+                                <input type="text" class="form-control  <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= (old('namaCategory')) ? old('namaCategory') : $category['namaCategory']; ?> ">
+                                <div class=" invalid-feedback">
+                                    <?= $validation->getError('namaCategory'); ?>
+                                </div>
                             </div>
                             <!-- kode kategori -->
                             <div class="form-group">
-                                <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
+                                <label for="kodeCategory" class="col-form-label">Kode Kategori:</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" id="kode-kategori" value="<?= $category['kodeCategory']; ?>">
+                                    <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= (old('kodeCategory')) ? old('kodeCategory') : $category['kodeCategory']; ?> ">
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('kodeCategory'); ?>
+                                    </div>
                                     <!-- popover -->
                                     <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
                                         <i class="fas fa-info"></i>
                                     </span>
                                 </div>
-                                <select class="form-select" id="peruntukkan-kategori">
-                                    <option selected class="text-muted">kode </option>
-                                    <option value="C.2">C.2</option>
-                                    <option value="C.7">C.7</option>
-                                    <option value="C.6">C.6</option>
-
-                                </select>
-
                                 <div class="collapse" id="popover-kode-kategori">
                                     <p class="font-monospace text-secondary">
                                         test popover - Masukkan kode kategori
@@ -64,32 +66,30 @@
                             </div>
                             <!-- peruntukkan kategori -->
                             <div class="form-group">
-                                <label for="peruntukkan-kategori" class="col-form-label">Peruntukkan:</label>
-                                <input type="text" class="form-control" id="peruntukkan-kategori" value="<?= $category['peruntukkanCategory']; ?>">
+                                <label for="peruntukkanCategory" class="col-form-label">Peruntukkan:</label>
+                                <input type="text" class="form-control" value="<?= (old('peruntukkanCategory')) ? old('peruntukkanCategory') : $category['peruntukkanCategory']; ?> " id="peruntukkanCategory" name="peruntukkanCategory">
 
-                                <select class="form-select" id="peruntukkan-kategori">
-                                    <option selected class="text-muted">Pilih Responden yang dapat mengisi kuesioner </option>
-                                    <option value="Dosen">Dosen</option>
-                                    <option value="Tenaga Pendidik">Tenaga Pendidik</option>
-                                    <option value="Mahasiswa">Mahasiswa</option>
-                                    <option value="Mahasiswa">Alumni/Lulusan</option>
-                                    <option value="Mahasiswa">Pengguna Lulusan</option>
-                                    <option value="Mahasiswa">Mitra</option>
-                                    <option value="Mahasiswa">Pengabdi</option>
-                                    <option value="Mahasiswa">Peneliti</option>
-                                </select>
+                                <?php foreach ($responden as $resp) : ?>
+                                    <div class=" form-check">
+                                        <input class="form-check-input  <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>">
 
+                                        <label class="form-check-label" for="peruntukkanCategory">
+                                            <?= $resp['responden']; ?>
+                                        </label>
+                                        <div class=" invalid-feedback">
+                                            <?= $validation->getError('peruntukkanCategory'); ?>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+
+                            </div>
+                            <div class="d-flex align-items-center ">
+                                <button type="submit" class="btn btn-block btn-success mr-auto mt-5">
+                                    <i class="fas fa-save"></i> Simpan
+                                </button>
                             </div>
                         </form>
                         <!-- end form edit kategori -->
-
-                        <div class="d-flex align-items-center ">
-                            <button type="button" class="btn btn-block btn-success mr-auto mt-5">
-                                <i class="fas fa-save"></i> Simpan
-                            </button>
-                        </div>
-
-
                     </div>
                 </div>
             </div>

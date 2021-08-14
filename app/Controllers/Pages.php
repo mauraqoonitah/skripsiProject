@@ -58,21 +58,4 @@ class Pages extends BaseController
         ];
         return view('auth/register', $data);
     }
-    public function user()
-    {
-        $data = [
-            'title' => 'user | SIJAMU'
-
-        ];
-        return view('user/index', $data);
-    }
-
-    public function form_k1()
-    {
-        $data = [
-            'title' => 'Form K1 |Penjaminan Mutu Instrumen Kepuasan Layanan FMIPA UNJ'
-
-        ];
-        return view('pages/form_K1', $data);
-    }
 }

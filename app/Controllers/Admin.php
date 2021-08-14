@@ -97,9 +97,15 @@ class Admin extends BaseController
     }
     public function editKategori($slug)
     {
+
         $data = [
             'title' => 'Detail Kategori',
-            'category' => $this->adminModel->getCategory($slug)
+            'category' => $this->adminModel->getCategory($slug),
+            'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
+
+
         ];
 
         //jika url diketik asal dan kategori tidak ada di tabel
@@ -110,6 +116,27 @@ class Admin extends BaseController
                 ' Tidak Ditemukan');
         }
         return view('admin/kelola-survei/edit_kategori', $data);
+    }
+
+    public function updateKategori($id)
+    {
+        // $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
+        $this->adminModel->save(
+            [
+                'id' => $id, //using id for update data
+                // 'slug' => $slug,
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                'peruntukkanCategory' => $this->mRequest->getVar('peruntukkanCategory')
+
+            ]
+        );
+
+        // dd($this->mRequest->getVar());
+        session()->setFlashdata('msgKategori', 'Data kategori berhasil diubah');
+
+        return redirect()->to('/admin/kelolaKategori');
     }
     public function tambahKategori()
     {
@@ -296,7 +323,6 @@ class Admin extends BaseController
                 ]
             ],
         ])) {
-            $validation = \Config\Services::validation();
             return redirect()->to('admin/tambahPernyataan')->withInput();
         }
 
