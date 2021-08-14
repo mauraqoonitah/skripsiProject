@@ -40,7 +40,7 @@
                                             </div>
                                         </div>
                                         <div class="d-grid gap-2">
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            <button type="submit" class="btn btn-secondary btn-user btn-block">
                                                 <?= lang('Auth.register') ?>
                                             </button>
                                         </div>
