@@ -302,6 +302,7 @@ class Admin extends BaseController
 
     public function kelolaPernyataan()
     {
+
         $data = [
             'title' => 'Kelola Butir Pernyataan',
             'pernyataan' => $this->pernyataanModel->getPernyataan(),
@@ -310,6 +311,22 @@ class Admin extends BaseController
         ];
 
         return view('admin/kelola-survei/pernyataan', $data);
+    }
+    public function butirInstrumen($kodeCategory)
+    {
+        $data = [
+            'title' => 'Kelola Butir Pernyataan',
+            'pernyataan' => $this->pernyataanModel->getPernyataan($kodeCategory),
+            'category' => $this->adminModel->getCategory(),
+            'instrumen' => $this->instrumenModel->getInstrumen(),
+
+        ];
+
+        // jika butir tidak ada di database
+        if (empty($data['pernyataan'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Butir Pernyataan Tidak ditemukan.');
+        }
+        return view('admin/kelola-survei/pernyataan_detail', $data);
     }
     public function editPernyataan($id)
     {

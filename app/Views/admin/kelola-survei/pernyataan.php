@@ -20,6 +20,12 @@
         </div><!-- /.container-fluid -->
     </section>
 
+    <a href="<?= base_url(); ?>/admin/tambahPernyataan" class="ml-auto mr-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Pernyataan">
+        <button type="button" class="btn btn-warning ">
+            <i class="fas fa-plus"></i> Tambah
+        </button>
+    </a>
+
     <div class="content col-lg-12 mx-auto">
         <div class=" container-fluid">
             <strong>Pilih Kode Kategori</strong><br>
@@ -52,7 +58,8 @@
                                         <option value="<?= $butir['namaInstrumen']; ?>"><?= $butir['namaInstrumen']; ?></option>
                                     </select>
                                     <span class="input-group-append">
-                                        <a href="<?= base_url(); ?>/admin/listInstrumen/<?= $butir['id']; ?>" class="btn btn-info btn-flat">Next</a>
+                                        <a href="<?= base_url(); ?>/admin/butir/<?= $butir['id']; ?>" class="btn btn-info btn-flat">Next</a>
+                                        <small>harusnya a hreg = $butir['slug'] yang didapatkan dari namaInstrumen, jadi dengan nama yg sama akan muncul smua disini. bener gak ya. gatau.</small>
                                     </span>
                                 </div>
                                 <!-- /input-group -->

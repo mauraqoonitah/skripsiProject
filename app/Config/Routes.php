@@ -63,6 +63,8 @@ $routes->get('/admin/kelolaInstrumen/(:num)', 'Admin::deleteInstrumen/$1');
 
 
 $routes->get('/admin/kelola-survei/pernyataan', 'Admin::kelolaPernyataan');
+$routes->get('/admin/butir/(:any)', 'Admin::butirInstrumen/$1');
+$routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin::tambahPernyataan');
 
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
