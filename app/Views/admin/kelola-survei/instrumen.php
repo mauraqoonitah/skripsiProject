@@ -80,7 +80,7 @@
                                         <td> <?= $ins['peruntukkanInstrumen']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editInstrumen/<?= $ins['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="<?= base_url(); ?>/instrumen/editInstrumen/<?= $ins['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $ins['id']; ?>">
@@ -108,7 +108,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                    <form action="<?= base_url(); ?>/admin/deleteInstrumen/<?= $ins['id']; ?>" method="post">
+                                                    <form action="<?= base_url(); ?>/instrumen/deleteInstrumen/<?= $ins['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>

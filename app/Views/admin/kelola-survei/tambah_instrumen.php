@@ -19,7 +19,7 @@
             </div>
         </div><!-- /.container-fluid -->
         <!-- previous page -->
-        <a href="<?= base_url(); ?>/admin/kelolaInstrumen">
+        <a href="<?= base_url(); ?>/instrumen/kelolaInstrumen">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
         </a>
 
@@ -54,7 +54,7 @@
                 </div>
                 <div class="card-body py-4">
                     <!-- form tambah instrumen -->
-                    <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post">
+                    <form action="<?= base_url(); ?>/instrumen/saveInstrumen" method="post">
                         <?= csrf_field(); ?>
                         <!-- pilih kode kategori -->
                         <div class="form-group">

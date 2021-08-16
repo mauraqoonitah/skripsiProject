@@ -16,7 +16,7 @@
                     </ol>
                 </div>
                 <!-- back to page view categories -->
-                <a href="<?= base_url(); ?>/admin/kelolaInstrumen">
+                <a href="<?= base_url(); ?>/instrumen/kelolaInstrumen">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>
 
@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form action="<?= base_url(); ?>/admin/updateInstrumen/<?= $instrumen['id']; ?>" method="post">
+                    <form action="<?= base_url(); ?>/instrumen/updateInstrumen/<?= $instrumen['id']; ?>" method="post">
                         <?= csrf_field(); ?>
 
                         <!-- pilih kode kategori -->
