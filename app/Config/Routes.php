@@ -52,14 +52,21 @@ $routes->get('/admin/kelola-survei/index', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/kategori', 'Admin::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin::tambahKategori');
 $routes->get('/admin/kelola-survei/edit_kategori', 'Admin::kelolaKategori');
+$routes->get('/admin/kelola-survei/edit_kategori', 'Admin::kelolaKategori');
 $routes->get('/admin/kelolaKategori/(:num)', 'Admin::deleteKategori/$1');
 
 
 // admin kelola survei (instrumen)
-$routes->get('/admin/kelola-survei/instrumen', 'Instrumen::kelolaInstrumen');
-$routes->get('/admin/kelola-survei/tambah_instrumen', 'Instrumen::tambahInstrumen');
-$routes->get('/admin/kelola-survei/edit_instrumen', 'Instrumen::kelolaKategori');
-$routes->get('/admin/kelolaInstrumen/(:num)', 'Instrumen::deleteInstrumen/$1');
+$routes->get('/admin/kelola-survei/instrumen', 'Admin\Instrumen::kelolaInstrumen');
+$routes->get('/admin/kelola-survei/tambah_instrumen', 'Admin\Instrumen::tambahInstrumen');
+$routes->get('/admin/kelola-survei/edit_instrumen', 'Admin\Instrumen::kelolaKategori');
+$routes->get('/admin/kelolaInstrumen/(:num)', 'Admin\Instrumen::deleteInstrumen/$1');
+$routes->get('/admin/editInstrumen/(:any)', 'Admin\Instrumen::editInstrumen/$1');
+$routes->get('/admin/editInstrumen/(:any)', 'Admin\Instrumen::editInstrumen/$1');
+
+$routes->post('/admin/saveInstrumen', 'Admin\Instrumen::saveinstrumen');
+$routes->post('/admin/updateInstrumen/(:any)', 'Admin\Instrumen::updateInstrumen/$1');
+$routes->delete('/admin/deleteInstrumen/(:any)', 'Admin\Instrumen::deleteInstrumen/$1');
 
 // admin kelola survei (butir pernyataan)
 $routes->get('/admin/kelola-survei/pernyataan', 'Admin::kelolaPernyataan');

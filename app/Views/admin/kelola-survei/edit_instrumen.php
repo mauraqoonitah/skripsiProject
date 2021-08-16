@@ -29,7 +29,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <form action="<?= base_url(); ?>/instrumen/updateInstrumen/<?= $instrumen['id']; ?>" method="post">
+                    <form action="<?= base_url(); ?>/admin/updateInstrumen/<?= $instrumen['id']; ?>" method="post">
                         <?= csrf_field(); ?>
 
                         <!-- pilih kode kategori -->

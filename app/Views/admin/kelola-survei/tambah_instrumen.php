@@ -54,7 +54,7 @@
                 </div>
                 <div class="card-body py-4">
                     <!-- form tambah instrumen -->
-                    <form action="<?= base_url(); ?>/instrumen/saveInstrumen" method="post">
+                    <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post">
                         <?= csrf_field(); ?>
                         <!-- pilih kode kategori -->
                         <div class="form-group">

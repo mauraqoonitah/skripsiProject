@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
+
+use App\Controllers\BaseController;
 
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
@@ -71,7 +73,7 @@ class Instrumen extends BaseController
 
         session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil diubah');
 
-        return redirect()->to('/instrumen/kelolaInstrumen');
+        return redirect()->to('/admin/kelola-survei/instrumen');
     }
     public function tambahInstrumen()
     {
@@ -120,7 +122,7 @@ class Instrumen extends BaseController
 
         session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil ditambahkan');
 
-        return redirect()->to('/instrumen/kelolaInstrumen');
+        return redirect()->to('/admin/kelola-survei/instrumen');
     }
 
     public function deleteInstrumen($id)
@@ -128,6 +130,6 @@ class Instrumen extends BaseController
         $this->instrumenModel->delete($id);
         session()->setFlashdata('msgInstrumen', 'Data Instrumen berhasil dihapus');
 
-        return redirect()->to('/instrumen/kelolaInstrumen');
+        return redirect()->to('/admin/kelola-survei/instrumen');
     }
 }

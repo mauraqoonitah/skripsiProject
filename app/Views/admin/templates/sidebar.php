@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/instrumen/kelolaInstrumen" class="nav-link <?= $uri->getSegment(2) == 'kelolaInstrumen' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen" class="nav-link <?= $uri->getSegment(2) == 'kelolaInstrumen' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>
