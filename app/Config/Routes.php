@@ -48,20 +48,20 @@ $routes->get('/admin/hasil-survei/instrumen', 'Admin::hasilSurveiInstrumen');
 $routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
 
 // admin kelola survei (kategori)
-$routes->get('/admin/kelola-survei/index', 'Admin::kelolaKategori');
-$routes->get('/admin/kelola-survei/kategori', 'Admin::kelolaKategori');
-$routes->get('/admin/kelola-survei/tambah_kategori', 'Admin::tambahKategori');
-$routes->get('/admin/kelola-survei/edit_kategori', 'Admin::kelolaKategori');
-$routes->get('/admin/kelola-survei/edit_kategori', 'Admin::kelolaKategori');
-$routes->get('/admin/kelolaKategori/(:num)', 'Admin::deleteKategori/$1');
+$routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
+$routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
+$routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
+$routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
+
+$routes->post('/admin/saveKategori', 'Admin\Kategori::saveKategori');
+$routes->post('/admin/updateKategori/(:any)', 'Admin\Kategori::updateKategori/$1');
+$routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/$1');
 
 
 // admin kelola survei (instrumen)
 $routes->get('/admin/kelola-survei/instrumen', 'Admin\Instrumen::kelolaInstrumen');
 $routes->get('/admin/kelola-survei/tambah_instrumen', 'Admin\Instrumen::tambahInstrumen');
-$routes->get('/admin/kelola-survei/edit_instrumen', 'Admin\Instrumen::kelolaKategori');
-$routes->get('/admin/kelolaInstrumen/(:num)', 'Admin\Instrumen::deleteInstrumen/$1');
-$routes->get('/admin/editInstrumen/(:any)', 'Admin\Instrumen::editInstrumen/$1');
+$routes->get('/admin/kelola-survei/edit_instrumen', 'Admin\Instrumen::kelolaInstrumen');
 $routes->get('/admin/editInstrumen/(:any)', 'Admin\Instrumen::editInstrumen/$1');
 
 $routes->post('/admin/saveInstrumen', 'Admin\Instrumen::saveinstrumen');

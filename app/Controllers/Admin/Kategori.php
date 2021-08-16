@@ -1,0 +1,149 @@
+<?php
+
+namespace App\Controllers\Admin;
+
+use App\Controllers\BaseController;
+
+use App\Models\AdminModel;
+use App\Models\InstrumenModel;
+use App\Models\PernyataanModel;
+use App\Models\RespondenModel;
+use App\Models\ResponseModel;
+
+class Kategori extends BaseController
+{
+    protected $adminModel;
+    protected $instrumenModel;
+    protected $pernyataanModel;
+    protected $respondenModel;
+    protected $responseModel;
+    protected $mRequest;
+
+
+    public function __construct()
+    {
+        $this->adminModel = new AdminModel();
+        $this->instrumenModel = new InstrumenModel();
+        $this->pernyataanModel = new PernyataanModel();
+        $this->respondenModel = new RespondenModel();
+        $this->responseModel = new ResponseModel();
+        $this->mRequest = service("request");
+    }
+    // ---------------- kategori --------------------------
+
+    public function kelolaKategori()
+    {
+        // $category = $this->adminModel->findAll();
+
+        $data = [
+            'title' => 'Kelola Kategori',
+            'category' => $this->adminModel->getCategory(),
+            'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
+
+        ];
+
+        return view('admin/kelola-survei/kategori', $data);
+    }
+    public function editKategori($slug)
+    {
+
+        $data = [
+            'title' => 'Detail Kategori',
+            'category' => $this->adminModel->getCategory($slug),
+            'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
+
+
+        ];
+
+        //jika url diketik asal dan kategori tidak ada di tabel
+        // menampilkan custom error page 
+
+        if (empty($data['category'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Kategori ' . $slug .
+                ' Tidak Ditemukan');
+        }
+        return view('admin/kelola-survei/edit_kategori', $data);
+    }
+
+    public function updateKategori($id)
+    {
+        // $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
+        $this->adminModel->save(
+            [
+                'id' => $id, //using id for update data
+                // 'slug' => $slug,
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                'peruntukkanCategory' => $this->mRequest->getVar('peruntukkanCategory')
+
+            ]
+        );
+
+        // dd($this->mRequest->getVar());
+        session()->setFlashdata('msgKategori', 'Data kategori berhasil diubah');
+
+        return redirect()->to('/admin/kelola-survei/kategori');
+    }
+    public function tambahKategori()
+    {
+        $data = [
+            'title' => 'Tambah Data Kategori',
+            'category' => $this->adminModel->getCategory(),
+            'responden' => $this->respondenModel->getResponden(),
+
+            'validation' => \Config\Services::validation()
+        ];
+        return view('admin/kelola-survei/tambah_kategori', $data);
+    }
+    public function saveKategori()
+    {
+        // validasi input
+        if (!$this->validate([
+            'kodeCategory' => [
+                'rules'  => 'required|is_unique[category_instrumen.kodeCategory]',
+                'errors' => [
+                    'required' => 'Kode Kategori harus diisi.',
+                    'is_unique' => 'Kode Kategori ini sudah terdaftar.'
+                ]
+            ],
+            'namaCategory' => [
+                'rules'  => 'required|is_unique[category_instrumen.namaCategory]',
+                'errors' => [
+                    'required' => 'Nama Kategori harus diisi.',
+                    'is_unique' => 'Nama Kategori ini sudah terdaftar.'
+                ]
+            ],
+        ])) {
+            return redirect()->to('admin/kelola-survei/tambah_kategori')->withInput();
+        }
+
+        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
+        $this->adminModel->save(
+            [
+                'slug' => $slug,
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                'peruntukkanCategory' => $this->mRequest->getVar('peruntukkanCategory')
+
+            ]
+        );
+
+        session()->setFlashdata('msgKategori', 'Data kategori berhasil ditambahkan');
+
+        return redirect()->to('/admin/kelola-survei/kategori');
+    }
+
+    public function deleteKategori($id)
+    {
+        $this->adminModel->delete($id);
+        session()->setFlashdata('msgKategori', 'Data kategori berhasil dihapus');
+
+        return redirect()->to('/admin/kelola-survei/kategori');
+    }
+}
