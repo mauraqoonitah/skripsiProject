@@ -61,7 +61,7 @@
                     <section>
                         <!-- section table 1 -->
                         <div class="table-responsive ">
-                            <table id="tabel-lihat-instrumen" class="display table-bordered table-hover" style="width:100%">
+                            <table id="table-kelola-survei" class="display table-bordered table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th rowspan="2"> No.</th>

@@ -41,7 +41,7 @@
             <?php endif; ?>
             <!-- ./ flash success tambah data  -->
 
-            <div class="card mt-2">
+            <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Kategori Kuesioner</h5>
                     <!-- Button trigger modal -->
@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <!-- datatables -->
-                        <table id="table-kelola-kategori" class="stripe hover row-border" style="width:100%">
+                        <table id="table-kelola-survei" class="hover order-column cell-border">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -69,8 +69,8 @@
                                 <?php $i = 1; ?>
                                 <?php foreach ($category as $ctg) : ?>
                                     <tr>
-                                        <td><?= $i++; ?></td>
-                                        <td><?= $ctg['kodeCategory']; ?></td>
+                                        <td class="text-center"><?= $i++; ?></td>
+                                        <td class="text-center"><?= $ctg['kodeCategory']; ?></td>
                                         <td> <?= $ctg['namaCategory']; ?> </td>
                                         <td><?= $ctg['peruntukkanCategory']; ?></td>
                                         <td>

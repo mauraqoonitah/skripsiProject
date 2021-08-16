@@ -41,7 +41,7 @@
             <!-- ./ flash success tambah data  -->
 
             <!-- Main content -->
-            <div class="card ">
+            <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Instrumen Kepuasan</h5>
                     <!-- Button trigger modal -->
@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <!-- datatables -->
-                        <table id="table-kelola-instrumen" class="stripe hover row-border" style="width:100%">
+                        <table id="table-kelola-survei" class="hover order-column cell-border">
 
                             <thead>
                                 <tr>
@@ -71,11 +71,11 @@
                                 <?php $i = 1; ?>
                                 <?php foreach ($instrumen as $ins) : ?>
                                     <tr>
-                                        <td><?= $i++; ?></td>
-                                        <td>
+                                        <td class="text-center"><?= $i++; ?></td>
+                                        <td class="text-center">
                                             <?= $ins['kodeCategory']; ?>
                                         </td>
-                                        <td><?= $ins['kodeInstrumen']; ?></td>
+                                        <td class="text-center"><?= $ins['kodeInstrumen']; ?></td>
                                         <td><?= $ins['namaInstrumen']; ?></td>
                                         <td> <?= $ins['peruntukkanInstrumen']; ?> </td>
                                         <td>

@@ -27,13 +27,16 @@
 
 <script>
     $(document).ready(function() {
-        $('#tableResponden').DataTable();
+        $('#tableResponden').DataTable({
+            "pageLength": 25
+
+        });
     });
     $(document).ready(function() {
-        $('#tabel-lihat-instrumen').DataTable();
-    });
-    $(document).ready(function() {
-        $('#table-kelola-kategori').DataTable();
+        $('#table-kelola-survei').DataTable({
+            "pageLength": 25
+        });
+
     });
 </script>
 
