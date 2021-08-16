@@ -89,7 +89,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="<?= base_url(); ?>/admin/analisisKepuasan" class="nav-link">
                         <i class="nav-icon fas fa-bar-chart"></i>
                         <p>
                             Analisis Kepuasan

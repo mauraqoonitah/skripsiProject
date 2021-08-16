@@ -78,6 +78,9 @@ $routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin::tambahPernyataan'
 // $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);
 
 
+// membuat analisis kepuasan
+$routes->get('/admin/analisisKepuasan', 'Admin\Analisis::home');
+
 
 /*
  * --------------------------------------------------------------------
