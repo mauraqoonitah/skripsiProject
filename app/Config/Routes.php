@@ -80,6 +80,9 @@ $routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin::tambahPernyataan'
 
 // membuat analisis kepuasan
 $routes->get('/admin/analisisKepuasan', 'Admin\Analisis::home');
+$routes->get('/admin/laporanSurvei', 'Admin\Analisis::laporan');
+$routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
+$routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
 
 /*

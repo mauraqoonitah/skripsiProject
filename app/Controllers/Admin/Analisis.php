@@ -22,4 +22,28 @@ class Analisis extends BaseController
         ];
         return view('admin/analisis-survei/home', $data);
     }
+    public function laporan()
+    {
+        $data = [
+            'title' => 'Laporan Survei Kepuasan',
+
+        ];
+        return view('admin/analisis-survei/laporan', $data);
+    }
+    public function laporanInstrumen()
+    {
+        $data = [
+            'title' => 'Laporan Survei Kepuasan',
+
+        ];
+        return view('admin/analisis-survei/laporan_instrumen', $data);
+    }
+    public function laporanKepuasan()
+    {
+        $data = [
+            'title' => 'Laporan Survei Kepuasan',
+
+        ];
+        return view('admin/analisis-survei/laporan_kepuasan', $data);
+    }
 }

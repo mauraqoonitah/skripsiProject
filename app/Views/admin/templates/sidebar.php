@@ -71,7 +71,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelolaPernyataan" class="nav-link">
+                            <a href="<?= base_url(); ?>/admin/kelolaPernyataan" class="nav-link <?= $uri->getSegment(2) == 'kelolaPernyataan' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Butir Pernyataan</p>
                             </a>
@@ -80,7 +80,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>/admin/kelolaResponden" class="nav-link">
+                    <a href="<?= base_url(); ?>/admin/kelolaResponden" class="nav-link <?= $uri->getSegment(2) == 'kelolaResponden' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Kelola Responden
@@ -89,7 +89,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>/admin/analisisKepuasan" class="nav-link">
+                    <a href="<?= base_url(); ?>/admin/analisisKepuasan" class="nav-link <?= $uri->getSegment(2) == 'analisisKepuasan' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-bar-chart"></i>
                         <p>
                             Analisis Kepuasan
@@ -98,7 +98,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="<?= base_url(); ?>/admin/laporanSurvei" class="nav-link <?= $uri->getSegment(2) == 'laporanSurvei' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>Laporan
                         </p>
