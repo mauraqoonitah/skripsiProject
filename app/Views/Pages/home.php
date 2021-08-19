@@ -2,12 +2,6 @@
 
 <?= $this->section('content'); ?>
 
-<!-- spinner loader -->
-<div class="preloader">
-    <img src="<?= base_url(); ?>/img/spinner.svg" alt="spinner">
-</div>
-<!-- ./spinner loader -->
-
 <section class="landing-page">
     <div class="content">
         <div class="container">
@@ -95,6 +89,7 @@
         </div>
     </div>
 </section>
+
 
 <button id="scrollToTopBtn" class=""><i class="fas fa-angle-double-up"></i></button>
 </section>

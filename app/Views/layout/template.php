@@ -24,6 +24,11 @@
 
 <body>
 
+    <!-- spinner loader -->
+    <div class="preloader">
+        <img src="<?= base_url(); ?>/img/spinner.svg" alt="spinner">
+    </div>
+    <!-- ./spinner loader -->
     <?= $this->include('layout/navbar'); ?>
 
     <?= $this->renderSection('content'); ?>
@@ -37,8 +42,6 @@
     <script>
         $('.collapse').collapse()
     </script>
-
-
     <script>
         //    spinner loader
         const preloader = document.querySelector('.preloader');
@@ -53,10 +56,12 @@
                 preloader.style.opacity -= 0.1;
             } else {
                 clearInterval(fadeEffect);
+                preloader.style.display = "none";
             }
         }, 100);
         window.addEventListener('load', fadeEffect);
     </script>
+
 
 
     <script>
