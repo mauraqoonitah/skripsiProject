@@ -2,6 +2,12 @@
 
 <?= $this->section('content'); ?>
 
+<!-- spinner loader -->
+<div class="preloader">
+    <img src="<?= base_url(); ?>/img/spinner.svg" alt="spinner">
+</div>
+<!-- ./spinner loader -->
+
 <section class="landing-page">
     <div class="content">
         <div class="container">
@@ -93,18 +99,4 @@
 <button id="scrollToTopBtn" class=""><i class="fas fa-angle-double-up"></i></button>
 </section>
 
-<script>
-    // scroll to top
-    var scrollToTopBtn = document.getElementById("scrollToTopBtn")
-    var rootElement = document.documentElement
-
-    function scrollToTop() {
-        rootElement.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        })
-    }
-
-    scrollToTopBtn.addEventListener("click", scrollToTop)
-</script>
 <?= $this->endSection(); ?>
