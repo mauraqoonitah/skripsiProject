@@ -118,21 +118,31 @@ class Kategori extends BaseController
                     'is_unique' => 'Nama Kategori ini sudah terdaftar.'
                 ]
             ],
+            'peruntukkanCategory' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Peruntukkan Kategori harus diisi.',
+                ]
+            ],
         ])) {
             return redirect()->to('admin/kelola-survei/tambah_kategori')->withInput();
         }
 
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
-        $this->adminModel->save(
-            [
-                'slug' => $slug,
-                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                'namaCategory' => $this->mRequest->getVar('namaCategory'),
-                'peruntukkanCategory' => $this->mRequest->getVar('peruntukkanCategory')
+        $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
 
-            ]
-        );
+        for ($i = 0; $i < sizeof($peruntukkanCategory); $i++) {
+
+            $data =
+                [
+                    'slug' => $slug,
+                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                    'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                    'peruntukkanCategory' => $peruntukkanCategory[$i],
+                ];
+            $this->adminModel->save($data);
+        }
 
         session()->setFlashdata('msgKategori', 'Data kategori berhasil ditambahkan');
 

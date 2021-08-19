@@ -93,7 +93,7 @@
                             <label for="peruntukkan-kategori" class="col-form-label">Peruntukkan:</label>
                             <?php foreach ($responden as $resp) : ?>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory">
+                                    <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
                                     <label class="form-check-label" for="peruntukkanCategory">
                                         <?= $resp['responden']; ?>
                                     </label>
