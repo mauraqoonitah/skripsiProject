@@ -16,7 +16,9 @@ class PernyataanModel extends Model
     public function getPernyataan($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this
+                ->orderBy('id', 'desc')
+                ->findAll();
         }
 
         return $this->where(['id' => $id])->first();

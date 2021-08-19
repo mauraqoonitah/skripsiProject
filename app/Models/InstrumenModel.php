@@ -8,7 +8,7 @@ class InstrumenModel extends Model
 {
     protected $table      = 'instrumen';
     protected $userTimestamps = true;
-    protected $allowedFields = ['kodeCategory', 'kodeInstrumen', 'namaInstrumen', 'peruntukkanInstrumen' ];
+    protected $allowedFields = ['kodeCategory', 'kodeInstrumen', 'namaInstrumen', 'peruntukkanInstrumen'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
@@ -16,7 +16,9 @@ class InstrumenModel extends Model
     public function getInstrumen($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this
+                ->orderBy('id', 'desc')
+                ->findAll();
         }
 
         return $this->where(['id' => $id])->first();
