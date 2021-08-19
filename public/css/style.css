@@ -31,6 +31,16 @@ body {
     font-size: 16.4px;
 }
 
+main {
+    /* make sure to cover the screen */
+    min-height: 100vh;
+    /* need a solid bg to hide the footer */
+    background: #fafafa;
+    /* put on top */
+    position: relative;
+    z-index: 1;
+}
+
 .navbar-cyan {
     background-color: #007c91 !important;
 }
@@ -47,12 +57,26 @@ body {
     font-weight: bold !important;
 }
 
-footer {
+
+/* footer {
     background-color: #006F45;
     padding: 1rem .25rem;
     color: white;
     margin-top: 5rem;
     text-align: center;
+} */
+
+footer {
+    /* place on the bottom */
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #006F45;
+    color: white;
+    display: grid;
+    place-items: center;
+    padding: 50px;
 }
 
 #scrollToTopBtn {
@@ -101,7 +125,7 @@ footer {
     background-color: #fff;
     text-align: center;
     padding: 1rem 20px;
-    border: solid 1px #fff;
+    border: solid 1px rgb(77, 182, 172, .4);
     border-radius: .5rem;
     cursor: pointer;
     text-decoration: none;
@@ -119,10 +143,6 @@ footer {
     top: 0px;
     margin-top: 1rem;
     margin-bottom: 3rem;
-}
-
-.list-kategori {
-    text-transform: capitalize !important;
 }
 
 .instrumen-menu {
