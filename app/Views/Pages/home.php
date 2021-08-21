@@ -52,7 +52,7 @@
                     </div>
                     <!-- ./carousel -->
                 </div>
-                <a class="" href="#obyek-menu" role="button">
+                <a class="" href="<?= base_url(); ?>/responden" role="button">
                     <button type="button" class="btn btn-success btn-jumbotron ">Isi Survei</button>
                 </a>
             </div>

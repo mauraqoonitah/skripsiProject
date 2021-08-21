@@ -38,8 +38,6 @@ $routes->get('/auth/register', 'Pages::register');
 $routes->get('/home/user', 'Pages::user');
 
 // admin
-$routes->get('/admin/(:any)', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
-
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
 
 
@@ -86,6 +84,8 @@ $routes->get('/admin/laporanSurvei', 'Admin\Analisis::laporan');
 $routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
 $routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
+// responden
+$routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Kontributor']);
 
 /*
  * --------------------------------------------------------------------

@@ -1,9 +1,8 @@
-<div class="circle-clip-path"></div>
 <nav class="navbar navbar-expand-lg navbar-light mt-2">
     <div class="container">
         <a class="navbar-brand" href="#">
             <img src="<?= base_url(); ?>/img/unj.png" alt="" class="d-inline-block align-text-top">
-            Sistem Penjaminan Mutu
+            Instrumen Kepuasan SPMI
         </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

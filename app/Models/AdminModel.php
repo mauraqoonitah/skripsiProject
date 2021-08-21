@@ -25,14 +25,14 @@ class AdminModel extends Model
         return $this->where(['slug' => $slug])->first();
     }
 
-//     public function tampilPeruntukkan()
-//     {
+    //     public function tampilPeruntukkan()
+    //     {
 
-//         return $this
-//             ->select('*')
-//             // ->where('slug', 'slug')
-//             ->having('slug',  2)
-//             ->orderBy('id', 'desc')
-//             ->findAll();
-//     }
-// }
+    //         return $this
+    //             ->select('*')
+    //             // ->where('slug', 'slug')
+    //             ->having('slug',  2)
+    //             ->orderBy('id', 'desc')
+    //             ->findAll();
+    //     }
+}
