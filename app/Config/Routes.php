@@ -38,8 +38,10 @@ $routes->get('/auth/register', 'Pages::register');
 $routes->get('/home/user', 'Pages::user');
 
 // admin
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/index', 'Admin::index');
+$routes->get('/admin/(:any)', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
+
+$routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
+
 
 // admin sidebar hasil survei
 $routes->get('/admin/hasil-survei/index', 'Admin::hasilSurveiResponden');

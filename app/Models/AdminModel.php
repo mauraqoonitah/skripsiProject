@@ -17,10 +17,22 @@ class AdminModel extends Model
     {
         if ($slug == false) {
             return $this
+                // ->groupBy('slug')
                 ->orderBy('id', 'desc')
                 ->findAll();
         }
 
         return $this->where(['slug' => $slug])->first();
     }
-}
+
+//     public function tampilPeruntukkan()
+//     {
+
+//         return $this
+//             ->select('*')
+//             // ->where('slug', 'slug')
+//             ->having('slug',  2)
+//             ->orderBy('id', 'desc')
+//             ->findAll();
+//     }
+// }

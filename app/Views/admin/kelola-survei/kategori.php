@@ -72,7 +72,8 @@
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td class="text-center"><?= $ctg['kodeCategory']; ?></td>
                                         <td> <?= $ctg['namaCategory']; ?> </td>
-                                        <td><?= $ctg['peruntukkanCategory']; ?></td>
+                                        <td><?= $ctg['peruntukkanCategory']; ?>
+                                        </td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="<?= base_url(); ?>/admin/editKategori/<?= $ctg['slug']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">

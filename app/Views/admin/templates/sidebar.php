@@ -8,7 +8,10 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-
+        <!--  user logged in  -->
+        <div class="user-panel mt-3 pb-3 mb-3">
+            <i class="nav-icon fas fa-user mr-2 ml-4"></i> <?= user()->fullname; ?>
+        </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">

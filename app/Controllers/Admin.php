@@ -31,7 +31,7 @@ class Admin extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Dashboard Admin'
+            'title' => 'Dashboard Admin',
 
         ];
         return view('admin/index', $data);
