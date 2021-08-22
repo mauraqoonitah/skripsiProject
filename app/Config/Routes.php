@@ -86,6 +86,9 @@ $routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
 // responden
 $routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Kontributor']);
+$routes->get('/responden/index', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Kontributor']);
+$routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filter' => 'role:Admin,Responden,Kontributor']);
+$routes->get('/responden/isiSurvei', 'Responden\Beranda::isiSurvei', ['filter' => 'role:Admin,Responden,Kontributor']);
 
 /*
  * --------------------------------------------------------------------

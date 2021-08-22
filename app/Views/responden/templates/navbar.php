@@ -1,5 +1,5 @@
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light pt-3">
+  <nav class="navbar navbar-expand-lg navbar-light py-4">
 
       <div class="container">
           <a class="navbar-brand" href="#">

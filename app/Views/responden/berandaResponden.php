@@ -1,65 +1,52 @@
 <?= $this->extend('responden/templates/index'); ?>
 
 <?= $this->section('responden-body-content'); ?>
-<div class="content-wrapper px-2 mt-3">
-    <!-- Content Header (Page header) -->
+<div class="content-wrapper pt-5" style="min-height: 80vh;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1 class="m-0"> Beranda <small> Responden</small></h1>
-                </div><!-- /.col -->
+            <div class="row mb-2 mt-4">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
+                </div>
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+            </div>
+        </div>
     </div>
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content m-0">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        Pilih Instrumen untuk mengisi kuesioner
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <div class="col-lg-8 mx-auto">
+                    <div class="row my-3 mx-auto">
+                        <div class="pilih-inst">
+                            <a href="#" class=""> nama instrumen yang sesuai jenis respondennya </a>
+                        </div>
                     </div>
-                    <div class="card border-light shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-
-                            <p class="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's
-                                content.
-                            </p>
-
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                    <div class="row my-3 mx-auto">
+                        <div class="pilih-inst ">
+                            <a href="#" class=""> nama instrumen yang sesuai jenis respondennya </a>
+                        </div>
+                    </div>
+                    <div class="row my-3 mx-auto">
+                        <div class="pilih-inst ">
+                            <a href="#" class=""> nama instrumen yang sesuai jenis respondennya </a>
                         </div>
                     </div>
 
-                    <div class="card card-primary card-outline border-light shadow-sm">
-
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-
-                            <p class="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's
-                                content.
-                            </p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div><!-- /.card -->
+                    <div class="d-flex justify-content-center mt-5">
+                        <a href="<?= base_url(); ?>/responden/isiDataDiri">
+                            <button type="submit" class="btn btn-dark">
+                                Selanjutnya <i class="fas fa-chevron-right ml-3"></i>
+                            </button>
+                        </a>
+                    </div>
                 </div>
-                <!-- /.col-md-6 -->
-
             </div>
-            <!-- /.row -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
 </div>
 
 <?= $this->endSection(); ?>
