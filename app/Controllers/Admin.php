@@ -34,6 +34,8 @@ class Admin extends BaseController
             'title' => 'Dashboard Admin',
 
         ];
+
+
         return view('admin/index', $data);
     }
     // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
