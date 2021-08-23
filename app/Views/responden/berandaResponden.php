@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row mb-2 mt-4">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
+                    <h1 class="purple-text"> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
                 </div>
 
             </div>
@@ -38,7 +38,7 @@
 
                     <div class="d-flex justify-content-center mt-5">
                         <a href="<?= base_url(); ?>/responden/isiDataDiri">
-                            <button type="submit" class="btn btn-dark">
+                            <button type="submit" class="btn btn-purple">
                                 Selanjutnya <i class="fas fa-chevron-right ml-3"></i>
                             </button>
                         </a>

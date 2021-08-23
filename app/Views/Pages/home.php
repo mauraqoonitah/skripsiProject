@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 
-<section class="landing-page">
+<section class="landing-page d-flex justify-content-center">
     <div class="content">
         <div class="container">
             <div class="textBox">
@@ -53,7 +53,7 @@
                     <!-- ./carousel -->
                 </div>
                 <a class="" href="<?= base_url(); ?>/responden" role="button">
-                    <button type="button" class="btn btn-success btn-jumbotron ">Isi Survei</button>
+                    <button type="button" class="btn btn-jumbotron btn-purple">Isi Survei</button>
                 </a>
             </div>
         </div>

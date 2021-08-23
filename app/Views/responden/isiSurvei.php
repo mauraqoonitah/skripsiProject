@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row mb-2 mt-4 mb-5">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1> Isi Kuesioner
+                    <h1 class="purple-text"> Isi Kuesioner
                         <br><small class="text-muted">Instrumen Kepuasan [nama instrumen] </small>
                     </h1>
                 </div>
@@ -50,7 +50,7 @@
                                         <tr>
                                             <th rowspan="2" style="width: 10px">No.</th>
                                             <th rowspan="2">Kriteria Kepuasan</th>
-                                            <th colspan="5">Tingkat Kepuasan</th>
+                                            <th colspan="5" class="text-center">Tingkat Kepuasan</th>
                                         </tr>
                                         <tr>
                                             <th style="width: 50px">5</th>
@@ -67,27 +67,27 @@
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                         </tr>
@@ -97,27 +97,27 @@
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                         </tr>
@@ -127,27 +127,27 @@
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                         </tr>
@@ -157,27 +157,27 @@
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                         </tr>
@@ -186,27 +186,27 @@
                                             <td>Butir Pernyataan 5</td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <input class="form-check-input" type="radio" name="" id="">
                                                 </div>
                                             </td>
                                         </tr>
@@ -230,12 +230,12 @@
                         <div class="card-footer clearfix py-5">
                             <div class="d-flex justify-content-center">
                                 <a href="<?= base_url(); ?>/responden/isiDataDiri">
-                                    <button type="submit" class="btn btn-outline-dark mr-3">
+                                    <button type="submit" class="btn btn-outline-purple mr-3">
                                         <i class="fas fa-chevron-left mr-3"></i> Kembali
                                     </button>
                                 </a>
-                                <a href="<?= base_url(); ?>/responden/">
-                                    <button type="submit" class="btn btn-success">
+                                <a href="<?= base_url(); ?>/responden">
+                                    <button type="submit" class="btn btn-purple">
                                         Submit <i class="fas fa-check ml-3"></i>
                                     </button> </a>
                             </div>
