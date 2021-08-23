@@ -7,7 +7,7 @@ use App\Controllers\BaseController;
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
-use App\Models\RespondenModel;
+use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 
 class Instrumen extends BaseController
@@ -15,7 +15,7 @@ class Instrumen extends BaseController
     protected $adminModel;
     protected $instrumenModel;
     protected $pernyataanModel;
-    protected $respondenModel;
+    protected $jenisRespondenModel;
     protected $responseModel;
     protected $mRequest;
 
@@ -25,7 +25,7 @@ class Instrumen extends BaseController
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
-        $this->respondenModel = new RespondenModel();
+        $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->mRequest = service("request");
     }

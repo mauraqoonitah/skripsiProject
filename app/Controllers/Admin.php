@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
-use App\Models\RespondenModel;
+use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 
 class Admin extends BaseController
@@ -13,7 +13,7 @@ class Admin extends BaseController
     protected $adminModel;
     protected $instrumenModel;
     protected $pernyataanModel;
-    protected $respondenModel;
+    protected $jenisRespondenModel;
     protected $responseModel;
     protected $mRequest;
 
@@ -23,7 +23,7 @@ class Admin extends BaseController
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
-        $this->respondenModel = new RespondenModel();
+        $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->mRequest = service("request");
     }
@@ -164,7 +164,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Kelola Responden',
-            'responden' => $this->respondenModel->getResponden(),
+            'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
 

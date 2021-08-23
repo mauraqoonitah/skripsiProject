@@ -7,7 +7,7 @@ use App\Controllers\BaseController;
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
-use App\Models\RespondenModel;
+use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 
 class Kategori extends BaseController
@@ -15,7 +15,7 @@ class Kategori extends BaseController
     protected $adminModel;
     protected $instrumenModel;
     protected $pernyataanModel;
-    protected $respondenModel;
+    protected $jenisRespondenModel;
     protected $responseModel;
     protected $mRequest;
 
@@ -25,7 +25,7 @@ class Kategori extends BaseController
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
-        $this->respondenModel = new RespondenModel();
+        $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->mRequest = service("request");
     }
@@ -38,7 +38,7 @@ class Kategori extends BaseController
         $data = [
             'title' => 'Kelola Kategori',
             'category' => $this->adminModel->getCategory(),
-            'responden' => $this->respondenModel->getResponden(),
+            'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
 
@@ -52,7 +52,7 @@ class Kategori extends BaseController
         $data = [
             'title' => 'Detail Kategori',
             'category' => $this->adminModel->getCategory($slug),
-            'responden' => $this->respondenModel->getResponden(),
+            'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
 
@@ -94,7 +94,7 @@ class Kategori extends BaseController
         $data = [
             'title' => 'Tambah Data Kategori',
             'category' => $this->adminModel->getCategory(),
-            'responden' => $this->respondenModel->getResponden(),
+            'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
         ];

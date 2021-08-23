@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light mt-2">
     <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand purple-text" href="#">
             <img src="<?= base_url(); ?>/img/unj.png" alt="" class="d-inline-block align-text-top">
             Instrumen Kepuasan SPMI
         </a> <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

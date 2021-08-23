@@ -5,7 +5,7 @@ namespace App\Controllers;
 use App\Models\AdminModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
-use App\Models\RespondenModel;
+use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 
 class Pages extends BaseController

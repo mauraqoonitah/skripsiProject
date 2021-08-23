@@ -74,7 +74,11 @@ main {
 }
 
 .purple-text {
-    color: #8a0089;
+    color: #8a0089 !important;
+}
+
+a .navbar-light .purple-text {
+    color: #8a0089 !important;
 }
 
 .btn-purple:hover {

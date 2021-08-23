@@ -19,12 +19,17 @@
     <section class="content m-0">
         <div class="container">
             <div class="row">
+                <!-- form tambah pernyataan -->
                 <div class="col-lg-8 mx-auto">
-                    <div class="row my-3 mx-auto">
-                        <div class="pilih-inst">
-                            <a href="#" class=""> nama instrumen yang sesuai jenis respondennya </a>
-                        </div>
-                    </div>
+                    <?php foreach ($instrumen as $ins) : ?>
+                        <a href="<?= base_url(); ?>/responden/instrumen/<?= $ins['id']; ?>">
+                            <div class="row my-3 mx-auto">
+                                <div class="pilih-inst">
+                                    <?= $ins['namaInstrumen']; ?>
+                                </div>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
                     <div class="row my-3 mx-auto">
                         <div class="pilih-inst ">
                             <a href="#" class=""> nama instrumen yang sesuai jenis respondennya </a>
