@@ -48,6 +48,41 @@
     <!-- Main content -->
     <section class="content col-lg-10 mx-auto">
         <div class="container-fluid">
+
+            <div class="content col-lg-12 mx-auto">
+                <div class=" container-fluid">
+                    <strong>Pilih Kode Kategori</strong><br>
+                    <button class="tablink" onclick="openPage('defaultTab')" id="defaultOpen">Default Tab Open</button>
+
+                    <?php foreach ($category as $ctg) : ?>
+                        <button class="tablink mb-2" onclick="openPage('category-<?= $ctg['id']; ?>')"><?= $ctg['namaCategory']; ?></button> <br>
+                    <?php endforeach; ?>
+
+                    <div id="defaultTab" class="tabcontent">
+                    </div>
+                </div>
+            </div>
+            <?php foreach ($category as $ctg) : ?>
+
+                <div id="category-<?= $ctg['id']; ?>" class="tabcontent">
+                    <div class="card-body mx-auto col-lg-12 align-middle">
+                        <div class="container">
+                            <strong>Pilih Kode Kategori</strong><br>
+                            <div class="input-group mb-3">
+                                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
+                                    <option value="<?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> "><?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> </option>
+                                </select>
+
+
+                                <small>di option ini harusnya muncul pilihan nama instrumen yang berasal dari nama kategori + oleh + peruntukanmnya tapii peruntukannya baru ke return 1 row karena emg belum nemu caranya biar return semua row yg termasuk dalam kategori tsb.<br><br> terus ini nanti ini bakal disimpen datanya buat dimasukin ke input nama iinstrumen</small>
+                            </div>
+                            <!-- /input-group -->
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+
             <div class="card mt-2">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Tambah Instrumen</h5>
@@ -62,8 +97,9 @@
                                 <label for="kode-kategori" class="col-sm-2 col-form-label">Pilih Kategori:</label>
                                 <div class="col-sm-10">
                                     <select class="form-select <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory">
-                                        <?php foreach ($category as $ctg => $value) :  ?>
-                                            <option value="<?= $value['kodeCategory']; ?>"><?= $value['kodeCategory']; ?></option>
+                                        <?php foreach ($category as $ctg) :  ?>
+                                            <option value="<?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> "><?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> </option>
+
                                         <?php endforeach; ?>
                                     </select>
                                     <div class=" invalid-feedback">
@@ -81,13 +117,11 @@
                                 <div class="col-sm-10">
                                     <select class="form-select <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" id="namaInstrumen" name="namaInstrumen">
                                         <?php foreach ($category as $ctg) :  ?>
-                                            <option value="belum">belum</option>
+                                            <div id="category-<?= $ctg['id']; ?>" class="tabcontent">
+                                                <option value="<?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> "><?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> </option>
+
+                                            </div>
                                         <?php endforeach; ?>
-
-                                        <!-- <option value="ins1val"> ins1</option>
-                                        <option value="ins3val">ins3</option>
-                                        <option value="ins4val">ins4</option> -->
-
                                     </select>
                                     <div class=" invalid-feedback">
                                         <?= $validation->getError('namaInstrumen'); ?>
@@ -107,27 +141,10 @@
                                         <?= $validation->getError('kodeInstrumen'); ?>
                                     </div>
                                 </div>
+                                <small>ini nanti auto tulis 2 huruf depan dari kode nya misal kalo dia pilih kode kategori 3, berarti masukin 1 angka depan hrs default dan pakein titik. --> 3. (isi) gitu</small>
                             </div>
                         </div>
 
-                        <!-- peruntukkan instrumen -->
-                        <div class="form-group">
-                            <div class="mb-3 row">
-                                <label for="peruntukkanInstrumen" class="col-sm-2 col-form-label">Peruntukkan:</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select" id="peruntukkanInstrumen" name="peruntukkanInstrumen">
-                                        <option value="Dosen">Dosen</option>
-                                        <option value="Tenaga Pendidik">Tenaga Pendidik</option>
-                                        <option value="Mahasiswa">Mahasiswa</option>
-                                        <option value="Mahasiswa">Alumni/Lulusan</option>
-                                        <option value="Mahasiswa">Pengguna Lulusan</option>
-                                        <option value="Mahasiswa">Mitra</option>
-                                        <option value="Mahasiswa">Pengabdi</option>
-                                        <option value="Mahasiswa">Peneliti</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="d-flex align-items-center ">
                             <button type="submit" class="btn btn-success ml-auto mt-3">
                                 <i class="fas fa-save"></i> Simpan
@@ -145,5 +162,21 @@
     </section>
     <!-- /.content -->
 </div>
+
+
+<script>
+    function openPage(pageName) {
+        // Hide all elements with class="tabcontent" by default */
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        // Show the specific tab content
+        document.getElementById(pageName).style.display = "block";
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
 
 <?= $this->endSection(); ?>
