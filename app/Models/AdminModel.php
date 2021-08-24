@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use CodeIgniter\Model;
 
 class AdminModel extends Model
@@ -16,23 +17,49 @@ class AdminModel extends Model
     public function getCategory($slug = false)
     {
         if ($slug == false) {
+
+            // I GIVE UP !!!!!
+
+            // return $this
+            //     ->groupBy('slug')
+            //     ->orderBy('id', 'desc')
+            //     ->findAll();
+
+            // select ONLY the rows based on the same value in the column[slug]
             return $this
-                // ->groupBy('slug')
-                ->orderBy('id', 'desc')
+                ->groupBy('slug')
+                // ->having('count(slug) > 1')
+                ->orderBy('slug', 'asc')
                 ->findAll();
+
+            // select all rows, except its only show one rows for duplicate field
+            // return $this->groupBy('slug')
+            //     ->orderBy('id', 'desc')
+            //     ->findAll();
         }
 
         return $this->where(['slug' => $slug])->first();
     }
+    public function getPeruntuk($slug = false)
+    {
+        if ($slug == false) {
+            return $this
+                ->groupBy('slug')
+                ->having('slug', $slug)
+                ->orderBy('slug', 'asc')
+                ->findAll();
 
-    //     public function tampilPeruntukkan()
-    //     {
+            // return $this
+            //     ->groupBy('slug')
+            //     ->orderBy('id', 'desc')
+            //     ->findAll();
 
-    //         return $this
-    //             ->select('*')
-    //             // ->where('slug', 'slug')
-    //             ->having('slug',  2)
-    //             ->orderBy('id', 'desc')
-    //             ->findAll();
-    //     }
+            // select ONLY the rows based on the same value in the column[slug]
+            // return $this
+            //     ->orderBy('slug', 'asc')
+            //     ->findAll();
+        }
+
+        return $this->where(['slug' => $slug])->first();
+    }
 }

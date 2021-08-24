@@ -38,6 +38,8 @@ class Kategori extends BaseController
         $data = [
             'title' => 'Kelola Kategori',
             'category' => $this->adminModel->getCategory(),
+            'peruntuk' => $this->adminModel->getPeruntuk(),
+
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()

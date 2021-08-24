@@ -41,6 +41,10 @@
             <?php endif; ?>
             <!-- ./ flash success tambah data  -->
 
+            <?php foreach ($peruntuk as $p) : ?>
+                <p>peruntukan: <br> <?= $p['peruntukkanCategory']; ?></p>
+            <?php endforeach; ?>
+
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5 class="">Kategori Kuesioner</h5>
