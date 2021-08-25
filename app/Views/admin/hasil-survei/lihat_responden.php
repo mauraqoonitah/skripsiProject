@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Tanggapan Survei</h1>
+                    <h1 class="fw-bold"><?= $title; ?></h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -28,36 +28,8 @@
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
+                <h5 class="card-header"> <?= $responden['fullname']; ?> - (jenis responden)</h5>
                 <div class="card-body py-3">
-                    <section>
-                        <div class="container mb-5">
-                            <div class="mb-2 row">
-                                <label for="name" class="col-sm-4 col-form-label fw-bold">Nama Lengkap</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="name" value=": Haniya Hughes" disabled>
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="identitas" class="col-sm-4 col-form-label fw-bold">No.Identitas</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="identitas" value=": 1313617009" disabled>
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="tgl" class="col-sm-4 col-form-label fw-bold">Tgl Pengisian</label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="tgl" value=": 2 Juni 2021" disabled>
-                                </div>
-                            </div>
-                            <div class="mb-2 row">
-                                <label for="role" class="col-sm-4 col-form-label fw-bold">Jenis Responden </label>
-                                <div class="col-sm-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="role" value=": Mahasiswa (S1)" disabled>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
                     <!-- section table 1-->
                     <section>
                         <div class="card container bg-light text-dark py-2 my-5">
@@ -71,7 +43,7 @@
                                         <label for="kode-instrumen" class="form-control-plaintext col-sm-12  text-muted">Kode Instrumen</label>
                                     </div>
                                     <div class="col-4 text-start">
-                                        <input type="text" readonly class="form-control-plaintext  text-muted" id="kode-instrumen" value=": C.6" disabled>
+                                        <input type="text" readonly class="form-control-plaintext  text-muted" id="kode-instrumen" value="v9gfft" disabled>
                                     </div>
                                 </div>
                             </div>

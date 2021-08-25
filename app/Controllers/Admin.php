@@ -43,23 +43,25 @@ class Admin extends BaseController
     }
     // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
 
-    public function hasilSurveiResponden()
+    public function dataResponden()
     {
         $data = [
-            'title' => 'Tanggapan Responden',
+            'title' => 'Data Responden',
             'responden' => $this->respondenModel->getResponden(),
 
         ];
         return view('admin/hasil-survei/responden', $data);
     }
-    public function lihatResponden()
+    public function hasilSurveiResponden($id)
     {
         $data = [
-            'title' => 'Lihat Responden'
+            'title' => 'Tanggapan Responden',
+            'responden' => $this->respondenModel->getResponden($id),
 
         ];
         return view('admin/hasil-survei/lihat_responden', $data);
     }
+
     // ---------------- MENU HASIL SURVEI - INSTRUMEN --------------------------
 
     public function hasilSurveiInstrumen()

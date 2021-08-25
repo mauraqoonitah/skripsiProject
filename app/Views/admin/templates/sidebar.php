@@ -38,7 +38,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/hasilSurveiResponden" class="nav-link <?= $uri->getSegment(2) == 'hasilSurveiResponden' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/dataResponden" class="nav-link <?= $uri->getSegment(2) == 'dataResponden' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Responden</p>
                             </a>

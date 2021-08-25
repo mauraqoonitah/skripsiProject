@@ -43,19 +43,21 @@
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($responden as $responden) : ?>
+                                <?php foreach ($responden as $rpd) : ?>
 
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $responden['fullname']; ?></td>
-                                        <td><?= $responden['noIdentitas']; ?></td>
+                                        <td><?= $rpd['fullname']; ?></td>
+                                        <td><?= $rpd['noIdentitas']; ?></td>
                                         <td>responden</td>
                                         <td>tgl</td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
-                                                <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-primary text-decoration-none">
+                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['id']; ?>" class="btn btn-sm btn-primary text-decoration-none">
                                                     Lihat
                                                 </a>
+
+
                                                 <form action="" method="post" class="d-inline">
                                                     <?= csrf_field(); ?>
                                                     <input type="hidden" name="_method" value="DELETE">
