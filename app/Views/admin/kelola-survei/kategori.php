@@ -41,9 +41,7 @@
             <?php endif; ?>
             <!-- ./ flash success tambah data  -->
 
-            <?php foreach ($peruntuk as $p) : ?>
-                <p>peruntukan: <br> <?= $p['peruntukkanCategory']; ?></p>
-            <?php endforeach; ?>
+
 
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
@@ -63,9 +61,9 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode<br>Kategori</th>
+                                    <th>Kode</th>
                                     <th>Nama Kategori</th>
-                                    <th>Peruntukkan</th>
+                                    <th>Responden</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -76,8 +74,22 @@
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td class="text-center"><?= $ctg['kodeCategory']; ?></td>
                                         <td> <?= $ctg['namaCategory']; ?> </td>
-                                        <td><?= $ctg['peruntukkanCategory']; ?>
+                                        <td>
+                                            <!-- get peruntukkancategory by slug -->
+                                            <?php
+                                            $db = db_connect();
+                                            $slug = $ctg['slug'];
+
+                                            $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = :slug:";
+                                            $peruntukkan = $db->query($sql, [
+                                                'slug'     => $slug,
+                                            ]);
+                                            foreach ($peruntukkan->getResultArray() as $row) {
+                                                echo $row['peruntukkanCategory'] . "<br>";
+                                            }
+                                            ?>
                                         </td>
+
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a href="<?= base_url(); ?>/admin/editKategori/<?= $ctg['slug']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">

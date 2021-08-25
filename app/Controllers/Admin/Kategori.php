@@ -38,7 +38,9 @@ class Kategori extends BaseController
         $data = [
             'title' => 'Kelola Kategori',
             'category' => $this->adminModel->getCategory(),
-            'peruntuk' => $this->adminModel->getPeruntuk(),
+            'peruntukkan' => $this->adminModel->getPeruntukkan(),
+            'slug' => $this->mRequest->getVar('slug'),
+
 
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
 

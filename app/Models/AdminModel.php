@@ -40,13 +40,14 @@ class AdminModel extends Model
 
         return $this->where(['slug' => $slug])->first();
     }
-    public function getPeruntuk($slug = false)
+    public function getPeruntukkan($slug = false)
     {
         if ($slug == false) {
             return $this
-                ->groupBy('slug')
-                ->having('slug', $slug)
+
+                ->select('peruntukkanCategory')
                 ->orderBy('slug', 'asc')
+                ->where('slug', $slug)
                 ->findAll();
 
             // return $this

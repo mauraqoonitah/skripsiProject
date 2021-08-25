@@ -17,7 +17,7 @@ class InstrumenModel extends Model
     {
         if ($id == false) {
             return $this
-                ->orderBy('id', 'desc')
+                ->orderBy('kodeInstrumen', 'asc')
                 ->findAll();
         }
 
