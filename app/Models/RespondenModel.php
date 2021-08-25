@@ -15,7 +15,10 @@ class RespondenModel extends Model
     {
         if ($id == false) {
             return $this
-                ->orderBy('id', 'desc')
+
+                ->groupBy('noIdentitas')
+                ->having('count(noIdentitas) > 1')
+                ->orderBy('id', 'asc')
                 ->findAll();
         }
 

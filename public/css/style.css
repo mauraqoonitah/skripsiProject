@@ -86,6 +86,10 @@ a .navbar-light .purple-text {
     color: #fff;
 }
 
+tr {
+    height: 50px !important;
+}
+
 
 /* footer {
     background-color: #006F45;

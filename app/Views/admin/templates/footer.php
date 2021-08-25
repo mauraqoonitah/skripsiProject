@@ -28,8 +28,7 @@
 <script>
     $(document).ready(function() {
         $('#tableResponden').DataTable({
-            "pageLength": 25
-
+            "pageLength": 25,
         });
     });
     $(document).ready(function() {

@@ -7,6 +7,7 @@ use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
+use App\Models\RespondenModel;
 
 class Admin extends BaseController
 {
@@ -15,6 +16,7 @@ class Admin extends BaseController
     protected $pernyataanModel;
     protected $jenisRespondenModel;
     protected $responseModel;
+    protected $respondenModel;
     protected $mRequest;
 
 
@@ -25,6 +27,7 @@ class Admin extends BaseController
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
+        $this->respondenModel = new RespondenModel();
         $this->mRequest = service("request");
     }
 
@@ -44,7 +47,7 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Tanggapan Responden',
-            'response' => $this->responseModel->getResponse(),
+            'responden' => $this->respondenModel->getResponden(),
 
         ];
         return view('admin/hasil-survei/responden', $data);

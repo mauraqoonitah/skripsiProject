@@ -6,7 +6,7 @@ use CodeIgniter\Model;
 
 class ResponseModel extends Model
 {
-    protected $table      = 'survey';
+    protected $table      = 'response';
     protected $userTimestamps = true;
     // protected $allowedFields = ['responden'];
 

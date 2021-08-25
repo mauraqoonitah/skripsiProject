@@ -20,7 +20,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content mt-5">
         <div class="container-fluid">
 
             <!-- DataTales Example -->
@@ -34,25 +34,23 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Tgl<br>Pengisian</th>
-                                    <th>No. Identitas</th>
                                     <th>Nama Lengkap</th>
+                                    <th>No. Identitas</th>
                                     <th>Jenis<br>Responden</th>
-                                    <th>Kode<br>Instrumen</th>
+                                    <th>Tgl<br>Pengisian</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($response as $rps) : ?>
+                                <?php foreach ($responden as $responden) : ?>
 
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $rps['created_at']; ?></td>
-                                        <td><?= $rps['noIdentitas']; ?></td>
-                                        <td><?= $rps['fullname']; ?></td>
-                                        <td><?= $rps['responden']; ?> </td>
-                                        <td><?= $rps['kodeInstrumen']; ?></td>
+                                        <td><?= $responden['fullname']; ?></td>
+                                        <td><?= $responden['noIdentitas']; ?></td>
+                                        <td>responden</td>
+                                        <td>tgl</td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
                                                 <a href="<?= base_url(); ?>/admin/lihatResponden" class="btn btn-sm btn-primary text-decoration-none">
