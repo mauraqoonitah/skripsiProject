@@ -57,6 +57,10 @@ class Kategori extends BaseController
             'title' => 'Detail Kategori',
             'category' => $this->adminModel->getCategory($slug),
             'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
+            'peruntukkan' => $this->adminModel->getPeruntukkan(),
+            'slug' => $this->mRequest->getVar('slug'),
+
+
 
             'validation' => \Config\Services::validation()
 
@@ -90,6 +94,7 @@ class Kategori extends BaseController
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
         $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
+
 
         //update data by adding new checkbox value
         for ($i = 0; $i < sizeof($peruntukkanCategory); $i++) {

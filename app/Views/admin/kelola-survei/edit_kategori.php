@@ -70,10 +70,40 @@
                                 <label for="peruntukkanCategory" class="col-form-label">Responden:</label>
                                 <div class="form-text m-0 p-0">Pilih responden yang dapat mengisi kuesioner pada kategori ini</div><br>
 
+
+                                <!--  list of checked peruntukkancategory -->
+                                <?php
+                                $db = db_connect();
+                                $slug = $category['slug'];
+
+                                $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
+
+                                $peruntukkan =  $db->query($sql, [$slug]);
+                                foreach ($peruntukkan->getResult() as $row) : {
+                                ?>
+                                        <div class="form-check">
+                                            <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $category['peruntukkanCategory']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]" checked>
+
+                                            <label class="form-check-label " for="peruntukkanCategory">
+                                                <?php echo $row->peruntukkanCategory; ?>
+                                            </label>
+                                            <div class=" invalid-feedback">
+                                                <?= $validation->getError('peruntukkanCategory'); ?>
+                                            </div>
+                                        </div>
+                                <?php  }
+                                endforeach; ?>
+                                <!--  ./list of  checked peruntukkancategory -->
+
+                                <!--  ./list of  checked peruntukkancategory -->
+
                                 <!--  list of non-checked peruntukkancategory -->
-                                <?php foreach ($jenisResponden as $listResp) : ?>
+
+                                <?php
+
+                                foreach ($jenisResponden as $listResp) : ?>
                                     <div class="form-check">
-                                        <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $listResp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
+                                        <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $listResp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]" <?= set_checkbox('peruntukkanCategory[]', '1') ?> />
 
                                         <label class="form-check-label " for="peruntukkanCategory">
                                             <?= $listResp['responden']; ?>
