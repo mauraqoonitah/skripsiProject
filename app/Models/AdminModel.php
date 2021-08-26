@@ -18,7 +18,6 @@ class AdminModel extends Model
     {
         if ($slug == false) {
 
-            // I GIVE UP !!!!!
 
             // return $this
             //     ->groupBy('slug')

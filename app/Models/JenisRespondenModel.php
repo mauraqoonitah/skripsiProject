@@ -17,7 +17,7 @@ class JenisRespondenModel extends Model
     {
         if ($id == false) {
             return $this
-                ->orderBy('id', 'desc')
+                ->orderBy('responden', 'asc')
                 ->findAll();
         }
 

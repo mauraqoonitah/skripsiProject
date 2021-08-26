@@ -56,7 +56,7 @@ class Kategori extends BaseController
         $data = [
             'title' => 'Detail Kategori',
             'category' => $this->adminModel->getCategory($slug),
-            'responden' => $this->jenisRespondenModel->getJenisResponden(),
+            'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
 
@@ -73,22 +73,38 @@ class Kategori extends BaseController
         return view('admin/kelola-survei/edit_kategori', $data);
     }
 
-    public function updateKategori($id)
+    public function updateKategori($slug)
     {
-        // $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+        // validasi input
+        if (!$this->validate([
+            'peruntukkanCategory' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Responden harus diisi.',
+                ]
+            ],
+        ])) {
+            return redirect()->to('admin/kelola-survei/edit_kategori')->withInput();
+        }
 
-        $this->adminModel->save(
-            [
-                'id' => $id, //using id for update data
-                // 'slug' => $slug,
-                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                'namaCategory' => $this->mRequest->getVar('namaCategory'),
-                'peruntukkanCategory' => $this->mRequest->getVar('peruntukkanCategory')
+        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
-            ]
-        );
+        $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
 
-        // dd($this->mRequest->getVar());
+        //update data by adding new checkbox value
+        for ($i = 0; $i < sizeof($peruntukkanCategory); $i++) {
+
+            $data =
+                [
+                    'slug' => $slug,
+                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                    'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                    'peruntukkanCategory' => $peruntukkanCategory[$i],
+                ];
+            // dd($data);
+            $this->adminModel->save($data);
+        }
+
         session()->setFlashdata('msgKategori', 'Data kategori berhasil diubah');
 
         return redirect()->to('/admin/kelola-survei/kategori');

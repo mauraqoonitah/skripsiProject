@@ -80,21 +80,24 @@
                                             $db = db_connect();
                                             $slug = $ctg['slug'];
 
-                                            $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = :slug:";
-                                            $peruntukkan = $db->query($sql, [
-                                                'slug'     => $slug,
-                                            ]);
+                                            $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
+
+                                            $peruntukkan =  $db->query($sql, [$slug]);
                                             foreach ($peruntukkan->getResultArray() as $row) {
-                                                echo $row['peruntukkanCategory'] . "<br>";
+                                                echo "- " . $row['peruntukkanCategory'] . "<br>";
                                             }
                                             ?>
+                                            <!--./ get peruntukkancategory by slug -->
+
                                         </td>
 
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editKategori/<?= $ctg['slug']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
+                                                <form method="post" action="<?= base_url(); ?>/admin/editKategori/<?= $ctg['slug']; ?>">
+                                                    <button class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </form>
 
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-kategori-<?= $ctg['id']; ?>">
                                                     <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">

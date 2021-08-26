@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Edit Kategori Instrumen</h1>
+                    <h1 class="fw-bold">Kelola Kategori Instrumen</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,18 +27,19 @@
     <!-- Main content -->
     <section class="content col-lg-8 mx-auto">
         <div class="container-fluid">
-            <div class="card mt-2">
-                <div class="card-body">
-                    <div class="modal-body">
-                        <!-- form edit kategori -->
-                        <form action="<?= base_url(); ?>/admin/updateKategori/<?= $category['id']; ?>" method="post">
-                            <?= csrf_field(); ?>
-                            <p>slug :</p>
-                            <input type="text" name="slug" value="<?= $category['slug']; ?>">
+            <!-- form edit kategori -->
+            <form action="<?= base_url(); ?>/admin/updateKategori/<?= $category['id']; ?>" method="post">
+                <?= csrf_field(); ?>
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <strong> Kategori <?= $category['namaCategory']; ?></strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="modal-body">
 
                             <!-- nama kategori -->
                             <div class="form-group">
-                                <label for="namaCategory" class="col-form-label">Nama Kategori:</label>
+                                <label for="namaCategory" class="col-form-label">Judul Kategori:</label>
                                 <input type="text" class="form-control  <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= (old('namaCategory')) ? old('namaCategory') : $category['namaCategory']; ?> ">
                                 <div class=" invalid-feedback">
                                     <?= $validation->getError('namaCategory'); ?>
@@ -66,21 +67,27 @@
                             </div>
                             <!-- peruntukkan kategori -->
                             <div class="form-group">
-                                <label for="peruntukkanCategory" class="col-form-label">Peruntukkan:</label>
-                                <input type="text" class="form-control" value="<?= (old('peruntukkanCategory')) ? old('peruntukkanCategory') : $category['peruntukkanCategory']; ?> " id="peruntukkanCategory" name="peruntukkanCategory">
+                                <label for="peruntukkanCategory" class="col-form-label">Responden:</label>
+                                <div class="form-text m-0 p-0">Pilih responden yang dapat mengisi kuesioner pada kategori ini</div><br>
 
-                                <?php foreach ($responden as $resp) : ?>
-                                    <div class=" form-check">
-                                        <input class="form-check-input  <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>">
+                                <!--  list of non-checked peruntukkancategory -->
+                                <?php foreach ($jenisResponden as $listResp) : ?>
+                                    <div class="form-check">
+                                        <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $listResp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
 
-                                        <label class="form-check-label" for="peruntukkanCategory">
-                                            <?= $resp['responden']; ?>
+                                        <label class="form-check-label " for="peruntukkanCategory">
+                                            <?= $listResp['responden']; ?>
                                         </label>
                                         <div class=" invalid-feedback">
                                             <?= $validation->getError('peruntukkanCategory'); ?>
                                         </div>
                                     </div>
                                 <?php endforeach; ?>
+                                <!--  ./list of non-checked peruntukkancategory -->
+                            </div>
+
+                            <div class="mt-5">
+                                <small class="text-muted mt-5">Catatan: <br>Jika ingin buat kuesioner, silakan pilih menu Kelola Survei -> Instrumen setelah simpan kategori ini</small>
 
                             </div>
                             <div class="d-flex align-items-center ">
@@ -88,14 +95,14 @@
                                     <i class="fas fa-save"></i> Simpan
                                 </button>
                             </div>
-                        </form>
-                        <!-- end form edit kategori -->
-                    </div>
-                </div>
-            </div>
+            </form>
+            <!-- end form edit kategori -->
         </div>
-    </section>
-    <!-- /.content -->
+</div>
+</div>
+</div>
+</section>
+<!-- /.content -->
 </div>
 
 
