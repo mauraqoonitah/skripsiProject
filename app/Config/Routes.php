@@ -52,6 +52,7 @@ $routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
 $routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
+$routes->post('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
 
 $routes->post('/admin/saveKategori', 'Admin\Kategori::saveKategori');
 $routes->post('/admin/updateKategori/(:any)', 'Admin\Kategori::updateKategori/$1');

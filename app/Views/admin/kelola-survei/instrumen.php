@@ -60,10 +60,10 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode<br>Kategori</th>
+                                    <th>Nama Instrumen</th>
                                     <th>Kode<br>Instrumen</th>
-                                    <th>Judul Instrumen</th>
-                                    <th>Peruntukkan</th>
+                                    <th>Kode<br>Kategori</th>
+                                    <th>Responden</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -72,11 +72,11 @@
                                 <?php foreach ($instrumen as $ins) : ?>
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
+                                        <td><?= $ins['namaInstrumen']; ?></td>
+                                        <td class="text-center"><?= $ins['kodeInstrumen']; ?></td>
                                         <td class="text-center">
                                             <?= $ins['kodeCategory']; ?>
                                         </td>
-                                        <td class="text-center"><?= $ins['kodeInstrumen']; ?></td>
-                                        <td><?= $ins['namaInstrumen']; ?></td>
                                         <td> <?= $ins['peruntukkanInstrumen']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">

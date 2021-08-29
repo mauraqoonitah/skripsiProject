@@ -91,31 +91,25 @@ class Instrumen extends BaseController
     public function saveInstrumen()
     {
         // validasi input
-        if (!$this->validate([
-            'kodeInstrumen' => [
-                'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
-                'errors' => [
-                    'required' => 'Kode Instrumen harus diisi.',
-                    'is_unique' => 'Kode Instrumen ini sudah terdaftar.'
-                ]
-            ],
-            // 'namaInstrumen' => [
-            //     'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
-            //     'errors' => [
-            //         'required' => 'Nama Instrumen harus diisi.',
-            //         'is_unique' => 'Nama Instrumen ini sudah terdaftar.'
-            //     ]
-            // ],
-        ])) {
-            return redirect()->to('admin/kelola-survei/tambah_instrumen')->withInput();
-        }
+        // if (!$this->validate([
+        //     'kodeInstrumen' => [
+        //         'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
+        //         'errors' => [
+        //             'required' => 'Kode Instrumen harus diisi.',
+        //             'is_unique' => 'Kode Instrumen ini sudah terdaftar.'
+        //         ]
+        //     ],
+
+        // ])) {
+        //     return redirect()->to('admin/kelola-survei/tambah_instrumen')->withInput();
+        // }
 
         $this->instrumenModel->save(
             [
-                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                // 'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
                 'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
                 'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
-                'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+                // 'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen') (belum bisa diinput berdsar pilihan option)
 
             ]
         );

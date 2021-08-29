@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Kelola Instrumen</h1>
+                    <h1 class="fw-bold">Tambah Instrumen</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -41,119 +41,132 @@
         <?php endif; ?>
         <!-- ./ flash success tambah data  -->
 
-
-
     </section>
 
     <!-- Main content -->
     <section class="content col-lg-10 mx-auto">
         <div class="container-fluid">
-
-            <div class="content col-lg-12 mx-auto">
-                <div class=" container-fluid">
-                    <strong>Pilih Kode Kategori</strong><br>
-                    <button class="tablink" onclick="openPage('defaultTab')" id="defaultOpen">Default Tab Open</button>
-
-                    <?php foreach ($category as $ctg) : ?>
-                        <button class="tablink mb-2" onclick="openPage('category-<?= $ctg['id']; ?>')"><?= $ctg['namaCategory']; ?></button> <br>
-                    <?php endforeach; ?>
-
-                    <div id="defaultTab" class="tabcontent">
-                    </div>
+            <div class="card mt-2">
+                <div class="card-header d-flex align-items-center py-4">
+                    <h5 class="">Tambah Instrumen</h5>
                 </div>
-            </div>
-            <?php foreach ($category as $ctg) : ?>
 
-                <div id="category-<?= $ctg['id']; ?>" class="tabcontent">
+                <!-- pilih kategori untuk membuat instrumen -->
+                <div class="card">
+                    <div class="alert alert-info text-center fw-bold" role="alert">
+                        <strong> Pilih Kategori untuk membuat Instrumennya </strong>
+                    </div>
+
                     <div class="card-body mx-auto col-lg-12 align-middle">
                         <div class="container">
-                            <strong>Pilih Kode Kategori</strong><br>
                             <div class="input-group mb-3">
-                                <select class="form-select form-select-lg" aria-label=".form-select-lg example">
-                                    <option value="<?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> "><?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> </option>
-                                </select>
+                                <div class="content col-lg-12 mx-auto">
+                                    <div class=" container-fluid">
+                                        <strong>Pilih Kode Kategori</strong><br>
+                                        <!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> -->
+                                        <button class="tablink" onclick="openPage('defaultTab')" id="defaultOpen">Default Tab Open</button>
 
+                                        <?php foreach ($category as $ctg) : ?>
+                                            <a href="#form">
+                                                <button type="button" class="btn btn-primary tablink mb-2" onclick="openPage('category-<?= $ctg['id']; ?>')"><?= $ctg['namaCategory']; ?></button> <br></a>
+                                        <?php endforeach; ?>
 
-                                <small>di option ini harusnya muncul pilihan nama instrumen yang berasal dari nama kategori + oleh + peruntukanmnya tapii peruntukannya baru ke return 1 row karena emg belum nemu caranya biar return semua row yg termasuk dalam kategori tsb.<br><br> terus ini nanti ini bakal disimpen datanya buat dimasukin ke input nama iinstrumen</small>
+                                        <div id="defaultTab" class="tabcontent">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /input-group -->
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <!-- ./pilih kategori untuk membuat instrumen -->
 
 
-            <div class="card mt-2">
-                <div class="card-header d-flex align-items-center py-4">
-                    <h5 class="">Tambah Instrumen</h5>
-                </div>
+
                 <div class="card-body py-4">
-                    <!-- form tambah instrumen -->
-                    <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post">
-                        <?= csrf_field(); ?>
-                        <!-- pilih kode kategori -->
-                        <div class="form-group">
-                            <div class="mb-3 row">
-                                <label for="kode-kategori" class="col-sm-2 col-form-label">Pilih Kategori:</label>
-                                <div class="col-sm-10">
-                                    <select class="form-select <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory">
-                                        <?php foreach ($category as $ctg) :  ?>
-                                            <option value="<?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> "><?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> </option>
+                    <div class="container">
 
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <div class=" invalid-feedback">
-                                        <?= $validation->getError('namaCategory'); ?>
+                        <!-- form tambah instrumen -->
+                        <form action="<?= base_url(); ?>/admin/saveInstrumen" method="post" id="form">
+                            <?= csrf_field(); ?>
+
+
+                            <?php foreach ($category as $ctg) : ?>
+                                <div id="category-<?= $ctg['id']; ?>" class="tabcontent">
+
+                                    <!-- PILIH kode kategori -->
+                                    <div class="form-group">
+                                        <div class="mb-3 row">
+                                            <label for="kode-kategori" class="col-sm-2 col-form-label">Kategori:</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" value="<?= $ctg['kodeCategory']; ?>" disabled>
+
+                                                <small class="text-muted"><?= $ctg['namaCategory']; ?></small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <!-- ./ PILIH kode kategori -->
 
-                        <!-- nama instrumen -->
-                        <div class="form-group">
-                            <div class="mb-3 row">
-                                <label for="namaInstrumen" class="col-sm-2 col-form-label">Nama instrumen:</label>
+                                    <!-- PILIH nama instrumen -->
+                                    <div class="form-group">
+                                        <div class="mb-3 row">
+                                            <label for="namaInstrumen" class="col-sm-2 col-form-label">Nama instrumen:</label>
+                                            <div class="col-sm-10">
 
-                                <div class="col-sm-10">
-                                    <select class="form-select <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" id="namaInstrumen" name="namaInstrumen">
-                                        <?php foreach ($category as $ctg) :  ?>
-                                            <div id="category-<?= $ctg['id']; ?>" class="tabcontent">
-                                                <option value="<?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> "><?= $ctg['namaCategory']; ?> oleh <?= $ctg['peruntukkanCategory']; ?> </option>
+                                                <div class="input-group mb-3">
+                                                    <select class="form-select form-select-lg" name="namaInstrumen" aria-label=".form-select-lg example">
+                                                        <?php
+                                                        $db = db_connect();
+                                                        $slug = $ctg['slug'];
+
+                                                        $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
+
+                                                        $peruntukkan =  $db->query($sql, [$slug]);
+                                                        foreach ($peruntukkan->getResultArray() as $row) : ?>
+
+                                                            <option value="<?= $ctg['namaCategory']; ?> oleh <strong><?= $row['peruntukkanCategory']; ?>"><?= $ctg['namaCategory']; ?> oleh <strong><?= $row['peruntukkanCategory']; ?></strong> </option>
+                                                        <?php endforeach; ?>
+
+                                                    </select>
+                                                </div>
 
                                             </div>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <div class=" invalid-feedback">
-                                        <?= $validation->getError('namaInstrumen'); ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <!-- ./PILIH nama instrumen -->
 
-                        <!-- kode instrumen -->
-                        <div class="form-group">
-                            <div class="mb-3 row">
-                                <label for="kode-instrumen" class="col-sm-2 col-form-label">Kode instrumen:</label>
 
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2">
-                                    <div class=" invalid-feedback">
-                                        <?= $validation->getError('kodeInstrumen'); ?>
+
+                                    <!-- kode instrumen -->
+                                    <div class="form-group">
+                                        <div class="mb-3 row">
+                                            <label for="kode-instrumen" class="col-sm-2 col-form-label">Kode instrumen:</label>
+
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2">
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('kodeInstrumen'); ?>
+                                                </div>
+                                            </div>
+                                            <small>INI kalo is-invalid, dia tabnya gamau kebuka, mending diganti aja jadi yang tabcontent nya itu digimanain gitu, ini nanti auto tulis 2 huruf depan dari kode nya misal kalo dia pilih kode kategori 3, berarti masukin 1 angka depan hrs default dan pakein titik. --> 3. (isi) gitu</small>
+                                        </div>
                                     </div>
+                                    <!-- ./kode instrumen -->
+
                                 </div>
-                                <small>ini nanti auto tulis 2 huruf depan dari kode nya misal kalo dia pilih kode kategori 3, berarti masukin 1 angka depan hrs default dan pakein titik. --> 3. (isi) gitu</small>
+                            <?php endforeach; ?>
+
+
+                            <div class="d-flex align-items-center ">
+                                <button type="submit" class="btn btn-success ml-auto mt-3">
+                                    <i class="fas fa-save"></i> Simpan
+                                </button>
                             </div>
-                        </div>
 
-                        <div class="d-flex align-items-center ">
-                            <button type="submit" class="btn btn-success ml-auto mt-3">
-                                <i class="fas fa-save"></i> Simpan
-                            </button>
-                        </div>
-
-                    </form>
-                    <!-- end form tambah instrumen -->
-
+                        </form>
+                        <!-- end form tambah instrumen -->
+                    </div>
 
 
                 </div>
@@ -163,7 +176,31 @@
     <!-- /.content -->
 </div>
 
+<!-- <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <i class="nav-icon far fa-check-circle mr-2 text-success"> </i>
 
+            <strong class="me-auto"> Success</strong>
+            <small class="text-muted">a second ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Silakan Isi Form Data Instrumen.
+        </div>
+    </div>
+
+</div> -->
+
+<!-- <script>
+    document.getElementById("liveToastBtn").onclick = function() {
+
+        var myAlert = document.getElementById('liveToast'); //select id of toast
+
+        var bsAlert = new bootstrap.Toast(myAlert); //inizialize it
+        bsAlert.show(); //show it
+    }
+</script> -->
 <script>
     function openPage(pageName) {
         // Hide all elements with class="tabcontent" by default */
