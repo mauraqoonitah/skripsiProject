@@ -72,46 +72,46 @@
 
 
                                 <!--  list of checked peruntukkancategory -->
-                                <?php
-                                $db = db_connect();
+                                <?php $db = db_connect();
                                 $slug = $category['slug'];
-
                                 $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
-
                                 $peruntukkan =  $db->query($sql, [$slug]);
+
                                 foreach ($peruntukkan->getResult() as $row) : {
                                 ?>
                                         <div class="form-check">
-                                            <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $category['peruntukkanCategory']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]" checked>
+                                            <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="hidden" value="<?= $row->peruntukkanCategory; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
 
-                                            <label class="form-check-label " for="peruntukkanCategory">
-                                                <?php echo $row->peruntukkanCategory; ?>
-                                            </label>
+
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('peruntukkanCategory'); ?>
                                             </div>
                                         </div>
-                                <?php  }
-                                endforeach; ?>
+                                    <?php  } ?>
+                                <?php endforeach; ?>
+
                                 <!--  ./list of  checked peruntukkancategory -->
 
                                 <!--  ./list of  checked peruntukkancategory -->
 
                                 <!--  list of non-checked peruntukkancategory -->
 
-                                <?php
+                                <?php foreach ($jenisResponden as $listResp) : ?>
+                                    <?php foreach ($peruntukkan->getResult() as $row) : {
+                                    ?>
 
-                                foreach ($jenisResponden as $listResp) : ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $listResp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]" <?= set_checkbox('peruntukkanCategory[]', '1') ?> />
+                                            <div class="form-check">
+                                                <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?> " type="checkbox" value="<?= $listResp['responden']; ?>" id="listPeruntukkan" name="peruntukkanCategory[]" <?= set_checkbox('peruntukkanCategory[]', '1') ?> <?php echo ($listResp['responden'] == $row->peruntukkanCategory) ? "checked" : ""; ?> />
 
-                                        <label class="form-check-label " for="peruntukkanCategory">
-                                            <?= $listResp['responden']; ?>
-                                        </label>
-                                        <div class=" invalid-feedback">
-                                            <?= $validation->getError('peruntukkanCategory'); ?>
-                                        </div>
-                                    </div>
+                                                <label class="form-check-label " for="listPeruntukkan">
+                                                    <?= $listResp['responden']; ?>
+                                                </label>
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('peruntukkanCategory'); ?>
+                                                </div>
+                                            </div>
+                                        <?php  } ?>
+                                    <?php endforeach; ?>
                                 <?php endforeach; ?>
                                 <!--  ./list of non-checked peruntukkancategory -->
                             </div>

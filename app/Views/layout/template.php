@@ -80,11 +80,55 @@
 
 </body>
 
-<footer class="main-footer">
+<!-- <footer class="main-footer">
     <div class="text-center">
         <span>Copyright &copy; <?= date('Y'); ?> Gugus Penjaminan Mutu FMIPA UNJ</span>
     </div>
 </footer>
+ -->
 
+<!-- ======= Footer ======= -->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <h4>Kontak</h4>
+                    <p>GPjM FMIPA UNJ </p>
+                    <p> Gedung Ki Hajar Dewantara Lantai 4, UNJ </p>
+                    <p> Jalan Pemuda Rawamangun Jakarta Timur 13220 </p>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            Copyright &copy; <?= date('Y'); ?> <strong><span>Gugus Penjaminan Mutu FMIPA UNJ</span></strong>
+
+        </div>
+
+    </div>
+</footer>
+<!-- End Footer -->
 
 </html>

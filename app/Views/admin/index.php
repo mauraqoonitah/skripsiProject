@@ -33,9 +33,7 @@
                 <div class="icon bg-red"><i class="icon-padnote"></i></div>
                 <div class="title"><span>Responden</span>
                 </div>
-                <a href="<?php echo site_url('admin/Kuesioner/jawabanKuesionerAlumni/') ?>">
-                    <div class="number" style="color: green;"><strong><?php echo $this->m_hasil->getCountKuesioner('alumni', $this->session->userdata('prodiID')); ?></strong></div>
-                </a>
+
             </div>
         </div>
 

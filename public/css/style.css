@@ -91,13 +91,9 @@ tr {
 }
 
 
-/* footer {
-    background-color: #006F45;
-    padding: 1rem .25rem;
-    color: white;
-    margin-top: 5rem;
-    text-align: center;
-} */
+/*--------------------------------------------------------------
+# Footer Section
+--------------------------------------------------------------*/
 
 footer {
     /* place on the bottom */
@@ -105,12 +101,116 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #006F45;
-    color: white;
+    background-color: #480348;
+    color: #bdbdbd;
     display: grid;
     place-items: center;
     padding: 50px;
 }
+
+#footer {
+    /* place on the bottom */
+    background-color: #480348;
+    padding: 0 0 30px 0;
+    color: #bdbdbd;
+    font-size: 14px;
+}
+
+#footer .footer-top {
+    padding: 60px 0 30px 0;
+}
+
+#footer .footer-top .footer-info {
+    margin-bottom: 15px;
+    background: #010246;
+    color: #bdbdbd;
+    border-top: 4px solid #0086ca;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+#footer .footer-top .footer-info h3 {
+    font-size: 24px;
+    margin: 0 0 20px 0;
+    padding: 2px 0 2px 0;
+    line-height: 1;
+    font-weight: 700;
+}
+
+#footer .footer-top .footer-info p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+#footer .footer-top h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #bdbdbd;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+#footer .footer-top .footer-links {
+    margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#footer .footer-top .footer-links ul i {
+    padding-right: 2px;
+    color: #0086ca;
+    font-size: 18px;
+    line-height: 1;
+}
+
+#footer .footer-top .footer-links ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+#footer .footer-top .footer-links ul li:first-child {
+    padding-top: 0;
+}
+
+#footer .footer-top .footer-links ul a {
+    color: #fff;
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+}
+
+#footer .footer-top .footer-links ul a:hover {
+    color: #0086ca;
+}
+
+#footer .copyright {
+    border-top: 1px solid rgb(158, 158, 158, .5);
+    text-align: center;
+    padding-top: 30px;
+}
+
+#footer .credits {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #bdbdbd;
+}
+
+@media (max-width: 575px) {
+    #footer .footer-top .footer-info {
+        margin: -20px 0 30px 0;
+    }
+}
+
+
+/* ./footer */
 
 #scrollToTopBtn {
     font-size: 18px;

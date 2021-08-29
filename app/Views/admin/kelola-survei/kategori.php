@@ -55,16 +55,16 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive-sm">
                         <!-- datatables -->
-                        <table id="table-kelola-survei" class="hover order-column cell-border">
+                        <table id="table-kelola-survei" class="table table-bordered hover order-column cell-border">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>Kode</th>
-                                    <th>Nama Kategori</th>
-                                    <th>Responden</th>
-                                    <th>Aksi</th>
+                                    <th style="width: 50px;"> No.</th>
+                                    <th style="width: 50px;">Kode</th>
+                                    <th style="width: 600px;">Nama Kategori</th>
+                                    <th style="width: 200px;">Responden</th>
+                                    <th style="width: 100px;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,7 +84,9 @@
 
                                             $peruntukkan =  $db->query($sql, [$slug]);
                                             foreach ($peruntukkan->getResultArray() as $row) {
-                                                echo "- " . $row['peruntukkanCategory'] . "<br>";
+                                                echo "
+                                                <ul>
+                                                <li>" . $row['peruntukkanCategory'] . "</li></ul>";
                                             }
                                             ?>
                                             <!--./ get peruntukkancategory by slug -->
