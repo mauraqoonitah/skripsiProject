@@ -15,6 +15,10 @@
                         <li class="breadcrumb-item active ">Kelola Survei</li>
                     </ol>
                 </div>
+                <!-- back to page view categories -->
+                <a href="<?= base_url(); ?>/admin/kelola-survei/kategori">
+                    <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
+                </a>
 
             </div>
         </div><!-- /.container-fluid -->
@@ -43,9 +47,9 @@
             <!-- Main content -->
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h5 class="">Instrumen Kepuasan</h5>
+                    <h6 class=""> <?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?> </h6>
                     <!-- Button trigger modal -->
-                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen" class="ml-auto">
+                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen/<?= $category['slug']; ?>" class="ml-auto">
                         <button type="button" class="btn btn-warning ">
                             <i class=" fas fa-plus"></i> Tambah Instrumen
                         </button></a>
@@ -60,30 +64,26 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama Instrumen</th>
                                     <th>Kode<br>Instrumen</th>
-                                    <th>Kode<br>Kategori</th>
+                                    <th>Nama Instrumen</th>
                                     <th>Responden</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
-                                <?php foreach ($instrumen as $ins) : ?>
+                                <?php foreach ($instrumenByCtg as $insCtg) : ?>
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
-                                        <td><?= $ins['namaInstrumen']; ?></td>
-                                        <td class="text-center"><?= $ins['kodeInstrumen']; ?></td>
-                                        <td class="text-center">
-                                            <?= $ins['kodeCategory']; ?>
-                                        </td>
-                                        <td> <?= $ins['peruntukkanInstrumen']; ?> </td>
+                                        <td class="text-center"><?= $insCtg['kodeInstrumen']; ?></td>
+                                        <td><?= $insCtg['namaInstrumen']; ?></td>
+                                        <td> <?= $insCtg['peruntukkanInstrumen']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editInstrumen/<?= $ins['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="<?= base_url(); ?>/admin/editInstrumen/<?= $insCtg['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $ins['id']; ?>">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $insCtg['id']; ?>">
                                                     <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
@@ -94,11 +94,11 @@
                                     </tr>
 
                                     <!-- modal hapus instrumen -->
-                                    <div class="modal fade" id="modal-delete-instrumen-<?= $ins['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modal-delete-instrumen-<?= $insCtg['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered ">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <p class="modal-title fw-bold" id="hapusInstrumenLabel"><?= $ins['namaInstrumen']; ?></p>
+                                                    <p class="modal-title fw-bold" id="hapusInstrumenLabel"><?= $insCtg['namaInstrumen']; ?></p>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-center">
@@ -108,7 +108,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                    <form action="<?= base_url(); ?>/admin/deleteInstrumen/<?= $ins['id']; ?>" method="post">
+                                                    <form action="<?= base_url(); ?>/admin/deleteInstrumen/<?= $insCtg['id']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>

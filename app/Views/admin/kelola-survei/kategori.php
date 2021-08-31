@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Kelola Kategori Instrumen</h1>
+                    <h1 class="fw-bold">Kelola Instrumen</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -45,7 +45,7 @@
 
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h5 class="">Kategori Kuesioner</h5>
+                    <h5 class="">Kategori Instrumen</h5>
                     <!-- Button trigger modal -->
                     <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_kategori" class="ml-auto">
                         <button type="button" class="btn btn-warning ">
@@ -73,7 +73,7 @@
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td class="text-center"><?= $ctg['kodeCategory']; ?></td>
-                                        <td> <?= $ctg['namaCategory']; ?> </td>
+                                        <td> <a href="<?php echo base_url('admin/kelola-survei/lihatInstrumen/' . $ctg['slug']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Instrumen"><?= $ctg['namaCategory']; ?> </a></td>
                                         <td>
                                             <!-- get peruntukkancategory by slug -->
                                             <?php

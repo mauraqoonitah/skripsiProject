@@ -32,11 +32,12 @@ class Instrumen extends BaseController
 
     // ---------------- instrumen --------------------------
 
-    public function kelolaInstrumen()
+    public function kelolaInstrumen($slug)
     {
         $data = [
             'title' => 'Kelola Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
+
             'category' => $this->adminModel->getCategory(),
 
             'validation' => \Config\Services::validation()
@@ -44,6 +45,8 @@ class Instrumen extends BaseController
 
         return view('admin/kelola-survei/instrumen', $data);
     }
+
+
     public function editInstrumen($id)
     {
         $data = [
@@ -75,12 +78,12 @@ class Instrumen extends BaseController
 
         return redirect()->to('/admin/kelola-survei/instrumen');
     }
-    public function tambahInstrumen()
+    public function tambahInstrumen($slug)
     {
         $data = [
             'title' => 'Tambah Data Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen(),
-            'category' => $this->adminModel->getCategory(),
+            'instrumen' => $this->instrumenModel->getInstrumen($slug),
+            'category' => $this->adminModel->getCategory($slug),
 
             'validation' => \Config\Services::validation()
 
@@ -91,34 +94,41 @@ class Instrumen extends BaseController
     public function saveInstrumen()
     {
         // validasi input
-        // if (!$this->validate([
-        //     'kodeInstrumen' => [
-        //         'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
-        //         'errors' => [
-        //             'required' => 'Kode Instrumen harus diisi.',
-        //             'is_unique' => 'Kode Instrumen ini sudah terdaftar.'
-        //         ]
-        //     ],
+        if (!$this->validate([
+            'kodeInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
+                'errors' => [
+                    'required' => 'Kode Instrumen harus diisi.',
+                    'is_unique' => 'Kode Instrumen ini sudah terdaftar.'
+                ]
+            ],
+            'namaInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
+                'errors' => [
+                    'required' => 'Nama Instrumen harus diisi.',
+                    'is_unique' => 'Nama Instrumen ini sudah terdaftar.'
+                ]
+            ],
 
-        // ])) {
-        //     return redirect()->to('admin/kelola-survei/tambah_instrumen')->withInput();
-        // }
-        $kodeCtgIns = $this->mRequest->getVar('kodeCtgIns');
-        for ($i = 0; $i < sizeof($kodeCtgIns); $i++) {
-
-            $data =
-                [
-                    'kodeCategory' => $kodeCtgIns[$i],
-                    // 'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
-                    // 'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
-                    // 'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
-                ];
+        ])) {
+            return redirect()->to('admin/kelola-survei/tambah_instrumen')->withInput();
         }
 
+        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
+        $data =
+            [
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                'slug' => $slug,
+                // 'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+            ];
         $this->instrumenModel->save($data);
+
         session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil ditambahkan');
 
-        return redirect()->to('/admin/kelola-survei/instrumen');
+        return redirect()->to('/admin/kelola-survei/kategori');
     }
 
     public function deleteInstrumen($id)

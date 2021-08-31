@@ -64,15 +64,10 @@
                         <li class="nav-item">
                             <a href="<?= base_url(); ?>/admin/kelola-survei/kategori" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Kategori</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen" class="nav-link <?= $uri->getSegment(2) == 'kelolaInstrumen' ? 'active"' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="<?= base_url(); ?>/admin/kelolaPernyataan" class="nav-link <?= $uri->getSegment(2) == 'kelolaPernyataan' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
