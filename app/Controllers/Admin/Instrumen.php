@@ -103,17 +103,19 @@ class Instrumen extends BaseController
         // ])) {
         //     return redirect()->to('admin/kelola-survei/tambah_instrumen')->withInput();
         // }
+        $kodeCtgIns = $this->mRequest->getVar('kodeCtgIns');
+        for ($i = 0; $i < sizeof($kodeCtgIns); $i++) {
 
-        $this->instrumenModel->save(
-            [
-                // 'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
-                'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
-                // 'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen') (belum bisa diinput berdsar pilihan option)
+            $data =
+                [
+                    'kodeCategory' => $kodeCtgIns[$i],
+                    // 'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                    // 'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                    // 'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+                ];
+        }
 
-            ]
-        );
-
+        $this->instrumenModel->save($data);
         session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil ditambahkan');
 
         return redirect()->to('/admin/kelola-survei/instrumen');

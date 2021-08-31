@@ -64,13 +64,13 @@
                                     <div class=" container-fluid">
                                         <strong>Pilih Kode Kategori</strong><br>
                                         <!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> -->
-                                        <button class="tablink" onclick="openPage('defaultTab')" id="defaultOpen">Default Tab Open</button>
 
                                         <?php foreach ($category as $ctg) : ?>
                                             <a href="#form">
                                                 <button type="button" class="btn btn-primary tablink mb-2" onclick="openPage('category-<?= $ctg['id']; ?>')"><?= $ctg['namaCategory']; ?></button> <br></a>
                                         <?php endforeach; ?>
 
+                                        <button class="tablink" onclick="openPage('defaultTab')" id="defaultOpen">Reset</button>
                                         <div id="defaultTab" class="tabcontent">
                                         </div>
                                     </div>
@@ -95,12 +95,16 @@
                             <?php foreach ($category as $ctg) : ?>
                                 <div id="category-<?= $ctg['id']; ?>" class="tabcontent">
 
+                                    <input type="text" value="<?= $ctg['id']; ?>">
                                     <!-- PILIH kode kategori -->
                                     <div class="form-group">
                                         <div class="mb-3 row">
                                             <label for="kode-kategori" class="col-sm-2 col-form-label">Kategori:</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" value="<?= $ctg['kodeCategory']; ?>" disabled>
+                                                <input type="text" class="form-control" value="<?= $ctg['kodeCategory']; ?>" name="kodeCtgIns[]">
+
+                                                <?php $kodeCtgIns = $ctg['kodeCategory'];
+                                                echo $kodeCtgIns; ?>
 
                                                 <small class="text-muted"><?= $ctg['namaCategory']; ?></small>
                                             </div>
@@ -125,10 +129,23 @@
                                                         $peruntukkan =  $db->query($sql, [$slug]);
                                                         foreach ($peruntukkan->getResultArray() as $row) : ?>
 
-                                                            <option value="<?= $ctg['namaCategory']; ?> oleh <strong><?= $row['peruntukkanCategory']; ?>"><?= $ctg['namaCategory']; ?> oleh <strong><?= $row['peruntukkanCategory']; ?></strong> </option>
+                                                            <option value="<?= $ctg['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?>"><?= $ctg['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?></option>
+
+                                                            <br>
+
+                                                            <?php var_dump($ctg['namaCategory']); ?>
+
                                                         <?php endforeach; ?>
 
                                                     </select>
+
+
+
+
+                                                    <?php var_dump($ctg['peruntukkanCategory']); ?>
+
+
+
                                                 </div>
 
                                             </div>
