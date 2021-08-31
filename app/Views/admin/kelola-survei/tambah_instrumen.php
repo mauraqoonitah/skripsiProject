@@ -73,7 +73,8 @@
                             <div class="col-sm-10">
 
                                 <div class="input-group mb-3">
-                                    <select class="form-select form-select-lg" name="namaInstrumen" aria-label=".form-select-lg example">
+                                    <?= $category['namaCategory']; ?> oleh : <br>
+                                    <select class="form-select form-select-lg <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" name="namaInstrumen" aria-label="form-select-lg example" id="peruntukkanIns" onChange="getText()">
                                         <?php
                                         $db = db_connect();
                                         $slug = $category['slug'];
@@ -83,13 +84,24 @@
                                         $peruntukkan =  $db->query($sql, [$slug]);
                                         foreach ($peruntukkan->getResultArray() as $row) : ?>
 
-                                            <option value="<?= $category['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?>"><?= $category['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?></option>
-                                            <br>
-                                        <?php endforeach; ?>
-                                        <!--  peruntukkan instrumen -->
+                                            <option value="<?= $category['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?>"><?= $row['peruntukkanCategory']; ?></option>
 
-                                        <!--  ./peruntukkan instrumen -->
+                                            <?php $selected_peruntukkan = $row['peruntukkanCategory'];
+                                            ?>
+
+
+                                        <?php endforeach; ?>
                                     </select>
+                                    <div class=" invalid-feedback">
+                                        <?= $validation->getError('namaInstrumen'); ?>
+                                    </div>
+                                    <!--  peruntukkan instrumen -->
+
+
+                                    <input type="hidden" name="peruntukkanInstrumen" id="peruntukkanInsTxt" />
+
+
+                                    <!-- ./peruntukkan instrumen -->
                                 </div>
 
                             </div>
@@ -131,5 +143,15 @@
 </section>
 <!-- /.content -->
 </div>
+<script type="text/javascript">
+    function getText() {
+        var select = document.getElementById('peruntukkanIns');
+        var option = select.options[select.selectedIndex];
+
+        document.getElementById('peruntukkanInsTxt').value = option.text;
+    }
+
+    getText();
+</script>
 
 <?= $this->endSection(); ?>

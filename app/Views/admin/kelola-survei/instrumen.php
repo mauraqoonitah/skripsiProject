@@ -98,13 +98,13 @@
                                         <div class="modal-dialog modal-dialog-centered ">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <p class="modal-title fw-bold" id="hapusInstrumenLabel"><?= $insCtg['namaInstrumen']; ?></p>
+                                                    <small class="text-muted" id="hapusInstrumenLabel"><?= $insCtg['namaInstrumen']; ?></small>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-center">
                                                     <h5>Yakin hapus instrumen?</h5>
                                                     <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i>
-                                                    <p style="color: #D60C0C;">Instrumen dan butir pernyataan didalamnya (jika ada) akan terhapus</p>
+                                                    <p class="mt-4" style="color: #D60C0C;">Butir pernyataan didalamnya (jika ada) akan terhapus</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
