@@ -73,7 +73,7 @@
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td class="text-center"><?= $ctg['kodeCategory']; ?></td>
-                                        <td> <a href="<?php echo base_url('admin/kelola-survei/lihatInstrumen/' . $ctg['slug']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Instrumen"><?= $ctg['namaCategory']; ?> </a></td>
+                                        <td> <a id="a-hov" href="<?php echo base_url('admin/kelola-survei/lihatInstrumen/' . $ctg['slug']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Instrumen"><?= $ctg['namaCategory']; ?> </a></td>
                                         <td>
                                             <!-- get peruntukkancategory by slug -->
                                             <?php
