@@ -96,7 +96,7 @@
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <form method="post" action="<?= base_url(); ?>/admin/editKategori/<?= $ctg['slug']; ?>">
-                                                    <button class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                    <button class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Kategori">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
                                                 </form>

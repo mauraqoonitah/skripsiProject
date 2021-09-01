@@ -45,6 +45,9 @@
                                     <?= $validation->getError('namaCategory'); ?>
                                 </div>
                             </div>
+
+
+
                             <!-- kode kategori -->
                             <div class="form-group">
                                 <label for="kodeCategory" class="col-form-label">Kode Kategori:</label>
@@ -77,6 +80,7 @@
                                 $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
                                 $peruntukkan =  $db->query($sql, [$slug]);
 
+
                                 foreach ($peruntukkan->getResult() as $row) : {
                                 ?>
                                         <div class="form-check">
@@ -92,7 +96,6 @@
 
                                 <!--  ./list of  checked peruntukkancategory -->
 
-                                <!--  ./list of  checked peruntukkancategory -->
 
                                 <!--  list of non-checked peruntukkancategory -->
 

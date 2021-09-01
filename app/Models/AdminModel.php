@@ -62,4 +62,12 @@ class AdminModel extends Model
 
         return $this->where(['slug' => $slug])->first();
     }
+
+    public function sizeSlug($slug)
+    {
+        return $this
+            ->select('slug')
+            ->where('slug', $slug)
+            ->countAllResults();
+    }
 }

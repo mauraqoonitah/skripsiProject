@@ -56,6 +56,7 @@ class Kategori extends BaseController
             'category' => $this->adminModel->getCategory($slug),
             'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
             'peruntukkan' => $this->adminModel->getPeruntukkan(),
+            'sizeSlug' => $this->adminModel->sizeSlug($slug),
             'slug' => $this->mRequest->getVar('slug'),
 
 
@@ -92,21 +93,21 @@ class Kategori extends BaseController
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
         $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
-
+        $kodeCategory = $this->mRequest->getVar('kodeCategory');
+        $namaCategory = $this->mRequest->getVar('namaCategory');
+        $sizeSlug = $this->adminModel->sizeSlug($slug);
 
         //update data by adding new checkbox value
-        for ($i = 0; $i < sizeof($peruntukkanCategory); $i++) {
+        for ($i = 0; $i < $sizeSlug; $i++) {
 
-            $data =
-                [
-                    'slug' => $slug,
-                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                    'namaCategory' => $this->mRequest->getVar('namaCategory'),
-                    'peruntukkanCategory' => $peruntukkanCategory[$i],
-                ];
-            // dd($data);
-            $this->adminModel->save($data);
+            $data[] = array(
+                'slug' => $slug,
+                'kodeCategory' => $kodeCategory,
+                'namaCategory' => $namaCategory,
+                'peruntukkanCategory' => $peruntukkanCategory[$i],
+            );
         }
+        $this->adminModel->updateBatch($data, 'slug');
 
         session()->setFlashdata('msgKategori', 'Data kategori berhasil diubah');
 
