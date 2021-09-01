@@ -101,7 +101,7 @@
                                                     </button>
                                                 </form>
 
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-kategori-<?= $ctg['id']; ?>">
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-kategori-<?= $ctg['slug']; ?>">
                                                     <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
@@ -112,7 +112,7 @@
 
 
                                     <!-- modal hapus kategori -->
-                                    <div class="modal fade" id="modal-delete-kategori-<?= $ctg['id']; ?>" tabindex="-1" aria-labelledby="hapusKategoriLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modal-delete-kategori-<?= $ctg['slug']; ?>" tabindex="-1" aria-labelledby="hapusKategoriLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered ">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -127,7 +127,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                    <form action="<?= base_url(); ?>/admin/deleteKategori/<?= $ctg['id']; ?>" method="post">
+                                                    <form action="<?= base_url(); ?>/admin/deleteKategori/<?= $ctg['slug']; ?>" method="post">
                                                         <?= csrf_field(); ?>
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn btn-danger">Hapus</button>

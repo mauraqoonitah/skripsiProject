@@ -104,7 +104,7 @@ class Kategori extends BaseController
                 'slug' => $slug,
                 'kodeCategory' => $kodeCategory,
                 'namaCategory' => $namaCategory,
-                'peruntukkanCategory' => $peruntukkanCategory[$i],
+                // 'peruntukkanCategory' => $peruntukkanCategory[$i],
             );
         }
         $this->adminModel->updateBatch($data, 'slug');
@@ -173,9 +173,11 @@ class Kategori extends BaseController
         return redirect()->to('/admin/kelola-survei/kategori');
     }
 
-    public function deleteKategori($id)
+    public function deleteKategori($slug)
     {
-        $this->adminModel->delete($id);
+
+        $this->adminModel->where('slug', $slug)->delete();
+
         session()->setFlashdata('msgKategori', 'Data kategori berhasil dihapus');
 
         return redirect()->to('/admin/kelola-survei/kategori');
