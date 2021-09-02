@@ -72,9 +72,9 @@ $routes->delete('/admin/deleteInstrumen/(:any)', 'Admin\Instrumen::deleteInstrum
 $routes->get('/admin/kelola-survei/tambah_instrumen/(:any)', 'Admin\Instrumen::tambahInstrumen/$1');
 
 // admin kelola survei (butir pernyataan)
-$routes->get('/admin/kelola-survei/pernyataan', 'Admin::kelolaPernyataan');
-$routes->get('/admin/butir/(:any)', 'Admin::butirInstrumen/$1');
-$routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin::tambahPernyataan');
+$routes->get('/admin/kelola-survei/pernyataan', 'Admin\Pernyataan::kelolaPernyataan');
+$routes->get('/admin/kelola-survei/butir/(:any)', 'Admin\Pernyataan::butirInstrumen/$1');
+$routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin\Pernyataan::tambahPernyataan');
 
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);

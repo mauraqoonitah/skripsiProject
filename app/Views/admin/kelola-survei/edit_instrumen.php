@@ -28,10 +28,10 @@
     <section class="content col-lg-10 mx-auto">
         <div class="container-fluid">
             <div class="card mt-2">
-                <div class="card-header">
+                <div class="card-header py-4">
                     <strong><?= $instrumen['kodeCategory']; ?> - <?= $instrumen['namaInstrumen']; ?></strong>
                 </div>
-                <div class="card-body m-4">
+                <div class="card-body p-4">
                     <form action="<?= base_url(); ?>/admin/updateInstrumen/<?= $instrumen['id']; ?>" method="post">
                         <?= csrf_field(); ?>
 

@@ -23,4 +23,14 @@ class PernyataanModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+    public function getButir($id = false)
+    {
+        if ($id == false) {
+            return $this
+                ->where('id', $id)
+                ->findAll();
+        }
+
+        return $this->where(['id' => $id])->first();
+    }
 }

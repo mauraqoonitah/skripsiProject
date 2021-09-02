@@ -76,7 +76,11 @@
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td class="text-center"><?= $insCtg['kodeInstrumen']; ?></td>
-                                        <td><?= $insCtg['namaInstrumen']; ?></td>
+                                        <td>
+                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $insCtg['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Butir Pernyataan"><?= $insCtg['namaInstrumen']; ?> </a>
+                                        </td>
+
+
                                         <td> <?= $insCtg['peruntukkanInstrumen']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">
