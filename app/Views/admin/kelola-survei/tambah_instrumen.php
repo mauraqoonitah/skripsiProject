@@ -101,10 +101,6 @@
                     <!-- ./PILIH nama instrumen -->
 
                     <!-- kode instrumen -->
-
-
-
-
                     <div class="form-group">
                         <div class="mb-3 row">
                             <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>

@@ -28,12 +28,13 @@ class InstrumenModel extends Model
         if ($slug == false) {
             return $this
                 ->where('slug', $slug)
-                ->orderBy('namaInstrumen', 'asc')
+                ->orderBy('kodeInstrumen', 'asc')
                 ->findAll();
         }
 
         return $this
             ->where('slug', $slug)
+            ->orderBy('kodeInstrumen', 'asc')
             ->findAll();
     }
 }

@@ -109,7 +109,7 @@ class Kategori extends BaseController
         }
         $this->adminModel->updateBatch($data, 'slug');
 
-        session()->setFlashdata('msgKategori', 'Data kategori berhasil diubah');
+        session()->setFlashdata('message', 'Data kategori berhasil diubah');
 
         return redirect()->to('/admin/kelola-survei/kategori');
     }
@@ -168,7 +168,7 @@ class Kategori extends BaseController
             $this->adminModel->save($data);
         }
 
-        session()->setFlashdata('msgKategori', 'Data kategori berhasil ditambahkan');
+        session()->setFlashdata('message', 'Data kategori berhasil ditambahkan');
 
         return redirect()->to('/admin/kelola-survei/kategori');
     }
@@ -178,7 +178,7 @@ class Kategori extends BaseController
 
         $this->adminModel->where('slug', $slug)->delete();
 
-        session()->setFlashdata('msgKategori', 'Data kategori berhasil dihapus');
+        session()->setFlashdata('message', 'Data kategori berhasil dihapus');
 
         return redirect()->to('/admin/kelola-survei/kategori');
     }

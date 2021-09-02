@@ -74,7 +74,7 @@ class Instrumen extends BaseController
             ]
         );
 
-        session()->setFlashdata('msgInstrumen', 'Data instrumen berhasil diubah');
+        session()->setFlashdata('message', 'Data instrumen berhasil diubah');
 
         return redirect()->to('/admin/kelola-survei/instrumen');
     }
@@ -93,28 +93,28 @@ class Instrumen extends BaseController
 
     public function saveInstrumen()
     {
-        // // validasi input
-        // if (!$this->validate([
-        //     'kodeInstrumen' => [
-        //         'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
-        //         'errors' => [
-        //             'required' => 'Kode Instrumen harus diisi.',
-        //             'is_unique' => 'Kode Instrumen ini sudah terdaftar.'
-        //         ]
-        //     ],
-        //     'namaInstrumen' => [
-        //         'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
-        //         'errors' => [
-        //             'required' => 'Nama Instrumen harus diisi.',
-        //             'is_unique' => 'Nama Instrumen ini sudah terdaftar.'
-        //         ]
-        //     ],
-
-        // ])) {
-        //     return redirect()->to('/admin/kelola-survei/kategori')->withInput();
-        // }
-
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
+        // validasi input
+        if (!$this->validate([
+            'kodeInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
+                'errors' => [
+                    'required' => 'Kode Instrumen harus diisi.',
+                    'is_unique' => 'Kode Instrumen sudah terdaftar.'
+                ]
+            ],
+            'namaInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
+                'errors' => [
+                    'required' => 'Nama Instrumen harus diisi.',
+                    'is_unique' => 'Nama Instrumen sudah terdaftar.'
+                ]
+            ],
+
+        ])) {
+            return redirect()->to('/admin/kelola-survei/tambah_instrumen/' . $slug)->withInput();
+        }
 
         $data =
             [
@@ -126,17 +126,17 @@ class Instrumen extends BaseController
             ];
         $this->instrumenModel->save($data);
 
-        session()->setFlashdata('msgKategori', 'Data instrumen berhasil ditambahkan');
+        session()->setFlashdata('message', 'Data instrumen berhasil ditambahkan');
 
-        return redirect()->to('/admin/kelola-survei/kategori');
+        return redirect()->to('/admin/kelola-survei/lihatInstrumen/' . $slug);
     }
 
     public function deleteInstrumen($id)
     {
         $this->instrumenModel->delete($id);
 
-        session()->setFlashdata('msgKategori', 'Data Instrumen berhasil dihapus');
+        session()->setFlashdata('message', 'Data Instrumen berhasil dihapus');
 
-        return redirect()->to('/admin/kelola-survei/kategori');
+        return redirect()->to($_SERVER['HTTP_REFERER']);
     }
 }
