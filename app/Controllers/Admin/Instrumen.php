@@ -32,7 +32,7 @@ class Instrumen extends BaseController
 
     // ---------------- instrumen --------------------------
 
-    public function kelolaInstrumen($slug)
+    public function kelolaInstrumen()
     {
         $data = [
             'title' => 'Kelola Instrumen',
@@ -63,6 +63,7 @@ class Instrumen extends BaseController
 
     public function updateInstrumen($id)
     {
+
         $this->instrumenModel->save(
             [
                 'id' => $id,
@@ -76,7 +77,7 @@ class Instrumen extends BaseController
 
         session()->setFlashdata('message', 'Data instrumen berhasil diubah');
 
-        return redirect()->to('/admin/kelola-survei/instrumen');
+        return redirect()->to('/admin/kelola-survei/kategori');
     }
     public function tambahInstrumen($slug)
     {

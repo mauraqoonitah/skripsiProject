@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Kelola Kategori Instrumen</h1>
+                    <h1 class="fw-bold">Edit Kategori </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content col-lg-8 mx-auto">
+    <section class="content col-lg-10 mx-auto">
         <div class="container-fluid">
             <!-- form edit kategori -->
             <form action="<?= base_url(); ?>/admin/updateKategori/<?= $category['id']; ?>" method="post">

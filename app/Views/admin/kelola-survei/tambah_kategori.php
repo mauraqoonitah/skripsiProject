@@ -28,7 +28,7 @@
         <div class="container-fluid">
 
             <!-- flash success tambah data  -->
-            <?php if (session()->getFlashdata('msgKategori')) :  ?>
+            <?php if (session()->getFlashdata('message')) :  ?>
                 <!-- ./ flash success tambah data  -->
 
                 <div class="alert alert-success d-flex align-items-center fw-bold mb-3" role="alert">
@@ -41,7 +41,7 @@
                         <use xlink:href="#check-circle-fill" />
                     </svg>
                     <div>
-                        <?= session()->getFlashData('msgKategori'); ?>
+                        <?= session()->getFlashData('message'); ?>
                     </div>
                 </div>
             <?php endif; ?>

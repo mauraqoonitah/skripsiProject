@@ -24,7 +24,7 @@
         </a>
 
         <!-- flash success tambah data  -->
-        <?php if (session()->getFlashdata('msgInstrumen')) :  ?>
+        <?php if (session()->getFlashdata('message')) :  ?>
             <div class="alert alert-success d-flex align-items-center fw-bold mb-3" role="alert">
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -35,7 +35,7 @@
                     <use xlink:href="#check-circle-fill" />
                 </svg>
                 <div>
-                    <?= session()->getFlashData('msgInstrumen'); ?>
+                    <?= session()->getFlashData('message'); ?>
                 </div>
             </div>
         <?php endif; ?>
