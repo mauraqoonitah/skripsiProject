@@ -138,7 +138,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editButirPernyataan/< ?= $q['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
+                                                <a href="<?= base_url(); ?>/admin/editPernyataan/<?= $questions['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#modal-delete-butir-<?= $questions['id']; ?>">

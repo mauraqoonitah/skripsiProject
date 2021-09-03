@@ -71,6 +71,28 @@ class Pernyataan extends BaseController
 
         return view('admin/kelola-survei/edit_pernyataan', $data);
     }
+
+    public function updatePernyataan($id)
+    {
+        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+
+        $this->pernyataanModel->save(
+            [
+                'id' => $id,
+                'slug' => $slug,
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                'instrumenID' => $this->mRequest->getVar('instrumenID'),
+                'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen'),
+                'butir' => $this->mRequest->getVar('butir'),
+            ]
+        );
+
+        session()->setFlashdata('message', 'Data instrumen berhasil diubah');
+
+        return redirect()->to('/admin/kelola-survei/butir/' . $id);
+    }
+
     public function tambahPernyataan()
     {
         $data = [

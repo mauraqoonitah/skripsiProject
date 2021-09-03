@@ -75,8 +75,10 @@ $routes->get('/admin/kelola-survei/tambah_instrumen/(:any)', 'Admin\Instrumen::t
 $routes->get('/admin/kelola-survei/pernyataan', 'Admin\Pernyataan::kelolaPernyataan');
 $routes->get('/admin/kelola-survei/butir/(:any)', 'Admin\Pernyataan::butirInstrumen/$1');
 $routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin\Pernyataan::tambahPernyataan');
+$routes->get('/admin/editPernyataan/(:any)', 'Admin\Pernyataan::editPernyataan/$1');
 
 $routes->post('/admin/savePernyataan/(:any)', 'Admin\Pernyataan::savePernyataan/$1');
+$routes->post('/admin/updatePernyataan/(:any)', 'Admin\Pernyataan::updatePernyataan/$1');
 $routes->delete('/admin/deletePernyataan/(:any)', 'Admin\Pernyataan::deletePernyataan/$1');
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
