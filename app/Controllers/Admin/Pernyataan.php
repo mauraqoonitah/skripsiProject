@@ -84,29 +84,35 @@ class Pernyataan extends BaseController
         ];
         return view('admin/kelola-survei/tambah_pernyataan', $data);
     }
-    public function savePernyataan()
+    public function savePernyataan($id)
     {
+        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
-        //validasi input
-        if (!$this->validate([
-            'pernyataan' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Butir pernyataan harus di isi.'
-                ]
-            ],
-        ])) {
-            return redirect()->to('/admin/kelola-survei/tambah_pernyataan')->withInput();
-        }
+        // //validasi input
+        // if (!$this->validate([
+        //     'pernyataan' => [
+        //         'rules' => 'required',
+        //         'errors' => [
+        //             'required' => 'Butir pernyataan harus di isi.'
+        //         ]
+        //     ],
+        // ])) {
+        //     return redirect()->to('admin/kelola-survei/butir/' . $id)->withInput();
+        // }
 
-        $this->pernyataanModel->save(
-            [
-                'pernyataan' => $this->mRequest->getVar('pernyataan'),
-            ]
-        );
+        $data = [
+            'slug' => $slug,
+            'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+            'instrumenID' => $this->mRequest->getVar('instrumenID'),
+            'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+            'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen'),
+            'butir' => $this->mRequest->getVar('butir'),
 
-        session()->setFlashdata('msgButir', 'Data Butir Pernyataan berhasil ditambahkan!');
+        ];
+        $this->pernyataanModel->save($data);
 
-        return redirect()->to('/admin/kelola-survei/pernyataan');
+        session()->setFlashdata('message', 'Data Butir Pernyataan berhasil ditambahkan!');
+
+        return redirect()->to('/admin/kelola-survei/butir/' . $id);
     }
 }

@@ -55,7 +55,7 @@
                 <div class="card-body py-4">
                     <?php $validation->listErrors(); ?>
                     <!-- form tambah pernyataan -->
-                    <form action="<?= base_url(); ?>/admin/savePernyataan" method="post">
+                    <form action="<?= base_url(); ?>/admin/savePernyataan/<?= $instrumen['id']; ?>" method="post">
                         <?= csrf_field(); ?>
 
                         <!-- pilih kode kategori -->

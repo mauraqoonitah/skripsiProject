@@ -76,6 +76,7 @@ $routes->get('/admin/kelola-survei/pernyataan', 'Admin\Pernyataan::kelolaPernyat
 $routes->get('/admin/kelola-survei/butir/(:any)', 'Admin\Pernyataan::butirInstrumen/$1');
 $routes->get('/admin/kelola-survei/tambah_pernyataan', 'Admin\Pernyataan::tambahPernyataan');
 
+$routes->post('/admin/savePernyataan/(:any)', 'Admin\Pernyataan::savePernyataan/$1');
 
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
 // $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);

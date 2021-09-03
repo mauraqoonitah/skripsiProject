@@ -27,6 +27,26 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <!-- flash success tambah data  -->
+            <?php if (session()->getFlashdata('message')) :  ?>
+                <div class="alert alert-success d-flex align-items-center fw-bold" role="alert">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                        </symbol>
+                    </svg>
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                        <use xlink:href="#check-circle-fill" />
+                    </svg>
+                    <div>
+                        <?= session()->getFlashData('message'); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class=" invalid-feedback">
+                <?= $validation->getError('butir'); ?>
+            </div>
+            <!-- ./ flash success tambah data  -->
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
                     <h5> <?= $instrumen['namaInstrumen'] ?></h5>
@@ -60,7 +80,7 @@
                         <h6> <?= $instrumen['namaInstrumen'] ?></h6>
                         <!-- Button trigger modal -->
                         <a href="#" class="ml-auto">
-                            <button type="button" class="btn btn-warning ">
+                            <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
                                 <i class=" fas fa-plus"></i> Tambah Butir
                             </button></a>
                     </div>
@@ -160,42 +180,37 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="tambahButirLabel">Tambah Butir</h5>
+                <h5 class="modal-title" id="tambahButirLabel">Tambah Butir Pernyataan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <!-- form tambah butir -->
-                <form action="<?= base_url(); ?>/admin/savePernyataan" method="post">
+                <form action="<?= base_url(); ?>/admin/savePernyataan/<?= $instrumen['id']; ?>" method="post">
                     <?= csrf_field(); ?>
 
-                    <!-- pilih kode kategori -->
+                    <!-- nama Instrumen -->
+                    <input class="form-control" type="text" name="instrumenID" value="<?= $instrumen['id'] ?>" readonly>
+
+                    <!-- kode kategori (slug) -->
+                    <input class="form-control" type="text" name="kodeCategory" value="<?= $instrumen['kodeCategory'] ?>" readonly>
+
+                    <!-- nama Instrumen -->
                     <div class="form-group">
                         <div class="mb-3 row">
-                            <label for="kode-kategori" class="col-sm-2 col-form-label">Kategori:</label>
+                            <label for="kode-kategori" class="col-sm-2 col-form-label">Instrumen :</label>
                             <div class="col-sm-10">
-                                <select class="form-select" id="kodeCategory" name="kodeCategory">
-                                    <option value="< ?= $value['kodeCategory']; ?>">
-                                        < ?=$ value['kodeCategory']; ?> - < ?=$value['namaCategory']; ?>
-                                    </option>
-                                </select>
+                                <input class="form-control" type="text" name="namaInstrumen" value="<?= $instrumen['namaInstrumen'] ?>" readonly>
                             </div>
                         </div>
                     </div>
 
-                    <!-- nama instrumen -->
+                    <!-- responden -->
                     <div class="form-group">
                         <div class="mb-3 row">
-                            <label for="nama-instrumen" class="col-sm-2 col-form-label">Nama instrumen:</label>
+                            <label for="nama-instrumen" class="col-sm-2 col-form-label">Responden :</label>
 
                             <div class="col-sm-10">
-                                <select class="form-select" id="peruntukkan-kategori">
-                                    <option selected class="text-muted">Pilih </option>
-                                    <option value="">ins2 </option>
-                                    <option value=""> ins1</option>
-                                    <option value="">ins3</option>
-                                    <option value="">ins4</option>
-
-                                </select>
+                                <input class="form-control" type="text" name="peruntukkanInstrumen" value="<?= $instrumen['peruntukkanInstrumen'] ?>" readonly>
                             </div>
                         </div>
                     </div>
@@ -203,9 +218,12 @@
                     <!-- isi butir -->
                     <div class="form-group">
                         <div class="mb-3 row">
-                            <label for="pernyataan" class="col-sm-2 col-form-label">Isi Butir Pernyataan:</label>
+                            <label for="butir" class="col-sm-2 col-form-label">Isi Butir Pernyataan:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="pernyataan" name="pernyataan" rows="3"></textarea>
+                                <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="butir" name="butir" rows="3"></textarea>
+                                <div class=" invalid-feedback">
+                                    <?= $validation->getError('butir'); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
