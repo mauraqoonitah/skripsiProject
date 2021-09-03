@@ -66,31 +66,27 @@ class Pernyataan extends BaseController
     {
         $data = [
             'title' => 'Edit Butir Pernyataan Instrumen',
-            'pernyataan' => $this->pernyataanModel->getPernyataan($id)
+            'pernyataan' => $this->pernyataanModel->getPernyataan($id),
+            'instrumen' => $this->instrumenModel->getInstrumen($id),
+
         ];
 
         return view('admin/kelola-survei/edit_pernyataan', $data);
     }
 
+    //edit data
     public function updatePernyataan($id)
     {
-        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
-
         $this->pernyataanModel->save(
             [
                 'id' => $id,
-                'slug' => $slug,
-                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                'instrumenID' => $this->mRequest->getVar('instrumenID'),
-                'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
-                'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen'),
                 'butir' => $this->mRequest->getVar('butir'),
             ]
         );
 
         session()->setFlashdata('message', 'Data instrumen berhasil diubah');
 
-        return redirect()->to('/admin/kelola-survei/butir/' . $id);
+        return redirect()->to('/admin/editPernyataan/' . $id);
     }
 
     public function tambahPernyataan()
@@ -104,23 +100,28 @@ class Pernyataan extends BaseController
 
 
         ];
+
         return view('admin/kelola-survei/tambah_pernyataan', $data);
     }
+
+    //tambah data
     public function savePernyataan($id)
     {
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
-        // //validasi input
-        // if (!$this->validate([
-        //     'pernyataan' => [
-        //         'rules' => 'required',
-        //         'errors' => [
-        //             'required' => 'Butir pernyataan harus di isi.'
-        //         ]
-        //     ],
-        // ])) {
-        //     return redirect()->to('admin/kelola-survei/butir/' . $id)->withInput();
-        // }
+        //validasi input
+        if (!$this->validate([
+            'butir' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Butir pernyataan harus di isi.'
+                ]
+            ],
+        ])) {
+            session()->setFlashdata('messageError', 'Data Butir Pernyataan belum lengkap');
+
+            return redirect()->to('admin/kelola-survei/butir/' . $id)->withInput();
+        }
 
         $data = [
             'slug' => $slug,
@@ -134,7 +135,6 @@ class Pernyataan extends BaseController
         $this->pernyataanModel->save($data);
 
         session()->setFlashdata('message', 'Data Butir Pernyataan berhasil ditambahkan!');
-
         return redirect()->to('/admin/kelola-survei/butir/' . $id);
     }
 

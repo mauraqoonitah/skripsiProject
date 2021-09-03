@@ -20,6 +20,27 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="<?= base_url(); ?>/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- summernote ; include summernote css/js -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+<!-- run summernote -->
+<script>
+    $(document).ready(function() {
+        $('#summernote-petunjuk-pengisian').summernote({
+            placeholder: 'Isi Pernyataan',
+            tabsize: 2,
+            toolbar: [
+                ['font', ['bold', 'underline']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['insert', ['link']],
+                ['view', ['codeview']]
+            ]
+        });
+    });
+</script>
+
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
 <!-- datatables -->
