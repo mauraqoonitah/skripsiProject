@@ -23,17 +23,6 @@ class PernyataanModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
-    public function getKuesionerByID($id = false)
-    {
-        if ($id == false) {
-            return $this
-                ->where('id', $id)
-                ->findAll();
-        }
-
-        return $this->where(['id' => $id])->first();
-    }
-
     public function getPernyataanByInstrumenID($id)
     {
         return $this

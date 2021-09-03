@@ -115,4 +115,13 @@ class Pernyataan extends BaseController
 
         return redirect()->to('/admin/kelola-survei/butir/' . $id);
     }
+
+    public function deletePernyataan($id)
+    {
+        $this->pernyataanModel->delete($id);
+
+        session()->setFlashdata('message', 'Data Pernyataan berhasil dihapus');
+
+        return redirect()->to($_SERVER['HTTP_REFERER']);
+    }
 }

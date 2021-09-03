@@ -107,7 +107,7 @@
                                                 </div>
                                                 <div class="modal-body text-center">
                                                     <h5>Yakin hapus instrumen?</h5>
-                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i>
+                                                    <i class="fas fa-exclamation-circle fa-2x" style="width: 3rem; color: #D60C0C"></i>
                                                     <p class="mt-4" style="color: #D60C0C;">Butir pernyataan didalamnya (jika ada) akan terhapus</p>
                                                 </div>
                                                 <div class="modal-footer">
