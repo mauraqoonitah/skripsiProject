@@ -37,4 +37,10 @@ class InstrumenModel extends Model
             ->orderBy('kodeInstrumen', 'asc')
             ->findAll();
     }
+    public function getInstrumenByID($id)
+    {
+        return $this
+            ->where('id', $id)
+            ->findAll();
+    }
 }

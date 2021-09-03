@@ -8,7 +8,7 @@ class PernyataanModel extends Model
 {
     protected $table      = 'questions';
     protected $userTimestamps = true;
-    protected $allowedFields = ['kodeCategory', 'namaInstrumen', 'butir'];
+    protected $allowedFields = ['kodeCategory', 'instrumenID', 'namaInstrumen', 'butir', 'slug'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
@@ -23,7 +23,7 @@ class PernyataanModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
-    public function getButir($id = false)
+    public function getKuesionerByID($id = false)
     {
         if ($id == false) {
             return $this
@@ -32,5 +32,12 @@ class PernyataanModel extends Model
         }
 
         return $this->where(['id' => $id])->first();
+    }
+
+    public function getPernyataanByInstrumenID($id)
+    {
+        return $this
+            ->where('instrumenID', $id)
+            ->findAll();
     }
 }

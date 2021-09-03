@@ -36,18 +36,18 @@
                     <!-- petunjuk pengisian -->
                     <div class="callout callout-info mb-5 ">
                         <div class="d-flex align-items-center ">
-                            <h6 class="my-3 py-2">Petunjuk Pengisian Instrumen</h6>
+                            <h6 class="my-3 py-2 text-muted">Petunjuk Pengisian Instrumen</h6>
                             <!-- buat petunjuk pengisian -->
                             <a href="#" class="ml-auto"> <button type="button" class="btn btn-info ">
                                     <i class=" fas fa-plus"></i> Ubah Petunjuk Pengisian
                                 </button></a>
                         </div>
                         <ol type="a">
-                            <li>Saudara adalah dosen UNJ. Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan selama menjadi dosen di UNJ sesuai dengan keadaan yang sebenarnya.</li>
-                            <li>Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</li>
-                            <li>Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
-                            <li>Berilah tanda centang (√) pada pernyataan pada kolom yang disediakan dibawah ini.</li>
-                            <li>Keterangan:<br>
+                            <li class="text-muted">Saudara adalah dosen UNJ. Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan selama menjadi dosen di UNJ sesuai dengan keadaan yang sebenarnya.</li>
+                            <li class="text-muted">Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</li>
+                            <li class="text-muted">Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
+                            <li class="text-muted">Berilah tanda centang (√) pada pernyataan pada kolom yang disediakan dibawah ini.</li>
+                            <li class="text-muted">Keterangan:<br>
                                 5 = Sangat Puas<br>
                                 4 = Puas<br>
                                 3 = Cukup Puas<br>
@@ -56,7 +56,7 @@
                         </ol>
 
                     </div>
-                    <div class="card-header d-flex align-items-center">
+                    <div class="card-header d-flex align-items-center py-3">
                         <h6> <?= $instrumen['namaInstrumen'] ?></h6>
                         <!-- Button trigger modal -->
                         <a href="#" class="ml-auto">
@@ -72,7 +72,7 @@
                                     <th rowspan="2" style="width: 10px">No.</th>
                                     <th rowspan="2">Kriteria Kepuasan</th>
                                     <th colspan="5" class="text-center">Tingkat Kepuasan</th>
-                                    <th rowspan="2" style="width: 40px" class="text-center">Aksi</th>
+                                    <th rowspan="2" style="width: 60px" class="text-center">Aksi</th>
                                 </tr>
                                 <tr>
                                     <th style="width: 40px">5</th>
@@ -83,189 +83,53 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Butir Pernyataan 1
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
+                                <?php $i = 1; ?>
+                                <?php foreach ($lihatPernyataan as $questions) : ?>
+                                    <tr>
+                                        <td class="text-center"><?= $i++; ?></td>
+                                        <td><?= $questions['butir']; ?></td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="" id="" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="" id="" disabled>
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="" id="" disabled>
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="" id="" disabled>
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="" id="" disabled>
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a href="<?= base_url(); ?>/admin/editButirPernyataan/< ?= $q['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusButir">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Butir Pernyataan 2
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="<?= base_url(); ?>/admin/editButirPernyataan/< ?= $q['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#hapusButir">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Butir Pernyataan 3
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Butir Pernyataan 4
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Butir Pernyataan 5</td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="" id="" disabled>
-
-                                        </div>
-                                    </td>
-                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                             <tfoot class="table-light">
                                 <tr>

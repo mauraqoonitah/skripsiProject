@@ -47,7 +47,7 @@ class Pernyataan extends BaseController
     {
         $data = [
             'title' => 'Kelola Butir Pernyataan',
-            'lihatButir' => $this->pernyataanModel->getButir($id),
+            'lihatPernyataan' => $this->pernyataanModel->getPernyataanByInstrumenID($id),
 
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
             'category' => $this->adminModel->getCategory($id),
