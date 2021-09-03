@@ -15,8 +15,8 @@
                         <li class="breadcrumb-item active ">Kelola Survei</li>
                     </ol>
                 </div>
-                <!-- back to page view categories -->
-                <a href="<?= base_url(); ?>/instrumen/kelolaInstrumen">
+                <!-- back to previous page -->
+                <a href="#">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>
 

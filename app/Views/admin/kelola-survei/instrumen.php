@@ -15,7 +15,7 @@
                         <li class="breadcrumb-item active ">Kelola Survei</li>
                     </ol>
                 </div>
-                <!-- back to page view categories -->
+                <!-- back to previous page -->
                 <a href="<?= base_url(); ?>/admin/kelola-survei/kategori">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>

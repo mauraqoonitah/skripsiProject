@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-        <!-- back to page view categories -->
+        <!-- back to previous page -->
         <a href="<?= base_url(); ?>/admin/laporanSurvei">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
         </a>

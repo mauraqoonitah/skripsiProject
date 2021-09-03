@@ -47,7 +47,7 @@ $routes->get('/admin/hasil-survei/index', 'Admin::dataResponden');
 $routes->get('/admin/hasil-survei/instrumen', 'Admin::hasilSurveiInstrumen');
 $routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
 
-// admin kelola survei (kategori)
+// admin menu kelola kategori
 $routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
@@ -58,10 +58,9 @@ $routes->post('/admin/saveKategori', 'Admin\Kategori::saveKategori');
 $routes->post('/admin/updateKategori/(:any)', 'Admin\Kategori::updateKategori/$1');
 $routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/$1');
 
-$routes->get('/admin/kelola-survei/lihatInstrumen/(:any)', 'Admin\Kategori::lihatInstrumen/$1');
 
-// admin kelola survei (instrumen)
-$routes->get('/admin/kelola-survei/instrumen', 'Admin\Instrumen::kelolaInstrumen');
+// admin menu kelola instrumen
+$routes->get('/admin/kelola-survei/lihatInstrumen/(:any)', 'Admin\Kategori::lihatInstrumen/$1');
 $routes->get('/admin/kelola-survei/edit_instrumen', 'Admin\Instrumen::kelolaInstrumen');
 $routes->get('/admin/editInstrumen/(:any)', 'Admin\Instrumen::editInstrumen/$1');
 
@@ -85,7 +84,7 @@ $routes->delete('/admin/deletePernyataan/(:any)', 'Admin\Pernyataan::deletePerny
 // $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);
 
 
-// membuat analisis kepuasan
+// menu analisis survei
 $routes->get('/admin/analisisKepuasan', 'Admin\Analisis::home');
 $routes->get('/admin/laporanSurvei', 'Admin\Analisis::laporan');
 $routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
