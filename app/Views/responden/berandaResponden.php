@@ -25,7 +25,6 @@
     <section class="content m-0">
         <div class="container">
             <div class="row">
-                <!-- form tambah pernyataan -->
                 <div class="col-lg-8 mx-auto">
                     <?php foreach ($instrumen as $ins) : ?>
                         <a href="<?= base_url(); ?>/responden/instrumen/<?= $ins['id']; ?>" data-aos="fade-down" data-aos-duration="1500">
@@ -37,14 +36,6 @@
                         </a>
                     <?php endforeach; ?>
 
-
-                    <div class="d-flex justify-content-center mt-5">
-                        <a href="<?= base_url(); ?>/responden/isiDataDiri">
-                            <button type="submit" class="btn btn-purple">
-                                Selanjutnya <i class="fas fa-chevron-right ml-3"></i>
-                            </button>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class Beranda extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Pilih Instrumen',
+            'title' => 'Beranda - Pilih Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
 
         ];
@@ -43,16 +43,6 @@ class Beranda extends BaseController
         return view('responden/isiDataDiri', $data);
     }
 
-    public function isiDataDiri()
-    {
-        $data = [
-            'title' => 'Isi Data Diri',
-            'validation' => \Config\Services::validation()
-
-        ];
-
-        return view('responden/isiDataDiri', $data);
-    }
     public function saveDataDiri()
     {
         $this->respondenModel->save(
@@ -71,6 +61,8 @@ class Beranda extends BaseController
     {
         $data = [
             'title' => 'Isi Survei',
+            'instrumen' => $this->instrumenModel->getInstrumen(),
+
             'validation' => \Config\Services::validation()
 
 

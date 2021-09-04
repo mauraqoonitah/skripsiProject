@@ -1,5 +1,5 @@
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light py-4" data-aos="fade-down">
+  <nav class="navbar navbar-expand-lg navbar-light py-4" data-aos="fade-down" data-aos-duration="2000">
 
       <div class="container">
           <a class="navbar-brand purple-text" href="#">

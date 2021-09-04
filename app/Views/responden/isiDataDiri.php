@@ -7,7 +7,7 @@
         <div class="container">
             <div class="row mb-2 mt-4">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="purple-text"> Isi Data Diri </h1>
+                    <h1 class="purple-text"> Data Diri </h1>
                 </div>
 
             </div>
@@ -33,25 +33,25 @@
                                 <div class="mb-3 row">
                                     <label for="Email" class="col-sm-4 col-form-label">Email</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control-plaintext" id="Email" value="mauraqoonitahputri_1313617009@mhs.unj.ac.id">
+                                        <input type="text" readonly class="form-control" id="Email" value="mauraqoonitahputri_1313617009@mhs.unj.ac.id">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="namaLengkap" class="col-sm-4 col-form-label">Nama Lengkap</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control-plaintext" id="namaLengkap" value="Maura Qoonitah Putri">
+                                        <input type="text" readonly class="form-control" id="namaLengkap" value="Maura Qoonitah Putri">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="prodi" class="col-sm-4 col-form-label">Program Studi</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control-plaintext" id="prodi" value="Ilmu Komputer">
+                                        <input type="text" readonly class="form-control" id="prodi" value="Ilmu Komputer">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="angkatan" class="col-sm-4 col-form-label">Angkatan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" readonly class="form-control-plaintext" id="angkatan" value="2017">
+                                        <input type="text" readonly class="form-control" id="angkatan" value="2017">
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
