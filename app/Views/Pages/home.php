@@ -6,8 +6,9 @@
     <div class="content">
         <div class="container">
             <div class="textBox">
-                <h2 data-aos="zoom-in-right" data-aos-duration="2000"> <span>Survei Kepuasan 9 Kriteria</span> <br>
-                    Penjaminan Mutu Internal<br>
+                <!-- using gsap animation -->
+                <h2 class="lead-heading" data-aos="zoom-in-right" data-aos-duration="2000"> <span> </span>
+                    <br>Sistem Penjaminan Mutu Internal<br>
                 </h2>
                 <div class="col-lg-12 col-md-10 col-sm-10">
 

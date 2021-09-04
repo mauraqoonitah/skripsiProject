@@ -54,6 +54,18 @@
         AOS.init();
     </script>
 
+    <!-- gsap animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/TextPlugin.min.js"></script>
+    <script>
+        gsap.registerPlugin(TextPlugin);
+        gsap.to('.content .textBox h2 span', {
+            duration: 2,
+            delay: 2,
+            text: 'Instrumen Kepuasan'
+        })
+    </script>
+
     <script>
         $('.collapse').collapse()
     </script>
