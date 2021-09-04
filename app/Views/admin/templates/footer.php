@@ -41,8 +41,16 @@
     });
 </script>
 
+<!-- Sweetalert -->
+<script src="<?= base_url(); ?>/../../js/sweetalert2.all.min.js"></script>
+
+<!-- My js -->
+<script src="<?= base_url(); ?>/../../js/main.js"></script>
+
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
+
+
 <!-- datatables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
