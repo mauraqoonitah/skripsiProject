@@ -67,13 +67,6 @@
                                 <p>Instrumen</p>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/pernyataan" class="nav-link <?= $uri->getSegment(2) == 'kelolaPernyataan' ? 'active"' : '' ?>">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Butir Pernyataan</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
 
