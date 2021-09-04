@@ -20,6 +20,27 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="<?= base_url(); ?>/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- aos animate library -->
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+<!-- gsap animation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/TextPlugin.min.js"></script>
+<script>
+    gsap.registerPlugin(TextPlugin);
+    gsap.to('.textBox p span', {
+        duration: 2,
+        delay: 1,
+        text: 'Selamat Datang, '
+    })
+</script>
+
+
+
+
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
 <!-- datatables -->
