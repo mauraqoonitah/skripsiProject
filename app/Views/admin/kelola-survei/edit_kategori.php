@@ -31,7 +31,7 @@
             <form action="<?= base_url(); ?>/admin/updateKategori/<?= $category['id']; ?>" method="post">
                 <?= csrf_field(); ?>
                 <div class="card mt-2">
-                    <div class="card-header">
+                    <div class="card-header text-rouge">
                         <strong> Kategori <?= $category['namaCategory']; ?></strong>
                     </div>
                     <div class="card-body">

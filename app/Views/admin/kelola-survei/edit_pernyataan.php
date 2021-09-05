@@ -32,7 +32,7 @@
             <!-- ./ flash success tambah data  -->
 
             <div class="card mt-2">
-                <div class="card-header py-4">
+                <div class="card-header py-4 text-rouge">
                     <strong> <?= $pernyataan['namaInstrumen']; ?></strong>
                 </div>
                 <div class="card-body p-4">

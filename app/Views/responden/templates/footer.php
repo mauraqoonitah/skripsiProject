@@ -1,8 +1,8 @@
-<!-- <footer class="main-footer">
+<div class="main-footer mt-5">
     <div class="text-center">
         <span>Copyright &copy; <?= date('Y'); ?> Gugus Penjaminan Mutu FMIPA UNJ</span>
     </div>
-</footer> -->
+</div>
 
 
 <!-- Control Sidebar -->

@@ -26,7 +26,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Hasil Survei Per-Responden</h6>
+                    <h6 class="m-0 font-weight-bold text-rouge">Hasil Survei Per-Responden</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -53,7 +53,7 @@
                                         <td>tgl</td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
-                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['id']; ?>" class="btn btn-sm btn-primary text-decoration-none">
+                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none">
                                                     Lihat
                                                 </a>
 

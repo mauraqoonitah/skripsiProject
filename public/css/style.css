@@ -41,10 +41,6 @@ main {
     z-index: 1;
 }
 
-.navbar-cyan {
-    background-color: #007c91 !important;
-}
-
 .bg-cyan {
     background-color: #4DB6AC;
 }
@@ -75,6 +71,10 @@ main {
 
 .purple-text {
     color: #8a0089 !important;
+}
+
+.text-solitude {
+    color: #F1F3F4;
 }
 
 a .navbar-light .purple-text {
@@ -256,10 +256,10 @@ footer {
 }
 
 .obyek-list {
-    background-color: #fff;
+    background-color: rgba(174, 67, 91, .1);
     text-align: center;
     padding: 1rem 20px;
-    border: solid 1px rgb(242, 112, 237, .4);
+    border: solid 2px rgb(174, 67, 91, .4);
     border-radius: .5rem;
     cursor: pointer;
     text-decoration: none;
@@ -299,9 +299,9 @@ footer {
 
 .obyek-list:hover,
 .pilih-inst:hover {
-    border: solid 1px rgb(161, 218, 254, .4);
+    border: solid 1px rgba(161, 218, 254, .4);
     box-shadow: 10px 10px 23px -13px rgba(51, 51, 51, 0.5);
-    background-color: rgb(161, 218, 254, .4);
+    background-color: rgba(161, 218, 254, .4);
 }
 
 .obyek-list a:hover,
@@ -310,7 +310,11 @@ footer {
 }
 
 .nav-link:hover {
-    color: #0086ca !important;
+    color: rgb(161, 218, 254) !important;
+}
+
+.text-columbia-blue {
+    color: #a1dafe;
 }
 
 
@@ -352,6 +356,10 @@ nav ul li a:hover {
 .navbar-brand img {
     width: 30px;
     height: 30px;
+}
+
+.navbar-brand:hover {
+    color: rgba(161, 218, 254) !important;
 }
 
 .nav-item {
@@ -429,10 +437,12 @@ nav ul li a:hover {
 /* responden page */
 
 .pilih-inst {
-    background-color: #f1f3f4;
+    /* background-color: #f1f3f4; */
+    background-color: rgba(174, 67, 91, .2);
+    border: solid 1px rgb(174, 67, 91, .4);
     text-align: center;
     padding: 1rem 20px;
-    border: solid 1px rgba(58, 65, 64, 0.4);
+    /* border: solid 1px rgba(58, 65, 64, 0.4); */
     border-radius: .5rem;
     cursor: pointer;
     text-decoration: none;

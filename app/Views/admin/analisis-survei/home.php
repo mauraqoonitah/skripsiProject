@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="list-group center">
                 <div class="card mt-2 shadow border-light">
-                    <div class="alert alert-info fw-bold" role="alert">
+                    <div class="alert alert-rouge fw-bold" role="alert">
                         <strong> Pilih instrumen untuk melihat butir pernyataan </strong>
                     </div>
                     <div class="card-body py-4">

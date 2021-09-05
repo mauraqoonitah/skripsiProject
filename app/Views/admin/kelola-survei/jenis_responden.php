@@ -37,7 +37,7 @@
         <div class="container-fluid">
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h5>Responden Survei</h5>
+                    <h5 class="text-rouge">Responden Survei</h5>
 
                     <a href="#" class="ml-auto">
                         <button type="button" class="btn btn-warning ">
@@ -64,7 +64,7 @@
                                         <td><?= $resp['responden']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="#" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="#" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 

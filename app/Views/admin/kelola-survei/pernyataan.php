@@ -47,7 +47,7 @@
                 <div class=" container-fluid">
                     <p><?= $butir['namaInstrumen']; ?></p>
                     <div class="card">
-                        <div class="alert alert-info text-center fw-bold" role="alert">
+                        <div class="alert alert-rouge text-center fw-bold" role="alert">
                             <strong> Pilih instrumen untuk melihat butir pernyataan </strong>
                         </div>
 

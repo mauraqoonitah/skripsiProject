@@ -22,7 +22,7 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <div class="alert alert-rouge alert-dismissible fade show" role="alert">
             <strong>Selamat Datang!</strong> Aplikasi Penjaminan Mutu FMIPA UNJ
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

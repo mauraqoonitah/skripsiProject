@@ -49,7 +49,7 @@
 
 
             <div class="card border-light shadow ">
-                <div class="card-header d-flex align-items-center py-4">
+                <div class="card-header d-flex align-items-center py-4 text-rouge">
                     <h5> <?= $instrumen['namaInstrumen'] ?></h5>
 
                 </div>

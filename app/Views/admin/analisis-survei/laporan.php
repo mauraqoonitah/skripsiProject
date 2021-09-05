@@ -22,7 +22,7 @@
     <!-- Main content -->
     <section class="content mx-auto">
         <div class="container-fluid">
-            <div class="alert alert-info fw-bold" role="alert">
+            <div class="alert alert-rouge fw-bold" role="alert">
                 <strong>Pilih kategori untuk melihat hasil survei kepuasan </strong>
             </div>
             <div class="card-body py-4">

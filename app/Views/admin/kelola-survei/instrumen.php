@@ -33,7 +33,7 @@
             <!-- Main content -->
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h6 class=""> <?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?> </h6>
+                    <h6 class="text-rouge"> <?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?> </h6>
                     <!-- Button trigger modal -->
                     <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen/<?= $category['slug']; ?>" class="ml-auto">
                         <button type="button" class="btn btn-warning ">
@@ -70,7 +70,7 @@
                                         <td> <?= $insCtg['peruntukkanInstrumen']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editInstrumen/<?= $insCtg['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="<?= base_url(); ?>/admin/editInstrumen/<?= $insCtg['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $insCtg['id']; ?>">

@@ -35,7 +35,7 @@
         <div class="container-fluid">
             <div class="card mt-2">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h6 class=""><?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?></h6>
+                    <h6 class="text-rouge"><?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?></h6>
                 </div>
 
                 <div class="card-body p-4">

@@ -1,8 +1,8 @@
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light py-4" data-aos="fade-down" data-aos-duration="2000">
+  <nav class="navbar navbar-expand-lg navbar-cosmic py-4" data-aos="fade-down" data-aos-duration="2000">
 
       <div class="container">
-          <a class="navbar-brand purple-text" href="#">
+          <a class="navbar-brand text-solitude" href="#">
               <img src="<?= base_url(); ?>/img/unj.png" alt="" class="d-inline-block align-text-top">
               Instrumen Kepuasan SPMI
           </a>
@@ -15,18 +15,18 @@
               <!-- Left navbar links -->
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                      <a class="nav-link active" href="<?= base_url('responden'); ?>">Home</a>
+                      <a class="nav-link active text-solitude" href="<?= base_url('responden'); ?>">Home</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">Isi Survei</a>
+                      <a href="#" class="nav-link text-solitude">Isi Survei</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">Riwayat Survei</a>
+                      <a href="#" class="nav-link text-solitude">Riwayat Survei</a>
                   </li>
 
                   <li class="nav-item">
                       <!-- Button logout modal -->
-                      <a class="nav-link" href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                      <a class="nav-link text-columbia-blue" href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
                           Keluar
                           <i class="fas fa-sign-out-alt mx-2"></i>
                       </a>
@@ -48,7 +48,7 @@
               <div class="modal-footer mx-auto">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                   <a href="<?= base_url('logout'); ?>">
-                      <button type="button" class="btn btn-primary">Keluar</button>
+                      <button type="button" class="btn btn-yellow-sea">Keluar</button>
                   </a>
               </div>
           </div>

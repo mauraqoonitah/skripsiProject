@@ -27,7 +27,7 @@
 
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h5 class="">Kategori Instrumen</h5>
+                    <h5 class="text-rouge">Kategori Instrumen</h5>
                     <!-- Button trigger modal -->
                     <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_kategori" class="ml-auto">
                         <button type="button" class="btn btn-warning ">

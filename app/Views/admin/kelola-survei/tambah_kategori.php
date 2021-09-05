@@ -32,7 +32,7 @@
 
             <div class="card">
                 <div class="card-header d-flex align-items-center py-4">
-                    <h5 class="">Buat Kategori Instrumen</h5>
+                    <h5 class="text-rouge">Buat Kategori Instrumen</h5>
                 </div>
                 <div class="card-body m-4">
                     <form action="<?= base_url(); ?>/admin/saveKategori" method="post">

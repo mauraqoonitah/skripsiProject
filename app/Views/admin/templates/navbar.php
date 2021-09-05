@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-cyan navbar-light">
+<nav class="main-header navbar navbar-expand navbar-cosmic">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -11,7 +11,7 @@
 
         <li class="nav-item">
             <!-- Button logout modal -->
-            <a class="nav-link text-white" href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+            <a class="nav-link text-columbia-blue " href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
                 Keluar
                 <i class="fas fa-sign-out-alt mx-2"></i>
             </a>
@@ -34,7 +34,7 @@
             <div class="modal-footer mx-auto">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <a href="<?= base_url('logout'); ?>">
-                    <button type="button" class="btn btn-primary">Keluar</button>
+                    <button type="button" class="btn btn-yellow-sea">Keluar</button>
                 </a>
             </div>
         </div>
