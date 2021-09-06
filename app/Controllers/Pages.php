@@ -21,6 +21,7 @@ class Pages extends BaseController
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->mRequest = service("request");
+        $this->config = config('Auth');
     }
 
     public function index()
@@ -45,7 +46,8 @@ class Pages extends BaseController
     public function login()
     {
         $data = [
-            'title' => 'Login | SIJAMU'
+            'title' => 'Login | SIJAMU',
+            'config' => $this->config
 
         ];
         return view('auth/login', $data);
