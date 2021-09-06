@@ -23,8 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $baseURL = 'http://dprompt.id/instrumen-kepuasan/';
-	// public $baseURL = 'http://localhost:8085/';
+	// public $baseURL = 'http://dprompt.id/instrumen-kepuasan/';
+	public $baseURL = 'http://localhost:8080/';
 
 	/**
 	 * --------------------------------------------------------------------------
