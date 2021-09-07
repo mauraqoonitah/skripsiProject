@@ -60,11 +60,6 @@ $routes->post('/admin/updateKategori_/(:any)', 'Admin\Kategori_::updateKategori_
 $routes->delete('/admin/deleteKategori_/(:any)', 'Admin\Kategori_::deleteKategori_/$1');
 //./ new
 
-
-
-
-
-
 $routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
@@ -77,6 +72,20 @@ $routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/
 
 
 // admin menu kelola instrumen
+// new instrumen_
+
+$routes->get('/admin/kelola-survei/instrumen_', 'Admin\Instrumen_::kelolaInstrumen_');
+$routes->get('/admin/kelola-survei/lihatInstrumen_/(:any)', 'Admin\Kategori_::lihatInstrumen_/$1');
+$routes->get('/admin/kelola-survei/edit_instrumen_', 'Admin\Instrumen_::kelolaInstrumen_');
+$routes->get('/admin/editInstrumen_/(:any)', 'Admin\Instrumen_::editInstrumen_/$1');
+
+$routes->post('/admin/saveInstrumen_/(:any)', 'Admin\Instrumen_::saveinstrumen_/$1');
+$routes->post('/admin/updateInstrumen_/(:any)', 'Admin\Instrumen_::updateInstrumen_/$1');
+$routes->delete('/admin/deleteInstrumen_/(:any)', 'Admin\Instrumen_::deleteInstrumen_/$1');
+
+$routes->get('/admin/kelola-survei/tambah_instrumen_/(:any)', 'Admin\Instrumen_::tambahInstrumen_/$1');
+// ./new instrumen_
+
 $routes->get('/admin/kelola-survei/lihatInstrumen/(:any)', 'Admin\Kategori::lihatInstrumen/$1');
 $routes->get('/admin/kelola-survei/edit_instrumen', 'Admin\Instrumen::kelolaInstrumen');
 $routes->get('/admin/editInstrumen/(:any)', 'Admin\Instrumen::editInstrumen/$1');
@@ -86,6 +95,7 @@ $routes->post('/admin/updateInstrumen/(:any)', 'Admin\Instrumen::updateInstrumen
 $routes->delete('/admin/deleteInstrumen/(:any)', 'Admin\Instrumen::deleteInstrumen/$1');
 
 $routes->get('/admin/kelola-survei/tambah_instrumen/(:any)', 'Admin\Instrumen::tambahInstrumen/$1');
+
 
 // admin kelola survei (butir pernyataan)
 $routes->get('/admin/kelola-survei/pernyataan', 'Admin\Pernyataan::kelolaPernyataan');

@@ -43,4 +43,20 @@ class InstrumenModel extends Model
             ->where('id', $id)
             ->findAll();
     }
+
+    public function joinInsdanCtg()
+    {
+        return $this
+            ->select('
+            category_instrumen.namaCategory AS nama_category, 
+            category_instrumen.kodeCategory AS kode_category, 
+            category_instrumen.*, 
+            instrumen.namaInstrumen as nama_instrumen, 
+            instrumen.kodeInstrumen as kode_instrumen, 
+            instrumen.peruntukkanInstrumen as responden_instrumen, 
+            instrumen.*')
+            ->join('category_instrumen', 'category_instrumen.slug = instrumen.slug')
+            ->orderBy('kodeInstrumen', 'asc')
+            ->get()->getResultArray();
+    }
 }
