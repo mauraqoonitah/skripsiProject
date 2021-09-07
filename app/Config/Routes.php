@@ -48,6 +48,23 @@ $routes->get('/admin/hasil-survei/instrumen', 'Admin::hasilSurveiInstrumen');
 $routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
 
 // admin menu kelola kategori
+// new
+$routes->get('/admin/kelola-survei/kategori_', 'Admin\Kategori_::kelolaKategori_');
+$routes->get('/admin/kelola-survei/edit_kategori_', 'Admin\Kategori_::kelolaKategori_');
+$routes->get('/admin/kelola-survei/tambah_kategori_', 'Admin\Kategori_::tambahKategori_');
+$routes->get('/admin/editKategori_/(:any)', 'Admin\Kategori_::editKategori_/$1');
+$routes->post('/admin/editKategori_/(:any)', 'Admin\Kategori_::editKategori_/$1');
+
+$routes->post('/admin/saveKategori_', 'Admin\Kategori_::saveKategori_');
+$routes->post('/admin/updateKategori_/(:any)', 'Admin\Kategori_::updateKategori_/$1');
+$routes->delete('/admin/deleteKategori_/(:any)', 'Admin\Kategori_::deleteKategori_/$1');
+//./ new
+
+
+
+
+
+
 $routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
