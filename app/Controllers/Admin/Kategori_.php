@@ -182,21 +182,6 @@ class Kategori_ extends BaseController
 
         session()->setFlashdata('message', 'Data kategori berhasil dihapus');
 
-        return redirect()->to('/admin/kelola-survei/kategori_');
+        return redirect()->to('/admin/kelola-survei/instrumen_');
     }
-
-    // public function lihatInstrumen_($slug)
-    // {
-    //     $data = [
-    //         'title' => 'Kelola Instrumen',
-    //         'instrumen' => $this->instrumenModel->getInstrumen($slug),
-    //         'instrumenByCtg' => $this->instrumenModel->getInstrumenByCtg($slug),
-
-    //         'category' => $this->adminModel->getCategory($slug),
-
-    //         'validation' => \Config\Services::validation()
-    //     ];
-
-    //     return view('admin/kelola-survei/instrumen_', $data);
-    // }
 }

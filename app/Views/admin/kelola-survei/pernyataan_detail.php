@@ -149,6 +149,32 @@
                                         </td>
                                     </tr>
 
+                                    <!-- modal hapus Butir Pernyataan -->
+                                    <div class="modal fade" id="modal-delete-butir-<?= $questions['id']; ?>" tabindex="-1" aria-labelledby="hapusButirLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered ">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title fw-bold" id="hapusButirLabel">Hapus Butir Pernyataan</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-center">
+
+                                                    <h6>Yakin hapus butir pernyataan ini?</h6>
+                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                    <form action="<?= base_url(); ?>/admin/deletePernyataan/<?= $questions['id']; ?>" method="post">
+                                                        <?= csrf_field(); ?>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end modal hapus butir -->
                                 <?php endforeach; ?>
                             </tbody>
                             <tfoot class="table-light">
@@ -243,31 +269,5 @@
 <!-- end modal tambah butir -->
 
 
-<!-- modal hapus Butir Pernyataan -->
-<div class="modal fade" id="modal-delete-butir-<?= $questions['id']; ?>" tabindex="-1" aria-labelledby="hapusButirLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="hapusButirLabel">Hapus Butir Pernyataan</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-center">
-
-                <h6>Yakin hapus butir pernyataan ini?</h6>
-                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                <form action="<?= base_url(); ?>/admin/deletePernyataan/<?= $questions['id']; ?>" method="post">
-                    <?= csrf_field(); ?>
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button type="submit" class="btn btn-danger">Hapus</button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- end modal hapus butir -->
 
 <?= $this->endSection(); ?>
