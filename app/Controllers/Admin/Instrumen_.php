@@ -41,26 +41,26 @@ class Instrumen_ extends BaseController
             'joinInsCtg' => $this->instrumenModel->joinInsdanCtg(),
             'category' => $this->adminModel->getCategory(),
             'peruntukkan' => $this->adminModel->getPeruntukkan(),
+            'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
         ];
 
         return view('admin/kelola-survei/instrumen_', $data);
     }
-    public function lihatInstrumen_($slug)
-    {
-        $data = [
-            'title' => 'Kelola Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen($slug),
-            'instrumenByCtg' => $this->instrumenModel->getInstrumenByCtg($slug),
+    // public function lihatInstrumen_($slug)
+    // {
+    //     $data = [
+    //         'title' => 'Kelola Instrumen',
+    //         'instrumen' => $this->instrumenModel->getInstrumen($slug),
+    //         'instrumenByCtg' => $this->instrumenModel->getInstrumenByCtg($slug),
+    //         'category' => $this->adminModel->getCategory($slug),
 
-            'category' => $this->adminModel->getCategory($slug),
+    //         'validation' => \Config\Services::validation()
+    //     ];
 
-            'validation' => \Config\Services::validation()
-        ];
-
-        return view('admin/kelola-survei/instrumen_', $data);
-    }
+    //     return view('admin/kelola-survei/instrumen_', $data);
+    // }
 
     public function editInstrumen_($id)
     {

@@ -75,7 +75,6 @@ $routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/
 // new instrumen_
 
 $routes->get('/admin/kelola-survei/instrumen_', 'Admin\Instrumen_::kelolaInstrumen_');
-$routes->get('/admin/kelola-survei/lihatInstrumen_/(:any)', 'Admin\Kategori_::lihatInstrumen_/$1');
 $routes->get('/admin/kelola-survei/edit_instrumen_', 'Admin\Instrumen_::kelolaInstrumen_');
 $routes->get('/admin/editInstrumen_/(:any)', 'Admin\Instrumen_::editInstrumen_/$1');
 

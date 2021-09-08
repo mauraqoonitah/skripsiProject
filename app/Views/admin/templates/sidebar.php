@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'kelolaInstrumen'  ? 'active"' : '' ?>">
+                    <a href="#" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(3) == 'instrumen_'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Kelola Survei
@@ -61,23 +61,23 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/kategori" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/kelola-survei/kategori" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>(Instrumen)</p>
+                                <p><s>Instrumen</s></p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/kategori_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/kelola-survei/kategori_" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Kategori</p>
+                                <p><s>Kategori</s></p>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link ">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>
