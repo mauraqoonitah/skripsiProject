@@ -50,7 +50,7 @@
 
             <div class="card border-light shadow ">
                 <div class="card-header d-flex align-items-center py-4 text-rouge">
-                    <h5> <?= $instrumen['namaInstrumen'] ?></h5>
+                    <h5> <?= $instrumen['kodeInstrumen'] ?> - <?= $instrumen['namaInstrumen'] ?></h5>
 
                 </div>
                 <div class="card-body">
@@ -80,7 +80,7 @@
                     <div class="card-header d-flex align-items-center py-3">
                         <!-- Button trigger modal -->
                         <a class="">
-                            <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
+                            <button type="button" class="btn btn-rouge " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
                                 <i class=" fas fa-plus"></i> Tambah Butir
                             </button></a>
                     </div>

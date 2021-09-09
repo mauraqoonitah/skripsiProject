@@ -23,20 +23,9 @@
     <section class="content">
 
         <div class="alert alert-rouge alert-dismissible fade show" role="alert">
-            <strong>Selamat Datang!</strong> Aplikasi Penjaminan Mutu FMIPA UNJ
+            <strong>Selamat Datang!</strong> Instrumen Kepuasan Penjaminan Mutu FMIPA UNJ
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-
-        <!-- Item -->
-        <div class="col-xl-4 col-sm-6">
-            <div class="item d-flex align-items-center">
-                <div class="icon bg-red"><i class="icon-padnote"></i></div>
-                <div class="title"><span>Responden</span>
-                </div>
-
-            </div>
-        </div>
-
     </section>
     <!-- /.content -->
 </div>

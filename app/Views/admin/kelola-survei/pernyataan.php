@@ -21,7 +21,7 @@
     </section>
 
     <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_pernyataan" class="ml-auto mr-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Pernyataan">
-        <button type="button" class="btn btn-warning ">
+        <button type="button" class="btn btn-rouge ">
             <i class="fas fa-plus"></i> Tambah
         </button>
     </a>

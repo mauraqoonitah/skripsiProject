@@ -36,7 +36,7 @@
                 <h6 class="text-rouge"> <?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?> </h6>
                 <!-- Button trigger modal -->
                 <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen/<?= $category['slug']; ?>" class="ml-auto">
-                    <button type="button" class="btn btn-warning ">
+                    <button type="button" class="btn btn-rouge">
                         <i class=" fas fa-plus"></i> Tambah Instrumen
                     </button></a>
 

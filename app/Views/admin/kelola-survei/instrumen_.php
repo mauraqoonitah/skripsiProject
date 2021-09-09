@@ -52,7 +52,7 @@
                     <h5> Kategori Instrumen </h5>
                     <!-- Button trigger modal -->
                     <a data-bs-toggle="modal" data-bs-target="#modal-tambah-instrumen" class="ml-auto">
-                        <button type="button" class="btn btn-warning ">
+                        <button type="button" class="btn btn-rouge text-white">
                             <i class="fas fa-plus"></i> Tambah Kategori
                         </button></a>
                 </div>
@@ -62,186 +62,224 @@
                             <div class="accordion-item mt-3 mb-5">
                                 <!-- header collapse - kategori  -->
                                 <h5 class="accordion-header" id="headingOne-<?= $ctg['slug']; ?>">
-                                    <button class="accordion-button rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $ctg['slug']; ?>" aria-expanded="true" aria-controls="collapse-<?= $ctg['slug']; ?>">
+                                    <div class="accordion-button rounded d-flex align-items-center col-lg-12 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $ctg['slug']; ?>" aria-expanded="true" aria-controls="collapse-<?= $ctg['slug']; ?>">
                                         <span class="fw-bold fs-6"><?= $ctg['kodeCategory']; ?> - <?= $ctg['namaCategory']; ?></span>
-                                    </button>
+
+                                    </div>
+
                                 </h5>
+                                <!-- modal hapus kategori -->
+                                <div class="modal fade" id="modal-delete-kategori-<?= $ctg['slug']; ?>" tabindex="-1" aria-labelledby="hapusKategoriLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bold" id="hapusKategoriLabel">Hapus <?= $ctg['kodeCategory']; ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                Yakin hapus kategori <?= $ctg['namaCategory']; ?> ?
+                                                <p style="color: #D60C0C;">Instrumen dan butir pernyataan pada kategori ini akan terhapus</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                <form action="<?= base_url(); ?>/admin/deleteKategori_/<?= $ctg['slug']; ?>" method="post">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end modal hapus kategori -->
+                                <!-- modal hapus kategori -->
+                                <div class="modal fade" id="modal-delete-kategori-<?= $ctg['slug']; ?>" tabindex="-1" aria-labelledby="hapusKategoriLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title fw-bold" id="hapusKategoriLabel">Hapus <?= $ctg['kodeCategory']; ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                Yakin hapus kategori <?= $ctg['namaCategory']; ?> ?
+                                                <p style="color: #D60C0C;">Instrumen dan butir pernyataan pada kategori ini akan terhapus</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                <form action="<?= base_url(); ?>/admin/deleteKategori_/<?= $ctg['slug']; ?>" method="post">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end modal hapus kategori -->
                                 <!-- ./header collapse - kategori  -->
 
                                 <!-- content collapse - kategori  -->
                                 <div id="collapse-<?= $ctg['slug']; ?>" class="accordion-collapse collapse " aria-labelledby="headingOne-<?= $ctg['slug']; ?>">
                                     <div class="accordion-body">
-                                        <!-- aksi kategori -->
-                                        <div class="btn-group" role="group">
-                                            <div class="d-flex align-items-center">
-                                                <form method="post" action="<?= base_url(); ?>/admin/editKategori_/<?= $ctg['slug']; ?>">
-                                                    <button class="btn btn-sm btn-warning text-decoration-none mr-3 mb-3 ">
-                                                        <i class="fas fa-edit"></i> Edit Kategori
-                                                    </button>
-                                                </form>
+                                        <div class="container">
+                                            <div class="card">
+                                                <div class="card-header text-rouge d-flex align-items-center mb-3">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <span class="fw-bold"><?= $ctg['kodeCategory']; ?> - <?= $ctg['namaCategory']; ?></span>
 
-                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-kategori-<?= $ctg['slug']; ?>">
-                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
-                                                        <i class="fas fa-trash-alt"></i> Hapus Kategori
-                                                    </button>
-                                                </a>
-                                            </div>
-                                            <!-- modal hapus kategori -->
-                                            <div class="modal fade" id="modal-delete-kategori-<?= $ctg['slug']; ?>" tabindex="-1" aria-labelledby="hapusKategoriLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered ">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title fw-bold" id="hapusKategoriLabel">Hapus <?= $ctg['kodeCategory']; ?></h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            <!-- aksi kategori -->
+                                                            <div class="btn-group" role="group">
+                                                                <form method="post" action="<?= base_url(); ?>/admin/editKategori_/<?= $ctg['slug']; ?>">
+                                                                    <button class="btn btn-sm text-decoration-none ml-2 " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit Kategori">
+                                                                        <i class="fas fa-edit fs-6"></i>
+                                                                    </button>
+                                                                </form>
+
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-kategori-<?= $ctg['slug']; ?>">
+                                                                    <button type="button" class="btn btn-sm " data-bs-placement="top" title="Hapus">
+                                                                        <i class="fas fa-trash-alt text-danger fs-6"></i>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-body text-center">
-                                                            <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                            Yakin hapus kategori <?= $ctg['namaCategory']; ?> ?
-                                                            <p style="color: #D60C0C;">Instrumen dan butir pernyataan pada kategori ini akan terhapus</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                            <form action="<?= base_url(); ?>/admin/deleteKategori_/<?= $ctg['slug']; ?>" method="post">
-                                                                <?= csrf_field(); ?>
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                <button type="submit" class="btn btn-danger">Hapus</button>
-                                                            </form>
-
-
-                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- end modal hapus kategori -->
 
-                                        </div>
-                                        <!-- ./aksi kategori -->
-
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">Responden</th>
-                                                    <th scope="col">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <!-- get responden by slug category -->
-                                                        <?php
-                                                        $db = db_connect();
-                                                        $slug = $ctg['slug'];
-                                                        $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
-
-                                                        $peruntukkan =  $db->query($sql, [$slug]);
-                                                        foreach ($peruntukkan->getResultArray() as $p) {
-                                                            echo "<ul><li>" . $p['peruntukkanCategory'] . "</li></ul>";
-                                                        }
-                                                        ?>
-                                                        <!-- ./get responden by slug category -->
-                                                    </td>
-                                                    <td class="align-middle">
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                        <!-- button collapse lihat instrumen -->
-                                        <p>
-                                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-slug-<?= $ctg['slug']; ?>" aria-expanded="false">
-                                                <i class="fas fa-chevron-down"> </i> List Instrumen
-                                            </button>
-                                        </p>
-                                        <!-- ./button collapse lihat instrumen -->
-
-                                        <!-- content collapse - instrumen  -->
-                                        <div class="collapse" id="collapse-slug-<?= $ctg['slug']; ?>">
-                                            <div class="card">
-                                                <div class="card-header text-rouge d-flex align-items-center py-2 mb-3">
-                                                    <span class="fw-bold"><?= $ctg['namaCategory']; ?></span>
-                                                </div>
                                                 <div class="card-body">
-                                                    <table class="table table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col" class="align-middle">No.</th>
-                                                                <th scope="col" class="align-middle text-center">Kode Instrumen</th>
-                                                                <th scope="col" class="align-middle">Nama Instrumen</th>
-                                                                <th scope="col" class="align-middle">Responden</th>
-                                                                <th scope="col" class="align-middle text-center">Aksi</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <?php $i = 1; ?>
-                                                            <?php
-                                                            $db = db_connect();
-                                                            $slug = $ctg['slug'];
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-lg-2">
+                                                                <span class="fw-bold">Responden : </span>
+                                                            </div>
+                                                            <div class="col-lg-10 col-sm-12">
+                                                                <div class="row row-cols-auto ml-2">
+                                                                    <!-- get responden by slug category -->
+                                                                    <?php
+                                                                    $db = db_connect();
+                                                                    $slug = $ctg['slug'];
+                                                                    $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
 
-                                                            $sql = "SELECT * FROM instrumen WHERE slug = ?";
+                                                                    $peruntukkan =  $db->query($sql, [$slug]);
+                                                                    foreach ($peruntukkan->getResultArray() as $p) {
+                                                                        echo ' <div class="col list-button">' . $p['peruntukkanCategory'] . "</div>";
+                                                                    }
+                                                                    ?>
+                                                                    <!-- ./get responden by slug category -->
+                                                                </div>
+                                                            </div>
+                                                            <!-- button collapse lihat instrumen -->
+                                                            <p>
+                                                                <button class="btn btn-primary btn-sm mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-slug-<?= $ctg['slug']; ?>" aria-expanded="false">
+                                                                    <i class="fas fa-chevron-down"> </i> List Instrumen
+                                                                </button>
+                                                            </p>
+                                                            <!-- ./button collapse lihat instrumen -->
 
-                                                            $query =  $db->query($sql, [$slug]);
-                                                            foreach ($query->getResultArray() as $row) : ?>
-                                                                <tr>
-                                                                    <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
-                                                                    <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
-                                                                    <td>
-                                                                        <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
-                                                                    </td>
-                                                                    <td><?= $row['peruntukkanInstrumen']; ?></td>
-                                                                    <td>
-                                                                        <div class="btn-group" role="group">
-                                                                            <a href="<?= base_url(); ?>/admin/editInstrumen_/<?= $row['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Instrumen">
-                                                                                <i class="fas fa-edit"></i>
-                                                                            </a>
-                                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $row['id']; ?>">
-                                                                                <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
-                                                                                    <i class="fas fa-trash-alt"></i>
-                                                                                </button>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <!-- modal hapus instrumen -->
-                                                                <div class="modal fade" id="modal-delete-instrumen-<?= $row['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
-                                                                    <div class="modal-dialog modal-dialog-centered ">
-                                                                        <div class="modal-content">
-                                                                            <div class="modal-header">
-                                                                                <small class="text-muted" id="hapusInstrumenLabel"><?= $row['namaInstrumen']; ?></small>
-                                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                            </div>
-                                                                            <div class="modal-body text-center">
-                                                                                <h5>Yakin hapus instrumen?</h5>
-                                                                                <i class="fas fa-exclamation-circle fa-2x" style="width: 3rem; color: #D60C0C"></i>
-                                                                                <p class="mt-4" style="color: #D60C0C;">Butir pernyataan didalamnya (jika ada) akan terhapus</p>
-                                                                            </div>
-                                                                            <div class="modal-footer">
-                                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                                                <form action="<?= base_url(); ?>/admin/deleteInstrumen_/<?= $row['id']; ?>" method="post">
-                                                                                    <?= csrf_field(); ?>
-                                                                                    <input type="hidden" name="_method" value="DELETE">
-                                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
+                                                            <!-- content collapse - instrumen  -->
+                                                            <div class="collapse" id="collapse-slug-<?= $ctg['slug']; ?>">
+                                                                <div class="card border border-white">
+
+                                                                    <div class="card-body">
+                                                                        <table class="table table-hover table-responsive">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th scope="col" class="align-middle">No.</th>
+                                                                                    <th scope="col" class="align-middle text-center">Kode Instrumen</th>
+                                                                                    <th scope="col" class="align-middle">Nama Instrumen</th>
+                                                                                    <th scope="col" class="align-middle">Responden</th>
+                                                                                    <th scope="col" class="align-middle text-center">Aksi</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                                <?php $i = 1; ?>
+                                                                                <?php
+                                                                                $db = db_connect();
+                                                                                $slug = $ctg['slug'];
+
+                                                                                $sql = "SELECT * FROM instrumen WHERE slug = ?";
+
+                                                                                $query =  $db->query($sql, [$slug]);
+                                                                                foreach ($query->getResultArray() as $row) : ?>
+                                                                                    <tr>
+                                                                                        <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
+                                                                                        <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
+                                                                                        <td>
+                                                                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
+                                                                                        </td>
+                                                                                        <td><?= $row['peruntukkanInstrumen']; ?></td>
+                                                                                        <td>
+                                                                                            <div class="btn-group" role="group">
+                                                                                                <a href="<?= base_url(); ?>/admin/editInstrumen_/<?= $row['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Instrumen">
+                                                                                                    <i class="fas fa-edit"></i>
+                                                                                                </a>
+                                                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $row['id']; ?>">
+                                                                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
+                                                                                                        <i class="fas fa-trash-alt"></i>
+                                                                                                    </button>
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </td>
+                                                                                    </tr>
+                                                                                    <!-- modal hapus instrumen -->
+                                                                                    <div class="modal fade" id="modal-delete-instrumen-<?= $row['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-dialog-centered ">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <small class="text-muted" id="hapusInstrumenLabel"><?= $row['namaInstrumen']; ?></small>
+                                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                                </div>
+                                                                                                <div class="modal-body text-center">
+                                                                                                    <h5>Yakin hapus instrumen?</h5>
+                                                                                                    <i class="fas fa-exclamation-circle fa-2x" style="width: 3rem; color: #D60C0C"></i>
+                                                                                                    <p class="mt-4" style="color: #D60C0C;">Butir pernyataan didalamnya (jika ada) akan terhapus</p>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                                                                    <form action="<?= base_url(); ?>/admin/deleteInstrumen_/<?= $row['id']; ?>" method="post">
+                                                                                                        <?= csrf_field(); ?>
+                                                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                                                    </form>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- end modal hapus instrumen -->
+
+                                                                                <?php endforeach; ?>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <!-- Button trigger modal -->
+                                                                        <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen_/<?= $ctg['slug']; ?>">
+                                                                            <button type="button" class="btn btn-sm btn-success mt-3">
+                                                                                <i class=" fas fa-plus"></i> Tambah Instrumen
+                                                                            </button></a>
                                                                     </div>
                                                                 </div>
-                                                                <!-- end modal hapus instrumen -->
-
-                                                            <?php endforeach; ?>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <!-- Button trigger modal -->
-                                                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen_/<?= $ctg['slug']; ?>" class="ml-auto mt-3">
-                                                        <button type="button" class="btn btn-warning ">
-                                                            <i class=" fas fa-plus"></i> Tambah Instrumen
-                                                        </button></a>
+                                                            </div>
+                                                            <!-- content collapse - instrumen  -->
+                                                        </div>
+                                                    </div>
+                                                    <!-- ./aksi kategori -->
                                                 </div>
                                             </div>
+
+
+
                                         </div>
-                                        <!-- content collapse - instrumen  -->
+
+
+
                                     </div>
                                 </div>
                                 <!-- ./content collapse - kategori  -->

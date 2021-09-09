@@ -52,7 +52,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(3) == 'instrumen_'  ? 'active"' : '' ?>">
+                    <a href="#" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Kelola Survei
@@ -121,7 +121,7 @@
                 </li>
 
                 <li class=" nav-item">
-                    <a href="<?= base_url('logout'); ?>" class="nav-link text-columbia-blue" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                    <a href="<?= base_url('logout'); ?>" class="nav-link " role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
                         <i class=" fas fa-sign-out-alt mx-2"></i>
                         <p>Keluar
                         </p>

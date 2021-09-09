@@ -27,7 +27,7 @@ class Pages extends BaseController
     public function index()
     {
         $data = [
-            'title' => 'Penjaminan Mutu Instrumen Kepuasan Layanan FMIPA UNJ',
+            'title' => 'Instrumen Kepuasan FMIPA UNJ',
             'category' => $this->adminModel->getCategory(),
 
         ];
@@ -38,7 +38,7 @@ class Pages extends BaseController
     public function about()
     {
         $data = [
-            'title' => 'About|Penjaminan Mutu Instrumen Kepuasan Layanan FMIPA UNJ'
+            'title' => 'Instrumen Kepuasan FMIPA UNJ'
 
         ];
         return view('pages/about', $data);
@@ -46,7 +46,7 @@ class Pages extends BaseController
     public function login()
     {
         $data = [
-            'title' => 'Login | SIJAMU',
+            'title' => 'Login | Instrumen Kepuasan FMIPA UNJ',
             'config' => $this->config
 
         ];
@@ -55,7 +55,7 @@ class Pages extends BaseController
     public function register()
     {
         $data = [
-            'title' => 'Register | SIJAMU'
+            'title' => 'Register | Instrumen Kepuasan FMIPA UNJ'
 
         ];
         return view('auth/register', $data);
