@@ -40,7 +40,7 @@
                     <h5 class="text-rouge">Responden Survei</h5>
 
                     <a href="#" class="ml-auto">
-                        <button type="button" class="btn btn-warning ">
+                        <button type="button" class="btn btn-rouge ">
                             <i class="fas fa-plus"></i> Tambah Responden
                         </button></a>
 

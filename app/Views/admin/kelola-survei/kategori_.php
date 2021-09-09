@@ -30,7 +30,7 @@
                     <h5 class="text-rouge">Kategori Instrumen</h5>
                     <!-- Button trigger modal -->
                     <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_kategori_" class="ml-auto">
-                        <button type="button" class="btn btn-warning ">
+                        <button type="button" class="btn btn-rouge ">
                             <i class="fas fa-plus"></i> Tambah Kategori
                         </button></a>
 
