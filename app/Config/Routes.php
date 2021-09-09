@@ -117,7 +117,7 @@ $routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
 $routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
 // responden
-$routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Kontributor']);
+$routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Dosen,Kontributor']);
 $routes->get('/responden/index', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Kontributor']);
 $routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filter' => 'role:Admin,Responden,Kontributor']);
 

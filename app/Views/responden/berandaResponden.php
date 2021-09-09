@@ -5,7 +5,7 @@
     <div class="container">
         <div class="textBox">
             <!-- using gsap animation -->
-            <p class="text-center text-muted fs-5" data-aos="zoom-in-right" data-aos-duration="1000"> <span class="welcome fw-bold"> </span> Maura Qoonitah Putri</p>
+            <p class="text-center text-muted fs-5" data-aos="zoom-in-right" data-aos-duration="1000"> <span class="welcome fw-bold"> </span> <?= user()->fullname; ?></p>
         </div>
     </div>
     <!-- Content Header (Page header) -->

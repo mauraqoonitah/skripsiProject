@@ -9,7 +9,9 @@
     <div class="sidebar">
         <!--  user logged in  -->
         <div class="user-panel mt-3 pb-3 mb-3">
-            <i class="nav-icon fas fa-user mr-2 ml-4"></i> <?= user()->fullname; ?>
+            <?php if (user()->fullname) :  ?>
+                <i class="nav-icon fas fa-user mr-2 ml-4"></i> <?= user()->fullname; ?><br>
+            <?php endif; ?>
         </div>
 
         <!-- Sidebar Menu -->
@@ -55,9 +57,14 @@
                     <a href="#" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Kelola Survei
-                            <i class="right fas fa-angle-left"></i>
+                            <?php if (in_groups('Admin')) :  ?>
+                                Kelola Survei
+                            <?php endif; ?>
+                            <?php if (in_groups('Kontributor')) :  ?>
+                                Lihat Survei
+                            <?php endif; ?>
                         </p>
+                        <i class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">

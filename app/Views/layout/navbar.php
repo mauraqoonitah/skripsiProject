@@ -14,18 +14,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#instrumen">Instrumen</a>
                 </li>
-                <li class="nav-item">
-                    <?php if (logged_in()) : ?>
+                <?php if (in_groups('Admin') || in_groups('Kontributor')) : ?>
+                    <li class="nav-item">
                         <a class=" nav-link" href="<?= base_url('admin'); ?>"> Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('logout'); ?>">Logout</a>
-                <?php else : ?>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('login'); ?>">Login</a>
+                    </li>
                 <?php endif; ?>
-                </li>
+                <?php if (in_groups('Dosen')) : ?>
+                    <li class="nav-item">
+                        <a class=" nav-link" href="<?= base_url('responden'); ?>"> Isi Survei</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if (logged_in()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('logout'); ?>">Logout</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('login'); ?>">Login</a>
+                    </li>
+                <?php endif; ?>
 
             </ul>
         </div>
