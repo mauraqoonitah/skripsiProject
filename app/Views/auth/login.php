@@ -19,7 +19,7 @@
 
                                     <?= view('Myth\Auth\Views\_message_block') ?>
 
-                                    <form action="<?= route_to('login') ?>" method="post" class="user">
+                                    <form action="<?= url_to('login') ?>" method="post" class="user">
                                         <?= csrf_field() ?>
 
                                         <?php if ($config->validFields === ['email']) : ?>
@@ -62,13 +62,13 @@
                                     <div class="text-center">
                                         <?php if ($config->allowRegistration) : ?>
                                             <p class="text-muted small">
-                                                <?= lang('Auth.needAnAccount') ?> <a href="<?= route_to('register') ?>"><?= lang('Auth.register') ?>
+                                                <?= lang('Auth.needAnAccount') ?> <a href="<?= url_to('register') ?>"><?= lang('Auth.register') ?>
                                                 </a>
                                             </p>
                                         <?php endif; ?>
                                         <?php if ($config->activeResetter) : ?>
                                             <p>
-                                                <a href="<?= route_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?>
+                                                <a href="<?= url_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?>
                                                 </a>
                                             </p>
                                         <?php endif; ?>

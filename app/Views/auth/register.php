@@ -18,19 +18,24 @@
 
                                     <?= view('Myth\Auth\Views\_message_block') ?>
 
-                                    <form action="<?= route_to('register') ?>" method="post" class="user">
+                                    <form action="<?= url_to('register') ?>" method="post" class="user">
                                         <?= csrf_field() ?>
 
                                         <div class="form-group mb-3">
+                                            <!-- email -->
                                             <input type="email" class="form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>" name="email">
                                         </div>
 
                                         <div class="form-group mb-3">
-
+                                            <!-- fullname -->
+                                            <input type="text" class="form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname" placeholder="Nama Lengkap" value="<?= old('fullname') ?>">
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <!-- username -->
                                             <input type="text" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
                                         </div>
 
-
+                                        <!-- password -->
                                         <div class="form-group row mb-3">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="password" name="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
@@ -48,7 +53,7 @@
                                     <hr>
                                     <div class="text-center">
                                         <p class="text-muted small">
-                                            <?= lang('Auth.alreadyRegistered') ?> <a href="<?= route_to('login') ?>"><?= lang('Auth.signIn') ?></a>
+                                            <?= lang('Auth.alreadyRegistered') ?> <a href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a>
                                         </p>
                                     </div>
                                 </div>
