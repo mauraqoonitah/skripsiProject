@@ -14,7 +14,7 @@
 
                     <?= view('Myth\Auth\Views\_message_block') ?>
 
-                    <!-- flash gagal tambah data  -->
+       <!-- flash gagal tambah data  -->
                     <?php if (session()->getFlashdata('messageError')) :  ?>
                         <div class="alert alert-danger d-flex align-items-center fw-bold" role="alert">
                             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
@@ -38,12 +38,12 @@
                             <label for="nim">NIM / NIDN</label>
 
                             <input type="hidden" class="form-control " name="nidn" id="nidn">
-                        </div>
+                             </div>
 
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-cosmic btn-user btn-block rounded-pill ">Cek Akun</button>
                         </div>
-                        <hr>
+                       <hr>
                         <div class="text-center">
                             <p class="text-muted small">
                                 Tidak punya nim/nidn? <a href="#"> Hubungi Admin
