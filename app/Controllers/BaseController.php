@@ -52,5 +52,6 @@ class BaseController extends Controller
 
 		//session utk ambil inputan saat validation 
 		session();
+		$view = \Config\Services::renderer();
 	}
 }
