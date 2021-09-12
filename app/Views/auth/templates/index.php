@@ -13,10 +13,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
     <!-- bootstrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Masuk</title>
+    <!-- my css -->
+    <link rel="stylesheet" href="<?= base_url(); ?>/css/style.css">
+
+    <title>Auth</title>
 </head>
 
-<body style="background-color: #00acc1 ;">
+<body style="background-color: #fafafa;">
 
     <?= $this->renderSection('auth-content'); ?>
 </body>
