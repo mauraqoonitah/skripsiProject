@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Rubik&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Andika+New+Basic&family=Palanquin+Dark&display=swap');
 *,
  ::before,
@@ -24,11 +25,13 @@ h6 {
 }
 
 body {
-    font-family: 'Andika New Basic', sans-serif !important;
+    /* font-family: 'Andika New Basic', sans-serif !important; */
+    font-family: 'Rubik', sans-serif !important;
     background-color: #fafafa;
     color: #141C3A;
-    line-height: 1.6;
-    font-size: 16.4px;
+    letter-spacing: .2px;
+    line-height: 1.5;
+    font-size: 15px;
 }
 
 main {
@@ -326,6 +329,78 @@ footer {
 }
 
 
+/* register page style */
+
+.auth-page {
+    min-height: 100vh;
+    background: linear-gradient(to top, rgba(174, 67, 91, .8) 0%, rgba(122, 76, 117, .9) 50%);
+}
+
+.auth-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+}
+
+.auth-card {
+    box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.auth-wrapper-left {
+    background-color: #fafafa;
+}
+
+.auth-wrapper-right {
+    background-color: #f1f3f4;
+    display: flex;
+    align-items: center
+}
+
+
+/* btn-cosmic */
+
+.btn-cosmic {
+    color: #fff !important;
+    background-color: #7a4c75 !important;
+    border-color: rgb(174, 67, 91, .2) !important;
+}
+
+.btn-cosmic:hover {
+    color: #fff !important;
+    background-color: #ae435b !important;
+}
+
+.btn-cosmic.focus,
+.btn-cosmic:focus {
+    color: #fff !important;
+    background-color: #000 !important;
+    box-shadow: 0 0 0 0 rgba(38, 143, 255, .5)
+}
+
+.btn-cosmic.disabled,
+.btn-cosmic:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-cosmic:not(:disabled):not(.disabled).active,
+.btn-cosmic:not(:disabled):not(.disabled):active,
+.show>.btn-cosmic.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf
+}
+
+.btn-cosmic:not(:disabled):not(.disabled).active:focus,
+.btn-cosmic:not(:disabled):not(.disabled):active:focus,
+.show>.btn-cosmic.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0 rgba(38, 143, 255, .5)
+}
+
+
 /* navbar */
 
 .navbar {
@@ -438,8 +513,8 @@ nav ul li a:hover {
 
 .pilih-inst {
     /* background-color: #f1f3f4; */
-    background-color: rgba(174, 67, 91, .2);
-    border: solid 1px rgb(174, 67, 91, .4);
+    background-color: rgba(122, 76, 117, .2);
+    border: solid 1px rgba(122, 76, 117);
     text-align: center;
     padding: 1rem 20px;
     /* border: solid 1px rgba(58, 65, 64, 0.4); */
@@ -539,6 +614,17 @@ nav ul li a:hover {
         display: grid;
         grid-template-columns: 1fr;
         gap: 1.6rem;
+    }
+    /* register page style */
+    .auth-page {
+        padding-top: 1rem;
+        padding-left: 1.8rem;
+    }
+    .auth-wrapper {
+        max-width: 400px;
+    }
+    .auth-card {
+        width: 100%;
     }
 }
 

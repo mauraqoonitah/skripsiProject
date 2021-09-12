@@ -26,6 +26,7 @@ class Beranda extends BaseController
             'instrumen' => $this->instrumenModel->getInstrumen(),
 
         ];
+
         return view('responden/berandaResponden', $data);
     }
     public function pilihInstrumen($id)
