@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-cosmic btn-user btn-block rounded-pill ">Cek Akun</button>
+                            <button type="submit" class="btn btn-cosmic btn-user btn-block">Cek Akun</button>
                         </div>
                         <hr>
                         <div class="text-center">

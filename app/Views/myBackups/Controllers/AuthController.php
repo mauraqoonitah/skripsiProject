@@ -235,9 +235,6 @@ class AuthController extends Controller
 		$getSessNim = $session->get('nim');
 		$getSessNidn = $session->get('nidn');
 
-		var_dump("nim " . $getSessNim);
-		var_dump("nidn " . $getSessNidn);
-
 		$data = [
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($getSessNidn),
 
@@ -266,6 +263,7 @@ class AuthController extends Controller
 			'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
 			'fullname' => 'required',
 			'email'    => 'required|valid_email|is_unique[users.email]',
+			'role'    => 'required',
 		];
 
 		if (!$this->validate($rules)) {
