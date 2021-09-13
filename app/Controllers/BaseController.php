@@ -51,7 +51,7 @@ class BaseController extends Controller
 		// $this->adminModel = new \App\Models\AdminModel();
 
 		//session utk ambil inputan saat validation 
-		session();
 		$view = \Config\Services::renderer();
+		$session = \Config\Services::session();
 	}
 }

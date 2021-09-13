@@ -21,9 +21,10 @@ class AuthController extends Controller
 	/**
 	 * @var Session
 	 */
-	protected $session;
-
-
+	protected $session = null;
+	/**
+	 * @var Model
+	 */
 	protected $userCheckModel;
 
 
@@ -31,6 +32,8 @@ class AuthController extends Controller
 	{
 		// Most services in this controller require
 		// the session to be started - so fire it up!
+		$this->session = \Config\Services::session();
+
 		$this->session = service('session');
 
 		$this->config = config('Auth');
@@ -179,7 +182,7 @@ class AuthController extends Controller
 			],
 		])) {
 			// if data in table doesn't exist
-			session()->setFlashdata('messageError', 'Data tidak ditemukan');
+			$this->session->setFlashdata('messageError', 'Data tidak ditemukan');
 			return $this->_render($this->config->views['checkAkun'], $data);
 		}
 		// if data in table exist
@@ -187,15 +190,14 @@ class AuthController extends Controller
 			'nim'  => $nim,
 			'nidn' => $nidn,
 		];
-		$session = \Config\Services::session();
-		$session->set($newdataUser);
+		$this->session->set($newdataUser);
 
 		// unset(
 		// 	$_SESSION['getSessNim'],
 		// 	$_SESSION['getSessNidn']
 		// );
 
-		session()->setFlashdata('message', 'Data Akun SIAKAD ditemukan. Silakan lengkapi data diri anda.');
+		$this->session->setFlashdata('message', 'Data Akun SIAKAD ditemukan. Silakan lengkapi data diri anda.');
 		// return $this->_render($this->config->views['register']);
 		return redirect()->to('register')->withInput();
 	}
@@ -231,9 +233,8 @@ class AuthController extends Controller
 			return redirect()->back()->withInput()->with('error', lang('Auth.registerDisabled'));
 		}
 
-		$session = \Config\Services::session();
-		$getSessNim = $session->get('nim');
-		$getSessNidn = $session->get('nidn');
+		$getSessNim = $this->session->get('nim');
+		$getSessNidn = $this->session->get('nidn');
 
 		$data = [
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($getSessNidn),
