@@ -25,7 +25,7 @@
                             </div>
                         <?php else : ?>
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control form-control-user rounded-pill <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>">
+                                <input type="text" class="form-control form-control-user rounded-pill <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>" value="">
                                 <div class="invalid-feedback">
                                     <?= session('errors.login') ?>
                                 </div>

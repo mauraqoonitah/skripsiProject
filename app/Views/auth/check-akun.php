@@ -6,9 +6,19 @@
     <div class="auth-wrapper">
         <div class="auth-card row">
             <div class="auth-wrapper-left align-middle col-md-8">
-                <div class="container m-3 pt-3">
-                    <h3 class="">Cek Akun</h3>
-                    <h6 class="text-muted"> untuk mulai isi survei instrumen kepuasan</h6>
+                <div class="container pt-3 mt-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center justify-content-center">
+                                <img src=" <?= base_url(); ?>/img/unj.png" alt="unj" class="img-fluid">
+                            </div>
+                            <div class="col-10">
+                                <h3 class="">Cek Akun</h3>
+                                <h6 class="text-muted"> untuk mulai isi survei instrumen kepuasan</h6>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="card-body m-3">
 
@@ -26,6 +36,18 @@
                             <div>
                                 <?= session()->getFlashData('messageError'); ?>
                             </div>
+                        </div>
+                        <div class="text-muted text-small">
+                            <span class="text-small">untuk menggunakan Login UNJ, anda harus memiliki akun SIAKAD terlebih dahulu. Akun SIAKAD dapat dimiliki oleh:
+                            </span>
+                            <ul>
+                                <li>
+                                    Mahasiswa
+                                </li>
+                                <li>
+                                    Staf/Dosen UNJ yang memiliki NIP
+                                </li>
+                            </ul>
                         </div>
                     <?php endif; ?>
                     <!-- ./ flash gagal tambah data  -->

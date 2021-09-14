@@ -9,6 +9,7 @@
 html {
     scroll-behavior: smooth;
     background-color: #fafafa;
+    font-size: 14px;
 }
 
 a {
@@ -31,7 +32,7 @@ body {
     color: #141C3A;
     letter-spacing: .2px;
     line-height: 1.5;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 main {
@@ -341,6 +342,11 @@ footer {
     margin: 0 auto;
 }
 
+.auth-wrapper-lg {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 .auth-card {
     box-shadow: 0 8px 20px 0 rgb(0 0 0 / 15%);
     width: 100%;
@@ -354,8 +360,6 @@ footer {
 
 .auth-wrapper-right {
     background-color: #f1f3f4;
-    display: flex;
-    align-items: center
 }
 
 
