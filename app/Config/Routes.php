@@ -117,14 +117,17 @@ $routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
 $routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
 // responden
-$routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Dosen,Kontributor']);
-$routes->get('/responden/index', 'Responden\Beranda::index', ['filter' => 'role:Admin,Responden,Kontributor']);
-$routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filter' => 'role:Admin,Responden,Kontributor']);
 
-$routes->get('/responden/isiSurvei/(:any)', 'Responden\Beranda::isiSurvei/$1', ['filter' => 'role:Admin,Responden,Kontributor']);
+$routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
-$routes->get('/responden/instrumen/(:any)', 'Responden\Beranda::pilihInstrumen/$1', ['filter' => 'role:Admin,Responden,Kontributor']);
-$routes->get('/responden/saveDataDiri', 'Responden\Beranda::saveDataDiri', ['filter' => 'role:Admin,Responden,Kontributor']);
+$routes->get('/responden/index', 'Responden\Beranda::index', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+
+$routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+
+$routes->get('/responden/isiSurvei/(:any)', 'Responden\Beranda::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+
+$routes->get('/responden/instrumen/(:any)', 'Responden\Beranda::pilihInstrumen/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+$routes->get('/responden/saveDataDiri', 'Responden\Beranda::saveDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
 
 

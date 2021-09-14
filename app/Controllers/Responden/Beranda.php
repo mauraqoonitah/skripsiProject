@@ -21,9 +21,12 @@ class Beranda extends BaseController
 
     public function index()
     {
+        $role = user()->role;
+
         $data = [
             'title' => 'Beranda - Pilih Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
+            'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($role),
 
         ];
 
