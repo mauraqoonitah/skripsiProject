@@ -60,10 +60,13 @@ class AuthController extends Controller
 		// is already logged in.
 		if ($this->auth->check()) {
 			// $redirectURL = session('redirect_url') ?? base_url('admin');
-			if (['filter' => 'role:Admin,Kontributor']) {
-				$redirectURL = site_url('admin');
+			if (['filter' => 'role:Admin']) {
+				$redirectURL = base_url('admin');
+			} else if (['filter' => 'role:Kontributor']) {
+				$redirectURL = base_url('admin');
+			} else if (['filter' => 'role:Dosen']) {
+				$redirectURL = base_url('responden');
 			}
-			$redirectURL = site_url('responden');
 
 			unset($_SESSION['redirect_url']);
 
@@ -112,10 +115,13 @@ class AuthController extends Controller
 
 		// $redirectURL = session('redirect_url') ?? base_url('admin');
 		// $redirectURL = site_url('admin');
-		if (['filter' => 'role:Admin,Kontributor']) {
-			$redirectURL = site_url('admin');
+		if (['filter' => 'role:Admin']) {
+			$redirectURL = base_url('admin');
+		} else if (['filter' => 'role:Kontributor']) {
+			$redirectURL = base_url('admin');
+		} else if (['filter' => 'role:Dosen']) {
+			$redirectURL = base_url('responden');
 		}
-		$redirectURL = site_url('responden');
 
 		unset($_SESSION['redirect_url']);
 

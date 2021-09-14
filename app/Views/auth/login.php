@@ -5,9 +5,18 @@
     <div class="auth-wrapper">
         <div class="auth-card row">
             <div class="auth-wrapper-left align-middle col-md-8">
-                <div class="container m-3 pt-3">
-                    <h3 class="">Masuk</h3>
-                    <span class="text-muted"> untuk mulai isi survei instrumen kepuasan</span>
+                <div class="container pt-3 mt-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center justify-content-center">
+                                <img src=" <?= base_url(); ?>/img/unj.png" alt="unj" class="img-fluid">
+                            </div>
+                            <div class="col-10">
+                                <h3 class="">Masuk</h3>
+                                <span class="text-muted"> untuk mulai akses survei instrumen kepuasan</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body m-3">
                     <?= view('Myth\Auth\Views\_message_block') ?>
@@ -16,21 +25,13 @@
                     <form action="<?= url_to('login') ?>" method="post" class="user">
                         <?= csrf_field() ?>
 
-                        <?php if ($config->validFields === ['email']) : ?>
-                            <div class="form-group mb-3">
-                                <input type="email" class="form-control form-control-user rounded-pill <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.email') ?>">
-                                <div class="invalid-feedback">
-                                    <?= session('errors.login') ?>
-                                </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control form-control-user rounded-pill <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Username" value="">
+                            <div class="invalid-feedback">
+                                <?= session('errors.login') ?>
                             </div>
-                        <?php else : ?>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control form-control-user rounded-pill <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>" value="">
-                                <div class="invalid-feedback">
-                                    <?= session('errors.login') ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>
+                        </div>
+
 
                         <div class="form-group mb-3">
                             <input type="password" name="password" class="form-control form-control-user rounded-pill <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
@@ -56,7 +57,7 @@
                     <div class="text-center">
                         <?php if ($config->allowRegistration) : ?>
                             <p class="text-muted small">
-                                <?= lang('Auth.needAnAccount') ?> <a href="<?= url_to('register') ?>"><?= lang('Auth.register') ?>
+                                Belum punya akun? <a href="<?= url_to('checkAkun') ?>"><?= lang('Auth.register') ?>
                                 </a>
                             </p>
                         <?php endif; ?>
@@ -69,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            <div class="auth-wrapper-right col-md-4 ">
+            <div class="auth-wrapper-right col-md-4  d-flex align-items-center ">
                 <img src="<?= base_url(); ?>/img/ex-jumbotron-img.png" alt="" class="img-fluid auth-header-img">
             </div>
         </div>

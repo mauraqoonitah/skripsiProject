@@ -8,10 +8,17 @@
         <div class="auth-wrapper-lg">
             <div class="auth-card row my-5">
                 <div class="auth-wrapper-left col-12">
-                    <div class="card-header py-3 px-4">
-                        <h3 class="text-center">Registrasi</h3>
-                        <h5 class="text-muted text-center"> Daftar akun untuk mulai isi survei instrumen kepuasan</h5>
-                        <?= view('Myth\Auth\Views\_message_block') ?>
+                    <div class="card-header py-3 px-4 container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center justify-content-center mb-2">
+                                    <img src=" <?= base_url(); ?>/img/unj.png" alt="unj" class="" style="width; 48px; height: 48px">
+                                </div>
+                                <h3 class="text-center">Registrasi</h3>
+                                <h5 class="text-muted text-center"> Daftar akun untuk mulai akses survei instrumen kepuasan</h5>
+                            </div>
+                        </div>
+
 
                         <!-- flash success tambah data  -->
                         <?php if (session()->getFlashdata('message')) :  ?>
@@ -29,9 +36,9 @@
                         <?php endif; ?>
                         <!-- ./ flash gagal tambah data  -->
                     </div>
+                    <span class="text-muted">on progress: pengecekan kondisi kalau ternyata user sudah pernah buat akun, langsung redirectnya ke page login, bukan page ini</span>
                 </div>
-                <div class=" auth-wrapper-left align-middle col-md-6">
-
+                <div class=" auth-wrapper-left align-middle col-lg-6">
                     <div class="card-body m-3">
                         <form action="<?= url_to('register') ?>" method="post" class="user">
                             <?= csrf_field() ?>
@@ -40,8 +47,8 @@
                                 <?php foreach ($userCheckByInput as $user) :  ?>
                                     <div class="form-group mb-3">
                                         <!-- email -->
-                                        <label for="email" class="form-label">Email address</label>
-                                        <input type="email" class=" form-control form-control-user" value="<?= $user['email']; ?>" name="email" readonly>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class=" form-control form-control-user " value="<?= $user['email']; ?>" name="email" readonly>
                                     </div>
 
                                     <div class="form-group mb-3">
@@ -81,8 +88,10 @@
                     </div>
                     <!-- ./card-body -->
                 </div>
-                <div class="auth-wrapper-right col-md-6">
+                <div class="auth-wrapper-right col-lg-6">
                     <div class="card-body m-3">
+                        <?= view('Myth\Auth\Views\_message_block') ?>
+
                         <!-- flash success tambah data  -->
                         <?php if (session()->getFlashdata('message')) :  ?>
                             <div class="alert alert-success d-flex align-items-center" role="alert">
@@ -134,8 +143,8 @@
                                     <?= session('errors.password') ?>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-3">
-                                <label for="pass_confirm" class=" form-label">Ulang Password</label>
+                            <div class="col-sm-6">
+                                <label for="pass_confirm" class=" form-label">Repeat Password</label>
                                 <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
                                 <div class="invalid-feedback">
                                     <?= session('errors.pass_confirm') ?>
@@ -143,24 +152,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="auth-wrapper-right col-12">
+                        <div class="container d-grid gap-2 ">
+                            <button type="submit" class="btn btn-cosmic btn-user btn-block">
+                                <?= lang('Auth.register') ?>
+                            </button>
+                        </div>
+                        <!-- <hr>
+                        <div class="text-center pb-3">
+                            <p class="text-muted small">
+                                < ?= lang('Auth.alreadyRegistered') ?> <a href="< ?= url_to('login') ?>">< ?= lang('Auth.signIn') ?></a>
+                            </p>
+                        </div> -->
+                    </div>
                 <?php endforeach; ?>
             <?php else : ?>
                 <p>Ini nanti tampil form untuk responden lain yang tidak punya akun siakad</p>
             <?php endif; ?>
                 </div>
-                <div class="auth-wrapper-right col-12">
-                    <div class="container d-grid gap-2 my-3 pt-3">
-                        <button type="submit" class="btn btn-cosmic btn-user  btn-block">
-                            <?= lang('Auth.register') ?>
-                        </button>
-                    </div>
-                    <hr>
-                    <div class="text-center pb-3">
-                        <p class="text-muted small">
-                            <?= lang('Auth.alreadyRegistered') ?> <a href="<?= url_to('login') ?>"><?= lang('Auth.signIn') ?></a>
-                        </p>
-                    </div>
-                </div>
+
             </div>
 
         </div>

@@ -14,7 +14,7 @@
                             </div>
                             <div class="col-10">
                                 <h3 class="">Cek Akun</h3>
-                                <h6 class="text-muted"> untuk mulai isi survei instrumen kepuasan</h6>
+                                <span class="text-muted fw-bold fs-6"> untuk mulai akses survei instrumen kepuasan</span>
                             </div>
                         </div>
                     </div>
@@ -27,27 +27,15 @@
                     <!-- flash gagal tambah data  -->
                     <?php if (session()->getFlashdata('messageError')) :  ?>
                         <div class="alert alert-danger d-flex align-items-center fw-bold" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+                            <svg class="bi flex-shrink-0 me-2" width="22" height="22" role="img" aria-label="Danger:">
                                 <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
                                     <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                                 </symbol>
                                 <use xlink:href="#exclamation-triangle-fill" />
                             </svg>
-                            <div>
+                            <div class="small">
                                 <?= session()->getFlashData('messageError'); ?>
                             </div>
-                        </div>
-                        <div class="text-muted text-small">
-                            <span class="text-small">untuk menggunakan Login UNJ, anda harus memiliki akun SIAKAD terlebih dahulu. Akun SIAKAD dapat dimiliki oleh:
-                            </span>
-                            <ul>
-                                <li>
-                                    Mahasiswa
-                                </li>
-                                <li>
-                                    Staf/Dosen UNJ yang memiliki NIP
-                                </li>
-                            </ul>
                         </div>
                     <?php endif; ?>
                     <!-- ./ flash gagal tambah data  -->
@@ -63,20 +51,32 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-cosmic btn-user btn-block">Cek Akun</button>
+                            <button type="submit" class="btn btn-cosmic btn-user btn-block ">Cek Akun <i class="fas fa-chevron-right ml-3"></i></button>
                         </div>
-                        <hr>
-                        <div class="text-center">
-                            <p class="text-muted small">
-                                Tidak punya nim/nidn? <a href="#"> Hubungi Admin
-                                </a>
-                            </p>
-                        </div>
+
                     </form>
                 </div>
             </div>
-            <div class="auth-wrapper-right align-middle col-md-4 mx-auto">
-                <img src="<?= base_url(); ?>/img/ex-jumbotron-img.png" alt="" class="img-fluid auth-header-img">
+            <div class="auth-wrapper-right col-md-4 d-flex align-items-center">
+                <div class="container pt-3 my-5">
+                    <div class="row">
+                        <span class="">Anda harus memiliki akun SIAKAD terlebih dahulu yang dapat dimiliki oleh:
+                        </span>
+                        <ul>
+                            <li>
+                                Mahasiswa UNJ
+                            </li>
+                            <li>
+                                Dosen UNJ
+                            </li>
+                        </ul>
+                        <hr>
+                        <p class="text-muted small">
+                            Bukan diantaranya? <a href="<?= url_to('register') ?>"> <u>Klik Disini</u>
+                            </a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
