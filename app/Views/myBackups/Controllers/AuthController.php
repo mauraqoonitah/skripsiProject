@@ -7,6 +7,7 @@ use CodeIgniter\Session\Session;
 use Myth\Auth\Config\Auth as AuthConfig;
 use Myth\Auth\Entities\User;
 use Myth\Auth\Models\UserCheckModel;
+use App\Models\JenisRespondenModel;
 use Myth\Auth\Models\UserModel;
 
 class AuthController extends Controller
@@ -26,6 +27,8 @@ class AuthController extends Controller
 	 * @var Model
 	 */
 	protected $userCheckModel;
+	protected $jenisRespondenModel;
+
 
 
 	public function __construct()
@@ -44,6 +47,7 @@ class AuthController extends Controller
 		$this->mRequest = service("request");
 
 		$this->userCheckModel = new UserCheckModel();
+		$this->jenisRespondenModel = new JenisRespondenModel();
 	}
 
 	//--------------------------------------------------------------------
@@ -193,7 +197,7 @@ class AuthController extends Controller
 		];
 		$this->session->set($newdataUser);
 
-		$this->session->setFlashdata('message', 'Akun Anda dikenali.');
+		$this->session->setFlashdata('messageE', 'Akun Anda dikenali.');
 		// return $this->_render($this->config->views['register']);
 		return redirect()->to('register')->withInput();
 	}
@@ -219,8 +223,8 @@ class AuthController extends Controller
 	 */
 	public function register()
 	{
-		$array_items = ['nim', 'nidn'];
-		$this->session->remove($array_items);
+		// $array_items = ['nim', 'nidn'];
+		// $this->session->remove($array_items);
 
 		// check if already logged in.
 		if ($this->auth->check()) {
@@ -237,9 +241,9 @@ class AuthController extends Controller
 
 		$data = [
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($getSessNidn),
+			'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
 
 		];
-		// $userCheckByInput = $this->userCheckModel->getUserCheckByInput($getSessNim);
 		// dd($data['userCheckByInput']);
 		// return $this->_render($this->config->views['register'], ['config' => $this->config], $data);
 		return $this->_render($this->config->views['register'], $data);

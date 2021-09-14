@@ -53,6 +53,11 @@
                                         <label for="fullname" class="form-label">Nama Lengkap</label>
                                         <input type="text" class=" form-control form-control-user" name="fullname" value="<?= $user['namaLengkap']; ?>" readonly>
                                     </div>
+                                    <div class="form-group mb-3">
+                                        <!-- fullname -->
+                                        <label for="nidn" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class=" form-control form-control-user" name="nidn" value="<?= $user['nidn']; ?>" readonly>
+                                    </div>
 
                                     <div class="form-group mb-3">
                                         <!-- jenis responden siakad akun -->
@@ -166,15 +171,10 @@
                 <div class="form-group mb-3">
                     <label for="responden" class="form-label">Sebagai</label>
                     <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()">
-                        <option>Pilih..</option>
-                        <option value="Dosen">Dosen</option>
-                        <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
-                        <option value="Mahasiswa">Mahasiswa</option>
-                        <option value="Alumni/Lulusan">Alumni/Lulusan</option>
-                        <option value="Pengguna Lulusan">Alumni/Lulusan</option>
-                        <option value="Mitra">Mitra</option>
-                        <option value="Peneliti">Peneliti</option>
-                        <option value="Pengabdi">Pengabdi</option>
+                        <option>Pilih</option>
+                        <?php foreach ($jenisResponden as $r) : ?>
+                            <option value="<?= $r['responden']; ?>"><?= $r['responden']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                     <div class="invalid-feedback">
                         < ?=session('errors.role') ?>
