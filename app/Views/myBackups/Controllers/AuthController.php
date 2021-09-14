@@ -33,6 +33,7 @@ class AuthController extends Controller
 		// Most services in this controller require
 		// the session to be started - so fire it up!
 		$this->session = \Config\Services::session();
+		$this->validation =  \Config\Services::validation();
 
 		$this->session = service('session');
 
@@ -60,13 +61,10 @@ class AuthController extends Controller
 		// is already logged in.
 		if ($this->auth->check()) {
 			// $redirectURL = session('redirect_url') ?? base_url('admin');
-			if (['filter' => 'role:Admin']) {
-				$redirectURL = base_url('admin');
-			} else if (['filter' => 'role:Kontributor']) {
-				$redirectURL = base_url('admin');
-			} else if (['filter' => 'role:Dosen']) {
-				$redirectURL = base_url('responden');
+			if (['filter' => 'role:Admin,Kontributor']) {
+				$redirectURL = site_url('admin');
 			}
+			$redirectURL = site_url('responden');
 
 			unset($_SESSION['redirect_url']);
 
@@ -115,13 +113,10 @@ class AuthController extends Controller
 
 		// $redirectURL = session('redirect_url') ?? base_url('admin');
 		// $redirectURL = site_url('admin');
-		if (['filter' => 'role:Admin']) {
-			$redirectURL = base_url('admin');
-		} else if (['filter' => 'role:Kontributor']) {
-			$redirectURL = base_url('admin');
-		} else if (['filter' => 'role:Dosen']) {
-			$redirectURL = base_url('responden');
+		if (['filter' => 'role:Admin,Kontributor']) {
+			$redirectURL = site_url('admin');
 		}
+		$redirectURL = site_url('responden');
 
 		unset($_SESSION['redirect_url']);
 
@@ -177,18 +172,18 @@ class AuthController extends Controller
 			'nim' => [
 				'rules'  => 'is_unique[user_check.nim]',
 				'errors' => [
-					'is_unique' => 'Data Tidak Ditemukan.'
+					'is_unique' => 'Akun Anda tidak dikenali dan tidak dapat masuk saat ini.'
 				]
 			],
 			'nidn' => [
 				'rules'  => 'is_unique[user_check.nidn]',
 				'errors' => [
-					'is_unique' => 'Data Tidak Ditemukan.'
+					'is_unique' => 'Akun Anda tidak dikenali dan tidak dapat masuk saat ini.'
 				]
 			],
 		])) {
 			// if data in table doesn't exist
-			$this->session->setFlashdata('messageError', 'Data tidak ditemukan');
+			$this->session->setFlashdata('messageError', 'Akun Anda tidak dikenali dan tidak dapat masuk saat ini.');
 			return $this->_render($this->config->views['checkAkun'], $data);
 		}
 		// if data in table exist
@@ -198,12 +193,7 @@ class AuthController extends Controller
 		];
 		$this->session->set($newdataUser);
 
-		// unset(
-		// 	$_SESSION['getSessNim'],
-		// 	$_SESSION['getSessNidn']
-		// );
-
-		$this->session->setFlashdata('message', 'Data Akun SIAKAD ditemukan. Silakan lengkapi data diri anda.');
+		$this->session->setFlashdata('message', 'Akun Anda dikenali.');
 		// return $this->_render($this->config->views['register']);
 		return redirect()->to('register')->withInput();
 	}
@@ -229,6 +219,9 @@ class AuthController extends Controller
 	 */
 	public function register()
 	{
+		$array_items = ['nim', 'nidn'];
+		$this->session->remove($array_items);
+
 		// check if already logged in.
 		if ($this->auth->check()) {
 			return redirect()->back();
@@ -271,6 +264,7 @@ class AuthController extends Controller
 			'fullname' => 'required',
 			'email'    => 'required|valid_email|is_unique[users.email]',
 			'role'    => 'required',
+
 		];
 
 		if (!$this->validate($rules)) {
@@ -313,6 +307,9 @@ class AuthController extends Controller
 			// Success!
 			return redirect()->route('login')->with('message', lang('Auth.activationSuccess'));
 		}
+
+		$usernameRegistering = $this->mRequest->getVar('username');
+		$this->session->set('username', $usernameRegistering);
 
 		// Success!
 		return redirect()->route('login')->with('message', lang('Auth.registerSuccess'));

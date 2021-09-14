@@ -5,8 +5,8 @@
 
 <section>
     <div class="auth-page d-flex justify-content-center align-items-center">
-        <div class="auth-wrapper-lg">
-            <div class="auth-card row my-5">
+        <div class="<?= (isset($_SESSION['nim'])) ? 'auth-wrapper-lg' : ' auth-wrapper-sm '; ?>">
+            <div class="auth-card row my-5 auth-wrapper-left">
                 <div class="auth-wrapper-left col-12">
                     <div class="card-header py-3 px-4 container">
                         <div class="row">
@@ -15,11 +15,9 @@
                                     <img src=" <?= base_url(); ?>/img/unj.png" alt="unj" class="" style="width; 48px; height: 48px">
                                 </div>
                                 <h3 class="text-center">Registrasi</h3>
-                                <h5 class="text-muted text-center"> Daftar akun untuk mulai akses survei instrumen kepuasan</h5>
+                                <p class="text-muted text-center fs-6 fw-bold"> Daftar akun untuk mulai akses survei instrumen kepuasan</p>
                             </div>
                         </div>
-
-
                         <!-- flash success tambah data  -->
                         <?php if (session()->getFlashdata('message')) :  ?>
                             <div class="alert alert-success d-flex align-items-center fw-bold mt-2" role="alert">
@@ -36,10 +34,9 @@
                         <?php endif; ?>
                         <!-- ./ flash gagal tambah data  -->
                     </div>
-                    <span class="text-muted">on progress: pengecekan kondisi kalau ternyata user sudah pernah buat akun, langsung redirectnya ke page login, bukan page ini</span>
                 </div>
-                <div class=" auth-wrapper-left align-middle col-lg-6">
-                    <div class="card-body m-3">
+                <div class="auth-wrapper-left align-middle <?= (isset($_SESSION['nim'])) ? 'col-lg-6' : ' mx-auto col-lg-12 '; ?>">
+                    <div class=" card-body m-3">
                         <form action="<?= url_to('register') ?>" method="post" class="user">
                             <?= csrf_field() ?>
 
@@ -81,10 +78,6 @@
                                         <label for="programStudi" class="form-label">Program Studi</label>
                                         <input type="text" class=" form-control form-control-user" name="programStudi" id="programStudi" value="<?= $user['programStudi']; ?>" readonly>
                                     </div>
-
-
-
-
                     </div>
                     <!-- ./card-body -->
                 </div>
@@ -111,29 +104,6 @@
                             </div>
                         </div>
 
-
-                        <!-- jenis responden untuk non siakad-->
-                        <!-- <div class="form-group mb-3">
-                            <label for="responden" class="form-label">Sebagai</label>
-                            <select class="form-select < ?php if (session('errors.role')) : ?>is-invalid< ?php endif ?>" name="role" id="responden" onChange="getText()">
-                                <option>Pilih..</option>
-                                <option value="Dosen">Dosen</option>
-                                <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
-                                <option value="Mahasiswa">Mahasiswa</option>
-                                <option value="Alumni/Lulusan">Alumni/Lulusan</option>
-                                <option value="Pengguna Lulusan">Alumni/Lulusan</option>
-                                <option value="Mitra">Mitra</option>
-                                <option value="Peneliti">Peneliti</option>
-                                <option value="Pengabdi">Pengabdi</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                < ?= session('errors.role') ?>
-                            </div>
-
-                            <input type="hidden" name="role" id="respondenTxt" />
-
-                        </div> -->
-
                         <!-- password -->
                         <div class="form-group row mb-3">
                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -158,24 +128,100 @@
                                 <?= lang('Auth.register') ?>
                             </button>
                         </div>
-                        <!-- <hr>
-                        <div class="text-center pb-3">
-                            <p class="text-muted small">
-                                < ?= lang('Auth.alreadyRegistered') ?> <a href="< ?= url_to('login') ?>">< ?= lang('Auth.signIn') ?></a>
-                            </p>
-                        </div> -->
                     </div>
                 <?php endforeach; ?>
-            <?php else : ?>
-                <p>Ini nanti tampil form untuk responden lain yang tidak punya akun siakad</p>
-            <?php endif; ?>
+                </div>
+            </div>
+        <?php else : ?>
+            <!--  -------------- section untuk responden non siakad ----------------- -->
+            <section>
+                <?= view('Myth\Auth\Views\_message_block') ?>
+                <div class="form-group mb-3">
+                    <!-- email -->
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email">
+                    <div class="invalid-feedback">
+                        <?= session('errors.email') ?>
+                    </div>
                 </div>
 
-            </div>
+                <div class="form-group mb-3">
+                    <!-- fullname -->
+                    <label for="fullname" class="form-label">Nama Lengkap</label>
+                    <input type="text" class=" form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname">
+                    <div class="invalid-feedback">
+                        <?= session('errors.fullname') ?>
+                    </div>
+                </div>
+                <!-- username -->
+                <div class="form-group mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                    <div class="invalid-feedback">
+                        <?= session('errors.username') ?>
+                    </div>
+                </div>
 
+                <!-- jenis responden untuk non siakad -->
+                <div class="form-group mb-3">
+                    <label for="responden" class="form-label">Sebagai</label>
+                    <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()">
+                        <option>Pilih..</option>
+                        <option value="Dosen">Dosen</option>
+                        <option value="Tenaga Kependidikan">Tenaga Kependidikan</option>
+                        <option value="Mahasiswa">Mahasiswa</option>
+                        <option value="Alumni/Lulusan">Alumni/Lulusan</option>
+                        <option value="Pengguna Lulusan">Alumni/Lulusan</option>
+                        <option value="Mitra">Mitra</option>
+                        <option value="Peneliti">Peneliti</option>
+                        <option value="Pengabdi">Pengabdi</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        < ?=session('errors.role') ?>
+                    </div>
+
+                    <input type="hidden" name="role" id="respondenTxt" />
+
+                </div>
+
+                <!-- password -->
+                <div class="form-group row mb-3">
+                    <div class="col-sm-6 mb-3 mb-sm-0">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                        <div class="invalid-feedback">
+                            <?= session('errors.password') ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                        <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                        <div class="invalid-feedback">
+                            <?= session('errors.pass_confirm') ?>
+                        </div>
+                    </div>
+                    <div class="auth-wrapper-left col-12 mt-5">
+                        <div class="d-grid gap-2 ">
+                            <button type="submit" class="btn btn-cosmic btn-user btn-block">
+                                <?= lang('Auth.register') ?>
+                            </button>
+                        </div>
+                        <hr>
+                        <div class="text-center pb-3">
+                            <p class="text-muted small">
+                                Sudah punya akun? <a href="<?= url_to('login') ?>">
+                                    <?= lang('Auth.signIn') ?>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+            </section>
+        <?php endif; ?>
         </div>
     </div>
     </form>
+    <span class="text-muted">on progress: pengecekan kondisi kalau ternyata user sudah pernah buat akun(sdh ada di database), langsung redirectnya ke page login, bukan page ini</span>
+
 </section>
 
 <script type="text/javascript">

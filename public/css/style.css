@@ -337,6 +337,11 @@ footer {
     background: linear-gradient(to top, rgba(174, 67, 91, .8) 0%, rgba(122, 76, 117, .9) 50%);
 }
 
+.auth-wrapper-sm {
+    max-width: 540px;
+    margin: 0 auto;
+}
+
 .auth-wrapper {
     max-width: 780px;
     margin: 0 auto;

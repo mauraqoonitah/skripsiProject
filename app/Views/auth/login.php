@@ -13,7 +13,7 @@
                             </div>
                             <div class="col-10">
                                 <h3 class="">Masuk</h3>
-                                <span class="text-muted"> untuk mulai akses survei instrumen kepuasan</span>
+                                <span class="text-muted text-center fs-6 fw-bold"> untuk mulai akses survei instrumen kepuasan</span>
                             </div>
                         </div>
                     </div>
@@ -25,16 +25,18 @@
                     <form action="<?= url_to('login') ?>" method="post" class="user">
                         <?= csrf_field() ?>
 
-                        <div class="form-group mb-3">
-                            <input type="text" class="form-control form-control-user rounded-pill <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Username" value="">
+                        <!-- username -->
+                        <div class="form-floating mb-3 pl-2">
+                            <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Username">
+                            <label for="login" class="text-muted">Username</label>
                             <div class="invalid-feedback">
                                 <?= session('errors.login') ?>
                             </div>
                         </div>
-
-
-                        <div class="form-group mb-3">
-                            <input type="password" name="password" class="form-control form-control-user rounded-pill <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
+                        <!-- password -->
+                        <div class="form-floating mb-3 pl-2">
+                            <input type="password" name="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
+                            <label for="password" class="text-muted">Password</label>
                             <div class="invalid-feedback">
                                 <?= session('errors.password') ?>
                             </div>
@@ -50,7 +52,7 @@
                         <?php endif; ?>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn btn-cosmic btn-user btn-block rounded-pill "><?= lang('Auth.loginAction') ?></button>
+                            <button type="submit" class="btn btn-cosmic btn-user btn-block "><?= lang('Auth.loginAction') ?></button>
                         </div>
                     </form>
                     <hr>
