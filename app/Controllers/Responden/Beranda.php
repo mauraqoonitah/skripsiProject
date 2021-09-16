@@ -6,17 +6,21 @@ use App\Controllers\BaseController;
 
 use App\Models\InstrumenModel;
 use App\Models\RespondenModel;
+use App\Models\PernyataanModel;
 
 class Beranda extends BaseController
 {
     protected $instrumenModel;
     protected $respondenModel;
+    protected $pernyataanModel;
+
 
     public function __construct()
     {
         $this->mRequest = service("request");
         $this->instrumenModel = new InstrumenModel();
         $this->respondenModel = new RespondenModel();
+        $this->pernyataanModel = new PernyataanModel();
     }
 
     public function index()
@@ -24,14 +28,11 @@ class Beranda extends BaseController
         $role = user()->role;
 
         $data = [
-            'title' => 'Beranda - Pilih Instrumen',
+            'title' => 'Pilih Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($role),
 
         ];
-        $instrumenByResponden = $data['instrumenByResponden'];
-
-
         return view('responden/berandaResponden', $data);
     }
     public function pilihInstrumen($id)
@@ -49,30 +50,26 @@ class Beranda extends BaseController
         return view('responden/isiDataDiri', $data);
     }
 
-    public function saveDataDiri()
-    {
-        $this->respondenModel->save(
-            [
-                'nama' => $this->mRequest->getVar('nama')
-
-            ]
-        );
-        session()->setFlashdata('insertDataDiri', 'Data berhasil ditambah');
-
-        return redirect()->to('/responden/isiSurvei');
-    }
-
-
-    public function isiSurvei()
+    public function isiSurvei($id)
     {
         $data = [
             'title' => 'Isi Survei',
-            'instrumen' => $this->instrumenModel->getInstrumen(),
+            'instrumen' => $this->instrumenModel->getInstrumen($id),
+            'lihatPernyataan' => $this->pernyataanModel->getPernyataanByInstrumenID($id),
+            'pernyataan' => $this->pernyataanModel->getPernyataan($id),
 
             'validation' => \Config\Services::validation()
 
 
         ];
+        // jika butir tidak ada di database
+        if (empty($data['instrumen'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Instrumen Tidak ditemukan.');
+        }
+        // if (empty($data['lihatPernyataan'])) {
+        //     throw new \CodeIgniter\Exceptions\PageNotFoundException('Butir Pernyataan Tidak ditemukan.');
+        // }
+
         return view('responden/isiSurvei', $data);
     }
 }

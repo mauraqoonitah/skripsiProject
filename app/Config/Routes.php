@@ -126,7 +126,7 @@ $routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filte
 
 $routes->get('/responden/isiSurvei/(:any)', 'Responden\Beranda::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
-$routes->get('/responden/instrumen/(:any)', 'Responden\Beranda::pilihInstrumen/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+// $routes->get('/responden/instrumen/(:any)', 'Responden\Beranda::pilihInstrumen/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 $routes->get('/responden/saveDataDiri', 'Responden\Beranda::saveDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
 

@@ -14,16 +14,13 @@
         </div>
     </div>
     <!-- /.content-header -->
-
-
-    <p>instrumen <?= $instrumen['id']; ?><br>
+    <p>instrumen id <?= $instrumen['id']; ?><br>
         <?= $instrumen['namaInstrumen']; ?> </p>
-
     <!-- Main content -->
     <section class="content">
         <div class="container">
             <div class="card p-5 col-lg-8 mx-auto">
-                <form action="<?= base_url(); ?>/responden/beranda/saveDataDiri" method="post">
+                <form action="" method="post">
                     <?= csrf_field(); ?>
                     <!-- coba mau masukin ke kolom nama pake isi nya namainstrumen yg dipilih sebelumnya -->
                     <input type="hidden" id="nama" name="nama" value=" <?= $instrumen['namaInstrumen']; ?>">

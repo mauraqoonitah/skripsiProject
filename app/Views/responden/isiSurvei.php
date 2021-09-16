@@ -1,17 +1,17 @@
 <?= $this->extend('responden/templates/index'); ?>
 
 <?= $this->section('responden-body-content'); ?>
+
 <div class="content-wrapper py-5" style="min-height: 80vh;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
             <div class="row mb-2 mt-4 mb-5">
-                <div class="col-lg-8 mx-auto text-center">
+                <div class="col-lg-12 mx-auto text-center">
                     <h1 class="purple-text"> Isi Kuesioner
-                        <br><small class="text-muted">Instrumen Kepuasan [nama instrumen] </small>
                     </h1>
+                    <p class="fs-5 fw-bold"><?= $instrumen['kodeInstrumen']; ?> - <?= $instrumen['namaInstrumen']; ?> </p>
                 </div>
-
             </div>
         </div>
     </div>
@@ -58,191 +58,91 @@
 
                     <div class="card">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold">Kode Instrumen - Nama Instrumen </h6>
+                            <h6 class="m-0 font-weight-bold"><?= $instrumen['kodeInstrumen']; ?> - <?= $instrumen['namaInstrumen']; ?></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive-sm">
-                                <table id="example2" class="table table-bordered table-hover align-middle ">
-                                    <thead class="table-light ">
+                                <?php $i = 1; ?>
+                                <!-- jika butir pernyataan tidak ada -->
+                                <?php if (sizeof($lihatPernyataan) === 0) : ?>
+                                    <div class="alert alert-rouge alert-dismissible fade show" role="alert">
+                                        <span class="text-rouge"><strong>Oops! </strong> butir pernyataan belum ditambahkan.</span>
+                                    </div>
+                                    <div class="card-footer clearfix">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="<?= base_url(); ?>/responden">
+                                                <button type="submit" class="btn btn-outline-dark mr-3">
+                                                    <i class="fas fa-chevron-left mr-3"></i> Kembali
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php else :  ?>
+                                    <table id="example2" class="table table-bordered table-hover align-middle ">
+                                        <thead class="table-light ">
+                                            <tr>
+                                                <th rowspan="2" style="width: 10px">No.</th>
+                                                <th rowspan="2">Kriteria Kepuasan</th>
+                                                <th colspan="5" class="text-center">Tingkat Kepuasan</th>
+                                            </tr>
+                                            <tr>
+                                                <th style="width: 50px">5</th>
+                                                <th style="width: 50px">4</th>
+                                                <th style="width: 50px">3</th>
+                                                <th style="width: 50px">2</th>
+                                                <th style="width: 50px">1</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- jika butir pernyataan ada -->
+                                            <?php foreach ($lihatPernyataan as $butir) : ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $i++; ?></td>
+                                                    <td>
+                                                        <?= $butir['butir']; ?></td>
 
-                                        <tr>
-                                            <th rowspan="2" style="width: 10px">No.</th>
-                                            <th rowspan="2">Kriteria Kepuasan</th>
-                                            <th colspan="5" class="text-center">Tingkat Kepuasan</th>
-                                        </tr>
-                                        <tr>
-                                            <th style="width: 50px">5</th>
-                                            <th style="width: 50px">4</th>
-                                            <th style="width: 50px">3</th>
-                                            <th style="width: 50px">2</th>
-                                            <th style="width: 50px">1</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Butir Pernyataan 1
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Butir Pernyataan 2
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Butir Pernyataan 3
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Butir Pernyataan 4
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Butir Pernyataan 5</td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="" id="">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot class="table-light">
-                                        <tr>
-                                            <th rowspan="2" style="width: 10px">No.</th>
-                                            <th rowspan="2">Kriteria Kepuasan</th>
-                                            <th style="width: 12px">5</th>
-                                            <th style="width: 12px">4</th>
-                                            <th style="width: 12px">3</th>
-                                            <th style="width: 12px">2</th>
-                                            <th style="width: 12px">1</th>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="" id="">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="" id="">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="" id="">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="" id="">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="" id="">
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                        <tfoot class="table-light">
+                                            <tr>
+                                                <th rowspan="2" style="width: 10px">No.</th>
+                                                <th rowspan="2">Kriteria Kepuasan</th>
+                                                <th style="width: 12px">5</th>
+                                                <th style="width: 12px">4</th>
+                                                <th style="width: 12px">3</th>
+                                                <th style="width: 12px">2</th>
+                                                <th style="width: 12px">1</th>
 
-                                        </tr>
+                                            </tr>
 
-                                    </tfoot>
-                                </table>
+                                        </tfoot>
+                                    </table>
                             </div>
                         </div>
                         <div class="card-footer clearfix py-5">
@@ -259,6 +159,7 @@
                             </div>
                         </div>
                         <!-- /.card-body -->
+                    <?php endif; ?>
                     </div>
 
                 </div>
