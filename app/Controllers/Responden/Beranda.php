@@ -7,12 +7,16 @@ use App\Controllers\BaseController;
 use App\Models\InstrumenModel;
 use App\Models\RespondenModel;
 use App\Models\PernyataanModel;
+use App\Models\ResponseModel;
+
 
 class Beranda extends BaseController
 {
     protected $instrumenModel;
     protected $respondenModel;
     protected $pernyataanModel;
+    protected $responseModel;
+
 
 
     public function __construct()
@@ -21,6 +25,7 @@ class Beranda extends BaseController
         $this->instrumenModel = new InstrumenModel();
         $this->respondenModel = new RespondenModel();
         $this->pernyataanModel = new PernyataanModel();
+        $this->responseModel = new ResponseModel();
     }
 
     public function index()
@@ -71,5 +76,23 @@ class Beranda extends BaseController
         // }
 
         return view('responden/isiSurvei', $data);
+    }
+
+    public function saveSurvei()
+    {
+        // $jawaban = $this->mRequest->getVar('checkbox-jawaban');
+
+        $data =
+            [
+                'jawaban' => $this->mRequest->getVar('checkbox-jawaban'),
+                'questionID' => $this->mRequest->getVar('questionID'),
+                'slugCategory' => $this->mRequest->getVar('slug'),
+                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+            ];
+        $this->responseModel->save($data);
+
+        session()->setFlashdata('message', 'Terimakasih. Jawaban Survei berhasil dikirim!');
+
+        return redirect()->to('responden');
     }
 }

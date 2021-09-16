@@ -122,12 +122,15 @@ $routes->get('/responden', 'Responden\Beranda::index', ['filter' => 'role:Admin,
 
 $routes->get('/responden/index', 'Responden\Beranda::index', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
-$routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+// $routes->get('/responden/isiDataDiri', 'Responden\Beranda::isiDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
 $routes->get('/responden/isiSurvei/(:any)', 'Responden\Beranda::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+$routes->post('/responden/saveSurvei/(:any)', 'Responden\Beranda::saveSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+
 
 // $routes->get('/responden/instrumen/(:any)', 'Responden\Beranda::pilihInstrumen/$1', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
-$routes->get('/responden/saveDataDiri', 'Responden\Beranda::saveDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
+
+// $routes->get('/responden/saveDataDiri', 'Responden\Beranda::saveDataDiri', ['filter' => 'role:Admin,Kontributor,Dosen, Tenaga Pendidik, Mahasiswa, Alumni/Lulusan, Mitra, Peneliti, Pengabdi']);
 
 
 
