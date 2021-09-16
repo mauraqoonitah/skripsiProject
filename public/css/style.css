@@ -101,7 +101,7 @@ tr {
 
 footer {
     /* place on the bottom */
-    position: sticky;
+    /* position: sticky; */
     bottom: 0;
     left: 0;
     width: 100%;
@@ -488,6 +488,8 @@ nav ul li a:hover {
     justify-content: flex-end;
     align-items: center;
     padding: 20px;
+    max-width: 85%;
+    margin: 0 auto;
 }
 
 .circle-clip-path {
@@ -547,7 +549,7 @@ nav ul li a:hover {
 
 @media (max-width: 767.98px) {
     .navbar {
-        padding: 12px;
+        margin: 12px;
     }
     nav ul li a {
         padding: 0;

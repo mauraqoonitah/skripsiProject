@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row mb-4">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="text-cosmic" data-aos="zoom-in-up" data-aos-delay="1000"> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
+                    <h1 class="text-cosmic" data-aos="zoom-in-up" data-aos-delay="500"> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
 
                 </div>
 

@@ -47,8 +47,8 @@
 
         easeBox.forEach((div, i) => {
             div.dataset.aos = 'zoom-in-down';
-            div.dataset.aosDelay = i * 100;
-            div.dataset.aosDuration = 800;
+            div.dataset.aosDelay = i * 40;
+            div.dataset.aosDuration = 600;
 
         });
         AOS.init();

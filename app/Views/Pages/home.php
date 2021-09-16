@@ -7,19 +7,19 @@
         <div class="container">
             <div class="textBox">
                 <!-- using gsap animation -->
-                <h2 class="lead-heading" data-aos="zoom-in-right" data-aos-duration="2000"> <span> </span>
+                <h2 class="lead-heading" data-aos="zoom-in-right" data-aos-duration="500"> <span> </span>
                     <br>Sistem Penjaminan Mutu Internal<br>
                 </h2>
                 <div class="col-lg-12 col-md-10 col-sm-10">
 
                     <!-- carousel -->
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators" style="top: 100%; margin-top: 1rem;" data-aos="zoom-in-right" data-aos-delay="1000">
+                        <div class="carousel-indicators" style="top: 100%; margin-top: 1rem;" data-aos="zoom-in-right" data-aos-delay="500">
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="margin-top: 2rem;"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style="margin-top: 2rem;"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style="margin-top: 2rem;"></button>
                         </div>
-                        <div class="carousel-inner p-2" data-aos="zoom-in-right" data-aos-delay="1000" data-aos-duration="2000">
+                        <div class="carousel-inner p-2" data-aos="zoom-in-right" data-aos-delay="500" data-aos-duration="2000">
                             <div class="carousel-item active" data-bs-interval="5000">
                                 <div class="d-md-block">
                                     <p>Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
@@ -53,12 +53,12 @@
                     </div>
                     <!-- ./carousel -->
                 </div>
-                <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="2000">
+                <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="1000">
                     <button type="button" class="btn btn-jumbotron btn-purple">Isi Survei</button>
                 </a>
             </div>
         </div>
-        <div class="imgBox" data-aos="zoom-in-up" data-aos-duration="2000">
+        <div class="imgBox" data-aos="zoom-in-up" data-aos-duration="1000">
             <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" class="img-fluid jumbotron-image">
         </div>
     </div>
