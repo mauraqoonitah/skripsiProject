@@ -59,7 +59,7 @@
                     <div class="text-center">
                         <?php if ($config->allowRegistration) : ?>
                             <p class="text-muted small">
-                                Belum punya akun? <a href="<?= url_to('checkAkun') ?>"><?= lang('Auth.register') ?>
+                                Belum punya akun? <a href="<?= url_to('checkAkun') ?>"><u><?= lang('Auth.register') ?></u>
                                 </a>
                             </p>
                         <?php endif; ?>

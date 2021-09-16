@@ -29,6 +29,8 @@ class Beranda extends BaseController
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($role),
 
         ];
+        $instrumenByResponden = $data['instrumenByResponden'];
+
 
         return view('responden/berandaResponden', $data);
     }

@@ -28,7 +28,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <?php foreach ($instrumenByResponden as $ins) : ?>
+                    <?php
+                    foreach ($instrumenByResponden as $ins) : ?>
                         <a href="<?= base_url(); ?>/responden/instrumen/<?= $ins['id']; ?>" data-aos="fade-down" data-aos-duration="1500">
                             <div class="row mb-4 mx-auto">
                                 <div class="pilih-inst">
@@ -37,6 +38,13 @@
                             </div>
                         </a>
                     <?php endforeach; ?>
+                    <?php if (sizeof($instrumenByResponden) === 0) : ?>
+                        <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
+                            <div class="pilih-inst fst-italic text-rouge fw-bold fs-6">
+                                Maaf, data instrumen untuk responden <?= user()->role; ?> tidak ditemukan.
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             </div>
