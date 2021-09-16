@@ -291,9 +291,12 @@ class AuthController extends Controller
 
 		$this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
 
+		$role = $this->mRequest->getVar('role');
 		// Ensure default group gets assigned if set
 		if (!empty($this->config->defaultUserGroup)) {
 			$users = $users->withGroup($this->config->defaultUserGroup);
+		} else {
+			$users = $users->withGroup($role);
 		}
 
 		if (!$users->save($user)) {
