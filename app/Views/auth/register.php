@@ -144,7 +144,7 @@
                 <div class="form-group mb-3">
                     <!-- email -->
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email">
+                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
                     <div class="invalid-feedback">
                         <?= session('errors.email') ?>
                     </div>
@@ -153,7 +153,7 @@
                 <div class="form-group mb-3">
                     <!-- fullname -->
                     <label for="fullname" class="form-label">Nama Lengkap</label>
-                    <input type="text" class=" form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname">
+                    <input type="text" class=" form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname" value="<?= old('fullname') ?>">
                     <div class="invalid-feedback">
                         <?= session('errors.fullname') ?>
                     </div>
@@ -170,7 +170,7 @@
                 <!-- jenis responden untuk non siakad -->
                 <div class="form-group mb-3">
                     <label for="responden" class="form-label">Sebagai</label>
-                    <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()">
+                    <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>">
                         <option>Pilih</option>
                         <?php foreach ($jenisResponden as $r) : ?>
                             <option value="<?= $r['responden']; ?>"><?= $r['responden']; ?></option>

@@ -49,7 +49,7 @@
 
             <div class="card">
                 <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
-                    <h5> Kategori Instrumen </h5>
+                    <h5> Kategori </h5>
                     <!-- Button trigger modal -->
                     <a data-bs-toggle="modal" data-bs-target="#modal-tambah-instrumen" class="ml-auto">
                         <button type="button" class="btn btn-rouge text-white">
@@ -134,8 +134,7 @@
                                                 <div class="card-header text-rouge d-flex align-items-center mb-3">
                                                     <div class="row">
                                                         <div class="col-lg-12">
-                                                            <span class="fw-bold"><?= $ctg['kodeCategory']; ?> - <?= $ctg['namaCategory']; ?></span>
-
+                                                            <span class="fw-bold">Kategori <?= $ctg['kodeCategory']; ?> </span>
                                                             <!-- aksi kategori -->
                                                             <div class="btn-group" role="group">
                                                                 <form method="post" action="<?= base_url(); ?>/admin/editKategori_/<?= $ctg['slug']; ?>">
@@ -188,7 +187,9 @@
                                                             <!-- content collapse - instrumen  -->
                                                             <div class="collapse" id="collapse-slug-<?= $ctg['slug']; ?>">
                                                                 <div class="card border border-white">
-
+                                                                    <div class="card-header text-rouge d-flex align-items-center">
+                                                                        <span class="fw-bold">List Instrumen pada Kategori <?= $ctg['kodeCategory']; ?> </span>
+                                                                    </div>
                                                                     <div class="card-body">
                                                                         <table class="table table-hover table-responsive">
                                                                             <thead>
@@ -265,6 +266,7 @@
                                                                                 <i class=" fas fa-plus"></i> Tambah Instrumen
                                                                             </button></a>
                                                                     </div>
+
                                                                 </div>
                                                             </div>
                                                             <!-- content collapse - instrumen  -->

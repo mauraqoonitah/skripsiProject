@@ -16,7 +16,7 @@
                     </ol>
                 </div>
                 <!-- back to previous page -->
-                <a href="<?= base_url(); ?>/admin/kelola-survei/kategori_">
+                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>
 
@@ -39,8 +39,8 @@
 
                             <!-- nama kategori -->
                             <div class="form-group">
-                                <label for="namaCategory" class="col-form-label">Judul Kategori:</label>
-                                <input type="text" class="form-control  <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= (old('namaCategory')) ? old('namaCategory') : $category['namaCategory']; ?> ">
+                                <label for="namaCategory" class="col-form-label">Nama Kategori:</label>
+                                <input type="text" class="form-control  <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= (old('namaCategory')) ? old('namaCategory') : $category['namaCategory']; ?>">
                                 <div class=" invalid-feedback">
                                     <?= $validation->getError('namaCategory'); ?>
                                 </div>
@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label for="kodeCategory" class="col-form-label">Kode Kategori:</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= (old('kodeCategory')) ? old('kodeCategory') : $category['kodeCategory']; ?> ">
+                                    <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= (old('kodeCategory')) ? old('kodeCategory') : $category['kodeCategory']; ?>">
                                     <div class=" invalid-feedback">
                                         <?= $validation->getError('kodeCategory'); ?>
                                     </div>

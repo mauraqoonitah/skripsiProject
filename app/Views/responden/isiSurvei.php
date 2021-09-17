@@ -60,7 +60,7 @@
                                         <div class="card-footer clearfix">
                                             <div class="d-flex justify-content-center">
                                                 <a href="<?= base_url(); ?>/responden">
-                                                    <button type="submit" class="btn btn-outline-dark mr-3">
+                                                    <button type="button" class="btn btn-outline-dark mr-3">
                                                         <i class="fas fa-chevron-left mr-3"></i> Kembali
                                                     </button>
                                                 </a>
@@ -95,7 +95,7 @@
                                                         <?php for ($x = 0; $x < 5; $x++) :  ?>
                                                             <td>
                                                                 <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="checkbox-jawaban" id="checkbox-butir" value="<?= $v--; ?>">
+                                                                    <input class="form-check-input" type="radio" name="checkbox-jawaban" id="checkbox-butir-<?= $butir['id'] ?>" value="<?= $v--; ?>">
                                                                 </div>
                                                             </td>
                                                         <?php endfor; ?>

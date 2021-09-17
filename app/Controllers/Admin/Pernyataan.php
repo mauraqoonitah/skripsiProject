@@ -70,7 +70,6 @@ class Pernyataan extends BaseController
             'instrumen' => $this->instrumenModel->getInstrumen($id),
 
         ];
-
         return view('admin/kelola-survei/edit_pernyataan', $data);
     }
 
@@ -84,7 +83,7 @@ class Pernyataan extends BaseController
             ]
         );
 
-        session()->setFlashdata('message', 'Data instrumen berhasil diubah');
+        session()->setFlashdata('message', 'Data Pertanyaan berhasil diubah');
 
         return redirect()->to('/admin/editPernyataan/' . $id);
     }

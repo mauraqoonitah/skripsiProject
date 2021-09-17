@@ -92,7 +92,7 @@ class Instrumen_ extends BaseController
 
         session()->setFlashdata('message', 'Data instrumen berhasil diubah');
 
-        return redirect()->to('/admin/kelola-survei/instrumen');
+        return redirect()->to('/admin/kelola-survei/instrumen_');
     }
     public function tambahInstrumen_($slug)
     {

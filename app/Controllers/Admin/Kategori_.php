@@ -80,10 +80,10 @@ class Kategori_ extends BaseController
     {
         // validasi input
         if (!$this->validate([
-            'peruntukkanCategory' => [
+            'namaInstrumen' => [
                 'rules'  => 'required',
                 'errors' => [
-                    'required' => 'Responden harus diisi.',
+                    'required' => 'Nama Instrumen harus diisi.',
                 ]
             ],
         ])) {
@@ -111,7 +111,7 @@ class Kategori_ extends BaseController
 
         session()->setFlashdata('message', 'Data kategori berhasil diubah');
 
-        return redirect()->to('/admin/kelola-survei/kategori_');
+        return redirect()->to('/admin/kelola-survei/instrumen_');
     }
     public function tambahKategori_()
     {

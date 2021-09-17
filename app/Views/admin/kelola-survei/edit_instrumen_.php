@@ -23,6 +23,10 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+    <!-- flash success tambah data  -->
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+    <!-- ./ flash success tambah data  -->
+
 
     <!-- Main content -->
     <section class="content col-lg-10 mx-auto">
@@ -38,19 +42,19 @@
                         <!-- nama instrumen -->
                         <div class="form-group">
                             <label for="nama-instrumen" class="col-form-label">Nama instrumen:</label>
-                            <input type="text" class="form-control" id="nama-instrumen" name="namaInstrumen" value="<?= (old('namaInstrumen')) ? old('namaInstrumen') : $instrumen['namaInstrumen']; ?> ">
+                            <input type="text" class="form-control" id="nama-instrumen" name="namaInstrumen" value="<?= (old('namaInstrumen')) ? old('namaInstrumen') : $instrumen['namaInstrumen']; ?>">
                         </div>
                         <!-- kode instrumen -->
                         <div class="form-group">
                             <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kode-instrumen" name="kodeInstrumen" value="<?= (old('kodeInstrumen')) ? old('kodeInstrumen') : $instrumen['kodeInstrumen']; ?> ">
+                                <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kode-instrumen" name="kodeInstrumen" value="<?= (old('kodeInstrumen')) ? old('kodeInstrumen') : $instrumen['kodeInstrumen']; ?>">
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('kodeInstrumen'); ?>
                                 </div>
 
                                 <!-- input kode category -->
-                                <input type="hidden" class="form-control" name="kodeCategory" value="<?= $instrumen['kodeCategory']; ?> ">
+                                <input type="hidden" class="form-control" name="kodeCategory" value="<?= $instrumen['kodeCategory']; ?>">
                                 <!-- ./input kode category -->
 
                                 <!-- popover -->

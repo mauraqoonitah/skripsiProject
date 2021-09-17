@@ -51,6 +51,20 @@
                             </div>
                             <!--  ./kode kategori -->
                     </div>
+                    <!-- kode instrumen -->
+                    <div class="form-group">
+                        <div class="mb-3 row">
+                            <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
+
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('kodeInstrumen'); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ./kode instrumen -->
 
                     <!-- PILIH nama instrumen -->
                     <div class="form-group">
@@ -58,7 +72,7 @@
                             <label for="namaInstrumen" class="col-form-label">Nama instrumen:</label>
 
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><?= $category['namaCategory']; ?> oleh : </span>
+                                <span class="input-group-text"><?= $category['namaCategory']; ?> oleh </span>
                                 <select class="form-select form-select-lg <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" name="namaInstrumen" id="peruntukkanIns" onChange="getText()">
                                     <?php
                                     $db = db_connect();
@@ -86,23 +100,7 @@
                     </div>
                     <!-- ./PILIH nama instrumen -->
 
-                    <!-- kode instrumen -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
 
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><?= $category['kodeCategory']; ?>.</span>
-                                <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2">
-                                <div class=" invalid-feedback">
-                                    <?= $validation->getError('kodeInstrumen'); ?>
-                                </div>
-                            </div>
-
-                            <small>INI kalo is-invalid, dia tabnya gamau kebuka, mending diganti aja jadi yang tabcontent nya itu digimanain gitu, ini nanti auto tulis 2 huruf depan dari kode nya misal kalo dia pilih kode kategori 3, berarti masukin 1 angka depan hrs default dan pakein titik. --> 3. (isi) gitu</small>
-                        </div>
-                    </div>
-                    <!-- ./kode instrumen -->
 
                     <div class="d-flex align-items-center ">
                         <button type="submit" class="btn btn-success ml-auto mt-3">
