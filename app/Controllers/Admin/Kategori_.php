@@ -75,6 +75,16 @@ class Kategori_ extends BaseController
         $peruntukkanCategory = $this->mRequest->getPost('peruntukkanCategory');
         $slug = url_title($this->mRequest->getPost('kodeCategory'), '-', true);
         $oldSelectedResponden = $this->adminModel->getSelectedResponden($slug);
+        $sizeSlug = $this->adminModel->sizeSlug($slug);
+
+        for ($i = 0; $i < $sizeSlug; $i++) {
+
+            $data[] = array(
+                'slug' => $slug,
+                'namaCategory' => $this->mRequest->getVar('namaCategory'),
+            );
+            $this->adminModel->updateBatch($data, 'slug');
+        }
 
         $old_responden = [];
         // get selected value (old data)
