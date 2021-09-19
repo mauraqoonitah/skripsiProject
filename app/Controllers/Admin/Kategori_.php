@@ -72,35 +72,49 @@ class Kategori_ extends BaseController
 
     public function updateKategori_($slug)
     {
-
-
-        $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
-        $kodeCategory = $this->mRequest->getVar('kodeCategory');
+        $peruntukkanCategory = $this->mRequest->getPost('peruntukkanCategory');
         $slug = url_title($this->mRequest->getPost('kodeCategory'), '-', true);
-        $namaCategory = $this->mRequest->getVar('namaCategory');
-        $sizeSlug = $this->adminModel->sizeSlug($slug);
+        $oldSelectedResponden = $this->adminModel->getSelectedResponden($slug);
 
-        //update data by adding new checkbox value
-        // looping sebanyak jumlah slug di database
-
-
-        for ($i = 0; $i < $sizeSlug; $i++) {
-
-            $data[] = array(
-                // 'kodeCategory' => $kodeCategory,
-                'slug' => $slug,
-                // 'namaCategory' => $namaCategory,
-                'peruntukkanCategory' => $peruntukkanCategory[$i],
-            );
+        $old_responden = [];
+        // get selected value (old data)
+        foreach ($oldSelectedResponden as $selected_data) {
+            $old_responden[] = $selected_data['peruntukkanCategory'];
         }
 
-        $this->adminModel->updateBatch($data, 'slug');
+        //ADDED - ambil new insert nya
+        foreach ($peruntukkanCategory as $add_val) {
+            if (!in_array($add_val, $old_responden)) {
+                $data = [
+                    'slug' => $slug,
+                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                    'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                    'peruntukkanCategory' => $add_val,
+                ];
+                // var_dump($add_val . " ADDED <br>");
+                $this->adminModel->insert($data);
+            }
+        }
 
+        //REMOVED - ambil data yang di remove
+        foreach ($old_responden as $remove_val) {
+            if (!in_array($remove_val, $peruntukkanCategory)) {
 
-        session()->setFlashdata('message', 'Data kategori berhasil diubah');
+                $data = [
+                    'slug' => $slug,
+                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                    'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                    'peruntukkanCategory' => $remove_val,
+                ];
+                // var_dump($remove_val . " REMOVED <br>");
+                $this->adminModel->where($data)->delete();
+            }
+        }
+        session()->setFlashdata('message', ' berhasil edit responden');
 
         return redirect()->to('/admin/kelola-survei/instrumen_');
     }
+
     public function tambahKategori_()
     {
         $data = [

@@ -9,8 +9,8 @@ class AdminModel extends Model
 {
     protected $table      = 'category_instrumen';
     protected $userTimestamps = true;
-    protected $allowedFields = ['slug', 'namaCategory', 'kodeCategory', 'peruntukkanCategory'];
-
+    protected $allowedFields = ['id', 'slug', 'namaCategory', 'kodeCategory', 'peruntukkanCategory'];
+    protected $primaryKey = 'id';
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
 

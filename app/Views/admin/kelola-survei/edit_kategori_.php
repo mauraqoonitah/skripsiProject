@@ -58,67 +58,66 @@
                         <strong> <?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?></strong>
                     </div>
                     <div class="card-body">
-                        <div class="modal-body">
 
-                            <!-- nama kategori -->
-                            <div class="form-group">
-                                <label for="namaCategory" class="col-form-label">Nama Kategori:</label>
-                                <input type="text" class="form-control  <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= (old('namaCategory')) ? old('namaCategory') : $category['namaCategory']; ?>">
+                        <!-- nama kategori -->
+                        <div class="form-group">
+                            <label for="namaCategory" class="col-form-label">Nama Kategori:</label>
+                            <input type="text" class="form-control  <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= (old('namaCategory')) ? old('namaCategory') : $category['namaCategory']; ?>">
+                            <div class=" invalid-feedback">
+                                <?= $validation->getError('namaCategory'); ?>
+                            </div>
+                        </div>
+
+                        <!-- kode kategori -->
+                        <div class="form-group">
+                            <label for="kodeCategory" class="col-form-label">Kode Kategori:</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= (old('kodeCategory')) ? old('kodeCategory') : $category['kodeCategory']; ?>">
                                 <div class=" invalid-feedback">
-                                    <?= $validation->getError('namaCategory'); ?>
+                                    <?= $validation->getError('kodeCategory'); ?>
                                 </div>
+                                <!-- popover -->
+                                <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
+                                    <i class="fas fa-info"></i>
+                                </span>
                             </div>
-
-                            <!-- kode kategori -->
-                            <div class="form-group">
-                                <label for="kodeCategory" class="col-form-label">Kode Kategori:</label>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= (old('kodeCategory')) ? old('kodeCategory') : $category['kodeCategory']; ?>">
-                                    <div class=" invalid-feedback">
-                                        <?= $validation->getError('kodeCategory'); ?>
-                                    </div>
-                                    <!-- popover -->
-                                    <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
-                                        <i class="fas fa-info"></i>
-                                    </span>
-                                </div>
-                                <div class="collapse" id="popover-kode-kategori">
-                                    <p class="font-monospace text-secondary">
-                                        test popover - Masukkan kode kategori
-                                    </p>
-                                </div>
-                                <!-- end popover -->
+                            <div class="collapse" id="popover-kode-kategori">
+                                <p class="font-monospace text-secondary">
+                                    test popover - Masukkan kode kategori
+                                </p>
                             </div>
-                            <!-- peruntukkan kategori -->
-                            <div class="form-group">
-                                <label for="peruntukkanCategory" class="col-form-label">Responden:</label>
-                                <div class="form-text m-0 p-0">Pilih responden yang dapat mengisi kuesioner pada kategori ini</div><br>
+                            <!-- end popover -->
+                        </div>
+                        <!-- peruntukkan kategori -->
+                        <div class="form-group">
+                            <label for="peruntukkanCategory" class="col-form-label">Responden:</label>
+                            <div class="form-text m-0 p-0">Pilih responden yang dapat mengisi kuesioner pada kategori ini</div><br>
 
 
-                                <!--  list of checked peruntukkancategory -->
-                                <?php $db = db_connect();
-                                $slug = $category['slug'];
-                                $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
-                                $peruntukkan =  $db->query($sql, [$slug]);
-                                ?>
+                            <!--  list of checked peruntukkancategory -->
+                            <?php $db = db_connect();
+                            $slug = $category['slug'];
+                            $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
+                            $peruntukkan =  $db->query($sql, [$slug]);
+                            ?>
 
-                                <!--  ./list of  checked peruntukkancategory -->
+                            <!--  ./list of  checked peruntukkancategory -->
 
-                                <select name="peruntukkanCategory[]" class="form-select form-select-responden" id="form-select-responden" multiple>
-                                    <!-- select2 multiple -->
-                                    <?php foreach ($jenisResponden as $listResp) : ?>
-                                        <option value="<?= $listResp['responden']; ?>" <?php echo in_array($listResp['responden'], $selected_resp) ? 'selected' : '' ?>> <?= $listResp['responden']; ?></option>
-                                    <?php endforeach; ?>
+                            <select name="peruntukkanCategory[]" class="form-select form-select-responden" id="form-select-responden" style="width: 100%" multiple>
+                                <!-- select2 multiple -->
+                                <?php foreach ($jenisResponden as $listResp) : ?>
+                                    <option value="<?= $listResp['responden']; ?>" <?php echo in_array($listResp['responden'], $selected_resp) ? 'selected' : '' ?>> <?= $listResp['responden']; ?></option>
+                                <?php endforeach; ?>
 
-                                </select>
-                                <!-- ./select2 multiple -->
+                            </select>
+                            <!-- ./select2 multiple -->
 
-                            </div>
-                            <div class="d-flex align-items-center ">
-                                <button type="submit" class="btn btn-block btn-success mr-auto mt-5">
-                                    <i class="fas fa-save"></i> Simpan
-                                </button>
-                            </div>
+                        </div>
+                        <div class="d-flex align-items-center ">
+                            <button type="submit" class="btn btn-block btn-success mr-auto mt-5">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
             </form>
             <!-- end form edit kategori -->
         </div>
