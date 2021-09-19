@@ -70,4 +70,12 @@ class AdminModel extends Model
             ->where('slug', $slug)
             ->countAllResults();
     }
+    public function getSelectedResponden($slug)
+    {
+        return $this
+            ->select('category_instrumen.*')
+            ->join('jenis_responden as rsp', 'category_instrumen.peruntukkanCategory = rsp.responden')
+            ->where('slug', $slug)
+            ->get()->getResultArray();
+    }
 }

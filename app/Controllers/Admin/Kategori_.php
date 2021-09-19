@@ -56,14 +56,8 @@ class Kategori_ extends BaseController
             'category' => $this->adminModel->getCategory($slug),
             'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
             'peruntukkan' => $this->adminModel->getPeruntukkan(),
-            'sizeSlug' => $this->adminModel->sizeSlug($slug),
-            'slug' => $this->mRequest->getVar('slug'),
-
-
-
+            'getSelectedResponden' => $this->adminModel->getSelectedResponden($slug),
             'validation' => \Config\Services::validation()
-
-
         ];
 
         //jika url diketik asal dan kategori tidak ada di tabel
@@ -78,36 +72,30 @@ class Kategori_ extends BaseController
 
     public function updateKategori_($slug)
     {
-        // validasi input
-        if (!$this->validate([
-            'namaInstrumen' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Nama Instrumen harus diisi.',
-                ]
-            ],
-        ])) {
-            return redirect()->to('admin/kelola-survei/edit_kategori_')->withInput();
-        }
 
-        $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
 
         $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
         $kodeCategory = $this->mRequest->getVar('kodeCategory');
+        $slug = url_title($this->mRequest->getPost('kodeCategory'), '-', true);
         $namaCategory = $this->mRequest->getVar('namaCategory');
         $sizeSlug = $this->adminModel->sizeSlug($slug);
 
         //update data by adding new checkbox value
+        // looping sebanyak jumlah slug di database
+
+
         for ($i = 0; $i < $sizeSlug; $i++) {
 
             $data[] = array(
+                // 'kodeCategory' => $kodeCategory,
                 'slug' => $slug,
-                'kodeCategory' => $kodeCategory,
-                'namaCategory' => $namaCategory,
-                // 'peruntukkanCategory' => $peruntukkanCategory[$i],
+                // 'namaCategory' => $namaCategory,
+                'peruntukkanCategory' => $peruntukkanCategory[$i],
             );
         }
+
         $this->adminModel->updateBatch($data, 'slug');
+
 
         session()->setFlashdata('message', 'Data kategori berhasil diubah');
 
