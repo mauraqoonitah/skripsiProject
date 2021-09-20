@@ -8,7 +8,7 @@ class ResponseModel extends Model
 {
     protected $table      = 'response';
     protected $userTimestamps = true;
-    protected $allowedFields = ['questionID', 'kodeInstrumen', 'slugCategory', 'jawaban', 'respondenID'];
+    protected $allowedFields = ['questionID', 'kodeInstrumen', 'slug', 'jawaban', 'responden'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori

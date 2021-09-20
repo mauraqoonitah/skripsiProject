@@ -10,7 +10,7 @@ use App\Models\PernyataanModel;
 use App\Models\ResponseModel;
 
 
-class Beranda extends BaseController
+class Response extends BaseController
 {
     protected $instrumenModel;
     protected $respondenModel;
@@ -86,10 +86,20 @@ class Beranda extends BaseController
             [
                 'jawaban' => $this->mRequest->getVar('checkbox-jawaban'),
                 'questionID' => $this->mRequest->getVar('questionID'),
-                'slugCategory' => $this->mRequest->getVar('slug'),
+                'slug' => $this->mRequest->getVar('slug'),
                 'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                'responden' => $this->mRequest->getVar('responden'),
             ];
         $this->responseModel->save($data);
+
+        $data_responden =
+            [
+                'userID'  => user()->id,
+                'fullname' => user()->fullname,
+                'role' => user()->role,
+                'email' => user()->email,
+            ];
+        $this->respondenModel->save($data_responden);
 
         session()->setFlashdata('message', 'Terimakasih. Jawaban Survei berhasil dikirim!');
 

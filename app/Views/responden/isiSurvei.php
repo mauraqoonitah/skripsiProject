@@ -112,6 +112,10 @@
                                                     <!-- instrumenID -->
                                                     <input type="hidden" class="form-control" value="<?= $instrumen['kodeInstrumen']; ?>" name="kodeInstrumen">
                                                     <!-- userID (soon)-->
+                                                    <!-- responden (soon)-->
+                                                    <?php $userRole = user()->role;  ?>
+                                                    <input type="hidden" class="form-control" value="<?= $userRole; ?>" name="responden">
+
 
                                                     <!-- ./hidden input for table response -->
 

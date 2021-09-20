@@ -15,9 +15,7 @@
             <div class="row mb-4">
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="text-cosmic" data-aos="zoom-in-up" data-aos-delay="500"> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -26,6 +24,10 @@
     <!-- Main content -->
     <section class="content m-0">
         <div class="container">
+            <!-- flash success tambah data  -->
+            <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+            <!-- ./ flash success tambah data  -->
+
             <div class="row">
                 <div class="col-lg-8 mx-auto">
                     <?php
