@@ -3,14 +3,20 @@
 <?= $this->section('content'); ?>
 
 <section class="landing-page d-flex justify-content-center">
-    <div class="content">
-        <div class="container">
-            <div class="textBox">
-                <!-- using gsap animation -->
-                <h2 class="lead-heading" data-aos="zoom-in-right" data-aos-duration="500"> <span> </span>
-                    <br>Sistem Penjaminan Mutu Internal<br>
-                </h2>
-                <div class="col-lg-12 col-md-10 col-sm-10">
+
+    <div class="bd-masthead mb-3" id="content">
+        <div class="container px-4 px-md-3">
+            <div class="row align-items-lg-center">
+                <div class="col-8 mx-auto col-md-4 order-md-2 col-lg-5">
+
+                    <div class="imgBox" data-aos="zoom-in-up" data-aos-duration="1000">
+                        <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" class="img-fluid mb-3 mb-md-0" width="600" height="533">
+                    </div>
+                </div>
+                <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
+                    <h1 class="bd-title"> <span id="title-animate" class="purple-text"> </span>
+                        <h2 class="mb-4" data-aos="zoom-in-right" data-aos-duration="500">Sistem Penjaminan Mutu Internal</h2>
+                    </h1>
 
                     <!-- carousel -->
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -19,10 +25,10 @@
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style="margin-top: 2rem;"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style="margin-top: 2rem;"></button>
                         </div>
-                        <div class="carousel-inner p-2" data-aos="zoom-in-right" data-aos-delay="500" data-aos-duration="2000">
+                        <div class="carousel-inner mb-4" data-aos="zoom-in-right" data-aos-delay="500" data-aos-duration="2000">
                             <div class="carousel-item active" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p>Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
+                                    <p class="lead">Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
 
 
                                     </p>
@@ -30,7 +36,7 @@
                             </div>
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p> Sistem penjaminan mutu pendidikan tinggi terdiri atas sistem penjaminan mutu internal yang dikembangkan oleh perguruan tinggi dan sistem penjaminan mutu eksternal yang dilakukan melalui akreditasi. <i>(Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 Tentang Pendidikan Tinggi)
+                                    <p class="lead"> Sistem penjaminan mutu pendidikan tinggi terdiri atas sistem penjaminan mutu internal yang dikembangkan oleh perguruan tinggi dan sistem penjaminan mutu eksternal yang dilakukan melalui akreditasi. <i>(Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 Tentang Pendidikan Tinggi)
                                         </i>
 
                                     </p>
@@ -38,37 +44,39 @@
                             </div>
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p> Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan. SPMI direncanakan, dilaksanakan, dievaluasi, dikendalikan, dan dikembangkan oleh perguruan tinggi.</p>
+                                    <p class="lead"> Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan. SPMI direncanakan, dilaksanakan, dievaluasi, dikendalikan, dan dikembangkan oleh perguruan tinggi.</p>
                                 </div>
                             </div>
                         </div>
-                        <button class="carousel-control-prev" style="top: 100%; margin-top: 4rem;" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <button class="carousel-control-prev" style="top: 100%; margin-top: 6rem;" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" style="top: 100%; margin-top: 4rem;" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <button class="carousel-control-next" style="top: 100%; margin-top: 6rem;" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
                     <!-- ./carousel -->
+                    <div class="d-flex flex-column flex-md-row">
+                        <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="2000">
+                            <button type="button" class="btn btn-lg btn-jumbotron btn-purple ">Isi Survei</button>
+                        </a>
+                    </div>
+
                 </div>
-                <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="1000">
-                    <button type="button" class="btn btn-jumbotron btn-purple">Isi Survei</button>
-                </a>
             </div>
-        </div>
-        <div class="imgBox" data-aos="zoom-in-up" data-aos-duration="1000">
-            <img src="<?= base_url(); ?>/img/jumbotron-img.png" alt="" class="img-fluid jumbotron-image">
+
         </div>
     </div>
 
 </section>
 
+
 <section class="menu col-lg-8 mx-auto" id="instrumen">
     <!-- sticky scrolled -->
     <div id=passageWrapper>
-        <h3 class="section-title">Kriteria Kepuasan</h3>
+        <h2 class="section-title">Kriteria Kepuasan</h2>
     </div>
     <div class="container pt-5">
         <!-- ./sticky scrolled -->
@@ -85,9 +93,9 @@
 
 <section class="menu col-lg-8 mx-auto">
     <div class="container">
-        <h3 class="section-title" id="obyek-menu">Grafik Kepuasan</h3>
-        <div class="row obyek-menu">
-        </div>
+        <h2 class="section-title" id="obyek-menu">Grafik Kepuasan</h3>
+            <div class="row obyek-menu">
+            </div>
     </div>
 </section>
 

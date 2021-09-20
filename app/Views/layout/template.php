@@ -59,9 +59,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/TextPlugin.min.js"></script>
     <script>
         gsap.registerPlugin(TextPlugin);
-        gsap.to('.content .textBox h2 span', {
+        gsap.to('#title-animate', {
             duration: 2,
-            delay: 2,
+            delay: 1,
             text: 'Instrumen Kepuasan'
         })
     </script>

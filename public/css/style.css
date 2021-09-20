@@ -9,7 +9,6 @@
 html {
     scroll-behavior: smooth;
     background-color: #fafafa;
-    font-size: 14px;
 }
 
 a {
@@ -32,7 +31,7 @@ body {
     color: #141C3A;
     letter-spacing: .2px;
     line-height: 1.5;
-    font-size: 14px;
+    font-size: 1rem;
 }
 
 main {
@@ -92,6 +91,50 @@ a .navbar-light .purple-text {
 
 tr {
     height: 50px !important;
+}
+
+
+/* btn-rouge */
+
+.btn-rouge {
+    color: #fff !important;
+    background-color: rgb(174, 67, 91) !important;
+    border-color: rgb(174, 67, 91, .2) !important;
+}
+
+.btn-rouge:hover {
+    color: #000 !important;
+    background-color: #63BBD9 !important;
+    border-color: #66CCCC !important
+}
+
+.btn-rouge.focus,
+.btn-rouge:focus {
+    color: #000 !important;
+    background-color: #63BBD9 !important;
+    border-color: #66CCCC !important;
+    box-shadow: 0 0 0 0 rgba(38, 143, 255, .5)
+}
+
+.btn-rouge.disabled,
+.btn-rouge:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.btn-rouge:not(:disabled):not(.disabled).active,
+.btn-rouge:not(:disabled):not(.disabled):active,
+.show>.btn-rouge.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf
+}
+
+.btn-rouge:not(:disabled):not(.disabled).active:focus,
+.btn-rouge:not(:disabled):not(.disabled):active:focus,
+.show>.btn-rouge.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0 rgba(38, 143, 255, .5)
 }
 
 
@@ -246,7 +289,6 @@ footer {
     text-align: center;
     padding: 1rem;
     margin: 2rem 0 2rem 0;
-    font-weight: 600;
     background-color: #fafafa;
     color: #8a0089;
 }
@@ -319,6 +361,10 @@ footer {
 
 .text-columbia-blue {
     color: #a1dafe;
+}
+
+.text-cosmic {
+    color: #7a4c75;
 }
 
 
@@ -466,16 +512,16 @@ nav ul li a:hover {
     padding-left: 60px;
 }
 
-.content .textBox h2 {
+.content .textBox h1 {
     color: #333;
-    font-size: 2rem;
+    /* font-size: 2rem; */
     line-height: 1.4em;
     font-weight: 500;
 }
 
-.content .textBox h2 span {
+.content .textBox h1 span {
     color: #8a0089;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     font-weight: 800;
 }
 
@@ -488,7 +534,7 @@ nav ul li a:hover {
     justify-content: flex-end;
     align-items: center;
     padding: 20px;
-    max-width: 85%;
+    /* max-width: 85%; */
     margin: 0 auto;
 }
 
@@ -500,6 +546,10 @@ nav ul li a:hover {
     height: 100%;
     background-color: #4db6ac;
     clip-path: circle(600px at right 800px);
+}
+
+.bd-masthead {
+    padding: 3rem 0;
 }
 
 
@@ -565,27 +615,13 @@ nav ul li a:hover {
         flex-direction: column;
         margin-top: 2vh;
     }
-    .content .textBox {
-        padding: 0;
-    }
-    .content .textBox h2 {
-        font-size: 26px;
-    }
-    .content .textBox h3 {
-        font-weight: 500;
-    }
-    .content .textBox p {
-        font-weight: 500;
-    }
     .jumbotron-image {
         padding: 20px;
         justify-content: center;
     }
     .btn-jumbotron {
         padding: .25rem .5rem;
-        font-size: .875rem;
         border-radius: .2rem;
-        background-color: rgb(1, 113, 67, .8);
     }
     .circle-clip-path {
         clip-path: circle(400px at center bottom);
@@ -665,5 +701,14 @@ nav ul li a:hover {
     .navbar-brand img {
         width: 18px;
         height: 18px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .bd-title {
+        font-size: 3rem;
+    }
+    .bd-lead {
+        font-size: 1.5rem;
     }
 }
