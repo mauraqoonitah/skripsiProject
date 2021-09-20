@@ -62,6 +62,7 @@ class Response extends BaseController
             'instrumen' => $this->instrumenModel->getInstrumen($id),
             'lihatPernyataan' => $this->pernyataanModel->getPernyataanByInstrumenID($id),
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
+            'getInstrumenID' =>  $this->pernyataanModel->getPernyataanByInstrumenID($id),
 
             'validation' => \Config\Services::validation()
 
@@ -80,18 +81,26 @@ class Response extends BaseController
 
     public function saveSurvei()
     {
-        // $jawaban = $this->mRequest->getVar('checkbox-jawaban');
+        $instrumenID =  $this->mRequest->getVar('instrumenID');
+        $getInstrumenID =   $this->pernyataanModel->getPernyataanByInstrumenID($instrumenID);
 
-        $data =
-            [
-                'jawaban' => $this->mRequest->getVar('checkbox-jawaban'),
-                'questionID' => $this->mRequest->getVar('questionID'),
-                'slug' => $this->mRequest->getVar('slug'),
-                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
-                'responden' => $this->mRequest->getVar('responden'),
-            ];
-        $this->responseModel->save($data);
+        foreach ($getInstrumenID as $butir) {
+            if ($this->mRequest->getPost("checkbox-jawaban-" . $butir['id']) != Null) {
+                $jawaban = $this->mRequest->getPost('checkbox-jawaban-' . $butir['id']);
 
+                $data =
+                    [
+                        'questionID' => $butir['id'],
+                        'slug' => $this->mRequest->getVar('slug'),
+                        'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                        'instrumenID' => $this->mRequest->getVar('instrumenID'),
+                        'responden' => $this->mRequest->getVar('responden'),
+                        'jawaban' => $jawaban,
+                    ];
+                $this->responseModel->save($data);
+            }
+        }
+        //insert log data responden 
         $data_responden =
             [
                 'userID'  => user()->id,

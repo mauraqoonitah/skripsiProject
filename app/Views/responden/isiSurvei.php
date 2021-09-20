@@ -84,21 +84,43 @@
                                             </thead>
                                             <tbody>
                                                 <!-- jika butir pernyataan ada -->
-                                                <?php foreach ($lihatPernyataan as $butir) : ?>
+                                                <?php
+                                                $i = 1;
+                                                foreach ($lihatPernyataan as $butir) : ?>
                                                     <tr>
                                                         <td class="text-center"><?= $i++; ?></td>
                                                         <td>
+                                                            <?= $butir['id'] ?> -
                                                             <?= $butir['butir']; ?></td>
 
                                                         <!-- checkbox iteration-->
                                                         <?php $jawabanValue = $v = 5 ?>
-                                                        <?php for ($x = 0; $x < 5; $x++) :  ?>
-                                                            <td>
-                                                                <div class="form-check">
-                                                                    <input class="form-check-input" type="radio" name="checkbox-jawaban" id="checkbox-butir-<?= $butir['id'] ?>" value="<?= $v--; ?>">
-                                                                </div>
-                                                            </td>
-                                                        <?php endfor; ?>
+
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input type="radio" name="checkbox-jawaban-<?= $butir['id'] ?>" value="<?= $v--; ?>" required></input><br>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input type="radio" name="checkbox-jawaban-<?= $butir['id'] ?>" value="<?= $v--; ?>"></input><br>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input type="radio" name="checkbox-jawaban-<?= $butir['id'] ?>" value="<?= $v--; ?>"></input><br>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input type="radio" name="checkbox-jawaban-<?= $butir['id'] ?>" value="<?= $v--; ?>"></input><br>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <input type="radio" name="checkbox-jawaban-<?= $butir['id'] ?>" value="<?= $v--; ?>"></input><br>
+                                                            </div>
+                                                        </td>
                                                         <!-- ./checkbox iteration  -->
 
                                                     </tr>
@@ -110,10 +132,12 @@
                                                     <!-- slug -->
                                                     <input type="hidden" class="form-control" value="<?= $instrumen['slug']; ?>" name="slug">
                                                     <!-- instrumenID -->
+                                                    <input type="hidden" class="form-control" value="<?= $instrumen['id']; ?>" name="instrumenID">
+                                                    <!-- kodeInstrumen -->
                                                     <input type="hidden" class="form-control" value="<?= $instrumen['kodeInstrumen']; ?>" name="kodeInstrumen">
                                                     <!-- userID (soon)-->
-                                                    <!-- responden (soon)-->
-                                                    <?php $userRole = user()->role;  ?>
+                                                    <!-- responden-->
+                                                    <?php $userRole = user()->role; ?>
                                                     <input type="hidden" class="form-control" value="<?= $userRole; ?>" name="responden">
 
 
