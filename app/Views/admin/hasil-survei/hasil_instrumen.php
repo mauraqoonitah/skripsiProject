@@ -29,7 +29,7 @@
                 <div class="list-group center">
                     <?php foreach ($response as $r) : ?>
                         <div class="mb-4">
-                            <a href="<?= base_url(); ?>/admin/lihatInstrumen" class="pilih-inst">
+                            <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $r['id']; ?>" class="pilih-inst">
                                 <span class="text-rouge fw-bold"><?= $r['kodeInstrumen']; ?> - <?= $r['namaInstrumen']; ?></span>
                             </a>
                         </div>

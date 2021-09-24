@@ -25,10 +25,25 @@ class ResponseModel extends Model
     }
     public function getResponseByInstrumen()
     {
-
         return $this
             ->join('instrumen', 'instrumen.id = response.instrumenID')
             ->groupBy('kodeCategory')
+            ->findAll();
+    }
+    public function getResponseButir($id)
+    {
+        return $this
+            ->join('questions', 'questions.instrumenID = response.instrumenID')
+            ->where('response.instrumenID', $id)
+            ->groupBy('questions.id')
+            ->findAll();
+    }
+    public function getResponseJawaban($id)
+    {
+        return $this
+            ->join('questions', 'questions.id = response.questionID')
+            ->where('response.instrumenID', $id)
+            ->groupBy('response.id')
             ->findAll();
     }
 }

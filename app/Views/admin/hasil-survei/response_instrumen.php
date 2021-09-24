@@ -21,32 +21,33 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+    <?php foreach ($responsePertanyaan as $rID) {
+        $namaInstrumen = $rID['namaInstrumen'];
+        $kodeInstrumen = $rID['kodeInstrumen'];
+    }  ?>
+
+    <?php foreach ($responseJawaban as $rJwb) : ?>
+        <b>id butir :</b> <?= $rJwb['id']; ?><br>
+        <b>pertanyaan : </b><?= $rJwb['butir']; ?><br>
+        <b>jawaban: </b><?= $rJwb['jawaban']; ?><br><br>
+    <?php endforeach; ?>
 
     <!-- Main content -->
+
     <section class="content">
         <div class="container-fluid">
-            <div class="card container bg-light text-dark py-2">
+            <div class="card container bg-light text-dark py-4">
                 <div class="container text-center">
-                    <input type="text" readonly class="form-control-plaintext fw-bold text-center text-uppercase" id="instrumen" value="Instrumen Kepuasan Atas Proses Pendidikan" disabled>
+                    <input type="text" readonly class="form-control-plaintext fw-bold text-center text-uppercase" id="instrumen" value="<?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?>" disabled>
+                </div>
 
-                </div>
-                <div class="container">
-                    <div class="row justify-content-center ">
-                        <div class="col-4 text-end">
-                            <label for="kode-instrumen" class="form-control-plaintext col-sm-12  text-muted">Kode Instrumen</label>
-                        </div>
-                        <div class="col-4 text-start">
-                            <input type="text" readonly class="form-control-plaintext  text-muted" id="kode-instrumen" value=": C.6" disabled>
-                        </div>
-                    </div>
-                </div>
                 <div class="container">
                     <div class="row justify-content-center ">
                         <div class="col-4 text-end">
                             <label for="total-responden-instrumen" class="form-control-plaintext col-sm-12  text-muted">Total Responden</label>
                         </div>
                         <div class="col-4 text-start">
-                            <input type="text" readonly class="form-control-plaintext  text-muted" id="total-responden-instrumen" value=": 15" disabled>
+                            <input type="text" readonly class="form-control-plaintext  text-muted" id="total-responden-instrumen" value=": n" disabled>
                         </div>
                     </div>
                 </div>
@@ -76,34 +77,41 @@
                                         <th>Sangat Tidak Puas</th>
                                     </tr>
                                 </thead>
-                                <tbody class="text-center">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Sarana pembelajaran yang tersedia di ruang kuliah </td>
-                                        <td>5</td>
-                                        <td>3</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Ketepatan waktu dosen dalam memulai perkuliahan</td>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>4</td>
-                                        <td>2</td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Kemudahan dosen untuk dihubungi melalui telepon, email, dan sebagainya </td>
-                                        <td>5</td>
-                                        <td>5</td>
-                                        <td>1</td>
-                                        <td>0</td>
-                                        <td>0</td>
-                                    </tr>
+                                <tbody class="">
+                                    <?php $i = 1; ?>
+                                    <?php foreach ($responsePertanyaan as $rID) :  ?>
+
+                                        <tr>
+                                            <td class="text-center"><?= $i++; ?></td>
+                                            <td><?= $rID['butir']; ?></td>
+                                            <td class="text-center">
+                                                <?php if ($rID['jawaban'] == 5) : ?>
+                                                    disini 5
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if ($rID['jawaban'] == 4) : ?>
+                                                    disini 4
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if ($rID['jawaban'] == 3) : ?>
+                                                    disini 3
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if ($rID['jawaban'] == 2) : ?>
+                                                    disini 2
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
+                                                <?php if ($rID['jawaban'] == 1) : ?>
+                                                    disini 1
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+
                                 </tbody>
                             </table>
                         </div>

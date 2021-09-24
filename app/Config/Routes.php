@@ -44,9 +44,8 @@ $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
 // admin sidebar hasil survei
 $routes->get('/admin/hasil-survei/index', 'Admin::dataResponden');
 //data responden
-$routes->get('/admin/hasil-survei/instrumen', 'Admin\Response::ResponseByInstrumen');
-$routes->get('/admin/hasil-survei/lihat_instrumen', 'Admin::lihatInstrumen');
-
+$routes->get('/admin/hasil-survei/instrumen', 'Admin\Response::hasilInstrumen');
+$routes->get('/admin/hasil-survei/instrumen/(:any)', 'Admin\Response::responseInstrumen/$1');
 // admin menu kelola kategori
 // new
 $routes->get('/admin/kelola-survei/kategori_', 'Admin\Kategori_::kelolaKategori_');

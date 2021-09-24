@@ -30,7 +30,7 @@ class Response extends BaseController
         $this->mRequest = service("request");
     }
 
-    public function ResponseByInstrumen()
+    public function hasilInstrumen()
     {
         $data = [
             'title' => 'Hasil Survei Per-Instrumen',
@@ -38,14 +38,19 @@ class Response extends BaseController
 
 
         ];
-        return view('admin/hasil-survei/instrumen', $data);
+        return view('admin/hasil-survei/hasil_instrumen', $data);
     }
-    public function lihatInstrumen()
+    public function responseInstrumen($id)
     {
         $data = [
-            'title' => 'Hasil Survei Per-Instrumen'
-
+            'title' => 'Hasil Survei Per-Instrumen',
+            'responseIns' => $this->responseModel->getResponseByInstrumen(),
+            'responsePertanyaan' => $this->responseModel->getResponseButir($id),
+            'responseJawaban' => $this->responseModel->getResponseJawaban($id),
         ];
-        return view('admin/hasil-survei/lihat_instrumen', $data);
+        // $responseJawaban = $this->responseModel->getResponseJawaban($id);
+        // $countJawaban = $responseJawaban->countAll();
+        // dd($countJawaban);
+        return view('admin/hasil-survei/response_instrumen', $data);
     }
 }
