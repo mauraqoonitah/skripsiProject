@@ -96,6 +96,7 @@ class Response extends BaseController
                         'instrumenID' => $this->mRequest->getVar('instrumenID'),
                         'responden' => $this->mRequest->getVar('responden'),
                         'jawaban' => $jawaban,
+                        'userID'  => user()->id,
                     ];
                 $this->responseModel->save($data);
             }

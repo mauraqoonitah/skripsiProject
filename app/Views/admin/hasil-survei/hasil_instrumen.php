@@ -23,7 +23,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="alert alert-primary fw-bold mb-5" role="alert">
-                Pilih instrumen untuk melihat skor hasil tanggapan responden</div>
+                Pilih instrumen untuk melihat tanggapan responden</div>
 
             <div class="col-lg-8 mx-auto">
                 <div class="list-group center">

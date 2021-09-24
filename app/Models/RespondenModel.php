@@ -16,6 +16,7 @@ class RespondenModel extends Model
         if ($id == false) {
             return $this
                 ->orderBy('id', 'desc')
+                ->groupBy('email')
                 ->findAll();
 
             // ->groupBy('noIdentitas')

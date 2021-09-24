@@ -9,6 +9,7 @@ use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
+use App\Models\RespondenModel;
 
 class Response extends BaseController
 {
@@ -17,6 +18,7 @@ class Response extends BaseController
     protected $pernyataanModel;
     protected $jenisRespondenModel;
     protected $responseModel;
+    protected $respondenModel;
     protected $mRequest;
 
 
@@ -27,6 +29,7 @@ class Response extends BaseController
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
+        $this->respondenModel = new RespondenModel();
         $this->mRequest = service("request");
     }
 
@@ -52,5 +55,33 @@ class Response extends BaseController
         // $countJawaban = $responseJawaban->countAll();
         // dd($countJawaban);
         return view('admin/hasil-survei/response_instrumen', $data);
+    }
+
+
+
+
+
+
+    // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
+
+    public function dataResponden()
+    {
+        $data = [
+            'title' => 'Data Responden',
+            'responden' => $this->respondenModel->getResponden(),
+
+        ];
+        return view('admin/hasil-survei/lihat_responden', $data);
+    }
+    public function hasilSurveiResponden($id)
+    {
+        $data = [
+            'title' => 'Tanggapan Responden',
+            'responden' => $this->respondenModel->getResponden($id),
+            'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
+            'ButirbyUserId' => $this->responseModel->getResponseButirbyUserID($id),
+
+        ];
+        return view('admin/hasil-survei/response_responden', $data);
     }
 }

@@ -8,7 +8,7 @@ class ResponseModel extends Model
 {
     protected $table      = 'response';
     protected $userTimestamps = true;
-    protected $allowedFields = ['questionID', 'kodeInstrumen', 'instrumenID', 'slug', 'jawaban', 'responden'];
+    protected $allowedFields = ['questionID', 'kodeInstrumen', 'instrumenID', 'slug', 'jawaban', 'responden', 'userID'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
@@ -44,6 +44,26 @@ class ResponseModel extends Model
             ->join('questions', 'questions.id = response.questionID')
             ->where('response.instrumenID', $id)
             ->groupBy('response.id')
+            ->findAll();
+    }
+
+
+    // ---------------- HASIL SURVEI - RESPONDEN --------------------------
+    public function getResponseByInstrumenID($id)
+    {
+        return $this
+            ->join('questions', 'questions.instrumenID = response.instrumenID')
+            ->where('response.userID', $id)
+            ->groupBy('response.instrumenID')
+            ->findAll();
+    }
+
+    public function getResponseButirbyUserID($id)
+    {
+        return $this
+            ->join('questions', 'questions.instrumenID = response.instrumenID')
+            ->where('response.userID', $id)
+            ->groupBy('questions.id')
             ->findAll();
     }
 }

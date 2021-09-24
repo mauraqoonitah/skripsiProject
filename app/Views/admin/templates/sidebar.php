@@ -39,7 +39,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/dataResponden" class="nav-link <?= $uri->getSegment(2) == 'dataResponden' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/hasil-survei/responden" class="nav-link <?= $uri->getSegment(2) == 'dataResponden' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Responden</p>
                             </a>
@@ -54,7 +54,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
+                    <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             <?php if (in_groups('Admin')) :  ?>
@@ -64,34 +64,7 @@
                                 Lihat Survei
                             <?php endif; ?>
                         </p>
-                        <i class="right fas fa-angle-left"></i>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Instrumen</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/kategori" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p><s>Instrumen</s></p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/kelola-survei/kategori_" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p><s>Kategori</s></p>
-                            </a>
-                        </li>
-                    </ul>
-
 
                 </li>
 
