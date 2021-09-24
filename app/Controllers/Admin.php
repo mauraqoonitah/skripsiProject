@@ -64,24 +64,6 @@ class Admin extends BaseController
 
     // ---------------- MENU HASIL SURVEI - INSTRUMEN --------------------------
 
-    public function hasilSurveiInstrumen()
-    {
-        $data = [
-            'title' => 'Hasil Survei Per-Instrumen',
-            'instrumen' => $this->instrumenModel->getInstrumen(),
-
-
-        ];
-        return view('admin/hasil-survei/instrumen', $data);
-    }
-    public function lihatInstrumen()
-    {
-        $data = [
-            'title' => 'Hasil Survei Per-Instrumen'
-
-        ];
-        return view('admin/hasil-survei/lihat_instrumen', $data);
-    }
 
     // ---------------- MENU KELOLA SURVEI --------------------------
 

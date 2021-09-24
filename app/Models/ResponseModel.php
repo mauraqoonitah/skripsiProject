@@ -23,4 +23,12 @@ class ResponseModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+    public function getResponseByInstrumen()
+    {
+
+        return $this
+            ->join('instrumen', 'instrumen.id = response.instrumenID')
+            ->groupBy('kodeCategory')
+            ->findAll();
+    }
 }

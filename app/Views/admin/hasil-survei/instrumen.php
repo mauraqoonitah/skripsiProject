@@ -22,20 +22,18 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="alert alert-primary fw-bold" role="alert">
-                Silakan pilih instrumen kepuasan untuk melihat skor hasil tanggapan responden</div>
+            <div class="alert alert-primary fw-bold mb-5" role="alert">
+                Pilih instrumen untuk melihat skor hasil tanggapan responden</div>
 
-            <div class="col-lg-8">
+            <div class="col-lg-8 mx-auto">
                 <div class="list-group center">
-                    <?php foreach ($instrumen as $inst) : ?>
-                        <a href="<?= base_url(); ?>/admin/lihatInstrumen" class="list-group-item list-group-item-action" aria-current="true">
-                            <div class="w-100">
-                                <p class="mb-1 py-2 text-center"><?= $inst['namaInstrumen']; ?></p>
-                            </div>
-                        </a>
+                    <?php foreach ($response as $r) : ?>
+                        <div class="mb-4">
+                            <a href="<?= base_url(); ?>/admin/lihatInstrumen" class="pilih-inst">
+                                <span class="text-rouge fw-bold"><?= $r['kodeInstrumen']; ?> - <?= $r['namaInstrumen']; ?></span>
+                            </a>
+                        </div>
                     <?php endforeach; ?>
-
-
                 </div>
             </div>
         </div>

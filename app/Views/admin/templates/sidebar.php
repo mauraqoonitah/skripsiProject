@@ -45,7 +45,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/hasilSurveiInstrumen" class="nav-link <?= $uri->getSegment(2) == 'hasilSurveiInstrumen' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/hasil-survei/instrumen" class="nav-link <?= $uri->getSegment(2) == 'hasilSurveiInstrumen' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Instrumen</p>
                             </a>
