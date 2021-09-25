@@ -21,15 +21,47 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+
     <?php foreach ($responsePertanyaan as $rID) {
         $namaInstrumen = $rID['namaInstrumen'];
         $kodeInstrumen = $rID['kodeInstrumen'];
+        $questionID = $rID['questionID'];
     }  ?>
 
-    <?php foreach ($responseJawaban as $rJwb) : ?>
-        <b>id butir :</b> <?= $rJwb['id']; ?><br>
-        <b>pertanyaan : </b><?= $rJwb['butir']; ?><br>
-        <b>jawaban: </b><?= $rJwb['jawaban']; ?><br><br>
+
+
+    <?php
+    $totalSkor5 = 0;
+    $totalSkor4 = 0;
+    $totalSkor3 = 0;
+    $totalSkor2 = 0;
+    $totalSkor1 = 0;
+    foreach ($responseJawaban as $rJwb) : ?>
+        <?php
+        $jawaban = $rJwb['jawaban'];
+
+        if ($jawaban == '5') {
+            $skor5 = count(array($jawaban));
+            $totalSkor5++;
+        }
+        if ($jawaban == '4') {
+            $skor4 = count(array($jawaban));
+            $totalSkor4++;
+        }
+        if ($jawaban == '3') {
+            $skor3 = count(array($jawaban));
+            $totalSkor3++;
+        }
+        if ($jawaban == '2') {
+            $skor2 = count(array($jawaban));
+            $totalSkor2++;
+        }
+        if ($jawaban == '1') {
+            $skor1 = count(array($jawaban));
+            $totalSkor1++;
+        }
+        ?>
+
     <?php endforeach; ?>
 
     <!-- Main content -->
@@ -43,12 +75,7 @@
 
                 <div class="container">
                     <div class="row justify-content-center ">
-                        <div class="col-4 text-end">
-                            <label for="total-responden-instrumen" class="form-control-plaintext col-sm-12  text-muted">Total Responden</label>
-                        </div>
-                        <div class="col-4 text-start">
-                            <input type="text" readonly class="form-control-plaintext  text-muted" id="total-responden-instrumen" value=": n" disabled>
-                        </div>
+                        <span class="text-muted text-center">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span>
                     </div>
                 </div>
 
@@ -80,39 +107,49 @@
                                 <tbody class="">
                                     <?php $i = 1; ?>
                                     <?php foreach ($responsePertanyaan as $rID) :  ?>
-
                                         <tr>
                                             <td class="text-center"><?= $i++; ?></td>
-                                            <td><?= $rID['butir']; ?></td>
+                                            <td><?= $questionID = $rID['id']; ?> - <?= $rID['butir']; ?> </td>
                                             <td class="text-center">
-                                                <?php if ($rID['jawaban'] == 5) : ?>
-                                                    disini 5
-                                                <?php endif; ?>
+
+                                            </td>
+
+                                            <td class="text-center">
+
+
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($rID['jawaban'] == 4) : ?>
-                                                    disini 4
-                                                <?php endif; ?>
+
+
+
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($rID['jawaban'] == 3) : ?>
-                                                    disini 3
-                                                <?php endif; ?>
+
+
+
                                             </td>
                                             <td class="text-center">
-                                                <?php if ($rID['jawaban'] == 2) : ?>
-                                                    disini 2
-                                                <?php endif; ?>
-                                            </td>
-                                            <td class="text-center">
-                                                <?php if ($rID['jawaban'] == 1) : ?>
-                                                    disini 1
-                                                <?php endif; ?>
+
+
+
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
 
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                        <th colspan="2" rowspan="2" class="text-center">Total Tingkat Kepuasan</th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th> <?= $totalSkor5 ?></th>
+                                        <th><?= $totalSkor4 ?></th>
+                                        <th><?= $totalSkor3 ?></th>
+                                        <th><?= $totalSkor2 ?></th>
+                                        <th><?= $totalSkor1 ?></th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
 

@@ -50,6 +50,8 @@ class Response extends BaseController
             'responseIns' => $this->responseModel->getResponseByInstrumen(),
             'responsePertanyaan' => $this->responseModel->getResponseButir($id),
             'responseJawaban' => $this->responseModel->getResponseJawaban($id),
+            'responseJawabanLagi' => $this->responseModel->getResponseJawabanLagi($id),
+            'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($id),
         ];
         // $responseJawaban = $this->responseModel->getResponseJawaban($id);
         // $countJawaban = $responseJawaban->countAll();

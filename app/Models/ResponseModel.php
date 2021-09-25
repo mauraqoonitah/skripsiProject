@@ -46,6 +46,14 @@ class ResponseModel extends Model
             ->groupBy('response.id')
             ->findAll();
     }
+    public function getResponseJawabanLagi($id)
+    {
+        return $this
+            ->join('questions', 'questions.id = response.questionID')
+            ->where('response.instrumenID', $id)
+            ->groupBy('response.questionID')
+            ->findAll();
+    }
 
 
     // ---------------- HASIL SURVEI - RESPONDEN --------------------------
@@ -65,5 +73,14 @@ class ResponseModel extends Model
             ->where('response.userID', $id)
             ->groupBy('questions.id')
             ->findAll();
+    }
+    public function getJumlahRespondenIns($instrumenID)
+    {
+        return $this
+            ->select('userID')
+            ->where('instrumenID', $instrumenID)
+            ->groupBy('userID')
+            ->countAllResults();
+        // ->findAll();
     }
 }
