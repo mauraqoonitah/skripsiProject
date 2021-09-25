@@ -31,11 +31,13 @@
             <div class="card">
                 <h5 class="card-header">Data Diri</h5>
                 <div class="card-body">
-                    <p class="card-text"><strong>Nama Lengkap :</strong> <?= $responden['fullname']; ?></p>
-                    <p class="card-text"><strong>Email : </strong> <?= $responden['email']; ?></p>
-                    <p class="card-text"><strong>No.Identitas : </strong> <?= $responden['noIdentitas']; ?></p>
-                    <p class="card-text"><strong>Sebagai : </strong><?= $responden['role']; ?></p>
+                    <?php foreach ($respondenData as $res) :  ?>
+                        <p class="card-text"><strong>Nama Lengkap :</strong> <?= $res['fullname']; ?></p>
+                        <p class="card-text"><strong>Email : </strong> <?= $res['email']; ?></p>
+                        <p class="card-text"><strong>No.Identitas : </strong> <?= $res['noIdentitas']; ?></p>
+                        <p class="card-text"><strong>Sebagai : </strong><?= $res['role']; ?></p>
 
+                    <?php endforeach; ?>
                 </div>
             </div>
             <!-- ./data diri responden -->

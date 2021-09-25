@@ -66,22 +66,22 @@ class Response extends BaseController
 
     // ---------------- MENU HASIL SURVEI - RESPONDEN --------------------------
 
-    public function dataResponden()
+    public function hasilResponden()
     {
         $data = [
             'title' => 'Data Responden',
-            'responden' => $this->respondenModel->getResponden(),
+            'responden' => $this->respondenModel->getRespondenList(),
 
         ];
-        return view('admin/hasil-survei/lihat_responden', $data);
+        return view('admin/hasil-survei/hasil_responden', $data);
     }
-    public function hasilSurveiResponden($id)
+    public function responseResponden($id)
     {
         $data = [
             'title' => 'Tanggapan Responden',
-            'responden' => $this->respondenModel->getResponden($id),
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
             'ButirbyUserId' => $this->responseModel->getResponseButirbyUserID($id),
+            'respondenData' => $this->responseModel->getRespondenData($id),
 
         ];
         return view('admin/hasil-survei/response_responden', $data);

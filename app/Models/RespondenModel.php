@@ -11,7 +11,7 @@ class RespondenModel extends Model
     protected $allowedFields = ['userID', 'role', 'noIdentitas', 'email', 'fullname'];
 
 
-    public function getResponden($id = false)
+    public function getRespondenList($id = false)
     {
         if ($id == false) {
             return $this
