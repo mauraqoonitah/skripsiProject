@@ -64,7 +64,7 @@
                                         <td><?= $resp['responden']; ?> </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a href="#" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat/Edit">
+                                                <a href="#" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
 

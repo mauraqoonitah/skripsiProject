@@ -1,7 +1,7 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
-<?php  ?>
+
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -21,24 +21,23 @@
     </section>
 
     <!-- Main content -->
-    <section class="content mt-5">
+    <section class="content">
         <div class="container-fluid">
 
             <!-- DataTales Example -->
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 border-light shadow">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-rouge">Hasil Survei Per-Responden</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="tableResponden" class="table table-bordered table-hover">
+                        <table id="tableResponden" class="table table-hover">
                             <thead class="thead-light">
                                 <tr>
                                     <th>No.</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>No. Identitas</th>
-                                    <th>Jenis<br>Responden</th>
                                     <th>Tgl<br>Pengisian</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Jenis<br>Responden</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -48,10 +47,13 @@
 
                                     <tr>
                                         <td><?= $i++; ?></td>
-                                        <td><?= $rpd['fullname']; ?></td>
-                                        <td><?= $rpd['noIdentitas']; ?></td>
-                                        <td><?= $rpd['role']; ?></td>
                                         <td>tgl</td>
+                                        <td>
+                                            <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="">
+                                                <?= $rpd['fullname']; ?>
+                                            </a>
+                                        </td>
+                                        <td><?= $rpd['role']; ?></td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
                                                 <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none">
