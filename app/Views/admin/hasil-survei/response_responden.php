@@ -36,80 +36,82 @@
                         <p class="card-text"><strong>Email : </strong> <?= $res['email']; ?></p>
                         <p class="card-text"><strong>No.Identitas : </strong> <?= $res['noIdentitas']; ?></p>
                         <p class="card-text"><strong>Sebagai : </strong><?= $res['role']; ?></p>
-
                     <?php endforeach; ?>
                 </div>
             </div>
             <!-- ./data diri responden -->
 
             <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <h5 class="card-header"> Hasil Tanggapan</h5>
-                <div class="card-body py-3">
-                    <?php foreach ($responseInsId as $rIns) : ?>
+            <?php foreach ($responseInsId as $rIns) : ?>
+                <div class="card shadow my-5">
+                    <h5 class="card-header"> Hasil Tanggapan</h5>
+                    <div class="card-body py-3">
                         <!-- section table 1-->
                         <section>
-                            <div class="card container bg-light text-dark py-2 my-5">
+                            <div class="card container bg-light text-dark py-2 mt-2 mb-4">
+
                                 <div class="container text-center">
                                     <input type="text" readonly class="form-control-plaintext fw-bold text-center text-uppercase" id="instrumen" value="<?= $rIns['namaInstrumen']; ?>" disabled>
+                                </div>
 
-                                </div>
                                 <div class="container">
                                     <div class="row justify-content-center ">
-                                        <div class="col-4 text-end">
-                                            <label for="kode-instrumen" class="form-control-plaintext col-sm-12  text-muted">Kode Instrumen</label>
-                                        </div>
-                                        <div class="col-4 text-start">
-                                            <input type="text" readonly class="form-control-plaintext  text-muted" id="kode-instrumen" value="<?= $rIns['kodeInstrumen']; ?>" disabled>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                    <div class="row justify-content-center ">
-                                        <div class="col-4 text-end">
-                                            <label for="kode-instrumen" class="form-control-plaintext col-sm-12  text-muted">Tgl Pengisian Survei : </label>
-                                        </div>
-                                        <div class="col-4 text-start">
-                                            <input type="text" readonly class="form-control-plaintext  text-muted" id="kode-instrumen" value="nnn" disabled>
-                                        </div>
+                                        <span class="text-muted text-center">Kode Instrumen : <?= $rIns['kodeInstrumen']; ?> </span>
                                     </div>
                                 </div>
 
                             </div>
 
-                            <!-- section table 1 -->
+                            <div class="container">
+                                <div class="row justify-content-center ">
+                                    <span class="text-muted text-center">Tgl Pengisian Survei : </span>
+                                </div>
+                            </div>
 
+                            <div class="container">
+                                <div class="row justify-content-center ">
+                                    <span class="text-muted text-center">Instrumen ID : <?= $rIns['instrumenID']; ?> </span>
+                                </div>
+                            </div>
+
+                            <!-- section table 1 -->
                             <div class="table-responsive">
                                 <table id="tableResponden" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
                                             <th>Butir Pernyataan</th>
+                                            <th>Jawaban</th>
                                             <th>Tingkat Kepuasan</th>
-                                            <th>Skor</th>
-
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($ButirbyUserId as $rId) :  ?>
+
+                                        <?php
+                                        $i = 1;
+                                        $insID = $rIns['instrumenID'];
+                                        $db = db_connect();
+                                        $pernyataanModel = model('PernyataanModel');
+                                        $this->pernyataanModel = new $pernyataanModel;
+                                        $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
+
+                                        foreach ($sql as $row) : ?>
                                             <tr>
-                                                <td>1</td>
+                                                <td class="text-center"><?= $i++; ?></td>
                                                 <td>
-                                                    <?= $rId['butir']; ?>
+                                                    <?= $row['butir']; ?>
                                                 </td>
-                                                <td>Sangat Baik</td>
-                                                <td>4</td>
+                                                <td>4 n</td>
+                                                <td>Sangat Baik n</td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
-                        <?php endforeach; ?>
                         </section>
-
+                    </div>
                 </div>
-            </div>
-
+            <?php endforeach; ?>
         </div>
     </section>
     <!-- /.content -->

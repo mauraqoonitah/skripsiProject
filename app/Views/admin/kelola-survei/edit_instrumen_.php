@@ -78,6 +78,7 @@
                                 <select class="form-select" id="peruntukkanInstrumen" name="peruntukkanInstrumen">
                                     <?php
                                     $db = db_connect();
+
                                     $slug = $instrumen['slug'];
 
                                     $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";

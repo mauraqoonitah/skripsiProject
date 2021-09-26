@@ -74,20 +74,30 @@ class ResponseModel extends Model
             ->findAll();
     }
 
-    public function getResponseButirbyUserID($id)
-    {
-        return $this
-            ->join('questions', 'questions.instrumenID = response.instrumenID')
-            ->where('response.userID', $id)
-            ->groupBy('questions.id')
-            ->findAll();
-    }
     public function getRespondenData($id)
     {
         return $this
             ->join('responden', 'responden.userID = response.userID')
             ->where('response.userID', $id)
             ->groupBy('response.userID')
+            ->findAll();
+    }
+
+    public function getButirByInstrumenID($id)
+    {
+        return $this
+            ->join('questions', 'questions.instrumenID = response.instrumenID')
+            ->where('response.instrumenID', $id)
+            ->findAll();
+    }
+
+
+    public function getResponseByQuestID($id)
+    {
+        return $this
+            ->join('questions', 'questions.instrumenID = response.instrumenID')
+            ->where('response.userID', $id)
+            ->groupBy('questions.id')
             ->findAll();
     }
 }

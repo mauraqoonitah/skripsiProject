@@ -77,11 +77,13 @@ class Response extends BaseController
     }
     public function responseResponden($id)
     {
+
         $data = [
             'title' => 'Tanggapan Responden',
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
-            'ButirbyUserId' => $this->responseModel->getResponseButirbyUserID($id),
             'respondenData' => $this->responseModel->getRespondenData($id),
+            // 'responseByQuestId' => $this->responseModel->getResponseByQuestID($id),
+            // 'butirByInsId' => $this->responseModel->getButirByInstrumenID($id),
 
         ];
         return view('admin/hasil-survei/response_responden', $data);

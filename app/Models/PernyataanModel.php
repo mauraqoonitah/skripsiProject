@@ -29,4 +29,11 @@ class PernyataanModel extends Model
             ->where('instrumenID', $id)
             ->findAll();
     }
+    public function getButirByInstrumenID($instrumenID)
+    {
+        return $this
+            ->join('instrumen', 'instrumen.id = questions.instrumenID')
+            ->where('questions.instrumenID', $instrumenID)
+            ->findAll();
+    }
 }
