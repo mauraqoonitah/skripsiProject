@@ -26,6 +26,7 @@
         $namaInstrumen = $rID['namaInstrumen'];
         $kodeInstrumen = $rID['kodeInstrumen'];
         $questionID = $rID['questionID'];
+        $instrumenID = $rID['instrumenID'];
     }  ?>
 
 
@@ -97,6 +98,7 @@
                                         <th colspan="5" class="text-center">Jumlah Tanggapan</th>
                                     </tr>
                                     <tr class="text-center">
+                                        <th>print jwbn</th>
                                         <th>Sangat Puas</th>
                                         <th>Puas</th>
                                         <th>Cukup Puas</th>
@@ -110,6 +112,16 @@
                                         <tr>
                                             <td class="text-center"><?= $i++; ?></td>
                                             <td><?= $questionID = $rID['id']; ?> - <?= $rID['butir']; ?> </td>
+                                            <?php
+                                            // get jawaban by questionID
+                                            $responseModel = model('ResponseModel');
+                                            $this->responseModel = new $responseModel;
+                                            $sqlResponse =  $this->responseModel->getAllResponses($instrumenID, $questionID); ?>
+                                            <td class="text-center">
+                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                    <?= $jawabann = $response['jawaban']; ?> ,
+                                                <?php endforeach; ?>
+                                            </td>
                                             <td class="text-center">
 
                                             </td>
@@ -121,16 +133,15 @@
                                             <td class="text-center">
 
 
-
                                             </td>
                                             <td class="text-center">
 
 
-
                                             </td>
                                             <td class="text-center">
 
-
+                                            </td>
+                                            <td class="text-center">
 
                                             </td>
                                         </tr>
@@ -140,7 +151,7 @@
                                 <tfoot>
                                     <tr>
 
-                                        <th colspan="2" rowspan="2" class="text-center">Total Tingkat Kepuasan</th>
+                                        <th colspan="2" rowspan="2" class="text-center">Total Tingkat Kepuasan Instrumen</th>
                                     </tr>
                                     <tr class="text-center">
                                         <th> <?= $totalSkor5 ?></th>

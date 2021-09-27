@@ -101,4 +101,14 @@ class ResponseModel extends Model
             ->groupBy('response.jawaban')
             ->findAll();
     }
+
+    public function getAllResponses($instrumenId, $questionID)
+    {
+        return $this
+            ->join('questions', 'questions.instrumenID = response.instrumenID')
+            ->where('response.instrumenID', $instrumenId)
+            ->where('response.questionID', $questionID)
+            ->groupBy('response.id')
+            ->findAll();
+    }
 }
