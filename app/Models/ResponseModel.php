@@ -92,11 +92,12 @@ class ResponseModel extends Model
     }
 
 
-    public function getResponseByQuestID($id)
+    public function getResponseByQuestID($id, $questionID)
     {
         return $this
             ->join('questions', 'questions.instrumenID = response.instrumenID')
             ->where('response.userID', $id)
+            ->where('response.questionID', $questionID)
             ->groupBy('questions.id')
             ->findAll();
     }

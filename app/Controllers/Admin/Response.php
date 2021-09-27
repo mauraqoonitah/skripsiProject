@@ -82,7 +82,7 @@ class Response extends BaseController
             'title' => 'Tanggapan Responden',
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
             'respondenData' => $this->responseModel->getRespondenData($id),
-            // 'responseByQuestId' => $this->responseModel->getResponseByQuestID($id),
+            // 'responseByQuestId' => $this->responseModel->getResponseByQuestID($id, $questionID),
             // 'butirByInsId' => $this->responseModel->getButirByInstrumenID($id),
 
         ];

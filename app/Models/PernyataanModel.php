@@ -33,6 +33,7 @@ class PernyataanModel extends Model
     {
         return $this
             ->join('instrumen', 'instrumen.id = questions.instrumenID')
+            ->select('*, questions.id as questionID')
             ->where('questions.instrumenID', $instrumenID)
             ->findAll();
     }

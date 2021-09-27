@@ -26,40 +26,6 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- data diri responden -->
-                <div class="col-lg-3">
-                    <div class="card">
-                        <h5 class="card-header">Data Diri</h5>
-                        <div class="card-body">
-                            <strong><i class="fas fa-book mr-1"></i> Nama Lengkap</strong>
-                            <?php foreach ($respondenData as $res) :  ?>
-                                <p class="text-muted scroll-horiz">
-                                    <?= $res['fullname']; ?>
-                                </p>
-
-                                <hr>
-
-                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Email</strong>
-
-                                <p class="text-muted scroll-horiz"><?= $res['email']; ?></p>
-
-                                <hr>
-
-                                <strong><i class="fas fa-pencil-alt mr-1"></i> No.Identitas</strong>
-                                <p class="text-muted"> <?= $res['noIdentitas']; ?></p>
-
-                                <hr>
-
-                                <strong><i class="far fa-file-alt mr-1"></i> Sebagai</strong>
-
-                                <p class="text-muted"><?= $res['role']; ?></p>
-                            <?php endforeach; ?>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                </div>
-                <!-- ./data diri responden -->
-
                 <!-- list tanggapan per instrumen -->
                 <div class="col-lg-9">
                     <div class="accordion accordion-flush mx-auto" id="accordionExample">
@@ -108,6 +74,9 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <?php foreach ($respondenData as $res) :  ?>
+                                                                    <?php $userID = $res['userID'] ?>
+                                                                <?php endforeach; ?>
 
                                                                 <?php
                                                                 $i = 1;
@@ -118,12 +87,23 @@
                                                                 $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
 
                                                                 foreach ($sql as $row) : ?>
+
                                                                     <tr>
                                                                         <td class="text-center"><?= $i++; ?></td>
                                                                         <td>
+                                                                            <?= $questionID = $row['questionID']; ?> -
                                                                             <?= $row['butir']; ?>
                                                                         </td>
-                                                                        <td>4 n</td>
+
+                                                                        <?php
+                                                                        // get jawaban by questionID
+                                                                        $responseModel = model('ResponseModel');
+                                                                        $this->responseModel = new $responseModel;
+                                                                        $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
+
+                                                                        <?php foreach ($sqlResponse as $response) : ?>
+                                                                            <td><?= $response['jawaban']; ?></td>
+                                                                        <?php endforeach; ?>
                                                                         <td>Sangat Baik n</td>
                                                                     </tr>
                                                                 <?php endforeach; ?>
@@ -141,6 +121,41 @@
                     </div>
                 </div>
                 <!-- ./list tanggapan per instrumen -->
+
+                <!-- data diri responden -->
+                <div class="col-lg-3">
+                    <div class="card">
+                        <h5 class="card-header">Data Diri</h5>
+                        <div class="card-body">
+                            <strong><i class="fas fa-book mr-1"></i> Nama Lengkap</strong>
+                            <?php foreach ($respondenData as $res) :  ?>
+                                <p class="text-muted scroll-horiz">
+                                    <?= $res['fullname']; ?>
+                                </p>
+
+                                <hr>
+
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> Email</strong>
+
+                                <p class="text-muted scroll-horiz"><?= $res['email']; ?></p>
+
+                                <hr>
+
+                                <strong><i class="fas fa-pencil-alt mr-1"></i> No.Identitas</strong>
+                                <p class="text-muted"> <?= $res['noIdentitas']; ?></p>
+
+                                <hr>
+
+                                <strong><i class="far fa-file-alt mr-1"></i> Sebagai</strong>
+
+                                <p class="text-muted"><?= $res['role']; ?></p>
+                                <p class="text-muted">userID <?= $userID = $res['userID']; ?></p>
+                            <?php endforeach; ?>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+                <!-- ./data diri responden -->
             </div>
         </div>
     </section>
