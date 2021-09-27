@@ -39,7 +39,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?= base_url(); ?>/admin/hasil-survei/responden" class="nav-link <?= $uri->getSegment(2) == 'dataResponden' ? 'active"' : '' ?>">
+                            <a href="<?= base_url(); ?>/admin/hasil-survei/responden" class="nav-link <?= $uri->getSegment(2) == 'hasilSurveiResponden' ? 'active"' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Responden</p>
                             </a>

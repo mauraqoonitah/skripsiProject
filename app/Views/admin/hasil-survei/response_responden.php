@@ -29,12 +29,12 @@
             <div class="row">
                 <!-- list tanggapan per instrumen -->
                 <div class="col-lg-9">
-                    <div class="accordion accordion-flush mx-auto" id="accordionExample">
+                    <div class="accordion accordion-flush mx-auto">
                         <?php foreach ($responseInsId as $rIns) : ?>
                             <div class="accordion-item mb-5">
                                 <!-- header collapse - kategori  -->
                                 <h5 class="accordion-header" id="accord-<?= $rIns['instrumenID']; ?>">
-                                    <div class="accordion-button rounded d-flex align-items-center col-lg-12 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $rIns['instrumenID']; ?>" aria-expanded="true" aria-controls="collapse-<?= $rIns['instrumenID']; ?>">
+                                    <div class="accordion-button rounded d-flex align-items-center col-lg-12 " id="accordionResponse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $rIns['instrumenID']; ?>" aria-expanded="true" aria-controls="collapse-<?= $rIns['instrumenID']; ?>">
                                         <span class="fw-bold fs-6"><?= $rIns['kodeInstrumen']; ?> - <?= $rIns['namaInstrumen']; ?></span>
                                     </div>
                                 </h5>
