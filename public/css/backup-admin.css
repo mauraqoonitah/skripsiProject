@@ -330,6 +330,9 @@ sup {
     box-shadow: 0 0 0 0 rgba(38, 143, 255, .5)
 }
 
+
+/* custom accordion */
+
 .accordion-button:not(.collapsed) {
     background-color: rgba(122, 76, 117, .2) !important;
     color: #ae435b !important;
@@ -340,9 +343,17 @@ sup {
     color: #000 !important;
 }
 
+.bg-thead {
+    background-color: #eff1f4 !important;
+}
+
 p.scroll-horiz {
     overflow: auto;
     white-space: nowrap;
+}
+
+.table-bordered>:not(caption)>* {
+    border-width: 0 !important;
 }
 
 

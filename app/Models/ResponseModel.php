@@ -98,7 +98,7 @@ class ResponseModel extends Model
             ->join('questions', 'questions.instrumenID = response.instrumenID')
             ->where('response.userID', $id)
             ->where('response.questionID', $questionID)
-            ->groupBy('questions.id')
+            ->groupBy('response.jawaban')
             ->findAll();
     }
 }
