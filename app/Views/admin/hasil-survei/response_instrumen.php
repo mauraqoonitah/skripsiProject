@@ -29,8 +29,6 @@
         $instrumenID = $rID['instrumenID'];
     }  ?>
 
-
-
     <?php
     $totalSkor5 = 0;
     $totalSkor4 = 0;
@@ -120,19 +118,22 @@
                                             </td>
                                             <td class="text-center">
                                                 <?php
-                                                $skor5 = '|';
-                                                $skor4 = '|';
-                                                $skor3 = '|';
-                                                $skor2 = '|';
-                                                $skor1 = '|';
+                                                $skor5 = 0;
+                                                $skor4 = 0;
+                                                $skor3 = 0;
+                                                $skor2 = 0;
+                                                $skor1 = 0;
+                                                $skorNull = '';
                                                 ?>
                                                 <?php foreach ($sqlResponse as $response) : ?>
                                                     <?php $jawaban = $response['jawaban']; ?>
                                                     <?php $questID = $response['questionID']; ?>
                                                     <?php if ($jawaban == '5' && $questID == $questionID) {
-                                                        echo  $skor5;
-                                                    } ?>
+                                                        $skor5++;
+                                                    }
+                                                    ?>
                                                 <?php endforeach; ?>
+                                                <?= $skor5; ?>
                                             </td>
 
                                             <td class="text-center">
@@ -140,20 +141,20 @@
                                                     <?php $jawaban = $response['jawaban']; ?>
                                                     <?php $questID = $response['questionID']; ?>
                                                     <?php if ($jawaban == '4' && $questID == $questionID) {
-                                                        echo  $skor4++;
+                                                        $skor4++;
                                                     } ?>
                                                 <?php endforeach; ?>
-
+                                                <?= $skor4; ?>
                                             </td>
                                             <td class="text-center">
                                                 <?php foreach ($sqlResponse as $response) : ?>
                                                     <?php $jawaban = $response['jawaban']; ?>
                                                     <?php $questID = $response['questionID']; ?>
                                                     <?php if ($jawaban == '3' && $questID == $questionID) {
-                                                        echo  $skor3;
+                                                        $skor3++;
                                                     } ?>
                                                 <?php endforeach; ?>
-
+                                                <?= $skor3; ?>
                                             </td>
                                             <td class="text-center">
 
@@ -161,18 +162,20 @@
                                                     <?php $jawaban = $response['jawaban']; ?>
                                                     <?php $questID = $response['questionID']; ?>
                                                     <?php if ($jawaban == '2' && $questID == $questionID) {
-                                                        echo  $skor2;
+                                                        $skor2++;
                                                     } ?>
                                                 <?php endforeach; ?>
+                                                <?= $skor2; ?>
                                             </td>
                                             <td class="text-center">
                                                 <?php foreach ($sqlResponse as $response) : ?>
                                                     <?php $jawaban = $response['jawaban']; ?>
                                                     <?php $questID = $response['questionID']; ?>
                                                     <?php if ($jawaban == '1' && $questID == $questionID) {
-                                                        echo  $skor1;
+                                                        $skor1++;
                                                     } ?>
                                                 <?php endforeach; ?>
+                                                <?= $skor1; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
