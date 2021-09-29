@@ -54,6 +54,11 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
 
+<!-- chart js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- ChartJS AdminLTE-->
+<!-- <script src="<?= base_url(); ?>/../../plugins/chart.js/Chart.min.js"></script> -->
 
 <!-- datatables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>

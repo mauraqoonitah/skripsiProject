@@ -59,10 +59,13 @@
 
     <?php endforeach; ?>
 
-    <!-- Main content -->
+
+
+
 
     <section class="content">
         <div class="container-fluid">
+
             <div class="card container bg-light text-dark py-4">
                 <div class="container text-center">
                     <input type="text" readonly class="form-control-plaintext fw-bold text-center text-uppercase" id="instrumen" value="<?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?>" disabled>
@@ -75,6 +78,27 @@
                 </div>
 
             </div>
+
+
+            <!-- STACKED BAR CHART -->
+            <div class="card shadow my-5">
+                <div class="card-header">
+                    <h5 class="card-title">Hasil Survei Kepuasan</h5>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
 
             <!-- DataTales Example -->
 
@@ -206,5 +230,55 @@
     </section>
     <!-- /.content -->
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Sangat Puas', 'Puas', 'Cukup Puas', 'Tidak Puas', 'Sangat Tidak Puas'],
+            datasets: [{
+                label: '# Tingkat Kepuasan',
+                data: [
+                    <?= $totalSkor5; ?>,
+                    <?= $totalSkor4; ?>,
+                    <?= $totalSkor3; ?>,
+                    <?= $totalSkor2; ?>,
+                    <?= $totalSkor1; ?>,
+                ],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(153, 102, 255, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 159, 64, 0.5)',
+                ],
+                borderColor: [
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            responsive: true,
+
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 
 <?= $this->endSection(); ?>
