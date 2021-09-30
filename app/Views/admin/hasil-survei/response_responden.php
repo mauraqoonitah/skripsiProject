@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold"><?= $title; ?></h1>
+                    <h1 class="fw-bold">Data Hasil Survei Kepuasan <br>(Per-Responden)</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,30 +26,6 @@
 
     <section class="content">
         <div class="container-fluid">
-
-
-            <!-- STACKED BAR CHART -->
-            <div class="card shadow mb-5">
-                <div class="card-header">
-                    <h5 class="card-title">Hasil Survei Kepuasan</h5>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="chart">
-                        <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-
-
 
             <div class="row">
                 <!-- list tanggapan per instrumen -->
@@ -71,12 +47,13 @@
                                         <section class="content">
                                             <div class="container-fluid">
                                                 <section>
-                                                    <!-- <div class="card container bg-light text-dark py-2 mt-2 mb-4">
-                                                        <div class="container text-center">
-                                                            <input type="text" readonly class="form-control-plaintext fw-bold text-center text-uppercase" id="instrumen" value="< ? = $rIns['namaInstrumen']; ?>" disabled>
-                                                        </div>
-                                                    </div> -->
 
+                                                    <!-- STACKED BAR CHART -->
+                                                    <div class="my-4">
+                                                        <div class="chart">
+                                                            <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
+                                                        </div>
+                                                    </div>
                                                     <div class="container mb-3">
                                                         <div class="row justify-content-center ">
                                                             <span class="text-muted">Tgl Pengisian Survei : </span>
@@ -203,41 +180,46 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['Sangat Puas', 'Puas', 'Cukup Puas', 'Tidak Puas', 'Sangat Tidak Puas'],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                barPercentage: 0.8,
+                label: '# Tingkat Kepuasan',
+                data: [
+                    1, 2, 3, 4, 5
+                ],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
+                    'rgba(54, 162, 235, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
                 ],
-                borderWidth: 1
+                borderWidth: 1,
             }]
         },
         options: {
+            maintainAspectRatio: false,
+            responsive: true,
+
             scales: {
                 y: {
                     beginAtZero: true
                 }
-            }
+            },
         }
     });
 </script>

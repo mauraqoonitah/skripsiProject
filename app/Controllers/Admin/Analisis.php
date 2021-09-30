@@ -3,21 +3,27 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\AdminModel;
 
 
 
 class Analisis extends BaseController
 {
     protected $mRequest;
+    protected $adminModel;
+
 
     public function __construct()
     {
         $this->mRequest = service("request");
+        $this->adminModel = new AdminModel();
     }
     public function home()
     {
         $data = [
             'title' => 'Kelola Instrumen',
+            'category' => $this->adminModel->getCategory(),
+
 
         ];
         return view('admin/analisis-survei/home', $data);

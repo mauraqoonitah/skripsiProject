@@ -25,7 +25,9 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(".form-select-responden").select2();
+    $(".form-select-kategori").select2();
 </script>
+
 <!-- summernote ; include summernote css/js -->
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
@@ -57,9 +59,6 @@
 <!-- chart js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- ChartJS AdminLTE-->
-<!-- <script src="<?= base_url(); ?>/../../plugins/chart.js/Chart.min.js"></script> -->
-
 <!-- datatables -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
@@ -73,6 +72,10 @@
         $('#table-kelola-survei').DataTable({
             "pageLength": 25
         });
+
+    });
+    $(document).ready(function() {
+        $('#datatable-chart-instrumen').DataTable();
 
     });
 </script>
