@@ -74,10 +74,6 @@
         });
 
     });
-    $(document).ready(function() {
-        $('#datatable-chart-instrumen').DataTable();
-
-    });
 </script>
 
 <!-- sidebar menu active -->
