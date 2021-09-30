@@ -48,11 +48,6 @@ class Analisis extends BaseController
     {
         $data = [
             'title' => 'Laporan Survei Kepuasan',
-            'responseIns' => $this->responseModel->getResponseByInstrumen(),
-            'responsePertanyaan' => $this->responseModel->getResponseButir($id),
-            'responseJawaban' => $this->responseModel->getResponseJawaban($id),
-            'responseJawabanLagi' => $this->responseModel->getResponseJawabanLagi($id),
-            'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($id),
 
         ];
         return view('admin/analisis-survei/laporan_kepuasan', $data);

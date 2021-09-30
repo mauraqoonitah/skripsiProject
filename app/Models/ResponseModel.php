@@ -23,6 +23,17 @@ class ResponseModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+    public function getTotalResponse($id = false)
+    {
+        if ($id == false) {
+            return $this
+                ->orderBy('id', 'desc')
+                ->groupBy('questionID')
+                ->findAll();
+        }
+
+        return $this->where(['id' => $id])->first();
+    }
     public function getResponseByInstrumen()
     {
         return $this

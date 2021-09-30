@@ -35,10 +35,12 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Dashboard Admin',
+            'totalResponden' => count($this->respondenModel->getRespondenList()),
+            'totalInstrumen' => count($this->instrumenModel->getInstrumen()),
+            'totalKategori' => count($this->adminModel->getCategory()),
+            'totalTanggapan' => count($this->responseModel->getTotalResponse()),
 
         ];
-
-
         return view('admin/index', $data);
     }
 
