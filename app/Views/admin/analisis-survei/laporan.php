@@ -22,8 +22,17 @@
     <!-- Main content -->
     <section class="content mx-auto">
         <div class="container-fluid">
-            <div class="alert alert-rouge fw-bold" role="alert">
-                <strong>Pilih kategori untuk melihat hasil survei kepuasan </strong>
+            <div class="row">
+                <div class="alert alert-rouge fw-bold mt-3 col-lg-10" role="alert">
+                    <strong>Pilih kategori untuk melihat hasil survei kepuasan </strong>
+                </div>
+                <div class="col-lg-2 align-middle">
+                    <a href="<?= base_url(); ?>/admin/analisisKepuasan">
+                        <button type="button" class="btn btn-sm btn-success mt-3">
+                            <i class=" fas fa-plus"></i> Buat Laporan
+                        </button>
+                    </a>
+                </div>
             </div>
             <div class="card-body py-4">
                 <div class="row row-cols-1 row-cols-md-2 g-4">
