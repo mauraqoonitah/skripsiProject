@@ -178,13 +178,11 @@
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
-
                                 </tbody>
                                 <tfoot>
-                                    <tr>
-                                        <th colspan="2" rowspan="2" class="text-center">Total Tingkat Kepuasan Instrumen</th>
-                                    </tr>
                                     <tr class="text-center">
+                                        <th></th>
+                                        <th class="text-center">Total Tanggapan</th>
                                         <th> <?= $totalSkor5 ?></th>
                                         <th><?= $totalSkor4 ?></th>
                                         <th><?= $totalSkor3 ?></th>
@@ -450,5 +448,7 @@
         }
     });
 </script>
+
+
 
 <?= $this->endSection(); ?>

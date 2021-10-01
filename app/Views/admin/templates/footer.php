@@ -60,7 +60,24 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- datatables -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+
+<?php
+
+use CodeIgniter\I18n\Time;
+
+date_default_timezone_set('Asia/Jakarta');
+$timeNow = Time::now()->toDateTimeString(); ?>
+
 
 <script>
     $(document).ready(function() {
@@ -70,9 +87,54 @@
     });
     $(document).ready(function() {
         $('#table-kelola-survei').DataTable({
-            "pageLength": 25
-        });
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Hasil Survei Instrumen',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
 
+                },
+                {
+                    extend: 'excel',
+                    title: 'Hasil Survei Instrumen',
+                    messageTop: 'Nama Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Hasil Survei Instrumen',
+                    messageTop: 'Nama Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Nama Instrumen/print datetime',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
     });
 </script>
 
