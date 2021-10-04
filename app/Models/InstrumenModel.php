@@ -60,15 +60,8 @@ class InstrumenModel extends Model
             ->get()->getResultArray();
     }
 
-    public function getInstrumenByResponden($peruntukkanInstrumen = false)
+    public function getInstrumenByResponden($peruntukkanInstrumen)
     {
-        if ($peruntukkanInstrumen == false) {
-            return $this
-                ->where('peruntukkanInstrumen', $peruntukkanInstrumen)
-                ->orderBy('kodeInstrumen', 'asc')
-                ->findAll();
-        }
-
         return $this
             ->where('peruntukkanInstrumen', $peruntukkanInstrumen)
             ->orderBy('kodeInstrumen', 'asc')

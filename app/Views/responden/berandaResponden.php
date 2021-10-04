@@ -5,8 +5,8 @@
     <div class="container">
         <div class="textBox">
             <!-- using gsap animation -->
-            <p class="text-center text-muted" data-aos="zoom-in-right" data-aos-duration="1000">(<?= user()->role; ?>)</p>
             <p class="text-center text-muted fs-5" data-aos="zoom-in-right" data-aos-duration="1000"> <span class="welcome fw-bold"> </span> <?= user()->fullname; ?></p>
+            <p class="text-center text-muted" data-aos="zoom-in-right" data-aos-duration="1000">sebagai <?= user()->role; ?></p>
         </div>
     </div>
     <!-- Content Header (Page header) -->
@@ -30,23 +30,25 @@
 
             <div class="row">
                 <div class="col-lg-8 mx-auto">
-                    <?php
-                    foreach ($instrumenByResponden as $ins) : ?>
-                        <a href="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" data-aos="fade-down" data-aos-duration="1500">
-                            <div class="row mb-4 mx-auto">
-                                <div class="pilih-inst">
-                                    <?= $ins['namaInstrumen']; ?>
-                                </div>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
                     <?php if (sizeof($instrumenByResponden) === 0) : ?>
                         <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
                             <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
                                 Maaf, data instrumen untuk responden <?= user()->role; ?> tidak ditemukan.
                             </div>
                         </div>
+                    <?php else : ?>
+                        <?php
+                        foreach ($instrumenByResponden as $ins) : ?>
+                            <a href="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" data-aos="fade-down" data-aos-duration="1500">
+                                <div class="row mb-4 mx-auto">
+                                    <div class="pilih-inst">
+                                        <?= $ins['namaInstrumen']; ?>
+                                    </div>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
                     <?php endif; ?>
+
 
                 </div>
             </div>
