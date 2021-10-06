@@ -14,9 +14,9 @@
                     </div>
                 </div>
                 <div class="col-md-8 order-md-1 col-lg-7 text-center text-md-start">
-                    <h1 class="bd-title"> <span id="title-animate" class="purple-text"> </span>
-                        <h2 class="mb-4" data-aos="zoom-in-right" data-aos-duration="500">Sistem Penjaminan Mutu Internal</h2>
-                    </h1>
+                    <h2 class="bd-title"> <span id="title-animate" class="purple-text"> </span>
+                        <h4 class="mb-4" data-aos="zoom-in-right" data-aos-duration="500">Sistem Penjaminan Mutu Internal</h4>
+                    </h2>
 
                     <!-- carousel -->
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -25,18 +25,17 @@
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style="margin-top: 2rem;"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style="margin-top: 2rem;"></button>
                         </div>
-                        <div class="carousel-inner mb-4" data-aos="zoom-in-right" data-aos-delay="500" data-aos-duration="2000">
+                        <div class="carousel-inner mb-4" data-aos="zoom-in-down" data-aos-delay="500" data-aos-duration="2000">
                             <div class="carousel-item active" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p class="lead">Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
-
+                                    <p class="fs-6">Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
 
                                     </p>
                                 </div>
                             </div>
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p class="lead"> Sistem penjaminan mutu pendidikan tinggi terdiri atas sistem penjaminan mutu internal yang dikembangkan oleh perguruan tinggi dan sistem penjaminan mutu eksternal yang dilakukan melalui akreditasi. <i>(Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 Tentang Pendidikan Tinggi)
+                                    <p class="fs-6"> Sistem penjaminan mutu pendidikan tinggi terdiri atas sistem penjaminan mutu internal yang dikembangkan oleh perguruan tinggi dan sistem penjaminan mutu eksternal yang dilakukan melalui akreditasi. <i>(Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 Tentang Pendidikan Tinggi)
                                         </i>
 
                                     </p>
@@ -44,7 +43,7 @@
                             </div>
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p class="lead"> Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan. SPMI direncanakan, dilaksanakan, dievaluasi, dikendalikan, dan dikembangkan oleh perguruan tinggi.</p>
+                                    <p class="fs-6"> Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan. SPMI direncanakan, dilaksanakan, dievaluasi, dikendalikan, dan dikembangkan oleh perguruan tinggi.</p>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +59,7 @@
                     <!-- ./carousel -->
                     <div class="d-flex flex-column flex-md-row">
                         <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="2000">
-                            <button type="button" class="btn btn-lg btn-jumbotron btn-purple ">Isi Survei</button>
+                            <button type="button" class="btn btn-jumbotron btn-purple ">Isi Survei</button>
                         </a>
                     </div>
 

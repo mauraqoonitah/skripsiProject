@@ -171,6 +171,8 @@ class AuthController extends Controller
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($nim),
 		];
 
+
+
 		// validasi input Check to see if data exists
 		if ($this->validate([
 			'nim' => [
@@ -244,6 +246,7 @@ class AuthController extends Controller
 			'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
 
 		];
+
 		// dd($data['userCheckByInput']);
 		// return $this->_render($this->config->views['register'], ['config' => $this->config], $data);
 		return $this->_render($this->config->views['register'], $data);

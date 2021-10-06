@@ -64,7 +64,7 @@
                             </p>
                         <?php endif; ?>
                         <?php if ($config->activeResetter) : ?>
-                            <p>
+                            <p class="small">
                                 <a href="<?= url_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?>
                                 </a>
                             </p>
