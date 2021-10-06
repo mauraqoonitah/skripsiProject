@@ -72,10 +72,6 @@ class Response extends BaseController
         if (empty($data['instrumen'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Instrumen Tidak ditemukan.');
         }
-        // if (empty($data['lihatPernyataan'])) {
-        //     throw new \CodeIgniter\Exceptions\PageNotFoundException('Butir Pernyataan Tidak ditemukan.');
-        // }
-
         return view('responden/isiSurvei', $data);
     }
 
@@ -97,6 +93,7 @@ class Response extends BaseController
                         'responden' => $this->mRequest->getVar('responden'),
                         'jawaban' => $jawaban,
                         'userID'  => user()->id,
+                        'created_at'  => date('Y-m-d H:i:s'),
                     ];
                 $this->responseModel->save($data);
             }

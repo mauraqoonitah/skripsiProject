@@ -23,6 +23,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <!-- jika belum ada responden -->
+            <?php if (sizeof($responden) === 0) : ?>
+                <p class="text-rouge text-center mt-3"><i> Responden belum mengisi survei.</i></p>
+            <?php endif; ?>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4 border-light shadow">

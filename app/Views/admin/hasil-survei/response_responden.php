@@ -56,7 +56,12 @@
                                                     </div>
                                                     <div class="container mb-3">
                                                         <div class="row justify-content-center ">
-                                                            <span class="text-muted">Tgl Pengisian Survei : </span>
+                                                            <?php foreach ($respondenData as $res) :  ?>
+                                                                <?php $userID = $res['userID'] ?>
+
+                                                                <span class="text-muted">Tgl Pengisian Survei : <?= $res['created_at'] ?></span>
+
+                                                            <?php endforeach; ?>
                                                         </div>
                                                     </div>
 
@@ -74,9 +79,7 @@
 
 
                                                                 <tbody>
-                                                                    <?php foreach ($respondenData as $res) :  ?>
-                                                                        <?php $userID = $res['userID'] ?>
-                                                                    <?php endforeach; ?>
+
 
                                                                     <?php
                                                                     $i = 1;

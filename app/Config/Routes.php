@@ -62,15 +62,15 @@ $routes->post('/admin/updateKategori_/(:any)', 'Admin\Kategori_::updateKategori_
 $routes->delete('/admin/deleteKategori_/(:any)', 'Admin\Kategori_::deleteKategori_/$1');
 //./ new
 
-$routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
-$routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
-$routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
-$routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
-$routes->post('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
+// $routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
+// $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
+// $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
+// $routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
+// $routes->post('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
 
-$routes->post('/admin/saveKategori', 'Admin\Kategori::saveKategori');
-$routes->post('/admin/updateKategori/(:any)', 'Admin\Kategori::updateKategori/$1');
-$routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/$1');
+// $routes->post('/admin/saveKategori', 'Admin\Kategori::saveKategori');
+// $routes->post('/admin/updateKategori/(:any)', 'Admin\Kategori::updateKategori/$1');
+// $routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/$1');
 
 
 // admin menu kelola instrumen
@@ -122,7 +122,9 @@ $routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
 $routes->get('/responden', 'Responden\Response::index', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
 
-$routes->get('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+// $routes->get('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin']);
+
+$routes->post('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
 
 $routes->post('/responden/saveSurvei/(:any)', 'Responden\Response::saveSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
 

@@ -12,6 +12,10 @@
                     </h1>
                     <p class="fs-5 fw-bold"><?= $instrumen['kodeInstrumen']; ?> - <?= $instrumen['namaInstrumen']; ?> </p>
                 </div>
+                <!-- back to previous page  -->
+                <a href="<?= base_url(); ?>/responden">
+                    <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px"></i>
+                </a>
             </div>
         </div>
     </div>

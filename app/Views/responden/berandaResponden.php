@@ -39,13 +39,15 @@
                     <?php else : ?>
                         <?php
                         foreach ($instrumenByResponden as $ins) : ?>
-                            <a href="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" data-aos="fade-down" data-aos-duration="1500">
-                                <div class="row mb-4 mx-auto">
-                                    <div class="pilih-inst">
-                                        <?= $ins['namaInstrumen']; ?>
+                            <form action="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" method="post">
+                                <button class="btn" type="submit" data-aos="fade-down" data-aos-duration="1500">
+                                    <div class="row mb-4 mx-auto">
+                                        <div class="pilih-inst">
+                                            <?= $ins['namaInstrumen']; ?>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </button>
+                            </form>
                         <?php endforeach; ?>
                     <?php endif; ?>
 

@@ -16,8 +16,8 @@
                     </ol>
                 </div>
                 <!-- back to previous page  -->
-                <a href="#>
-                    <i class=" nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
+                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_">
+                    <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px"></i>
                 </a>
 
             </div>
@@ -104,6 +104,16 @@
                             </thead>
                             <tbody>
                                 <?php $i = 1; ?>
+                                <!-- jika butir pernyataan tidak ada -->
+                                <?php if (sizeof($lihatPernyataan) === 0) : ?>
+                                    <tr>
+                                        <th colspan="8">
+                                            <div class="alert alert-rouge alert-dismissible fade show" role="alert">
+                                                <span class="text-rouge"><i> butir pernyataan belum ditambahkan.</i></span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                <?php endif; ?>
                                 <?php foreach ($lihatPernyataan as $questions) : ?>
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>

@@ -56,6 +56,79 @@
                             <i class="fas fa-plus"></i> Tambah Kategori
                         </button></a>
                 </div>
+                <!-- modal tambah kategori -->
+                <div class="modal fade" id="modal-tambah-instrumen" tabindex="-1" aria-labelledby="tambahKategoriLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header card-header text-rouge ">
+                                <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Kategori</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- form tambah kategori -->
+                                <form action="<?= base_url(); ?>/admin/saveKategori_" method="post">
+                                    <?= csrf_field(); ?>
+
+                                    <!-- kode kategori -->
+                                    <div class="form-group">
+                                        <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= old('kodeCategory'); ?>">
+                                            <!-- popover -->
+                                            <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
+                                                <i class="fas fa-info"></i>
+                                            </span>
+                                            <div class="invalid-feedback">
+                                                <?= $validation->getError('kodeCategory'); ?>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="popover-kode-kategori">
+                                            <p class="font-monospace text-secondary">
+                                                <b>Kategori yang terdaftar :</b><br>
+                                                <?php foreach ($category as $ctg) :  ?>
+                                                    <span><?= $ctg['kodeCategory'] . ' (' .  $ctg['namaCategory'] . ')'; ?> <br>
+                                                    </span>
+                                                <?php endforeach; ?>
+                                            </p>
+                                        </div>
+                                        <!-- end popover -->
+                                    </div>
+
+                                    <!-- nama kategori -->
+                                    <div class="form-group">
+                                        <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
+                                        <textarea class="form-control <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= old('namaCategory'); ?>"></textarea>
+                                        <div class=" invalid-feedback">
+                                            <?= $validation->getError('namaCategory'); ?>
+                                        </div>
+                                    </div>
+
+                                    <!-- peruntukkan kategori -->
+                                    <div class="form-group">
+                                        <label for="peruntukkan-kategori" class="col-form-label">Responden:</label>
+                                        <?php foreach ($responden as $resp) : ?>
+                                            <div class="form-check">
+                                                <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
+                                                <label class="form-check-label" for="peruntukkanCategory">
+                                                    <?= $resp['responden']; ?>
+                                                </label>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <button type="submit" class="btn btn-success ml-auto mt-3">
+                                            <i class="fas fa-save"></i> Simpan
+                                        </button>
+                                    </div>
+                                </form>
+                                <!-- end form tambah kategori -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end modal tambah kategori -->
+
                 <div class="card-body">
                     <div class="accordion accordion-flush mx-auto" id="accordionExample">
                         <?php foreach ($category as $ctg) : ?>
@@ -287,82 +360,6 @@
                                 <!-- ./content collapse - kategori  -->
 
                             </div>
-
-                            <!-- modal tambah kategori -->
-                            <div class="modal fade" id="modal-tambah-instrumen" tabindex="-1" aria-labelledby="tambahKategoriLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-                                    <div class="modal-content">
-                                        <div class="modal-header card-header text-rouge ">
-                                            <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Kategori</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- form tambah kategori -->
-                                            <form action="<?= base_url(); ?>/admin/saveKategori_" method="post">
-                                                <?= csrf_field(); ?>
-
-                                                <!-- kode kategori -->
-                                                <div class="form-group">
-                                                    <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
-                                                    <div class="input-group mb-3">
-                                                        <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= old('kodeCategory'); ?>">
-                                                        <!-- popover -->
-                                                        <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
-                                                            <i class="fas fa-info"></i>
-                                                        </span>
-                                                        <div class="invalid-feedback">
-                                                            <?= $validation->getError('kodeCategory'); ?>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse" id="popover-kode-kategori">
-                                                        <p class="font-monospace text-secondary">
-                                                            <b>Kategori yang terdaftar :</b><br>
-                                                            <?php foreach ($category as $ctg) :  ?>
-                                                                <span><?= $ctg['kodeCategory'] . ' (' .  $ctg['namaCategory'] . ')'; ?> <br>
-                                                                </span>
-                                                            <?php endforeach; ?>
-                                                        </p>
-                                                    </div>
-                                                    <!-- end popover -->
-                                                </div>
-
-                                                <!-- nama kategori -->
-                                                <div class="form-group">
-                                                    <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
-                                                    <textarea class="form-control <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= old('namaCategory'); ?>"></textarea>
-                                                    <div class=" invalid-feedback">
-                                                        <?= $validation->getError('namaCategory'); ?>
-                                                    </div>
-                                                </div>
-
-                                                <!-- peruntukkan kategori -->
-                                                <div class="form-group">
-                                                    <label for="peruntukkan-kategori" class="col-form-label">Responden:</label>
-                                                    <?php foreach ($responden as $resp) : ?>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
-                                                            <label class="form-check-label" for="peruntukkanCategory">
-                                                                <?= $resp['responden']; ?>
-                                                            </label>
-                                                        </div>
-                                                    <?php endforeach; ?>
-                                                </div>
-                                                <div class="d-flex align-items-center">
-                                                    <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                        <i class="fas fa-save"></i> Simpan
-                                                    </button>
-                                                </div>
-                                            </form>
-                                            <!-- end form tambah kategori -->
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end modal tambah kategori -->
-
-
-
 
 
                         <?php endforeach; ?>
