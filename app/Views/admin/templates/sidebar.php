@@ -69,10 +69,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>/admin/kelolaResponden" class="nav-link <?= $uri->getSegment(2) == 'kelolaResponden' ? 'active"' : '' ?>">
+                    <a href="<?= base_url(); ?>/admin/jenisResponden" class="nav-link <?= $uri->getSegment(2) == 'kelolaResponden' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Kelola Responden
+                            Jenis Responden
                         </p>
                     </a>
                 </li>

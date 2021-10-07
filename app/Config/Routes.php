@@ -118,6 +118,16 @@ $routes->get('/admin/laporanSurvei', 'Admin\Analisis::laporan');
 $routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
 $routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
 
+
+// menu kelola jenis responden
+$routes->get('/admin/jenisResponden', 'Admin\JenisResponden::index');
+$routes->get('/admin/editJenisResponden/(:any)', 'Admin\JenisResponden::editJenisResponden/$1');
+$routes->delete('/admin/deleteJenisResponden/(:any)', 'Admin\JenisResponden::deleteJenisResponden/$1');
+$routes->post('/admin/saveJenisResponden', 'Admin\JenisResponden::saveJenisResponden');
+$routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updateJenisResponden/$1');
+
+
+
 // responden
 
 $routes->get('/responden', 'Responden\Response::index', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
@@ -127,6 +137,7 @@ $routes->get('/responden', 'Responden\Response::index', ['filter' => 'role:Admin
 $routes->post('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
 
 $routes->post('/responden/saveSurvei/(:any)', 'Responden\Response::saveSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+
 
 
 

@@ -34,7 +34,43 @@
                                         Akun SIAKAD dikenali. Silakan buat username dan password.
                                     </div>
                                 </div>
+                                <div class="auth-wrapper-right">
+                                    <div class="card-body mx-3">
+                                        <!-- username -->
+                                        <div class="form-group mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                            <div class="invalid-feedback">
+                                                <?= session('errors.username') ?>
+                                            </div>
+                                        </div>
 
+                                        <!-- password -->
+                                        <div class="form-group row mb-3">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label for="password" class="form-label">Password</label>
+                                                <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.password') ?>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                                <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.pass_confirm') ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="auth-wrapper-right col-12 mb-5">
+                                        <div class="container d-grid gap-2 ">
+                                            <button type="submit" class="btn btn-cosmic btn-user btn-block">
+                                                <?= lang('Auth.register') ?>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php
                                 $nim = $_SESSION['nim'];
                                 $nidn = $_SESSION['nidn'];
@@ -42,8 +78,8 @@
                                 $userCheckModel = model('UserCheckModel');
                                 $this->userCheckModel = new $userCheckModel;
                                 $sql =  $this->userCheckModel->getUserCheckByInput($nidn);
-
-                                foreach ($sql as $row) : ?>
+                                ?>
+                                <?php foreach ($sql as $row) : ?>
                                     <!-- email -->
                                     <input type="hidden" value="<?= $row['email']; ?>" name="email">
 
@@ -65,144 +101,107 @@
                                     <!-- program studi -->
                                     <input type="hidden" name="programStudi" value="<?= $row['programStudi']; ?>">
                                 <?php endforeach; ?>
-
-                    </div>
-                    <!-- ./card-body -->
-                </div>
-                <div class="auth-wrapper-right">
-                    <div class="card-body mx-3">
-                        <!-- username -->
-                        <div class="form-group mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
-                            <div class="invalid-feedback">
-                                <?= session('errors.username') ?>
-                            </div>
-                        </div>
-
-                        <!-- password -->
-                        <div class="form-group row mb-3">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
-                                <div class="invalid-feedback">
-                                    <?= session('errors.password') ?>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
-                                <div class="invalid-feedback">
-                                    <?= session('errors.pass_confirm') ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="auth-wrapper-right col-12 mb-5">
-                        <div class="container d-grid gap-2 ">
-                            <button type="submit" class="btn btn-cosmic btn-user btn-block">
-                                <?= lang('Auth.register') ?>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </form>
-            <?php
+                                <?php
                                 unset(
                                     $_SESSION['nim'],
                                     $_SESSION['nidn']
                                 ); ?>
+                        </form>
+                    </div>
+                </div>
 
-        <?php else : ?>
-            <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
-                <?= csrf_field() ?>
-                <!--  -------------- section untuk responden non siakad ----------------- -->
-                <section>
-                    <div class="container">
+            <?php else :  ?>
+                <?php if (!isset($_SESSION['nim'])) :  ?>
+                    <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
+                        <?= csrf_field() ?>
+                        <!--  -------------- section untuk responden non siakad ----------------- -->
+                        <section>
+                            <div class="container">
 
 
-                        <?= view('Myth\Auth\Views\_message_block') ?>
-                        <div class="form-group my-3">
-                            <!-- email -->
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
-                            <div class="invalid-feedback">
-                                <?= session('errors.email') ?>
-                            </div>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <!-- fullname -->
-                            <label for="fullname" class="form-label">Nama Lengkap</label>
-                            <input type="text" class=" form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname" value="<?= old('fullname') ?>">
-                            <div class="invalid-feedback">
-                                <?= session('errors.fullname') ?>
-                            </div>
-                        </div>
-                        <!-- username -->
-                        <div class="form-group mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
-                            <div class="invalid-feedback">
-                                <?= session('errors.username') ?>
-                            </div>
-                        </div>
-
-                        <!-- jenis responden untuk non siakad -->
-                        <div class="form-group mb-3">
-                            <label for="responden" class="form-label">Sebagai</label>
-                            <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>">
-                                <option>Pilih</option>
-                                <?php foreach ($jenisResponden as $r) : ?>
-                                    <option value="<?= $r['responden']; ?>"><?= $r['responden']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <div class="invalid-feedback">
-                                < ?=session('errors.role') ?>
-                            </div>
-
-                            <input type="hidden" name="role" id="respondenTxt" />
-
-                        </div>
-
-                        <!-- password -->
-                        <div class="form-group row mb-3">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
-                                <div class="invalid-feedback">
-                                    <?= session('errors.password') ?>
+                                <?= view('Myth\Auth\Views\_message_block') ?>
+                                <div class="form-group my-3">
+                                    <!-- email -->
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= session('errors.email') ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
-                                <div class="invalid-feedback">
-                                    <?= session('errors.pass_confirm') ?>
+
+                                <div class="form-group mb-3">
+                                    <!-- fullname -->
+                                    <label for="fullname" class="form-label">Nama Lengkap</label>
+                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname" value="<?= old('fullname') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= session('errors.fullname') ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="auth-wrapper-left col-12 mt-5">
-                                <div class="d-grid gap-2 ">
-                                    <button type="submit" class="btn btn-cosmic btn-user btn-block">
-                                        <?= lang('Auth.register') ?>
-                                    </button>
+                                <!-- username -->
+                                <div class="form-group mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                    <div class="invalid-feedback">
+                                        <?= session('errors.username') ?>
+                                    </div>
                                 </div>
-                                <hr>
-                                <div class="text-center pb-3">
-                                    <p class="text-muted small">
-                                        Sudah punya akun? <a href="<?= url_to('login') ?>">
-                                            <?= lang('Auth.signIn') ?>
-                                        </a>
-                                    </p>
+
+                                <!-- jenis responden untuk non siakad -->
+                                <div class="form-group mb-3">
+                                    <label for="responden" class="form-label">Sebagai</label>
+                                    <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>">
+                                        <option>Pilih</option>
+                                        <?php foreach ($jenisResponden as $r) : ?>
+                                            <option value="<?= $r['responden']; ?>"><?= $r['responden']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        < ?=session('errors.role') ?>
+                                    </div>
+
+                                    <input type="hidden" name="role" id="respondenTxt" />
+
                                 </div>
-                            </div>
-                        </div>
-                </section>
-            </form>
-        <?php endif; ?>
+
+                                <!-- password -->
+                                <div class="form-group row mb-3">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.password') ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                        <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                        <div class="invalid-feedback">
+                                            <?= session('errors.pass_confirm') ?>
+                                        </div>
+                                    </div>
+                                    <div class="auth-wrapper-left col-12 mt-5">
+                                        <div class="d-grid gap-2 ">
+                                            <button type="submit" class="btn btn-cosmic btn-user btn-block">
+                                                <?= lang('Auth.register') ?>
+                                            </button>
+                                        </div>
+                                        <hr>
+                                        <div class="text-center pb-3">
+                                            <p class="text-muted small">
+                                                Sudah punya akun? <a href="<?= url_to('login') ?>">
+                                                    <?= lang('Auth.signIn') ?>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </section>
+                    </form>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            </div>
         </div>
-    </div>
 
 </section>
 
