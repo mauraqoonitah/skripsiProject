@@ -55,28 +55,96 @@
                 </div>
                 <div class="card-body">
                     <!-- petunjuk pengisian -->
+
                     <div class="callout callout-info mb-5 ">
                         <div class="d-flex align-items-center ">
                             <h6 class="my-3 py-2 text-muted">Petunjuk Pengisian Instrumen</h6>
                             <!-- buat petunjuk pengisian -->
-                            <a href="#" class="ml-auto"> <button type="button" class="btn btn-info ">
-                                    <i class=" fas fa-plus"></i> Ubah Petunjuk Pengisian
-                                </button></a>
-                        </div>
-                        <ol type="a">
-                            <li class="text-muted">Saudara adalah dosen UNJ. Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan selama menjadi dosen di UNJ sesuai dengan keadaan yang sebenarnya.</li>
-                            <li class="text-muted">Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</li>
-                            <li class="text-muted">Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
-                            <li class="text-muted">Berilah tanda centang (√) pada pernyataan pada kolom yang disediakan dibawah ini.</li>
-                            <li class="text-muted">Keterangan:<br>
-                                5 = Sangat Puas<br>
-                                4 = Puas<br>
-                                3 = Cukup Puas<br>
-                                2 = Tidak Puas<br>
-                                1 = Sangat Tidak Puas</li>
-                        </ol>
+                            <!-- Button trigger modal -->
 
+                            <?php if (empty($petunjukInstrumenModel)) : ?>
+                                <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
+                                    <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
+                                </button>
+
+                            <?php endif; ?>
+
+                            <?php foreach ($petunjukInstrumenModel as $isi) : ?>
+
+                                <?php if (empty($isi['isiPetunjuk']) || empty($isi['id'])) : ?>
+                                    <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
+                                        <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
+                                    </button>
+                                <?php endif; ?>
+
+                                <?php if (!empty($isi['isiPetunjuk'])) : ?>
+                                    <?php $isiPetunjukID = $isi['id']; ?>
+                                    <a href="<?= base_url(); ?>/admin/editPetunjukPengisian/<?= $isiPetunjukID; ?>" class="btn btn-warning text-decoration-none ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Petunjuk Pengisian">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                <?php endif; ?>
+
+
+
+                            <?php endforeach; ?>
+
+                        </div>
+                        <?php if (empty($petunjukInstrumenModel)) : ?>
+                            <div class="alert alert-rouge alert-dismissible fade show" role="alert">
+                                <span class="text-rouge"><i> Petunjuk Pengisian Instrumen belum dibuat.</i></span>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php foreach ($petunjukInstrumenModel as $isi) : ?>
+                            <?php if (empty($isi['isiPetunjuk'])) : ?>
+                                <div class="alert alert-rouge alert-dismissible fade show" role="alert">
+                                    <span class="text-rouge"><i> Petunjuk Pengisian Instrumen belum dibuat.</i></span>
+                                </div>
+                            <?php endif; ?>
+                            <?= $isi['isiPetunjuk']; ?>
+                        <?php endforeach; ?>
                     </div>
+
+                    <!-- modal Buat isi petunjuk -->
+                    <div class="modal fade" id="modalBuatPetunjuk" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="tambahButirLabel">Buat Petunjuk Instrumen <?= $instrumen['kodeInstrumen']; ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <!-- form Buat isi petunjuk -->
+                                    <form action="<?= base_url(); ?>/admin/savePetunjukPengisian/<?= $instrumen['id']; ?>" method="post">
+                                        <?= csrf_field(); ?>
+
+                                        <!-- isi butir -->
+                                        <div class="form-group">
+                                            <div class="mb-3 row">
+                                                <div class="col-lg-12">
+                                                    <textarea class="form-control <?= ($validation->hasError('isiPetunjuk')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="isiPetunjuk"></textarea>
+
+                                                    <div class=" invalid-feedback">
+                                                        <?= $validation->getError('butir'); ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- instrumen id -->
+                                        <input type="hidden" name="instrumenID" value="<?= $instrumen['id']; ?>">
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                        </div>
+                                    </form>
+                                    <!-- end form Buat isi petunjuk -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal Buat isi petunjuk -->
+
                     <div class="card-header d-flex align-items-center py-3">
                         <!-- Button trigger modal -->
                         <a class="">

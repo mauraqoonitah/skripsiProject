@@ -9,6 +9,7 @@ use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
+use App\Models\PetunjukInstrumenModel;
 
 class Pernyataan extends BaseController
 {
@@ -17,6 +18,7 @@ class Pernyataan extends BaseController
     protected $pernyataanModel;
     protected $jenisRespondenModel;
     protected $responseModel;
+    protected $petunjukInstrumenModel;
     protected $mRequest;
 
 
@@ -27,6 +29,7 @@ class Pernyataan extends BaseController
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
+        $this->petunjukInstrumenModel = new PetunjukInstrumenModel();
         $this->mRequest = service("request");
     }
     // ---------------- butir pernyataan --------------------------
@@ -52,6 +55,7 @@ class Pernyataan extends BaseController
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
             'category' => $this->adminModel->getCategory($id),
             'instrumen' => $this->instrumenModel->getInstrumen($id),
+            'petunjukInstrumenModel' => $this->petunjukInstrumenModel->getPetunjukIns($id),
 
             'validation' => \Config\Services::validation()
         ];
@@ -144,5 +148,49 @@ class Pernyataan extends BaseController
         session()->setFlashdata('message', 'Data Pernyataan berhasil dihapus');
 
         return redirect()->to($_SERVER['HTTP_REFERER']);
+    }
+
+
+    //tambah data petunjuk pengisian instrumen
+    public function savePetunjukPengisian($id)
+    {
+        //validasi input
+        if (!$this->validate([
+            'isiPetunjuk' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Petunjuk Pengisian Instrumen harus di isi.'
+                ]
+            ],
+        ])) {
+            session()->setFlashdata('messageError', 'Petunjuk Pengisian Instrumen belum lengkap');
+
+            return redirect()->to('admin/kelola-survei/butir/' . $id)->withInput();
+        }
+
+        $data = [
+            'instrumenID' => $this->mRequest->getVar('instrumenID'),
+            'isiPetunjuk' => $this->mRequest->getVar('isiPetunjuk'),
+
+        ];
+        $this->petunjukInstrumenModel->save($data);
+
+        session()->setFlashdata('message', 'Petunjuk Pengisian Instrumen berhasil ditambahkan.');
+        return redirect()->to('/admin/kelola-survei/butir/' . $id);
+    }
+
+    public function editPetunjukPengisian($id)
+    {
+        $data = [
+            'title' => 'Edit Petunjuk Pengisian Instrumen',
+            'getIsiPetunjuk' => $this->petunjukInstrumenModel->getIsiPetunjuk($id),
+        ];
+
+        // jika butir tidak ada di database
+        if (empty($data['getIsiPetunjuk'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Data Tidak ditemukan.');
+        }
+
+        return view('admin/kelola-survei/edit_petunjuk', $data);
     }
 }

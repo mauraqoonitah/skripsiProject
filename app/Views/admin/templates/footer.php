@@ -14,9 +14,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="<?= base_url(); ?>/../../plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 <!-- Fontawesome -->
 <script src="https://use.fontawesome.com/9cfecb3a05.js"></script>
+
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="<?= base_url(); ?>/../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -36,11 +38,14 @@
     $(document).ready(function() {
         $('#summernote-petunjuk-pengisian').summernote({
             placeholder: 'Isi Pernyataan',
+            height: 300,
             tabsize: 2,
+            focus: true,
             toolbar: [
                 ['font', ['bold', 'underline']],
                 ['para', ['ul', 'ol', 'paragraph']],
                 ['insert', ['link']],
+                ['color', ['color']],
                 ['view', ['codeview']]
             ]
         });
@@ -61,7 +66,6 @@
 
 <!-- datatables -->
 
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>

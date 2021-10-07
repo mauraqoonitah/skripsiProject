@@ -108,6 +108,11 @@ $routes->post('/admin/savePernyataan/(:any)', 'Admin\Pernyataan::savePernyataan/
 $routes->post('/admin/updatePernyataan/(:any)', 'Admin\Pernyataan::updatePernyataan/$1');
 $routes->delete('/admin/deletePernyataan/(:any)', 'Admin\Pernyataan::deletePernyataan/$1');
 
+// isi petunjuk pengisian instrumen
+$routes->get('/admin/editPetunjukPengisian/(:any)', 'Admin\Pernyataan::editPetunjukPengisian/$1');
+$routes->post('/admin/savePetunjukPengisian/(:any)', 'Admin\Pernyataan::savePetunjukPengisian/$1');
+
+
 // $routes->get('/admin', 'Admin::index', ['filter' => 'role:user']);
 // $routes->get('/admin/index', 'Admin::index', ['filter' => 'role:user']);
 

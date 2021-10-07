@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Edit Butir Pernyataan</h1>
+                    <h1 class="fw-bold">Edit Petunjuk Pengisian</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -33,18 +33,23 @@
 
             <div class="card mt-2">
                 <div class="card-header py-4 text-rouge">
-                    <strong> <?= $pernyataan['namaInstrumen']; ?></strong>
+                    <strong> Judul Instrumen nya (join) </strong>
                 </div>
                 <div class="card-body p-4">
-                    <form action="<?= base_url(); ?>/admin/updatePernyataan/<?= $pernyataan['id']; ?>" method="post">
+                    <form action="<?= base_url(); ?>/admin/updatePernyataan/< ?= $pernyataan['id']; ?>" method="post">
                         <?= csrf_field(); ?>
 
-                        <!-- isi butir -->
+                        <!-- isi petunjuk -->
                         <div class="form-group">
                             <div class="mb-3 row">
-                                <label for="butir" class="col-sm-2 col-form-label">Isi Butir Pernyataan:</label>
-                                <div class="col-sm-10">
-                                    <textarea id="summernote-petunjuk-pengisian" name="butir"><?= (old('butir')) ? old('butir') : $pernyataan['butir']; ?></textarea>
+                                <div class="col-lg-12">
+                                    <?php foreach ($getIsiPetunjuk as $isi) : ?>
+                                        <?php if (empty($isi['isiPetunjuk'])) {
+                                            echo "Data masih kosong";
+                                        } ?>
+                                        <textarea id="summernote-petunjuk-pengisian" name="isiPetunjuk"><?= $isi['isiPetunjuk']; ?> </textarea>
+                                    <?php endforeach; ?>
+
                                     <div class="d-flex align-items-center ">
                                         <button type="submit" class="btn btn-success btn-block mr-auto mt-3">
                                             <i class="fas fa-save"></i> Simpan
