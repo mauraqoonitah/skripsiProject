@@ -121,4 +121,13 @@ class UserModel extends Model
 
         return $data;
     }
+
+
+    public function cekUsers($email)
+    {
+        return $this
+            ->select('email')
+            ->where('email', $email)
+            ->findAll();
+    }
 }

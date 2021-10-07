@@ -31,7 +31,7 @@
                                         <use xlink:href="#check-circle-fill" />
                                     </svg>
                                     <div class="fs-6">
-                                        <?= session()->getFlashData('message'); ?>
+                                        Akun SIAKAD dikenali. Silakan buat username dan password.
                                     </div>
                                 </div>
 

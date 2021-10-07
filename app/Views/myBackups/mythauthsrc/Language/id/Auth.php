@@ -20,7 +20,7 @@ return [
     // Activation
     'activationNoUser'          => 'Tidak dapat menemukan pengguna dengan kode aktivasi tersebut.',
     'activationSubject'         => 'Aktivasi akun anda',
-    'activationSuccess'         => 'Silakan konfirmasi akun Anda dengan mengklik link aktivasi di email yang kami kirimkan.',
+    'activationSuccess'         => 'Silakan konfirmasi akun Anda dengan mengklik link aktivasi di email Anda yang kami kirimkan.',
     'activationResend'          => 'Kirim ulang pesan aktivasi sekali lagi.',
     'notActivated'              => 'Akun pengguna ini belum diaktifkan.',
     'errorSendingActivation'    => 'Gagal mengirim pesan aktivasi ke: {0}',

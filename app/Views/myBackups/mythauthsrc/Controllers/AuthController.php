@@ -27,6 +27,7 @@ class AuthController extends Controller
 	 * @var Model
 	 */
 	protected $userCheckModel;
+	protected $userModel;
 	protected $jenisRespondenModel;
 
 
@@ -47,6 +48,7 @@ class AuthController extends Controller
 		$this->mRequest = service("request");
 
 		$this->userCheckModel = new UserCheckModel();
+		$this->userModel = new UserModel();
 		$this->jenisRespondenModel = new JenisRespondenModel();
 	}
 
@@ -165,13 +167,10 @@ class AuthController extends Controller
 
 		$nim = $this->mRequest->getVar('nim');
 		$nidn = $this->mRequest->getVar('nidn');
-
 		$data = [
 			'userCheck' => $this->userCheckModel->getUserCheck(),
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($nim),
 		];
-
-
 
 		// validasi input Check to see if data exists
 		if ($this->validate([
@@ -199,8 +198,22 @@ class AuthController extends Controller
 		];
 		$this->session->set($newdataUser);
 
-		$this->session->setFlashdata('messageE', 'Akun Anda dikenali.');
-		// return $this->_render($this->config->views['register']);
+		// jika users pernah mendaftar (cek di tabel users)
+		$emailUser = $this->userCheckModel->getUserEmail($nim, $nidn);
+		foreach ($emailUser as $row) {
+			$emailUser = $row['email'];
+		}
+
+		$cekUsers = $this->userModel->cekUsers($emailUser);
+		foreach ($cekUsers as $cekUser) {
+			$result = $cekUser->email;
+		}
+
+		if (!empty($result)) {
+			$this->session->setFlashdata('message', 'Akun sudah pernah terdaftar. Silakan masuk.');
+			return redirect()->to('login')->withInput();
+		}
+		// jika users belum pernah mendaftar 
 		return redirect()->to('register')->withInput();
 	}
 
@@ -237,18 +250,13 @@ class AuthController extends Controller
 		if (!$this->config->allowRegistration) {
 			return redirect()->back()->withInput()->with('error', lang('Auth.registerDisabled'));
 		}
-
-		$getSessNim = $this->session->get('nim');
-		$getSessNidn = $this->session->get('nidn');
-
+		$getSessNidn = $this->session->get('newdataUser');
 		$data = [
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($getSessNidn),
 			'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
-
 		];
-
-		// dd($data['userCheckByInput']);
 		// return $this->_render($this->config->views['register'], ['config' => $this->config], $data);
+
 		return $this->_render($this->config->views['register'], $data);
 	}
 
