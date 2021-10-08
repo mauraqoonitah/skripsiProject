@@ -8,6 +8,7 @@ use App\Models\InstrumenModel;
 use App\Models\RespondenModel;
 use App\Models\PernyataanModel;
 use App\Models\ResponseModel;
+use App\Models\PetunjukInstrumenModel;
 
 
 class Response extends BaseController
@@ -16,6 +17,7 @@ class Response extends BaseController
     protected $respondenModel;
     protected $pernyataanModel;
     protected $responseModel;
+    protected $petunjukInstrumenModel;
 
 
 
@@ -26,6 +28,7 @@ class Response extends BaseController
         $this->respondenModel = new RespondenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->responseModel = new ResponseModel();
+        $this->petunjukInstrumenModel = new PetunjukInstrumenModel();
     }
 
     public function index()
@@ -63,6 +66,7 @@ class Response extends BaseController
             'lihatPernyataan' => $this->pernyataanModel->getPernyataanByInstrumenID($id),
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
             'getInstrumenID' =>  $this->pernyataanModel->getPernyataanByInstrumenID($id),
+            'getPetunjukIns' =>  $this->petunjukInstrumenModel->getPetunjukIns($id),
 
             'validation' => \Config\Services::validation()
 
@@ -72,6 +76,7 @@ class Response extends BaseController
         if (empty($data['instrumen'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Instrumen Tidak ditemukan.');
         }
+
         return view('responden/isiSurvei', $data);
     }
 
@@ -108,7 +113,7 @@ class Response extends BaseController
             ];
         $this->respondenModel->save($data_responden);
 
-        session()->setFlashdata('message', 'Terimakasih. Jawaban Survei berhasil dikirim!');
+        session()->setFlashdata('message', 'Terimakasih. Jawaban Survei berhasil dikirim.');
 
         return redirect()->to('responden');
     }

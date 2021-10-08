@@ -22,6 +22,7 @@
     <!-- /.content-header -->
     <!-- flash success tambah data  -->
     <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+
     <!-- ./ flash success tambah data  -->
 
     <!-- Main content -->
@@ -31,21 +32,28 @@
                 <div class="col-lg-12 mx-auto">
                     <div class="callout callout-info mb-5">
                         <h5 class="my-3">Petunjuk Pengisian Instrumen</h5>
-                        <ol type="a">
-                            <li>Saudara adalah dosen UNJ. Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan selama menjadi dosen di UNJ sesuai dengan keadaan yang sebenarnya.</li>
-                            <li>Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</li>
-                            <li>Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
-                            <li>Berilah tanda centang (√) pada pernyataan pada kolom yang disediakan dibawah ini.</li>
-                            <li>Keterangan:<br>
-                                5 = Sangat Puas<br>
-                                4 = Puas<br>
-                                3 = Cukup Puas<br>
-                                2 = Tidak Puas<br>
-                                1 = Sangat Tidak Puas</li>
-                        </ol>
+                        <?php if (empty($getPetunjukIns) || empty($getPetunjukIns['isiPetunjuk'])) : ?>
+                            <ul>
+                                <li><span>Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan sesuai dengan keadaan yang sebenarnya.</span></li>
+                                <li><span>Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</span></li>
+                                <li>Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
+                                <li>Pilih jawaban tingkat kepuasan pada pernyataan pada kolom yang disediakan dibawah ini.</li><br>
+                                <li>Keterangan Tingkat Kepuasan:</li>
+                                <p style="margin-left: 25px;">5 = Sangat Puas</p>
+                                <p style="margin-left: 25px;"><span>4 = Puas</span></p>
+                                <p style="margin-left: 25px;"><span>3 = Cukup Puas</span></p>
+                                <p style=" margin-left: 25px;"><span>2 = Tidak Puas</span></p>
+                                <p style=" margin-left: 25px;"><span>1 = Sangat Tidak Puas</span></p>
+                            </ul>
+
+                        <?php endif; ?>
+
+                        <?php foreach ($getPetunjukIns as $isi) : ?>
+                            <?= $isi['isiPetunjuk']; ?>
+                        <?php endforeach; ?>
                     </div>
 
-                    <div class="card">
+                    <div class=" card">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold"><?= $instrumen['kodeInstrumen']; ?> - <?= $instrumen['namaInstrumen']; ?></h6>
                         </div>

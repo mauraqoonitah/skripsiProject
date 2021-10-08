@@ -367,6 +367,10 @@ footer {
     color: #7a4c75;
 }
 
+input[type=radio] {
+    transform: scale(2);
+}
+
 
 /* landing page style */
 

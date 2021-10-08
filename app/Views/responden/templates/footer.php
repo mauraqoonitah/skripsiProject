@@ -38,7 +38,10 @@
     })
 </script>
 
-
+<!-- Sweetalert -->
+<script src="<?= base_url(); ?>/../../js/sweetalert2.all.min.js"></script>
+<!-- My js -->
+<script src="<?= base_url(); ?>/../../js/main.js"></script>
 
 
 <!-- AdminLTE App -->
