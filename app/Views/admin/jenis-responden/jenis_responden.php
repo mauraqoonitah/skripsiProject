@@ -1,15 +1,3 @@
-<h1>jenis responden</h1>
-<?php foreach ($responden as $resp) : ?>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory" checked>
-        <label class="form-check-label" for="peruntukkanCategory">
-            <?= $resp['responden']; ?>
-        </label>
-    </div>
-<?php endforeach; ?>
-
-
-
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
@@ -57,7 +45,7 @@
             <!-- ./ flash gagal tambah data  -->
 
 
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card border-light shadow">
 
                     <div class="card-header d-flex align-items-center py-4">
@@ -108,19 +96,39 @@
 
                     </div>
                     <div class="card-body">
+
+
                         <div class="table-responsive">
                             <!-- datatables -->
-                            <table id="table-jenis-responden" class="table table-hover compact">
-                                <thead>
+                            <table id="table-jenis-responden" class="row-border table-hover striped table-bordered compact">
+                                <thead class="card-header text-rouge">
                                     <tr>
                                         <th>Responden</th>
+                                        <th>Instrumen</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($responden as $resp) : ?>
                                         <tr>
-                                            <td><?= $resp['responden']; ?> </td>
+                                            <td class="fw-bold"><?= $resp['responden']; ?> </td>
+                                            <td class="d-flex align-middle">
+                                                <?php
+                                                $jenisResponden = $resp['responden'];
+                                                $db = db_connect();
+                                                $instrumenModel = model('InstrumenModel');
+                                                $this->instrumenModel = new $instrumenModel;
+                                                $sql =  $this->instrumenModel->getInstrumenByJenisResponden($jenisResponden);
+                                                ?>
+                                                <ul>
+                                                    <?php foreach ($sql as $row) : ?>
+                                                        <li>
+                                                            - <?= $row['namaInstrumen']; ?>
+                                                        </li>
+                                                    <?php endforeach; ?>
+                                                </ul>
+
+                                            </td>
                                             <td class="align-middle">
                                                 <div class="btn-group " role="group">
                                                     <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
@@ -136,6 +144,7 @@
                                                     </a>
                                                 </div>
                                             </td>
+
                                         </tr>
 
 

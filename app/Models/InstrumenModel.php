@@ -67,4 +67,11 @@ class InstrumenModel extends Model
             ->orderBy('kodeInstrumen', 'asc')
             ->findAll();
     }
+
+    public function getInstrumenByJenisResponden($jenisResponden)
+    {
+        return $this
+            ->where('peruntukkanInstrumen', $jenisResponden)
+            ->findAll();
+    }
 }
