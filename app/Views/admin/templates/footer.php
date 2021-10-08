@@ -87,6 +87,102 @@ $timeNow = Time::now()->toDateTimeString(); ?>
     $(document).ready(function() {
         $('#tableResponden').DataTable({
             "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Responden Instrumen Kepuasan',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Responden Instrumen Kepuasan',
+                    messageTop: 'Nama Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Responden Instrumen Kepuasan',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Responden Instrumen Kepuasan',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+    $(document).ready(function() {
+        $('#table-jenis-responden').DataTable({
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Jenis Responden Instrumen Kepuasan',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Jenis Responden Instrumen Kepuasan',
+                    messageTop: 'Nama Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Jenis Responden Instrumen Kepuasan',
+                    messageTop: 'Nama Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Jenis Responden Instrumen Kepuasan',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
         });
     });
     $(document).ready(function() {

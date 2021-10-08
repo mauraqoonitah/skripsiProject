@@ -65,62 +65,51 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="card">
-                                                        <div class="card-body table-responsive p-0">
-                                                            <table class="table table-bordered table-bordered table-hover text-wrap">
-                                                                <thead class="bg-thead">
-                                                                    <tr>
-                                                                        <th>No.</th>
-                                                                        <th>Butir Pernyataan</th>
-                                                                        <th>Jawaban</th>
-                                                                        <th class="text-center">Tingkat Kepuasan</th>
-                                                                    </tr>
-                                                                </thead>
+                                                    <table id="tableResponden" class="table table-bordered table-bordered table-hover text-wrap">
+                                                        <thead class="bg-thead">
+                                                            <tr>
+                                                                <th>No.</th>
+                                                                <th>Butir Pernyataan</th>
+                                                                <th>Jawaban</th>
+                                                                <th class="text-center">Tingkat Kepuasan</th>
+                                                            </tr>
+                                                        </thead>
 
 
-                                                                <tbody>
+                                                        <tbody>
 
+
+                                                            <?php
+                                                            $i = 1;
+                                                            $insID = $rIns['instrumenID'];
+                                                            $db = db_connect();
+                                                            $pernyataanModel = model('PernyataanModel');
+                                                            $this->pernyataanModel = new $pernyataanModel;
+                                                            $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
+
+                                                            foreach ($sql as $row) : ?>
+                                                                <?php $questionID = $row['questionID']; ?>
+                                                                <tr>
+                                                                    <td class="text-center"><?= $i++; ?></td>
+                                                                    <td>
+                                                                        <?= $row['butir']; ?>
+                                                                    </td>
 
                                                                     <?php
-                                                                    $i = 1;
-                                                                    $insID = $rIns['instrumenID'];
-                                                                    $db = db_connect();
-                                                                    $pernyataanModel = model('PernyataanModel');
-                                                                    $this->pernyataanModel = new $pernyataanModel;
-                                                                    $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
-
-                                                                    foreach ($sql as $row) : ?>
-                                                                        <?php $questionID = $row['questionID']; ?>
-                                                                        <tr>
-                                                                            <td class="text-center"><?= $i++; ?></td>
-                                                                            <td>
-                                                                                <?= $row['butir']; ?>
-                                                                            </td>
-
-                                                                            <?php
-                                                                            // get jawaban by questionID
-                                                                            $responseModel = model('ResponseModel');
-                                                                            $this->responseModel = new $responseModel;
-                                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
-                                                                            <td class="text-center">
-                                                                                <?php foreach ($sqlResponse as $response) : ?>
-                                                                                    <?= $response['jawaban']; ?>
-                                                                                <?php endforeach; ?>
-                                                                            </td>
-                                                                            <td>Sangat Baik</td>
-                                                                        </tr>
-                                                                    <?php endforeach; ?>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                    <script>
-                                                        $(document).ready(function() {
-                                                            $('#tableResponden-<?= $rIns['instrumenID']; ?>').DataTable({
-                                                                "pageLength": 25,
-                                                            });
-                                                        });
-                                                    </script>
+                                                                    // get jawaban by questionID
+                                                                    $responseModel = model('ResponseModel');
+                                                                    $this->responseModel = new $responseModel;
+                                                                    $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
+                                                                    <td class="text-center">
+                                                                        <?php foreach ($sqlResponse as $response) : ?>
+                                                                            <?= $response['jawaban']; ?>
+                                                                        <?php endforeach; ?>
+                                                                    </td>
+                                                                    <td>Sangat Baik</td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        </tbody>
+                                                    </table>
                                                 </section>
                                             </div>
                                         </section>

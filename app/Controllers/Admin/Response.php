@@ -88,4 +88,13 @@ class Response extends BaseController
         ];
         return view('admin/hasil-survei/response_responden', $data);
     }
+
+    public function deleteResponden($id)
+    {
+        $this->respondenModel->delete($id);
+
+        session()->setFlashdata('message', 'Responden berhasil dihapus');
+
+        return redirect()->to('/admin/hasil-survei/responden');
+    }
 }

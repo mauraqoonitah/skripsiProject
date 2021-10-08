@@ -23,6 +23,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <!-- flash success tambah data  -->
+            <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+            <!-- ./ flash success tambah data  -->
+
             <!-- jika belum ada responden -->
             <?php if (sizeof($responden) === 0) : ?>
                 <p class="text-rouge text-center mt-3"><i> Responden belum mengisi survei.</i></p>
@@ -34,53 +38,74 @@
                     <h6 class="m-0 font-weight-bold text-rouge">Hasil Survei Per-Responden</h6>
                 </div>
                 <div class="card-body">
+                    <div class="p-0">
+                        <table id="tableResponden" class="table table-bordered table-bordered table-hover text-wrap">
+                            <thead class="bg-thead">
+                                <tr>
+                                    <th class="text-center">No.</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Jenis Responden</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($responden as $rpd) : ?>
 
-                    <div class="card">
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-bordered table-bordered table-hover text-wrap">
-                                <thead class="bg-thead">
                                     <tr>
-                                        <th class="text-center">No.</th>
-                                        <th>Tgl Pengisian</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Jenis Responden</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $i = 1; ?>
-                                    <?php foreach ($responden as $rpd) : ?>
+                                        <td class="text-center"><?= $i++; ?></td>
+                                        <td>
+                                            <?= $rpd['fullname']; ?>
+                                        </td>
+                                        <td><?= $rpd['role']; ?></td>
+                                        <td>
+                                            <div class="d-grid gap-2 d-md-block">
+                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none">
+                                                    Detail
+                                                </a>
 
-                                        <tr>
-                                            <td class="text-center"><?= $i++; ?></td>
-                                            <td>tgl</td>
-                                            <td>
-                                                <?= $rpd['fullname']; ?>
-                                            </td>
-                                            <td><?= $rpd['role']; ?></td>
-                                            <td>
-                                                <div class="d-grid gap-2 d-md-block">
-                                                    <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none">
-                                                        Detail
-                                                    </a>
+                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-respoden-<?= $rpd['id']; ?>">
+                                                    <button type="button" class="btn btn-sm btn-danger">
+                                                        Hapus
+                                                    </button>
+                                                </a>
 
+                                                <!-- modal hapus responden -->
+                                                <div class="modal fade" id="modal-delete-respoden-<?= $rpd['id']; ?>" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered ">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title fw-bold">Hapus Responden</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                Yakin hapus <?= $rpd['fullname']; ?>?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                    <form action="" method="post" class="d-inline">
-                                                        <?= csrf_field(); ?>
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin Hapus Data Responden?');">Hapus</button>
-                                                    </form>
+                                                                <form action="<?= base_url(); ?>/admin/deleteResponden/<?= $rpd['id']; ?>" method="post">
+                                                                    <?= csrf_field(); ?>
+                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                </form>
 
-
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </td>
-                                        </tr>
+                                                <!-- end modal hapus responden -->
 
-                                    <?php endforeach; ?>
-                                </tbody>
 
-                            </table>
-                        </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                <?php endforeach; ?>
+                            </tbody>
+
+                        </table>
                     </div>
                 </div>
 

@@ -110,7 +110,7 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <!-- datatables -->
-                            <table id="" class="table table-hover compact">
+                            <table id="table-jenis-responden" class="table table-hover compact">
                                 <thead>
                                     <tr>
                                         <th>Responden</th>
