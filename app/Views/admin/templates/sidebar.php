@@ -2,7 +2,12 @@
     <!-- Brand Logo -->
     <a href="<?= base_url('admin'); ?>" class="brand-link text-decoration-none bg-cosmic text-white" style="padding-bottom: 13px">
         <img src="<?= base_url(); ?>/img/unj.png" alt="UNJ Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-bold">Admin </span><span class="brand-text font-weight-light">GPjM</span>
+        <?php if (in_groups('Admin')) : ?>
+            <span class="brand-text font-weight-bold">Admin </span><span class="brand-text font-weight-light">GPjM</span>
+        <?php endif; ?>
+        <?php if (in_groups('Kontributor')) : ?>
+            <span class="brand-text font-weight-light">Kontributor</span>
+        <?php endif; ?>
     </a>
 
     <!-- Sidebar -->
@@ -57,12 +62,7 @@
                     <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            <?php if (in_groups('Admin')) :  ?>
-                                Kelola Survei
-                            <?php endif; ?>
-                            <?php if (in_groups('Kontributor')) :  ?>
-                                Lihat Survei
-                            <?php endif; ?>
+                            Kelola Survei
                         </p>
                     </a>
 

@@ -71,17 +71,18 @@
 
                             <?php foreach ($petunjukInstrumenModel as $isi) : ?>
 
-                                <?php if (empty($isi['isiPetunjuk']) || empty($isi['id'])) : ?>
-                                    <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
-                                        <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
-                                    </button>
-                                <?php endif; ?>
-
-                                <?php if (!empty($isi['isiPetunjuk'])) : ?>
-                                    <?php $isiPetunjukID = $isi['id']; ?>
-                                    <a href="<?= base_url(); ?>/admin/editPetunjukPengisian/<?= $isiPetunjukID; ?>" class="btn btn-warning text-decoration-none ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Petunjuk Pengisian">
-                                        <i class="fas fa-edit"></i>
-                                    </a>
+                                <?php if (in_groups('Admin')) : ?>
+                                    <?php if (empty($isi['isiPetunjuk']) || empty($isi['id'])) : ?>
+                                        <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
+                                            <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
+                                        </button>
+                                    <?php endif; ?>
+                                    <?php if (!empty($isi['isiPetunjuk'])) : ?>
+                                        <?php $isiPetunjukID = $isi['id']; ?>
+                                        <a href="<?= base_url(); ?>/admin/editPetunjukPengisian/<?= $isiPetunjukID; ?>" class="btn btn-warning text-decoration-none ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Petunjuk Pengisian">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    <?php endif; ?>
                                 <?php endif; ?>
 
 
@@ -144,14 +145,15 @@
                         </div>
                     </div>
                     <!-- end modal Buat isi petunjuk -->
-
-                    <div class="card-header d-flex align-items-center py-3">
-                        <!-- Button trigger modal -->
-                        <a class="">
-                            <button type="button" class="btn btn-rouge " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
-                                <i class=" fas fa-plus"></i> Tambah Butir
-                            </button></a>
-                    </div>
+                    <?php if (in_groups('Admin')) : ?>
+                        <div class="card-header d-flex align-items-center py-3">
+                            <!-- Button trigger modal -->
+                            <a class="">
+                                <button type="button" class="btn btn-rouge " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
+                                    <i class=" fas fa-plus"></i> Tambah Butir
+                                </button></a>
+                        </div>
+                    <?php endif; ?>
                     <div class="table-responsive-sm">
                         <table id="example2" class="table table-bordered table-hover align-middle ">
                             <thead class="table-light">
@@ -160,7 +162,9 @@
                                     <th rowspan="2" style="width: 10px">No.</th>
                                     <th rowspan="2">Kriteria Kepuasan</th>
                                     <th colspan="5" class="text-center">Tingkat Kepuasan</th>
-                                    <th rowspan="2" style="width: 60px" class="text-center">Aksi</th>
+                                    <?php if (in_groups('Admin')) : ?>
+                                        <th rowspan="2" style="width: 60px" class="text-center">Aksi</th>
+                                    <?php endif; ?>
                                 </tr>
                                 <tr>
                                     <th style="width: 40px">5</th>
@@ -215,16 +219,18 @@
 
                                             </div>
                                         </td>
-                                        <td>
-                                            <div class="btn-group" role="group">
-                                                <a href="<?= base_url(); ?>/admin/editPernyataan/<?= $questions['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#modal-delete-butir-<?= $questions['id']; ?>">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                        </td>
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="<?= base_url(); ?>/admin/editPernyataan/<?= $questions['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#modal-delete-butir-<?= $questions['id']; ?>">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
 
                                     <!-- modal hapus Butir Pernyataan -->

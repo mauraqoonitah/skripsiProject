@@ -50,47 +50,48 @@
 
                     <div class="card-header d-flex align-items-center py-4">
                         <h5 class="text-rouge">Responden Survei</h5>
+                        <?php if (in_groups('Admin')) : ?>
+                            <!-- Button trigger modal -->
+                            <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="ml-auto">
+                                <button type="button" class="btn btn-rouge text-white">
+                                    <i class="fas fa-plus"></i> Tambah Responden
+                                </button></a>
 
-                        <!-- Button trigger modal -->
-                        <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="ml-auto">
-                            <button type="button" class="btn btn-rouge text-white">
-                                <i class="fas fa-plus"></i> Tambah Responden
-                            </button></a>
+                            <!-- modal tambah kategori -->
+                            <div class="modal fade" id="modal-tambah-jenisResponden" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                                    <div class="modal-content">
+                                        <div class="modal-header card-header text-rouge ">
+                                            <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Jenis Responden</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- form tambah kategori -->
+                                            <form action="<?= base_url(); ?>/admin/saveJenisResponden" method="post">
+                                                <?= csrf_field(); ?>
 
-                        <!-- modal tambah kategori -->
-                        <div class="modal fade" id="modal-tambah-jenisResponden" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-header card-header text-rouge ">
-                                        <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Jenis Responden</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- form tambah kategori -->
-                                        <form action="<?= base_url(); ?>/admin/saveJenisResponden" method="post">
-                                            <?= csrf_field(); ?>
-
-                                            <!-- nama kategori -->
-                                            <div class="form-group">
-                                                <label for="nama-kategori" class="col-form-label">Nama Jenis Responden:</label>
-                                                <textarea class="form-control <?= ($validation->hasError('responden')) ? 'is-invalid' : ''; ?>" id="responden" name="responden"></textarea>
-                                                <div class=" invalid-feedback">
-                                                    <?= $validation->getError('responden'); ?>
+                                                <!-- nama kategori -->
+                                                <div class="form-group">
+                                                    <label for="nama-kategori" class="col-form-label">Nama Jenis Responden:</label>
+                                                    <textarea class="form-control <?= ($validation->hasError('responden')) ? 'is-invalid' : ''; ?>" id="responden" name="responden"></textarea>
+                                                    <div class=" invalid-feedback">
+                                                        <?= $validation->getError('responden'); ?>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="d-flex align-items-center">
-                                                <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                    <i class="fas fa-save"></i> Simpan
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <!-- end form tambah kategori -->
+                                                <div class="d-flex align-items-center">
+                                                    <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                        <i class="fas fa-save"></i> Simpan
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <!-- end form tambah kategori -->
+                                        </div>
+
                                     </div>
-
                                 </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                         <!-- end modal tambah kategori -->
 
 
@@ -105,7 +106,9 @@
                                     <tr>
                                         <th>Responden</th>
                                         <th>Instrumen</th>
-                                        <th>Aksi</th>
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <th>Aksi</th>
+                                        <?php endif; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -129,51 +132,53 @@
                                                 </ul>
 
                                             </td>
-                                            <td class="align-middle">
-                                                <div class="btn-group " role="group">
-                                                    <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                        <button type="button" class="btn btn-sm">
-                                                            <i class="fas fa-edit"></i>
-                                                        </button>
-                                                    </a>
+                                            <?php if (in_groups('Admin')) : ?>
+                                                <td class="align-middle">
+                                                    <div class="btn-group " role="group">
+                                                        <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                            <button type="button" class="btn btn-sm">
+                                                                <i class="fas fa-edit"></i>
+                                                            </button>
+                                                        </a>
 
-                                                    <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-<?= $resp['id']; ?>">
-                                                        <button type="button" class="btn btn-sm">
-                                                            <i class="fas fa-trash-alt text-white"></i>
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </td>
-
+                                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-<?= $resp['id']; ?>">
+                                                            <button type="button" class="btn btn-sm">
+                                                                <i class="fas fa-trash-alt text-white"></i>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
                                         </tr>
 
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <!-- modal hapus responden -->
+                                            <div class="modal fade" id="modal-delete-jenisResponden-<?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered ">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title fw-bold">Hapus </h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body text-center">
+                                                            <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                            Yakin hapus <?= $resp['responden']; ?>?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                        <!-- modal hapus responden -->
-                                        <div class="modal fade" id="modal-delete-jenisResponden-<?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered ">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title fw-bold">Hapus </h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body text-center">
-                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                        Yakin hapus <?= $resp['responden']; ?>?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                        <form action="<?= base_url(); ?>/admin/deleteJenisResponden/<?= $resp['id']; ?>" method="post">
-                                                            <?= csrf_field(); ?>
-                                                            <input type="hidden" name="_method" value="DELETE">
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </form>
+                                                            <form action="<?= base_url(); ?>/admin/deleteJenisResponden/<?= $resp['id']; ?>" method="post">
+                                                                <?= csrf_field(); ?>
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                            </form>
 
 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php endif; ?>
                                         <!-- end modal hapus responden -->
                                     <?php endforeach; ?>
                                 </tbody>
