@@ -27,6 +27,7 @@ class AuthController extends Controller
 	 * @var Model
 	 */
 	protected $userCheckModel;
+	protected $userModel;
 	protected $jenisRespondenModel;
 
 
@@ -47,6 +48,7 @@ class AuthController extends Controller
 		$this->mRequest = service("request");
 
 		$this->userCheckModel = new UserCheckModel();
+		$this->userModel = new UserModel();
 		$this->jenisRespondenModel = new JenisRespondenModel();
 	}
 
@@ -64,11 +66,7 @@ class AuthController extends Controller
 		// No need to show a login form if the user
 		// is already logged in.
 		if ($this->auth->check()) {
-			// $redirectURL = session('redirect_url') ?? base_url('admin');
-			if (['filter' => 'role:Admin,Kontributor']) {
-				$redirectURL = site_url('admin');
-			}
-			$redirectURL = site_url('responden');
+			$redirectURL = session('redirect_url') ?? base_url('');
 
 			unset($_SESSION['redirect_url']);
 
@@ -115,12 +113,17 @@ class AuthController extends Controller
 			return redirect()->to(route_to('reset-password') . '?token=' . $this->auth->user()->reset_hash)->withCookies();
 		}
 
-		// $redirectURL = session('redirect_url') ?? base_url('admin');
-		// $redirectURL = site_url('admin');
-		if (['filter' => 'role:Admin,Kontributor']) {
-			$redirectURL = site_url('admin');
+		$authorize = service('authorization');
+		$authenticate = service('authentication');
+
+		if ($authorize->inGroup('Admin', $authenticate->id())) {
+			$redirectURL = base_url('admin');
 		}
-		$redirectURL = site_url('responden');
+		if ($authorize->inGroup('Kontributor', $authenticate->id())) {
+			$redirectURL = base_url('admin');
+		} else {
+			$redirectURL = base_url('responden');
+		}
 
 		unset($_SESSION['redirect_url']);
 
@@ -165,7 +168,6 @@ class AuthController extends Controller
 
 		$nim = $this->mRequest->getVar('nim');
 		$nidn = $this->mRequest->getVar('nidn');
-
 		$data = [
 			'userCheck' => $this->userCheckModel->getUserCheck(),
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($nim),
@@ -197,8 +199,22 @@ class AuthController extends Controller
 		];
 		$this->session->set($newdataUser);
 
-		$this->session->setFlashdata('messageE', 'Akun Anda dikenali.');
-		// return $this->_render($this->config->views['register']);
+		// jika users pernah mendaftar (cek di tabel users)
+		$emailUser = $this->userCheckModel->getUserEmail($nim, $nidn);
+		foreach ($emailUser as $row) {
+			$emailUser = $row['email'];
+		}
+
+		$cekUsers = $this->userModel->cekUsers($emailUser);
+		foreach ($cekUsers as $cekUser) {
+			$result = $cekUser->email;
+		}
+
+		if (!empty($result)) {
+			$this->session->setFlashdata('message', 'Akun sudah pernah terdaftar. Silakan masuk.');
+			return redirect()->to('login')->withInput();
+		}
+		// jika users belum pernah mendaftar 
 		return redirect()->to('register')->withInput();
 	}
 
@@ -223,9 +239,6 @@ class AuthController extends Controller
 	 */
 	public function register()
 	{
-		// $array_items = ['nim', 'nidn'];
-		// $this->session->remove($array_items);
-
 		// check if already logged in.
 		if ($this->auth->check()) {
 			return redirect()->back();
@@ -235,17 +248,13 @@ class AuthController extends Controller
 		if (!$this->config->allowRegistration) {
 			return redirect()->back()->withInput()->with('error', lang('Auth.registerDisabled'));
 		}
-
-		$getSessNim = $this->session->get('nim');
-		$getSessNidn = $this->session->get('nidn');
-
+		$getSessNidn = $this->session->get('newdataUser');
 		$data = [
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($getSessNidn),
 			'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
-
 		];
-		// dd($data['userCheckByInput']);
 		// return $this->_render($this->config->views['register'], ['config' => $this->config], $data);
+
 		return $this->_render($this->config->views['register'], $data);
 	}
 
@@ -264,7 +273,7 @@ class AuthController extends Controller
 
 		// Validate basics first since some password rules rely on these fields
 		$rules = [
-			'username' => 'required|alpha_numeric_space|min_length[3]|max_length[30]|is_unique[users.username]',
+			'username' => 'required|min_length[3]|max_length[30]|is_unique[users.username]',
 			'fullname' => 'required',
 			'email'    => 'required|valid_email|is_unique[users.email]',
 			'role'    => 'required',
@@ -280,8 +289,9 @@ class AuthController extends Controller
 			'password'     => 'required|strong_password',
 			'pass_confirm' => 'required|matches[password]',
 		];
-
+		//disini
 		if (!$this->validate($rules)) {
+
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
 
