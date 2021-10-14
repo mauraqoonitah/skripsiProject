@@ -10,12 +10,10 @@
                 <div class="col-lg-12 mx-auto text-center">
                     <h1 class="purple-text"> Riwayat Pengisian Survei
                     </h1>
-                    <span class="text-muted">Terima kasih telah mengisi survei kepuasan. Inilah yang kami dapatkan dari Anda:</span>
+                    <?php if (!empty($responseInsId)) : ?>
+                        <span class="text-muted">Terima kasih telah mengisi survei kepuasan. Inilah yang kami dapatkan dari Anda:</span>
+                    <?php endif; ?>
                 </div>
-                <!-- back to previous page  -->
-                <a href="<?= base_url(); ?>/responden">
-                    <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px"></i>
-                </a>
             </div>
         </div>
     </div>
@@ -29,7 +27,20 @@
     <section class="content">
         <div class="container">
             <div class="row">
-
+                <?php if (empty($responseInsId)) : ?>
+                    <div class="col-lg-6 mx-auto">
+                        <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
+                            Anda belum mengisi survei.
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a href="<?= base_url(); ?>/responden">
+                                <button type="button" class="btn btn-purple mr-3">
+                                    Isi Survei
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <!-- list tanggapan per instrumen -->
                 <div class="col-lg-12">
                     <div class="accordion accordion-flush mx-auto">

@@ -28,4 +28,11 @@ class RespondenModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+
+    public function getUser($userID)
+    {
+        return $this
+            ->where('userID', $userID)
+            ->findAll();
+    }
 }

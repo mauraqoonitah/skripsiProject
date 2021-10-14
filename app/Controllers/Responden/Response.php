@@ -9,6 +9,7 @@ use App\Models\RespondenModel;
 use App\Models\PernyataanModel;
 use App\Models\ResponseModel;
 use App\Models\PetunjukInstrumenModel;
+use Myth\Auth\Models\UserModel;
 
 
 class Response extends BaseController
@@ -18,6 +19,7 @@ class Response extends BaseController
     protected $pernyataanModel;
     protected $responseModel;
     protected $petunjukInstrumenModel;
+    protected $userModel;
 
 
 
@@ -29,6 +31,7 @@ class Response extends BaseController
         $this->pernyataanModel = new PernyataanModel();
         $this->responseModel = new ResponseModel();
         $this->petunjukInstrumenModel = new PetunjukInstrumenModel();
+        $this->userModel = new UserModel();
     }
 
     public function index()
@@ -133,5 +136,18 @@ class Response extends BaseController
 
         ];
         return view('responden/riwayat_survei', $data);
+    }
+
+
+    public function isiDataDiri()
+    {
+        $userID  = user()->id;
+
+        $data = [
+            'title' => 'Profil Saya',
+            'getDataUser' => $this->userModel->getDataUser($userID),
+
+        ];
+        return view('responden/isiDataDiri', $data);
     }
 }

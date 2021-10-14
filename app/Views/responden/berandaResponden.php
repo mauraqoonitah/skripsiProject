@@ -28,7 +28,7 @@
                     <?php if (sizeof($instrumenByResponden) === 0) : ?>
                         <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
                             <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
-                                Maaf, data instrumen untuk responden <?= user()->role; ?> tidak ditemukan.
+                                Maaf, kuesioner untuk responden <?= user()->role; ?> tidak ditemukan.
                             </div>
                         </div>
                     <?php else : ?>

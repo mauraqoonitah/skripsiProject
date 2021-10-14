@@ -21,7 +21,7 @@
 
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url(); ?>/responden/isiDataDiri/<?= user()->id; ?>">Profil</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>
