@@ -31,6 +31,31 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 mx-auto">
+                    <div class="col-lg-6 mx-auto pb-3">
+                        <div class="card card-success ">
+                            <div class="card-header bg-success">
+                                <span class="text-light"><i class="fas fa-check text-light mr-2"></i>Anda telah mengisi kuesioner ini pada :</span>
+
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus text-light"></i>
+                                    </button>
+                                </div>
+                                <!-- /.card-tools -->
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <?php foreach ($cekRiwayatTgl as $cek) : ?>
+                                    <a href="<?= base_url(); ?>/responden/riwayatSurvei/<?= user()->id; ?>" class="nav-link text-reset ">
+                                        <p class="text-success"><u><?= $cek['created_at'] ?></u></p>
+                                    </a>
+                                <?php endforeach; ?>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                    </div>
+
+                    <!-- /.card -->
+
                     <div class="callout callout-info mb-5">
                         <h5 class="my-3">Petunjuk Pengisian Instrumen</h5>
                         <?php if (empty($getPetunjukIns) || empty($getPetunjukIns['isiPetunjuk'])) : ?>

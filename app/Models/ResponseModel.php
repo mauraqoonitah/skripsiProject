@@ -86,6 +86,15 @@ class ResponseModel extends Model
             ->orderBy('response.id', 'desc')
             ->findAll();
     }
+    public function cekRiwayatTgl($userID, $instrumenID)
+    {
+        return $this
+            ->where('instrumenID', $instrumenID)
+            ->orWhere('userID', $userID)
+            ->groupBy('created_at')
+            ->orderBy('id', 'desc')
+            ->findAll();
+    }
 
     public function getRespondenData($id)
     {

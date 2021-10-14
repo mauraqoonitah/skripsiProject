@@ -60,6 +60,10 @@ class Response extends BaseController
 
     public function isiSurvei($id)
     {
+
+        $instrumen = $this->instrumenModel->getInstrumen($id);
+        $instrumenID =  $instrumen['id'];
+
         $data = [
             'title' => 'Isi Survei',
             'instrumen' => $this->instrumenModel->getInstrumen($id),
@@ -67,11 +71,10 @@ class Response extends BaseController
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
             'getInstrumenID' =>  $this->pernyataanModel->getPernyataanByInstrumenID($id),
             'getPetunjukIns' =>  $this->petunjukInstrumenModel->getPetunjukIns($id),
-
+            'cekRiwayatTgl' => $this->responseModel->cekRiwayatTgl($id, $instrumenID),
             'validation' => \Config\Services::validation()
-
-
         ];
+
         // jika butir tidak ada di database
         if (empty($data['instrumen'])) {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Instrumen Tidak ditemukan.');
