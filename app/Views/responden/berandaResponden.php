@@ -2,12 +2,7 @@
 
 <?= $this->section('responden-body-content'); ?>
 <div class="content-wrapper pt-5" style="min-height: 80vh;">
-    <div class="container">
-        <div class="textBox text-center ">
-            <!-- using gsap animation -->
-            <p class="text-center text-muted fs-5" data-aos="zoom-in-right" data-aos-duration="1000"> <span class="welcome fw-bold"> </span> <?= user()->fullname; ?></p>
-        </div>
-    </div>
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
