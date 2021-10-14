@@ -10,6 +10,7 @@
                 <div class="col-lg-12 mx-auto text-center">
                     <h1 class="purple-text"> Isi Kuesioner
                     </h1>
+
                     <p class="fs-5 fw-bold"><?= $instrumen['kodeInstrumen']; ?> - <?= $instrumen['namaInstrumen']; ?> </p>
                 </div>
                 <!-- back to previous page  -->
@@ -47,10 +48,12 @@
                             </ul>
 
                         <?php endif; ?>
+                        <?php if (!empty($getPetunjukIns) || !empty($getPetunjukIns['isiPetunjuk'])) : ?>
+                            <?php foreach ($getPetunjukIns as $isi) : ?>
+                                <?= $isi['isiPetunjuk']; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
 
-                        <?php foreach ($getPetunjukIns as $isi) : ?>
-                            <?= $isi['isiPetunjuk']; ?>
-                        <?php endforeach; ?>
                     </div>
 
                     <div class=" card">

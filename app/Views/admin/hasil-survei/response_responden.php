@@ -40,6 +40,10 @@
                                     </div>
                                 </h5>
                                 <!-- ./header collapse - kategori  -->
+                                <div class="container my-3">
+                                    <span class="text-muted mt-2">Date Created : <?= $rIns['created_at'] ?></span>
+                                </div>
+
 
                                 <!-- content collapse - kategori  -->
                                 <div id="collapse-<?= $rIns['instrumenID']; ?>" class="accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
@@ -49,21 +53,11 @@
                                                 <section>
 
                                                     <!-- STACKED BAR CHART -->
-                                                    <div class="my-4">
+                                                    <!-- <div class="my-4">
                                                         <div class="chart">
                                                             <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
                                                         </div>
-                                                    </div>
-                                                    <div class="container mb-3">
-                                                        <div class="row justify-content-center ">
-                                                            <?php foreach ($respondenData as $res) :  ?>
-                                                                <?php $userID = $res['userID'] ?>
-
-                                                                <span class="text-muted">Tgl Pengisian Survei : <?= $res['created_at'] ?></span>
-
-                                                            <?php endforeach; ?>
-                                                        </div>
-                                                    </div>
+                                                    </div> -->
 
                                                     <table id="tableResponden" class="table table-bordered table-bordered table-hover text-wrap">
                                                         <thead class="bg-thead">
@@ -94,6 +88,10 @@
                                                                     <td>
                                                                         <?= $row['butir']; ?>
                                                                     </td>
+
+                                                                    <?php foreach ($respondenData as $res) :  ?>
+                                                                        <?php $userID = $res['userID'] ?>
+                                                                    <?php endforeach; ?>
 
                                                                     <?php
                                                                     // get jawaban by questionID

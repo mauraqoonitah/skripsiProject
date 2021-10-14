@@ -296,7 +296,7 @@
                                                                                         <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
                                                                                         <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
                                                                                         <td>
-                                                                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
+                                                                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kelola Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
                                                                                         </td>
                                                                                         <td><?= $row['peruntukkanInstrumen']; ?></td>
                                                                                         <?php if (in_groups('Admin')) : ?>

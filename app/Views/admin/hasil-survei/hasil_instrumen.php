@@ -27,11 +27,12 @@
                 <p class="text-rouge text-center mt-3"><i> Tanggapan survei belum tersedia.</i></p>
             <?php endif; ?>
 
+            <div class="alert alert-primary fw-bold mb-5" role="alert">
+                Pilih instrumen untuk melihat tanggapan responden</div>
+
             <div class="col-lg-8 mx-auto">
                 <div class="list-group center">
                     <?php foreach ($response as $r) : ?>
-                        <div class="alert alert-primary fw-bold mb-5" role="alert">
-                            Pilih instrumen untuk melihat tanggapan responden</div>
 
                         <div class="mb-4">
                             <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $r['id']; ?>" class="pilih-inst">

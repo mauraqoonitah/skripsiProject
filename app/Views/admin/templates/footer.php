@@ -41,9 +41,11 @@
             height: 300,
             tabsize: 2,
             focus: true,
+            dialogsFade: true,
             toolbar: [
-                ['font', ['bold', 'underline']],
+                ['font', ['bold', 'underline', 'clear']],
                 ['para', ['ul', 'ol', 'paragraph']],
+                ['fontsize', ['fontsize']],
                 ['insert', ['link']],
                 ['color', ['color']],
                 ['view', ['codeview']]

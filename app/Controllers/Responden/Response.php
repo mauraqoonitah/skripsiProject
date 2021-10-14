@@ -113,8 +113,22 @@ class Response extends BaseController
             ];
         $this->respondenModel->save($data_responden);
 
-        session()->setFlashdata('message', 'Terimakasih. Jawaban Survei berhasil dikirim.');
+        session()->setFlashdata('message', 'Terima kasih telah mengisi Survei Kepuasan');
 
         return redirect()->to('responden');
+    }
+    public function riwayatSurvei($id)
+    {
+        $data = [
+            'title' => 'Riwayat Pengisian Survei',
+            'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
+            'respondenData' => $this->responseModel->getRespondenData($id),
+
+
+            'validation' => \Config\Services::validation()
+
+
+        ];
+        return view('responden/riwayat_survei', $data);
     }
 }

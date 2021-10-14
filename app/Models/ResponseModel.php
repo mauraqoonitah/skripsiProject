@@ -79,9 +79,11 @@ class ResponseModel extends Model
     public function getResponseByInstrumenID($id)
     {
         return $this
+            ->select('*, response.id as responseID')
             ->join('questions', 'questions.instrumenID = response.instrumenID')
             ->where('response.userID', $id)
-            ->groupBy('response.instrumenID')
+            ->groupBy('response.created_at')
+            ->orderBy('response.id', 'desc')
             ->findAll();
     }
 

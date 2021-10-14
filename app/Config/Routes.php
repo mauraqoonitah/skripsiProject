@@ -139,6 +139,8 @@ $routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updat
 // responden
 
 $routes->get('/responden', 'Responden\Response::index', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+$routes->get('/responden/riwayatSurvei/(:any)', 'Responden\Response::riwayatSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+
 
 // $routes->get('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin']);
 

@@ -15,15 +15,15 @@
               <!-- Left navbar links -->
               <ul class="navbar-nav ms-auto">
                   <li class="nav-item">
-                      <a class="nav-link active text-solitude" href="<?= base_url('responden'); ?>">Home</a>
+                      <a href="<?= base_url(); ?>/responden" class="nav-link text-solitude">Isi Survei</a>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link text-solitude">Isi Survei</a>
-                  </li>
-                  <li class="nav-item">
-                      <a href="#" class="nav-link text-solitude">Riwayat Survei</a>
+                      <a href="<?= base_url(); ?>/responden/riwayatSurvei/<?= user()->id; ?>" class="nav-link text-solitude">Riwayat Survei</a>
                   </li>
 
+                  <li class="nav-item">
+                      <a class="nav-link active text-solitude" href="<?= base_url('responden'); ?>">Profil</a>
+                  </li>
                   <li class="nav-item">
                       <!-- Button logout modal -->
                       <a class="nav-link text-columbia-blue" href="#" role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
