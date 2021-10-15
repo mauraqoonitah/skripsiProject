@@ -281,7 +281,7 @@
                                                             <!-- content collapse - instrumen  -->
                                                             <div class="collapse mt-3" id="collapse-slug-<?= $ctg['slug']; ?>">
 
-                                                                <table class="table table-hover table-responsive">
+                                                                <table class="table table-hover table-responsive compact">
                                                                     <thead>
                                                                         <tr>
                                                                             <th scope="col" class="align-middle">No.</th>
@@ -302,7 +302,13 @@
                                                                         $sql = "SELECT * FROM instrumen WHERE slug = ?";
 
                                                                         $query =  $db->query($sql, [$slug]);
-                                                                        foreach ($query->getResultArray() as $row) : ?>
+                                                                        $roww = $query->getResultArray(); ?>
+
+                                                                        <?php if (empty($roww)) : ?>
+                                                                            <p class="text-rouge mb-5"><i>Data Instrumen belum ditambahkan.</i></p>
+                                                                        <?php endif; ?>
+
+                                                                        <?php foreach ($query->getResultArray() as $row) :  ?>
                                                                             <tr>
                                                                                 <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
                                                                                 <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
@@ -370,20 +376,11 @@
                                                     <!-- ./aksi kategori -->
                                                 </div>
                                             </div>
-
-
-
                                         </div>
-
-
-
                                     </div>
                                 </div>
                                 <!-- ./content collapse - kategori  -->
-
                             </div>
-
-
                         <?php endforeach; ?>
                     </div>
                 </div>

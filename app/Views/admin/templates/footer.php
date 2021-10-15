@@ -37,7 +37,7 @@
 <script>
     $(document).ready(function() {
         $('#summernote-petunjuk-pengisian').summernote({
-            placeholder: 'Isi Pernyataan',
+            placeholder: 'Isi Petunjuk Pengisian',
             height: 300,
             tabsize: 2,
             focus: true,
@@ -228,6 +228,54 @@ $timeNow = Time::now()->toDateTimeString(); ?>
                 {
                     extend: 'print',
                     messageTop: 'Nama Instrumen/print datetime',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+    $(document).ready(function() {
+        $('#datatable-chart-instrumen').DataTable({
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Hasil Survei Instrumen',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Hasil Survei Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Hasil Survei Instrumen',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
 
                 },
                 {

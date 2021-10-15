@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="alert alert-rouge fw-bold mt-3 col-lg-10" role="alert">
-                    <strong>Pilih kategori untuk melihat hasil survei kepuasan </strong>
+                    <strong class="text-rouge">Pilih kategori untuk melihat hasil survei kepuasan </strong>
                 </div>
                 <div class="col-lg-2 align-middle">
                     <a href="<?= base_url(); ?>/admin/analisisKepuasan">
@@ -34,50 +34,27 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body py-4">
-                <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
-                        <a href="<?= base_url(); ?>/admin/laporanInstrumen" class="text-decoration-none">
+
+            <div class="card-body">
+
+
+                <div class="accordion accordion-flush mx-auto" id="accordionExample">
+                    <?php foreach ($category as $ctg) : ?>
+
+
+                        <a href="<?= base_url(); ?>/admin/laporanInstrumen/<?= $ctg['slug']; ?>" class="text-decoration-none">
                             <div class="card border border-1 border-white rounded-3">
                                 <div class="card-body">
-                                    <h5 class="card-title">C.2</h5>
-                                    <p class="card-text">Instrumen Kepuasan atas Layanan.</p>
+                                    <h5 class="card-title"><?= $ctg['kodeCategory']; ?> </h5>
+                                    <p class="card-text"><?= $ctg['namaCategory']; ?></p>
                                 </div>
                             </div>
                         </a>
-                    </div>
-                    <div class="col">
-                        <a href="<?= base_url(); ?>/admin/laporanInstrumen" class="text-decoration-none">
-                            <div class="card border border-1 border-white rounded-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">C.4</h5>
-                                    <p class="card-text">Instrumen Kepuasan atas Layanan.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="<?= base_url(); ?>/admin/laporanInstrumen" class="text-decoration-none">
-                            <div class="card border border-1 border-white rounded-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">C.5</h5>
-                                    <p class="card-text">Instrumen Kepuasan atas Layanan.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <a href="<?= base_url(); ?>/admin/laporanInstrumen" class="text-decoration-none">
-                            <div class="card border border-1 border-white rounded-3">
-                                <div class="card-body">
-                                    <h5 class="card-title">C.6</h5>
-                                    <p class="card-text">Instrumen Kepuasan atas Layanan.</p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+
+                    <?php endforeach; ?>
                 </div>
             </div>
+
         </div>
     </section>
 

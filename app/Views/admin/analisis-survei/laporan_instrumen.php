@@ -27,35 +27,27 @@
     <section class="content mx-auto">
         <div class="container-fluid">
             <div class="card border border-1 border-white rounded-3">
-                <h6 class="card-header">C.2 Nama kategori yang tadi</h6>
+                <h6 class="card-header"><?= $category['kodeCategory']; ?> <?= $category['namaCategory']; ?></h6>
 
-                <a href="<?= base_url(); ?>/admin/laporanKepuasan">
-                    <div class="card col-lg-8 p-2">
-                        <div class="card-body">
-                            <p class="card-text">C.2.1 Nama instrumennya</p>
+                <?php foreach ($getInstrumenBySlug as $ins) : ?>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>">
+                                <div class="card p-2">
+                                    <div class="card-body">
+                                        <p class="card-text"><?= $ins['kodeInstrumen']; ?> <?= $ins['namaInstrumen']; ?></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-check form-switch d-flex justify-content-center">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                <!-- <label class="form-check-label" for="flexSwitchCheckDefault">OFF</label> -->
+                            </div>
                         </div>
                     </div>
-                </a>
-                <div class="card col-lg-8 p-2">
-                    <div class="card-body">
-                        <p class="card-text">C.2.2 Nama instrumennya</p>
-                    </div>
-                </div>
-                <div class="card col-lg-8 p-2">
-                    <div class="card-body">
-                        <p class="card-text">C.2.3 Nama instrumennya</p>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">OFF</label>
-                    </div>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                        <label class="form-check-label" for="flexSwitchCheckChecked">ON</label>
-                    </div>
-                </div>
+                <?php endforeach; ?>
                 <div class="card-footer text-muted text-center">
                     On Off untuk menampilkan ke website
                 </div>

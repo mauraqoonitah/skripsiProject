@@ -65,7 +65,7 @@
                                         <td><?= $rpd['role']; ?></td>
                                         <td>
                                             <div class="d-grid gap-2 d-md-block">
-                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none">
+                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Tanggapan">
                                                     Detail
                                                 </a>
                                                 <?php if (in_groups('Admin')) : ?>

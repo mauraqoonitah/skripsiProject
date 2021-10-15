@@ -123,8 +123,8 @@ $routes->post('/admin/savePetunjukPengisian/(:any)', 'Admin\Pernyataan::savePetu
 // menu analisis survei
 $routes->get('/admin/analisisKepuasan', 'Admin\Analisis::home');
 $routes->get('/admin/laporanSurvei', 'Admin\Analisis::laporan');
-$routes->get('/admin/laporanInstrumen', 'Admin\Analisis::laporanInstrumen');
-$routes->get('/admin/laporanKepuasan', 'Admin\Analisis::laporanKepuasan');
+$routes->get('/admin/laporanInstrumen/(:any)', 'Admin\Analisis::laporanInstrumen/$1');
+$routes->get('/admin/laporanKepuasan/(:any)', 'Admin\Analisis::laporanKepuasan/$1');
 
 
 // menu kelola jenis responden

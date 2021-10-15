@@ -78,15 +78,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>/admin/analisisKepuasan" class="nav-link <?= $uri->getSegment(2) == 'analisisKepuasan' ? 'active"' : '' ?>">
-                        <i class="nav-icon fas fa-bar-chart"></i>
-                        <p>
-                            <s>Analisis Kepuasan</s>
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a href="<?= base_url(); ?>/admin/laporanSurvei" class="nav-link <?= $uri->getSegment(2) == 'laporanSurvei' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-bar-chart"></i>
                         <!-- <i class="nav-icon fas fa-file-alt"></i> -->

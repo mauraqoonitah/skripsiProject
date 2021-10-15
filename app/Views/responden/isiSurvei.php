@@ -117,7 +117,6 @@
                                                     <tr>
                                                         <td class="text-center"><?= $i++; ?></td>
                                                         <td>
-                                                            <?= $butir['id'] ?> -
                                                             <?= $butir['butir']; ?></td>
 
                                                         <!-- checkbox iteration-->

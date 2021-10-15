@@ -34,11 +34,9 @@
 
             <div class="col-lg-8 mx-auto">
                 <div class="list-group center">
+                    <div class="alert alert-primary fw-bold mb-5" role="alert">
+                        Pilih instrumen untuk melihat tanggapan responden</div>
                     <?php foreach ($response as $r) : ?>
-
-                        <div class="alert alert-primary fw-bold mb-5" role="alert">
-                            Pilih instrumen untuk melihat tanggapan responden</div>
-
                         <div class="mb-4">
                             <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $r['id']; ?>" class="pilih-inst">
                                 <span class="text-rouge fw-bold"><?= $r['kodeInstrumen']; ?> - <?= $r['namaInstrumen']; ?></span>
