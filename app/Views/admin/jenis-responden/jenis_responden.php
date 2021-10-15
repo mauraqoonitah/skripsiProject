@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="fw-bold">Jenis Responden</h1>
+                    <h1 class="fw-bold">Kategori Responden</h1>
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url(); ?>/admin">Home</a></li>
-                        <li class="breadcrumb-item active ">Jenis Responden</li>
+                        <li class="breadcrumb-item active ">Kategori Responden</li>
                     </ol>
                 </div>
 
@@ -23,6 +23,15 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <!-- jika belum ada data -->
+            <?php if (empty($responden)) : ?>
+                <div class="row mb-4">
+                    <div class="mx-auto col-lg-4 col-sm-4">
+                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                        <p class=" text-center my-4 fs-5"> Kategori Responden belum ditambahkan.</p>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <!-- flash success tambah data  -->
             <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
@@ -45,65 +54,58 @@
             <!-- ./ flash gagal tambah data  -->
 
             <div class="col-lg-12">
-                <div class="card border-light shadow">
+                <div class="">
+                    <?php if (in_groups('Admin')) : ?>
+                        <!-- Button trigger modal -->
+                        <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="">
+                            <button type="button" class="btn btn-rouge text-white mb-4">
+                                <i class="fas fa-plus"></i> Tambah Responden
+                            </button></a>
 
-                    <div class="card-header d-flex align-items-center py-4">
-                        <h5 class="text-rouge">Responden Survei</h5>
-                        <?php if (in_groups('Admin')) : ?>
-                            <!-- Button trigger modal -->
-                            <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="ml-auto">
-                                <button type="button" class="btn btn-rouge text-white">
-                                    <i class="fas fa-plus"></i> Tambah Responden
-                                </button></a>
-
-                            <!-- modal tambah kategori -->
-                            <div class="modal fade" id="modal-tambah-jenisResponden" tabindex="-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-                                    <div class="modal-content">
-                                        <div class="modal-header card-header text-rouge ">
-                                            <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Jenis Responden</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- form tambah kategori -->
-                                            <form action="<?= base_url(); ?>/admin/saveJenisResponden" method="post">
-                                                <?= csrf_field(); ?>
-
-                                                <!-- nama kategori -->
-                                                <div class="form-group">
-                                                    <label for="nama-kategori" class="col-form-label">Nama Jenis Responden:</label>
-                                                    <textarea class="form-control <?= ($validation->hasError('responden')) ? 'is-invalid' : ''; ?>" id="responden" name="responden"></textarea>
-                                                    <div class=" invalid-feedback">
-                                                        <?= $validation->getError('responden'); ?>
-                                                    </div>
-                                                </div>
-
-                                                <div class="d-flex align-items-center">
-                                                    <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                        <i class="fas fa-save"></i> Simpan
-                                                    </button>
-                                                </div>
-                                            </form>
-                                            <!-- end form tambah kategori -->
-                                        </div>
-
+                        <!-- modal tambah kategori -->
+                        <div class="modal fade" id="modal-tambah-jenisResponden" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                                <div class="modal-content">
+                                    <div class="modal-header card-header text-rouge ">
+                                        <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Kategori Responden</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <div class="modal-body">
+                                        <!-- form tambah kategori -->
+                                        <form action="<?= base_url(); ?>/admin/saveJenisResponden" method="post">
+                                            <?= csrf_field(); ?>
+
+                                            <!-- nama kategori -->
+                                            <div class="form-group">
+                                                <label for="nama-kategori" class="col-form-label">Nama Kategori Responden:</label>
+                                                <textarea class="form-control <?= ($validation->hasError('responden')) ? 'is-invalid' : ''; ?>" id="responden" name="responden"></textarea>
+                                                <div class=" invalid-feedback">
+                                                    <?= $validation->getError('responden'); ?>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                    <i class="fas fa-save"></i> Simpan
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <!-- end form tambah kategori -->
+                                    </div>
+
                                 </div>
                             </div>
-                        <?php endif; ?>
-                        <!-- end modal tambah kategori -->
+                        </div>
+                    <?php endif; ?>
+                    <!-- end modal tambah kategori -->
 
-
-                    </div>
-                    <div class="card-body">
-
-
+                    <div class="">
                         <div class="table-responsive">
                             <!-- datatables -->
                             <table id="table-jenis-responden" class="row-border table-hover striped table-bordered compact">
-                                <thead class="card-header text-rouge">
+                                <thead class="card-header py-3 text-rouge">
                                     <tr>
-                                        <th>Responden</th>
+                                        <th>Kategori Responden</th>
                                         <th>Instrumen</th>
                                         <?php if (in_groups('Admin')) : ?>
                                             <th>Aksi</th>
@@ -134,7 +136,7 @@
                                             <?php if (in_groups('Admin')) : ?>
                                                 <td class="align-middle">
                                                     <div class="btn-group " role="group">
-                                                        <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                        <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Nama Jenis Responden">
                                                             <button type="button" class="btn btn-sm">
                                                                 <i class="fas fa-edit"></i>
                                                             </button>

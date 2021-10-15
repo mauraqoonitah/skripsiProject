@@ -72,7 +72,7 @@
                     <a href="<?= base_url(); ?>/admin/jenisResponden" class="nav-link <?= $uri->getSegment(2) == 'kelolaResponden' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Jenis Responden
+                            Kategori Responden
                         </p>
                     </a>
                 </li>

@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Edit Jenis Responden</h1>
+                    <h1 class="fw-bold">Edit Kategori Responden</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="<?= base_url(); ?>/admin">Home</a></li>
-                        <li class="breadcrumb-item active ">Jenis Responden</li>
+                        <li class="breadcrumb-item active ">Kategori Responden</li>
                     </ol>
                 </div>
                 <!-- back to previous page -->
@@ -43,13 +43,13 @@
 
                                 <!-- nama instrumen -->
                                 <div class="form-group">
-                                    <label for="nama-instrumen" class="col-form-label">Jenis Responden:</label>
+                                    <label for="nama-instrumen" class="col-form-label">Kategori Responden:</label>
                                     <input type="text" class="form-control" name="responden" value="<?= (old('responden')) ? old('responden') : $responden['responden']; ?>">
                                 </div>
 
                                 <div class="d-flex align-items-center ">
                                     <button type="submit" class="btn btn-success">
-                                        <i class="fas fa-save"></i> Ubah
+                                        Simpan
                                     </button>
                                 </div>
                             </form>

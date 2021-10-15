@@ -29,7 +29,12 @@
 
             <!-- jika belum ada responden -->
             <?php if (sizeof($responden) === 0) : ?>
-                <p class="text-rouge text-center mt-3"><i> Responden belum mengisi survei.</i></p>
+                <div class="row mb-4">
+                    <div class="mx-auto col-lg-4 col-sm-4">
+                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                        <p class=" text-center my-4 fs-5"> Responden belum mengisi survei.</p>
+                    </div>
+                </div>
             <?php endif; ?>
 
             <!-- DataTales Example -->

@@ -26,6 +26,15 @@
 
     <section class="content">
         <div class="container-fluid">
+            <!-- jika belum ada responden -->
+            <?php if (empty($category)) : ?>
+                <div class="row mb-4">
+                    <div class="mx-auto col-lg-4 col-sm-4">
+                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                        <p class=" text-center my-4 fs-5"> Data belum ditambahkan.</p>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <!-- flash success tambah data  -->
             <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
@@ -56,81 +65,87 @@
                             <button type="button" class="btn btn-rouge text-white">
                                 <i class="fas fa-plus"></i> Tambah Kategori
                             </button></a>
-                        <!-- modal tambah kategori -->
-                        <div class="modal fade" id="modal-tambah-instrumen" tabindex="-1" aria-labelledby="tambahKategoriLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-header card-header text-rouge ">
-                                        <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Kategori</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- form tambah kategori -->
-                                        <form action="<?= base_url(); ?>/admin/saveKategori_" method="post">
-                                            <?= csrf_field(); ?>
 
-                                            <!-- kode kategori -->
-                                            <div class="form-group">
-                                                <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
-                                                <div class="input-group mb-3">
-                                                    <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= old('kodeCategory'); ?>">
-                                                    <!-- popover -->
-                                                    <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
-                                                        <i class="fas fa-info"></i>
-                                                    </span>
-                                                    <div class="invalid-feedback">
-                                                        <?= $validation->getError('kodeCategory'); ?>
-                                                    </div>
-                                                </div>
-                                                <div class="collapse" id="popover-kode-kategori">
-                                                    <p class="font-monospace text-secondary">
-                                                        <b>Kategori yang terdaftar :</b><br>
-                                                        <?php foreach ($category as $ctg) :  ?>
-                                                            <span><?= $ctg['kodeCategory'] . ' (' .  $ctg['namaCategory'] . ')'; ?> <br>
-                                                            </span>
-                                                        <?php endforeach; ?>
-                                                    </p>
-                                                </div>
-                                                <!-- end popover -->
-                                            </div>
-
-                                            <!-- nama kategori -->
-                                            <div class="form-group">
-                                                <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
-                                                <textarea class="form-control <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= old('namaCategory'); ?>"></textarea>
-                                                <div class=" invalid-feedback">
-                                                    <?= $validation->getError('namaCategory'); ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- peruntukkan kategori -->
-                                            <div class="form-group">
-                                                <label for="peruntukkan-kategori" class="col-form-label">Responden:</label>
-                                                <?php foreach ($responden as $resp) : ?>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
-                                                        <label class="form-check-label" for="peruntukkanCategory">
-                                                            <?= $resp['responden']; ?>
-                                                        </label>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                            <div class="d-flex align-items-center">
-                                                <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                    <i class="fas fa-save"></i> Simpan
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <!-- end form tambah kategori -->
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end modal tambah kategori -->
                     <?php endif; ?>
                 </div>
+                <?php if (in_groups('Admin')) : ?>
+                    <!-- modal tambah kategori -->
+                    <div class="modal fade" id="modal-tambah-instrumen" tabindex="-1" aria-labelledby="tambahKategoriLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header card-header text-rouge ">
+                                    <h5 class="modal-title text-center" id="tambahKategoriLabel">Tambah Kategori</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- form tambah kategori -->
+                                    <form action="<?= base_url(); ?>/admin/saveKategori_" method="post">
+                                        <?= csrf_field(); ?>
 
+                                        <!-- kode kategori -->
+                                        <div class="form-group">
+                                            <label for="kode-kategori" class="col-form-label">Kode Kategori:</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control <?= ($validation->hasError('kodeCategory')) ? 'is-invalid' : ''; ?>" id="kodeCategory" name="kodeCategory" value="<?= old('kodeCategory'); ?>">
+                                                <!-- popover -->
+                                                <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-kategori" aria-expanded="false" aria-controls="popover-kode-kategori" style="cursor: pointer;">
+                                                    <i class="fas fa-info"></i>
+                                                </span>
+                                                <div class="invalid-feedback">
+                                                    <?= $validation->getError('kodeCategory'); ?>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="popover-kode-kategori">
+                                                <p class="text-secondary">
+                                                    <b>Kategori yang terdaftar :</b>
+                                                <ul>
+                                                    <?php foreach ($category as $ctg) :  ?>
+                                                        <li class="text-secondary">
+                                                            <?= $ctg['kodeCategory'] . ' (' .  $ctg['namaCategory'] . ')'; ?>
+                                                        </li>
+                                                        </span>
+                                                    <?php endforeach; ?>
+                                                </ul>
+                                                </p>
+                                            </div>
+                                            <!-- end popover -->
+                                        </div>
+
+                                        <!-- nama kategori -->
+                                        <div class="form-group">
+                                            <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
+                                            <textarea class="form-control <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= old('namaCategory'); ?>"></textarea>
+                                            <div class=" invalid-feedback">
+                                                <?= $validation->getError('namaCategory'); ?>
+                                            </div>
+                                        </div>
+
+                                        <!-- peruntukkan kategori -->
+                                        <div class="form-group">
+                                            <label for="peruntukkan-kategori" class="col-form-label">Responden:</label>
+                                            <?php foreach ($responden as $resp) : ?>
+                                                <div class="form-check">
+                                                    <input class="form-check-input <?= ($validation->hasError('peruntukkanCategory')) ? 'is-invalid' : ''; ?>" type="checkbox" value="<?= $resp['responden']; ?>" id="peruntukkanCategory" name="peruntukkanCategory[]">
+                                                    <label class="form-check-label ml-2 mb-2" for="peruntukkanCategory">
+                                                        <?= $resp['responden']; ?>
+                                                    </label>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                <i class="fas fa-save"></i> Simpan
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <!-- end form tambah kategori -->
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end modal tambah kategori -->
+                <?php endif; ?>
 
                 <div class="card-body">
                     <div class="accordion accordion-flush mx-auto" id="accordionExample">
@@ -257,7 +272,7 @@
                                                             </div>
                                                             <!-- button collapse lihat instrumen -->
                                                             <p>
-                                                                <button class="btn btn-primary btn-sm mt-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-slug-<?= $ctg['slug']; ?>" aria-expanded="false">
+                                                                <button class="btn btn-primary btn-sm mt-5 pt-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-slug-<?= $ctg['slug']; ?>" aria-expanded="false">
                                                                     <i class="fas fa-chevron-down"> </i> List Instrumen
                                                                 </button>
                                                             </p>
@@ -265,94 +280,89 @@
 
                                                             <!-- content collapse - instrumen  -->
                                                             <div class="collapse mt-3" id="collapse-slug-<?= $ctg['slug']; ?>">
-                                                                <div class="card border border-white">
-                                                                    <div class="card-header text-rouge d-flex align-items-center">
-                                                                        <span class="fw-bold">List Instrumen pada Kategori <?= $ctg['kodeCategory']; ?> </span>
-                                                                    </div>
-                                                                    <div class="card-body">
-                                                                        <table class="table table-hover table-responsive">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th scope="col" class="align-middle">No.</th>
-                                                                                    <th scope="col" class="align-middle text-center">Kode Instrumen</th>
-                                                                                    <th scope="col" class="align-middle">Nama Instrumen</th>
-                                                                                    <th scope="col" class="align-middle">Responden</th>
-                                                                                    <?php if (in_groups('Admin')) : ?>
-                                                                                        <th scope="col" class="align-middle text-center">Aksi</th>
-                                                                                    <?php endif; ?>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <?php $i = 1; ?>
-                                                                                <?php
-                                                                                $db = db_connect();
-                                                                                $slug = $ctg['slug'];
 
-                                                                                $sql = "SELECT * FROM instrumen WHERE slug = ?";
+                                                                <table class="table table-hover table-responsive">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th scope="col" class="align-middle">No.</th>
+                                                                            <th scope="col" class="align-middle text-center">Kode Instrumen</th>
+                                                                            <th scope="col" class="align-middle">Nama Instrumen</th>
+                                                                            <th scope="col" class="align-middle">Responden</th>
+                                                                            <?php if (in_groups('Admin')) : ?>
+                                                                                <th scope="col" class="align-middle text-center">Aksi</th>
+                                                                            <?php endif; ?>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <?php $i = 1; ?>
+                                                                        <?php
+                                                                        $db = db_connect();
+                                                                        $slug = $ctg['slug'];
 
-                                                                                $query =  $db->query($sql, [$slug]);
-                                                                                foreach ($query->getResultArray() as $row) : ?>
-                                                                                    <tr>
-                                                                                        <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
-                                                                                        <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
-                                                                                        <td>
-                                                                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kelola Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
-                                                                                        </td>
-                                                                                        <td><?= $row['peruntukkanInstrumen']; ?></td>
-                                                                                        <?php if (in_groups('Admin')) : ?>
-                                                                                            <td>
-                                                                                                <div class="btn-group" role="group">
-                                                                                                    <a href="<?= base_url(); ?>/admin/editInstrumen_/<?= $row['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Instrumen">
-                                                                                                        <i class="fas fa-edit"></i>
-                                                                                                    </a>
-                                                                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $row['id']; ?>">
-                                                                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
-                                                                                                            <i class="fas fa-trash-alt"></i>
-                                                                                                        </button>
-                                                                                                    </a>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        <?php endif; ?>
-                                                                                    </tr>
-                                                                                    <!-- modal hapus instrumen -->
-                                                                                    <div class="modal fade" id="modal-delete-instrumen-<?= $row['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
-                                                                                        <div class="modal-dialog modal-dialog-centered ">
-                                                                                            <div class="modal-content">
-                                                                                                <div class="modal-header">
-                                                                                                    <small class="text-muted" id="hapusInstrumenLabel"><?= $row['namaInstrumen']; ?></small>
-                                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                                </div>
-                                                                                                <div class="modal-body text-center">
-                                                                                                    <h5>Yakin hapus instrumen?</h5>
-                                                                                                    <i class="fas fa-exclamation-circle fa-2x" style="width: 3rem; color: #D60C0C"></i>
-                                                                                                    <p class="mt-4" style="color: #D60C0C;">Butir pernyataan didalamnya (jika ada) akan terhapus</p>
-                                                                                                </div>
-                                                                                                <div class="modal-footer">
-                                                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                                                                    <form action="<?= base_url(); ?>/admin/deleteInstrumen_/<?= $row['id']; ?>" method="post">
-                                                                                                        <?= csrf_field(); ?>
-                                                                                                        <input type="hidden" name="_method" value="DELETE">
-                                                                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                                                    </form>
-                                                                                                </div>
-                                                                                            </div>
+                                                                        $sql = "SELECT * FROM instrumen WHERE slug = ?";
+
+                                                                        $query =  $db->query($sql, [$slug]);
+                                                                        foreach ($query->getResultArray() as $row) : ?>
+                                                                            <tr>
+                                                                                <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
+                                                                                <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
+                                                                                <td>
+                                                                                    <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kelola Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
+                                                                                </td>
+                                                                                <td><?= $row['peruntukkanInstrumen']; ?></td>
+                                                                                <?php if (in_groups('Admin')) : ?>
+                                                                                    <td>
+                                                                                        <div class="btn-group" role="group">
+                                                                                            <a href="<?= base_url(); ?>/admin/editInstrumen_/<?= $row['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Instrumen">
+                                                                                                <i class="fas fa-edit"></i>
+                                                                                            </a>
+                                                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-instrumen-<?= $row['id']; ?>">
+                                                                                                <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
+                                                                                                    <i class="fas fa-trash-alt"></i>
+                                                                                                </button>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                <?php endif; ?>
+                                                                            </tr>
+                                                                            <!-- modal hapus instrumen -->
+                                                                            <div class="modal fade" id="modal-delete-instrumen-<?= $row['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered ">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header">
+                                                                                            <small class="text-muted" id="hapusInstrumenLabel"><?= $row['namaInstrumen']; ?></small>
+                                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                        </div>
+                                                                                        <div class="modal-body text-center">
+                                                                                            <h5>Yakin hapus instrumen?</h5>
+                                                                                            <i class="fas fa-exclamation-circle fa-2x" style="width: 3rem; color: #D60C0C"></i>
+                                                                                            <p class="mt-4" style="color: #D60C0C;">Butir pernyataan didalamnya (jika ada) akan terhapus</p>
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                                                            <form action="<?= base_url(); ?>/admin/deleteInstrumen_/<?= $row['id']; ?>" method="post">
+                                                                                                <?= csrf_field(); ?>
+                                                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                                            </form>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <!-- end modal hapus instrumen -->
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- end modal hapus instrumen -->
 
-                                                                                <?php endforeach; ?>
-                                                                            </tbody>
-                                                                        </table>
-                                                                        <?php if (in_groups('Admin')) : ?>
-                                                                            <!-- Button trigger modal -->
-                                                                            <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen_/<?= $ctg['slug']; ?>">
-                                                                                <button type="button" class="btn btn-sm btn-success mt-3">
-                                                                                    <i class=" fas fa-plus"></i> Tambah Instrumen
-                                                                                </button></a>
-                                                                        <?php endif; ?>
-                                                                    </div>
+                                                                        <?php endforeach; ?>
+                                                                    </tbody>
+                                                                </table>
 
-                                                                </div>
+                                                                <?php if (in_groups('Admin')) : ?>
+                                                                    <!-- Button trigger modal -->
+                                                                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen_/<?= $ctg['slug']; ?>">
+                                                                        <button type="button" class="btn btn-sm btn-success my-3">
+                                                                            <i class=" fas fa-plus"></i> Tambah Instrumen
+                                                                        </button></a>
+                                                                <?php endif; ?>
+
                                                             </div>
                                                             <!-- content collapse - instrumen  -->
                                                         </div>
