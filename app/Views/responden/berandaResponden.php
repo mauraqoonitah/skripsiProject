@@ -10,7 +10,11 @@
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="text-cosmic" data-aos="zoom-in-up" data-aos-delay="500"> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
                     <span class="text-center small text-muted" data-aos="zoom-in-right" data-aos-duration="1000">sebagai <?= user()->role; ?></span>
+                    <div class="my-4 col-lg-4 col-md-4 mx-auto">
+                        <img src="<?= base_url(); ?>/img/undraw_Choice.svg" class="img-fluid" />
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -35,7 +39,7 @@
                         <?php
                         foreach ($instrumenByResponden as $ins) : ?>
                             <form action="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" method="post">
-                                <button class="btn" type="submit" data-aos="fade-down" data-aos-duration="1500">
+                                <button class="btn" type="submit">
                                     <div class="row mb-4 mx-auto">
                                         <div class="pilih-inst">
                                             <?= $ins['namaInstrumen']; ?>

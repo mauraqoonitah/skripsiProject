@@ -79,7 +79,16 @@
     </div>
     <div class="container pt-5">
         <!-- ./sticky scrolled -->
-        <div class="row obyek-menu">
+        <div class="row">
+            <div class="mx-auto col-8">
+                <img src="<?= base_url(); ?>/img/undraw_in_sync.svg" class="img-fluid" />
+                <?php if (empty($category)) : ?>
+                    <p class="text-muted text-center my-4 fs-5"> No results found</p>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="row obyek-menu mt-5">
             <?php foreach ($category as $ctg) :  ?>
                 <div class="obyek-list col-sm shadow-sm">
                     <a href="./about.php" class="list-kategori"> <?= $ctg['namaCategory']; ?></a>
@@ -91,9 +100,14 @@
 </section>
 
 <section class="menu col-lg-8 mx-auto">
-    <div class="container">
+    <div class="container-fluid">
         <h2 class="section-title" id="obyek-menu">Grafik Kepuasan</h3>
-            <div class="row obyek-menu">
+            <div class="row mt-3">
+                <div class="mx-auto col-8">
+                    <img src="<?= base_url(); ?>/img/undraw_Report.svg" class="img-fluid" />
+                    <p class="text-muted text-center my-4 fs-5"> No results found</p>
+
+                </div>
             </div>
     </div>
 </section>

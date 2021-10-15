@@ -13,10 +13,6 @@
 
                     <p class="fs-5 fw-bold"><?= $instrumen['kodeInstrumen']; ?> - <?= $instrumen['namaInstrumen']; ?> </p>
                 </div>
-                <!-- back to previous page  -->
-                <a href="<?= base_url(); ?>/responden">
-                    <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px"></i>
-                </a>
             </div>
         </div>
     </div>
@@ -32,26 +28,17 @@
             <div class="row">
                 <div class="col-lg-12 mx-auto">
                     <div class="col-lg-6 mx-auto pb-3">
-                        <div class="card card-success ">
-                            <div class="card-header bg-success">
-                                <span class="text-light"><i class="fas fa-check text-light mr-2"></i>Anda telah mengisi kuesioner ini pada :</span>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus text-light"></i>
-                                    </button>
-                                </div>
-                                <!-- /.card-tools -->
+                        <?php if (!empty($cekRiwayatTgl)) : ?>
+                            <div class="col-lg-6 col-md-6 mx-auto">
+                                <img src="<?= base_url(); ?>/img/undraw_Confirm.svg" class="img-fluid my-4" />
                             </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <?php foreach ($cekRiwayatTgl as $cek) : ?>
-                                    <a href="<?= base_url(); ?>/responden/riwayatSurvei/<?= user()->id; ?>" class="nav-link text-reset ">
-                                        <p class="text-success"><u><?= $cek['created_at'] ?></u></p>
-                                    </a>
-                                <?php endforeach; ?>
+                            <p class=" text-cosmic text-center mb-4 fs-5"> Anda telah mengisi kuesioner ini</p>
+                            <div class="d-flex justify-content-center my-2">
+                                <a href="<?= base_url(); ?>/responden/riwayatSurvei/<?= user()->id; ?>" type="button" class="btn btn-sm btn-rouge">
+                                    Lihat Riwayat Survei
+                                </a>
                             </div>
-                            <!-- /.card-body -->
-                        </div>
+                        <?php endif; ?>
                     </div>
 
                     <!-- /.card -->

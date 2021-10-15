@@ -26,59 +26,55 @@
         </div><!-- /.container-fluid -->
     </section>
 
-
     <section class="content mb-5">
         <div class="container-fluid">
-            <!-- Info boxes -->
-            <div class="row mt-2">
-
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-cosmic">
-                        <div class="inner text-white">
-                            <h3><?= $totalResponden; ?></h3>
-                            <p>Responden</p>
-                        </div>
-                        <div class="icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <a href="<?= base_url(); ?>/admin/hasil-survei/responden" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="my-4 ">
+                        <img src="<?= base_url(); ?>/img/undraw_Organize.svg" class="img-fluid" />
                     </div>
                 </div>
-                <!-- ./col -->
 
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-cosmic">
-                        <div class="inner text-white">
-                            <h3><?= $totalInstrumen; ?></h3>
-                            <p>Instrumen Kepuasan</p>
+                <div class="col-lg-8">
+                    <!-- Info boxes -->
+                    <div class="row mt-2">
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-cosmic">
+                                <div class="inner text-white">
+                                    <h3><?= $totalResponden; ?></h3>
+                                    <p>Responden</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <a href="<?= base_url(); ?>/admin/hasil-survei/responden" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        <div class="icon">
-                            <i class="fas fa-users"></i>
+                        <!-- ./col -->
+
+                        <div class="col-lg- col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-cosmic">
+                                <div class="inner text-white">
+                                    <h3><?= $totalInstrumen; ?></h3>
+                                    <p>Instrumen Kepuasan</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
                         </div>
-                        <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <!-- ./col -->
+
+                        <!-- fix for small devices only -->
+                        <div class="clearfix hidden-md-up"></div>
+
                     </div>
+                    <!-- ./Info boxes -->
                 </div>
-                <!-- ./col -->
-
-                <!-- <div class="col-lg-4 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-cosmic elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-                        <div class="info-box-content">
-                            <span class=" fs-6 text-rouge fw-bold">Instrumen Kepuasan</span>
-                            <span class="info-box-number fs-5 pl-2"><?= $totalInstrumen; ?></span>
-                        </div>
-                    </div>
-                </div> -->
-
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
             </div>
-            <!-- ./Info boxes -->
-
         </div>
     </section>
 </div>

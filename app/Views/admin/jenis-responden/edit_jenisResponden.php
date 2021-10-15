@@ -29,28 +29,35 @@
 
 
     <!-- Main content -->
-    <section class="content col-lg-6 mx-auto">
+    <section class="content">
         <div class="container-fluid">
-            <div class="card mt-2">
-                <div class="card-header py-4 text-rouge">
-                    <strong><?= $responden['responden'] ?></strong>
+            <div class="row mt-3">
+                <div class="col-lg-6">
+                    <div class="card mt-2">
+                        <div class="card-header py-4 text-rouge">
+                            <strong><?= $responden['responden'] ?></strong>
+                        </div>
+                        <div class="card-body p-4">
+                            <form action="<?= base_url(); ?>/admin/updateJenisResponden/<?= $responden['id']; ?>" method="post">
+                                <?= csrf_field(); ?>
+
+                                <!-- nama instrumen -->
+                                <div class="form-group">
+                                    <label for="nama-instrumen" class="col-form-label">Jenis Responden:</label>
+                                    <input type="text" class="form-control" name="responden" value="<?= (old('responden')) ? old('responden') : $responden['responden']; ?>">
+                                </div>
+
+                                <div class="d-flex align-items-center ">
+                                    <button type="submit" class="btn btn-success">
+                                        <i class="fas fa-save"></i> Ubah
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body p-4">
-                    <form action="<?= base_url(); ?>/admin/updateJenisResponden/<?= $responden['id']; ?>" method="post">
-                        <?= csrf_field(); ?>
-
-                        <!-- nama instrumen -->
-                        <div class="form-group">
-                            <label for="nama-instrumen" class="col-form-label">Jenis Responden:</label>
-                            <input type="text" class="form-control" name="responden" value="<?= (old('responden')) ? old('responden') : $responden['responden']; ?>">
-                        </div>
-
-                        <div class="d-flex align-items-center ">
-                            <button type="submit" class="btn btn-success">
-                                <i class="fas fa-save"></i> Ubah
-                            </button>
-                        </div>
-                    </form>
+                <div class="col-lg-4 mx-auto d-flex justify-content-center">
+                    <img src="<?= base_url(); ?>/img/undraw_Selecting_team.svg" class="img-fluid" />
                 </div>
             </div>
         </div>
