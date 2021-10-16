@@ -58,7 +58,7 @@
                     <?php if (in_groups('Admin')) : ?>
                         <!-- Button trigger modal -->
                         <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="">
-                            <button type="button" class="btn btn-rouge text-white mb-4">
+                            <button type="button" class="btn btn-rouge text-white mb-4 py-2">
                                 <i class="fas fa-plus"></i> Tambah Responden
                             </button></a>
 
@@ -102,10 +102,11 @@
                     <div class="">
                         <div class="table-responsive">
                             <!-- datatables -->
-                            <table id="table-jenis-responden" class="row-border table-hover striped table-bordered compact">
-                                <thead class="card-header py-3 text-rouge">
+                            <table id="table-jenis-responden" class="display row-border table-hover striped table-bordered compact">
+                                <thead class="card-header py-3 text-rouge fs-6">
                                     <tr>
                                         <th>Kategori Responden</th>
+                                        <th class="text-center ">Jumlah Responden</th>
                                         <th>Instrumen</th>
                                         <?php if (in_groups('Admin')) : ?>
                                             <th>Aksi</th>
@@ -115,11 +116,21 @@
                                 <tbody>
                                     <?php foreach ($responden as $resp) : ?>
                                         <tr>
-                                            <td class="fw-bold"><?= $resp['responden']; ?> </td>
+                                            <td class="fw-bold pl-3"><?= $resp['responden']; ?> </td>
+
+                                            <td class="text-center ">
+                                                <?php
+                                                $jenisResponden = $resp['responden'];
+                                                $respondenModel = model('RespondenModel');
+                                                $this->respondenModel = new $respondenModel;
+                                                $jumlahResponden =  $this->respondenModel->getJumlahRespondenByRole($jenisResponden);
+                                                ?>
+                                                <?= $jumlahResponden; ?>
+                                            </td>
+
                                             <td class="d-flex align-middle">
                                                 <?php
                                                 $jenisResponden = $resp['responden'];
-                                                $db = db_connect();
                                                 $instrumenModel = model('InstrumenModel');
                                                 $this->instrumenModel = new $instrumenModel;
                                                 $sql =  $this->instrumenModel->getInstrumenByJenisResponden($jenisResponden);
@@ -133,6 +144,8 @@
                                                 </ul>
 
                                             </td>
+
+
                                             <?php if (in_groups('Admin')) : ?>
                                                 <td class="align-middle">
                                                     <div class="btn-group " role="group">

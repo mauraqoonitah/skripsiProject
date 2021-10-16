@@ -138,11 +138,11 @@ $timeNow = Time::now()->toDateTimeString(); ?>
     });
     $(document).ready(function() {
         $('#table-jenis-responden').DataTable({
-            "pageLength": 25,
+            "paging": false,
             dom: 'Bfrtip',
             buttons: [{
                     extend: 'copy',
-                    title: 'Jenis Responden Instrumen Kepuasan',
+                    title: 'Kategori Responden',
                     exportOptions: {
                         columns: [0, 1, ':visible']
                     }
@@ -150,8 +150,7 @@ $timeNow = Time::now()->toDateTimeString(); ?>
                 },
                 {
                     extend: 'excel',
-                    title: 'Jenis Responden Instrumen Kepuasan',
-                    messageTop: 'Nama Instrumen',
+                    title: 'Kategori Responden',
                     messageBottom: 'created on: <?php echo $timeNow; ?>',
                     autoFilter: true,
                     sheetName: 'Hasil Survei',
@@ -162,8 +161,7 @@ $timeNow = Time::now()->toDateTimeString(); ?>
                 },
                 {
                     extend: 'pdf',
-                    title: 'Jenis Responden Instrumen Kepuasan',
-                    messageTop: 'Nama Instrumen',
+                    title: 'Kategori Responden',
                     messageBottom: 'created on: <?php echo $timeNow; ?>',
                     orientation: 'potrait',
                     pageSize: 'A4',
@@ -176,7 +174,7 @@ $timeNow = Time::now()->toDateTimeString(); ?>
                 },
                 {
                     extend: 'print',
-                    messageTop: 'Jenis Responden Instrumen Kepuasan',
+                    messageTop: 'Kategori Responden',
 
                 },
                 {

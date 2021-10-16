@@ -35,4 +35,14 @@ class RespondenModel extends Model
             ->where('userID', $userID)
             ->findAll();
     }
+
+    public function getJumlahRespondenByRole($role)
+    {
+        return $this
+            ->select('responden.role')
+            ->join('jenis_responden', 'jenis_responden.responden = responden.role')
+            ->where('role', $role)
+            ->groupBy('userID')
+            ->countAllResults();
+    }
 }
