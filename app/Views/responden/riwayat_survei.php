@@ -65,8 +65,18 @@
                                             <div class="container-fluid">
                                                 <section>
                                                     <div class="col-lg-12 mx-auto">
+
+                                                        <?php foreach ($getPetunjukIns as $petunjuk) : ?>
+                                                            <?php
+                                                            $isiPetunjuk = $petunjuk['isiPetunjuk'];
+                                                            $idPetunjuk = $petunjuk['id'];
+                                                            $insIDPetunjuk = $petunjuk['instrumenID']; ?>
+
+                                                        <?php endforeach; ?>
+
                                                         <div class="callout callout-info mb-5">
                                                             <h6 class="my-3">Petunjuk Pengisian Instrumen</h6>
+                                                            <?= $isiPetunjuk; ?>
                                                         </div>
 
                                                         <table id="tableResponden" class="table table-bordered table-striped  table-hover text-wrap">

@@ -45,7 +45,15 @@
 
                     <div class="callout callout-info mb-5">
                         <h5 class="my-3">Petunjuk Pengisian Instrumen</h5>
-                        <?php if (empty($getPetunjukIns) || empty($getPetunjukIns['isiPetunjuk'])) : ?>
+
+                        <?php foreach ($getPetunjukIns as $petunjuk) : ?>
+                            <?php
+                            $isiPetunjuk = $petunjuk['isiPetunjuk'];
+                            $idPetunjuk = $petunjuk['id'];
+                            $insIDPetunjuk = $petunjuk['instrumenID']; ?>
+                        <?php endforeach; ?>
+
+                        <?php if (empty($idPetunjuk) || empty($isiPetunjuk)) : ?>
                             <ul>
                                 <li><span>Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan sesuai dengan keadaan yang sebenarnya.</span></li>
                                 <li><span>Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</span></li>
@@ -60,10 +68,8 @@
                             </ul>
 
                         <?php endif; ?>
-                        <?php if (!empty($getPetunjukIns) || !empty($getPetunjukIns['isiPetunjuk'])) : ?>
-                            <?php foreach ($getPetunjukIns as $isi) : ?>
-                                <?= $isi['isiPetunjuk']; ?>
-                            <?php endforeach; ?>
+                        <?php if (!empty($isiPetunjuk)) : ?>
+                            <?= $isiPetunjuk; ?>
                         <?php endif; ?>
 
                     </div>

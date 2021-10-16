@@ -125,10 +125,16 @@ class Response extends BaseController
     }
     public function riwayatSurvei($id)
     {
+        $respondenData = $this->responseModel->getResponseByInstrumenID($id);
+        foreach ($respondenData as $respData) {
+            $instrumenID = $respData['instrumenID'];
+        }
+
         $data = [
             'title' => 'Riwayat Pengisian Survei',
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
             'respondenData' => $this->responseModel->getRespondenData($id),
+            'getPetunjukIns' =>  $this->petunjukInstrumenModel->getPetunjukIns($instrumenID),
 
 
             'validation' => \Config\Services::validation()

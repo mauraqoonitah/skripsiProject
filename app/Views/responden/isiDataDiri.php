@@ -52,26 +52,6 @@
                                             <input type="text" readonly class="form-control" id="role" value="<?= $user->role; ?>">
                                         </div>
                                     </div>
-                                    <hr>
-                                    <div class="mb-3 row">
-                                        <label for="inputPassword" class="col-sm-4 col-form-label">Password Lama</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="inputPassword">
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 row">
-                                        <label for="inputPassword" class="col-sm-4 col-form-label">Password Baru</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="inputPassword">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row">
-                                        <label for="inputPassword" class="col-sm-4 col-form-label">Ulang Password</label>
-                                        <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="inputPassword">
-                                        </div>
-                                    </div>
 
                                     <div class="d-flex justify-content-end mt-5">
                                         <button type="submit" class="btn btn-purple">

@@ -80,7 +80,7 @@ class ResponseModel extends Model
     public function getResponseByInstrumenID($id)
     {
         return $this
-            ->select('*, response.id as responseID')
+            ->select('*, response.id as responseID, response.instrumenID as insID')
             ->join('questions', 'questions.instrumenID = response.instrumenID')
             ->where('response.userID', $id)
             ->groupBy('response.created_at')
@@ -91,7 +91,7 @@ class ResponseModel extends Model
     {
         return $this
             ->where('instrumenID', $instrumenID)
-            ->orWhere('userID', $userID)
+            ->where('userID', $userID)
             ->groupBy('created_at')
             ->orderBy('id', 'desc')
             ->findAll();
@@ -100,6 +100,7 @@ class ResponseModel extends Model
     public function getRespondenData($id)
     {
         return $this
+            // ->select('*', 'response.userID as idUser')
             ->join('responden', 'responden.userID = response.userID')
             ->where('response.userID', $id)
             ->groupBy('response.userID')
