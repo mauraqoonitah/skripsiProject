@@ -60,4 +60,12 @@ class Pages extends BaseController
         ];
         return view('auth/register', $data);
     }
+    public function forgot()
+    {
+        $data = [
+            'title' => 'Lupa Kata Sandi | Instrumen Kepuasan FMIPA UNJ'
+
+        ];
+        return view('auth/forgot', $data);
+    }
 }
