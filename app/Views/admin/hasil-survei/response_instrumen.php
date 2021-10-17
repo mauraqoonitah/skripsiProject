@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">(bugs) Data Hasil Survei Kepuasan<br> (Per-Instrumen)</h1>
+                    <h1 class="fw-bold">(bugs) Hasil Survei Kepuasan<br> (Instrumen)</h1>
                     <p>kalo ada duplicate instrumen dari user yg sama, dia gmn ya</p>
                 </div>
                 <div class="col-sm-6">

@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Data Hasil Survei Kepuasan <br>(Per-Responden)</h1>
+                    <h1 class="fw-bold">Hasil Survei Kepuasan <br>(Responden)</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,144 +26,151 @@
 
     <section class="content">
         <div class="container-fluid">
-
-            <div class="row">
-                <!-- list tanggapan per instrumen -->
-                <div class="col-lg-9">
-                    <div class="accordion accordion-flush mx-auto">
-                        <?php foreach ($responseInsId as $rIns) : ?>
-                            <div class="accordion-item mb-5">
-                                <!-- header collapse - kategori  -->
-                                <h5 class="accordion-header" id="accord-<?= $rIns['instrumenID']; ?>">
-                                    <div class="accordion-button rounded d-flex align-items-center col-lg-12 " id="accordionResponse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $rIns['instrumenID']; ?>" aria-expanded="true" aria-controls="collapse-<?= $rIns['instrumenID']; ?>">
-                                        <span class="fw-bold fs-6"><?= $rIns['kodeInstrumen']; ?> - <?= $rIns['namaInstrumen']; ?></span>
-                                    </div>
-                                </h5>
-                                <!-- ./header collapse - kategori  -->
-                                <div class="container my-3">
-                                    <span class="text-muted mt-2">Date Created : <?= $rIns['created_at'] ?></span>
+            <!-- data diri responden -->
+            <div class="row mb-4 col-lg-6">
+                <div class="card card-outline card-primary">
+                    <div class="card-header bg-white">
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                        <?php foreach ($respondenDataDiri as $res) :  ?>
+                            <div class="post">
+                                <div class="user-block">
+                                    <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>/../../img/user_profile.png" alt="user image">
+                                    <span class="username">
+                                        <span class="text-rouge fs-5"><?= $res['fullname']; ?></span>
+                                    </span>
+                                    <span class="description">Last Activity -
+                                        <?php foreach ($lastActivity as $last) : ?>
+                                            <span> <?= $last->date; ?></span>
+                                        <?php endforeach; ?>
+                                    </span>
                                 </div>
+                                <!-- /.user-block -->
+                            </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row p-0 m-0">
+                            <span class="col-sm-4 col-form-label p-0"><strong>Username</strong></span>
+                            <span class="col-sm-8 col-form-label p-0">
+                                <?= $res['username']; ?>
+                            </span>
+                        </div>
+                        <hr>
+                        <div class="form-group row p-0 m-0">
+                            <span class="col-sm-4 col-form-label p-0"><strong>Email</strong></span>
+                            <span class="col-sm-8 col-form-label p-0">
+                                <?= $res['email']; ?>
+                            </span>
+                        </div>
+                        <hr>
+                        <div class="form-group row p-0 m-0">
+                            <span class="col-sm-4 col-form-label p-0"><strong>Role</strong></span>
+                            <span class="col-sm-8 col-form-label p-0">
+                                <?= $res['role']; ?>
+                            </span>
+                        </div>
+                        <hr>
+
+                        <p class="text-muted">userID <?= $userID = $res['userID']; ?></p>
+                    <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <!-- ./data diri responden -->
+
+            <!-- list tanggapan per instrumen -->
+            <div class="accordion accordion-flush mx-auto">
+                <?php foreach ($responseInsId as $rIns) : ?>
+                    <div class="accordion-item mb-5">
+                        <!-- header collapse - kategori  -->
+                        <h5 class="accordion-header" id="accord-<?= $rIns['instrumenID']; ?>">
+                            <div class="accordion-button rounded d-flex align-items-center col-lg-12 " id="accordionResponse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $rIns['instrumenID']; ?>" aria-expanded="true" aria-controls="collapse-<?= $rIns['instrumenID']; ?>">
+                                <span class="fw-bold fs-6"><?= $rIns['kodeInstrumen']; ?> - <?= $rIns['namaInstrumen']; ?></span>
+                            </div>
+                        </h5>
+                        <!-- ./header collapse - kategori  -->
+                        <div class="container my-3">
+                            <span class="text-muted mt-2">Date Created : <?= $rIns['created_at'] ?></span>
+                        </div>
 
 
-                                <!-- content collapse - kategori  -->
-                                <div id="collapse-<?= $rIns['instrumenID']; ?>" class="accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
-                                    <div class="accordion-body">
-                                        <section class="content">
-                                            <div class="container-fluid">
-                                                <section>
+                        <!-- content collapse - kategori  -->
+                        <div id="collapse-<?= $rIns['instrumenID']; ?>" class="accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
+                            <div class="accordion-body">
+                                <section class="content">
+                                    <div class="container-fluid">
+                                        <section>
 
-                                                    <!-- STACKED BAR CHART -->
-                                                    <!-- <div class="my-4">
+                                            <!-- STACKED BAR CHART -->
+                                            <!-- <div class="my-4">
                                                         <div class="chart">
                                                             <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
                                                         </div>
                                                     </div> -->
 
-                                                    <table id="tableResponden" class="table table-bordered table-bordered table-hover text-wrap">
-                                                        <thead class="bg-thead">
-                                                            <tr>
-                                                                <th>No.</th>
-                                                                <th>Butir Pernyataan</th>
-                                                                <th>Jawaban</th>
-                                                                <th class="text-center">Tingkat Kepuasan</th>
-                                                            </tr>
-                                                        </thead>
+                                            <table id="tableResponden" class="table table-bordered table-bordered table-hover text-wrap">
+                                                <thead class="bg-thead">
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Butir Pernyataan</th>
+                                                        <th>Jawaban</th>
+                                                        <th class="text-center">Tingkat Kepuasan</th>
+                                                    </tr>
+                                                </thead>
 
 
-                                                        <tbody>
+                                                <tbody>
 
+
+                                                    <?php
+                                                    $i = 1;
+                                                    $insID = $rIns['instrumenID'];
+                                                    $db = db_connect();
+                                                    $pernyataanModel = model('PernyataanModel');
+                                                    $this->pernyataanModel = new $pernyataanModel;
+                                                    $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
+
+                                                    foreach ($sql as $row) : ?>
+                                                        <?php $questionID = $row['questionID']; ?>
+                                                        <tr>
+                                                            <td class="text-center"><?= $i++; ?></td>
+                                                            <td>
+                                                                <?= $row['butir']; ?>
+                                                            </td>
+
+                                                            <?php foreach ($respondenDataDiri as $res) :  ?>
+                                                                <?php $userID = $res['userID'] ?>
+                                                            <?php endforeach; ?>
 
                                                             <?php
-                                                            $i = 1;
-                                                            $insID = $rIns['instrumenID'];
-                                                            $db = db_connect();
-                                                            $pernyataanModel = model('PernyataanModel');
-                                                            $this->pernyataanModel = new $pernyataanModel;
-                                                            $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
-
-                                                            foreach ($sql as $row) : ?>
-                                                                <?php $questionID = $row['questionID']; ?>
-                                                                <tr>
-                                                                    <td class="text-center"><?= $i++; ?></td>
-                                                                    <td>
-                                                                        <?= $row['butir']; ?>
-                                                                    </td>
-
-                                                                    <?php foreach ($respondenData as $res) :  ?>
-                                                                        <?php $userID = $res['userID'] ?>
-                                                                    <?php endforeach; ?>
-
-                                                                    <?php
-                                                                    // get jawaban by questionID
-                                                                    $responseModel = model('ResponseModel');
-                                                                    $this->responseModel = new $responseModel;
-                                                                    $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
-                                                                    <td class="text-center">
-                                                                        <?php foreach ($sqlResponse as $response) : ?>
-                                                                            <?= $response['jawaban']; ?>
-                                                                        <?php endforeach; ?>
-                                                                    </td>
-                                                                    <td>Sangat Baik</td>
-                                                                </tr>
-                                                            <?php endforeach; ?>
-                                                        </tbody>
-                                                    </table>
-                                                </section>
-                                            </div>
+                                                            // get jawaban by questionID
+                                                            $responseModel = model('ResponseModel');
+                                                            $this->responseModel = new $responseModel;
+                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
+                                                            <td class="text-center">
+                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                    <?= $response['jawaban']; ?>
+                                                                <?php endforeach; ?>
+                                                            </td>
+                                                            <td>Sangat Baik</td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
                                         </section>
                                     </div>
-                                </div>
-                                <!-- ./content collapse - kategori  -->
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-                <!-- ./list tanggapan per instrumen -->
-
-                <!-- data diri responden -->
-                <div class="col-lg-3 col-sm-6">
-                    <div class="row">
-                        <div class="card card-outline card-primary">
-                            <div class="card-header bg-white pt-4">
-                                <h3 class="card-title">Data Diri</h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <?php foreach ($respondenData as $res) :  ?>
-                                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Nama Lengkap</strong>
-
-                                    <p class="text-muted scroll-horiz">
-                                        <?= $res['fullname']; ?>
-                                    </p>
-
-                                    <hr>
-
-                                    <strong><i class="fas fa-map-marker-alt mr-1"></i> Email</strong>
-
-                                    <p class="text-muted scroll-horiz"><?= $res['email']; ?></p>
-
-                                    <hr>
-
-                                    <strong><i class="fas fa-pencil-alt mr-1"></i> No.Identitas</strong>
-                                    <p class="text-muted"> <?= $res['noIdentitas']; ?> -</p>
-
-                                    <hr>
-
-                                    <strong><i class="far fa-file-alt mr-1"></i> Sebagai</strong>
-
-                                    <p class="text-muted"><?= $res['role']; ?></p>
-                                    <p class="text-muted">userID <?= $userID = $res['userID']; ?></p>
-                                <?php endforeach; ?>
+                                </section>
                             </div>
                         </div>
+                        <!-- ./content collapse - kategori  -->
                     </div>
-                </div>
-                <!-- ./data diri responden -->
+                <?php endforeach; ?>
             </div>
+            <!-- ./list tanggapan per instrumen -->
         </div>
     </section>
 </div>

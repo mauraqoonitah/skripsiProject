@@ -138,7 +138,7 @@
                                                 <ul>
                                                     <?php foreach ($sql as $row) : ?>
                                                         <li>
-                                                            - <?= $row['namaInstrumen']; ?>
+                                                            <?= $row['kodeInstrumen']; ?> - <?= $row['namaInstrumen']; ?>
                                                         </li>
                                                     <?php endforeach; ?>
                                                 </ul>

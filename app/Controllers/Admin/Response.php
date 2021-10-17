@@ -10,6 +10,8 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
+use Myth\Auth\Models\UserModel;
+
 
 class Response extends BaseController
 {
@@ -19,6 +21,7 @@ class Response extends BaseController
     protected $jenisRespondenModel;
     protected $responseModel;
     protected $respondenModel;
+    protected $userModel;
     protected $mRequest;
 
 
@@ -30,6 +33,8 @@ class Response extends BaseController
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
+        $this->userModel = new UserModel();
+
         $this->mRequest = service("request");
     }
 
@@ -81,9 +86,9 @@ class Response extends BaseController
         $data = [
             'title' => 'Tanggapan Responden',
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
-            'respondenData' => $this->responseModel->getRespondenData($id),
-            // 'responseByQuestId' => $this->responseModel->getResponseByQuestID($id, $questionID),
-            // 'butirByInsId' => $this->responseModel->getButirByInstrumenID($id),
+            'respondenDataDiri' => $this->respondenModel->joinRespondenUsers($id),
+            'lastActivity' => $this->userModel->lastActivity($id),
+
 
         ];
         return view('admin/hasil-survei/response_responden', $data);

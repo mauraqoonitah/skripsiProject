@@ -8,7 +8,7 @@ class RespondenModel extends Model
 {
     protected $table      = 'responden';
     protected $userTimestamps = true;
-    protected $allowedFields = ['userID', 'role', 'noIdentitas', 'email', 'fullname'];
+    protected $allowedFields = ['userID', 'role', 'fullname'];
 
 
     public function getRespondenList($id = false)
@@ -16,7 +16,7 @@ class RespondenModel extends Model
         if ($id == false) {
             return $this
                 ->orderBy('id', 'desc')
-                ->groupBy('email')
+                ->groupBy('userID')
                 ->findAll();
 
             // ->groupBy('noIdentitas')
@@ -44,5 +44,13 @@ class RespondenModel extends Model
             ->where('role', $role)
             ->groupBy('userID')
             ->countAllResults();
+    }
+    public function joinRespondenUsers($userID)
+    {
+        return $this
+            ->join('users', 'users.id = responden.userID')
+            ->where('userID', $userID)
+            ->groupBy('responden.userID')
+            ->findAll();
     }
 }
