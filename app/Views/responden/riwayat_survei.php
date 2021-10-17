@@ -1,6 +1,10 @@
 <?= $this->extend('responden/templates/index'); ?>
 
 <?= $this->section('responden-body-content'); ?>
+<?php
+
+use CodeIgniter\I18n\Time;
+?>
 
 <div class="content-wrapper py-5" style="min-height: 80vh;">
     <!-- Content Header (Page header) -->
@@ -10,9 +14,7 @@
                 <div class="col-lg-12 mx-auto text-center">
                     <h1 class="purple-text"> Riwayat Pengisian Survei
                     </h1>
-                    <?php if (!empty($responseInsId)) : ?>
-                        <span class="text-muted">Terima kasih telah mengisi survei kepuasan. Inilah yang kami dapatkan dari Anda:</span>
-                    <?php endif; ?>
+
                 </div>
             </div>
         </div>
@@ -56,7 +58,12 @@
 
                                 <!-- content collapse - kategori  -->
                                 <div class="container my-3">
-                                    <span class="text-muted mt-2">Date Created : <?= $rIns['created_at'] ?></span>
+                                    <span class="text-muted mt-2">Tgl Pengisian :
+                                        <?php
+                                        $date_created_response = Time::parse($rIns['created_at'], 'Asia/Jakarta');
+                                        echo $date_created_response->toLocalizedString('d MMM yyyy, HH:mm');
+                                        ?>
+                                    </span>
                                 </div>
 
                                 <div id="collapse-<?= $rIns['responseID']; ?>" class="accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['responseID']; ?>">
@@ -65,6 +72,8 @@
                                             <div class="container-fluid">
                                                 <section>
                                                     <div class="col-lg-12 mx-auto">
+                                                        <p class="fw-bold mb-4">Terima kasih telah mengisi survei kepuasan. Inilah yang kami dapatkan dari Anda:<br></p>
+
 
                                                         <?php foreach ($getPetunjukIns as $petunjuk) : ?>
                                                             <?php
@@ -72,19 +81,19 @@
                                                             $idPetunjuk = $petunjuk['id'];
                                                             $insIDPetunjuk = $petunjuk['instrumenID']; ?>
 
+
+                                                            <div class="callout callout-info mb-5">
+                                                                <h6 class="my-3">Petunjuk Pengisian Instrumen</h6>
+                                                                <?= $isiPetunjuk; ?>
+                                                            </div>
                                                         <?php endforeach; ?>
 
-                                                        <div class="callout callout-info mb-5">
-                                                            <h6 class="my-3">Petunjuk Pengisian Instrumen</h6>
-                                                            <?= $isiPetunjuk; ?>
-                                                        </div>
-
-                                                        <table id="tableResponden" class="table table-bordered table-striped  table-hover text-wrap">
+                                                        <table id="tableResponden" class="table table-bordered text-wrap">
                                                             <thead class="bg-thead">
                                                                 <tr>
                                                                     <th>No.</th>
                                                                     <th>Butir Pernyataan</th>
-                                                                    <th class="text-center">Jawaban</th>
+                                                                    <th class="text-center">Skala</th>
                                                                     <th class="text-center">Tingkat Kepuasan</th>
                                                                 </tr>
                                                             </thead>
