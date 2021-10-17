@@ -2,7 +2,10 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
 <?= $this->section('admin-body-content'); ?>
+<?php
 
+use CodeIgniter\I18n\Time;
+?>
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -26,6 +29,8 @@
 
     <section class="content">
         <div class="container-fluid">
+
+
             <!-- data diri responden -->
             <div class="row mb-4 col-lg-6">
                 <div class="card card-outline card-primary">
@@ -44,13 +49,15 @@
                                     </span>
                                     <span class="description">Last Activity -
                                         <?php foreach ($lastActivity as $last) : ?>
-                                            <span> <?= $last->date; ?></span>
+                                            <?php
+                                            $time = Time::parse($last->date);
+                                            echo $time->humanize();
+                                            ?>
                                         <?php endforeach; ?>
                                     </span>
                                 </div>
                                 <!-- /.user-block -->
                             </div>
-
                     </div>
                     <div class="card-body">
                         <div class="form-group row p-0 m-0">
@@ -94,9 +101,13 @@
                         </h5>
                         <!-- ./header collapse - kategori  -->
                         <div class="container my-3">
-                            <span class="text-muted mt-2">Date Created : <?= $rIns['created_at'] ?></span>
+                            <span class="text-muted mt-2">Tgl Pengisian :
+                                <?php
+                                $date_created_response = Time::parse($rIns['created_at'], 'Asia/Jakarta');
+                                echo $date_created_response->toLocalizedString('d MMM yyyy, HH:mm');
+                                ?>
+                            </span>
                         </div>
-
 
                         <!-- content collapse - kategori  -->
                         <div id="collapse-<?= $rIns['instrumenID']; ?>" class="accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
