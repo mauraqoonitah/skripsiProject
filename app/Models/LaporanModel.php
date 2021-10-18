@@ -17,6 +17,8 @@ class LaporanModel extends Model
                 ->findAll();
         }
 
-        return $this->where(['id' => $id])->first();
+        return $this
+            ->where('instrumenID', $id)
+            ->findAll();
     }
 }

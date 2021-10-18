@@ -65,6 +65,7 @@ class Analisis extends BaseController
             'responsePertanyaan' => $this->responseModel->getResponseButir($insID),
             'responseJawaban' => $this->responseModel->getResponseJawaban($insID),
             'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($insID),
+            'getLaporanInstrumen' => $this->laporanModel->getLaporanInstrumen($insID),
             'validation' => \Config\Services::validation()
 
         ];
@@ -75,11 +76,11 @@ class Analisis extends BaseController
         // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
-                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/docx,application/msword]|ext_in[laporanInstrumen,docx,pdf]',
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xslsx,ppt,pptx]',
                 'errors' => [
                     'uploaded' => 'Pilih file terlebih dahulu',
-                    'mime_in' => 'File bukan format docx atau pdf  file',
-                    'ext_in' => 'File bukan format docx atau pdf extension',
+                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xsl/.xslx file',
+                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xsl/.xslx',
                 ]
             ]
 
@@ -105,5 +106,19 @@ class Analisis extends BaseController
         session()->setFlashdata('message', 'Dokumen berhasil disimpan!');
 
         return redirect()->to('/admin/laporanKepuasan/' . $insID);
+    }
+    public function deleteLaporanInstrumen($id)
+    {
+        // cari file berdasarkan id
+        $namaFile = $this->laporanModel->find($id);
+
+        // hapus file di path
+        unlink('dokumenLaporan/' . $namaFile['laporanInstrumen']);
+
+        $this->laporanModel->delete($id);
+
+        session()->setFlashdata('message', 'File berhasil dihapus');
+
+        return redirect()->to($_SERVER['HTTP_REFERER']);
     }
 }

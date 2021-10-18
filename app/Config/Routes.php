@@ -126,6 +126,7 @@ $routes->get('/admin/laporanSurvei', 'Admin\Analisis::laporan');
 $routes->get('/admin/laporanInstrumen/(:any)', 'Admin\Analisis::laporanInstrumen/$1');
 $routes->get('/admin/laporanKepuasan/(:any)', 'Admin\Analisis::laporanKepuasan/$1');
 $routes->post('/admin/saveLaporanInstrumen/(:any)', 'Admin\Analisis::saveLaporanInstrumen/$1');
+$routes->delete('/admin/deleteLaporanInstrumen/(:any)', 'Admin\Analisis::deleteLaporanInstrumen/$1');
 
 
 // menu kelola jenis responden

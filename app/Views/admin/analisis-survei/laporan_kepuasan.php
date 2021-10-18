@@ -1,6 +1,12 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
+
+<?php
+
+use CodeIgniter\I18n\Time;
+?>
+
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -24,7 +30,6 @@
     </section>
 
     <!-- Main content -->
-    <?= $instrumen['id']; ?>
     <?php foreach ($responsePertanyaan as $rID) : ?>
         <?php
         $namaInstrumen = $rID['namaInstrumen'];
@@ -114,9 +119,73 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="tab-content" id="custom-tabs-four-tabContent">
+
+                                            <!-- content tab store dokumen -->
                                             <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
-                                                Dokumen yang tersimpan
+                                                <div class="container py-4">
+                                                    <h5>Dokumen Laporan Instrumen <?= $kodeInstrumen; ?></h5>
+                                                    <ul class="list-unstyled">
+                                                        <?php foreach ($getLaporanInstrumen as $laporanIns) :  ?>
+                                                            <li>
+                                                                <div class="row mt-3">
+                                                                    <div class="col-2 ">
+                                                                        <span style="font-size: 48px; color: Dodgerblue;">
+                                                                            <i class="far fa-file"></i>
+                                                                        </span>
+
+
+                                                                    </div>
+                                                                    <div class="col-10 ">
+                                                                        <a href="" class="btn-link text-dark mt-2" style="font-size: larger;"> <?= $laporanIns['laporanInstrumen']; ?></a>
+
+                                                                        <br>
+                                                                        <?php
+                                                                        $time = Time::parse($laporanIns['created_at'], 'Asia/Jakarta');
+                                                                        ?>
+                                                                        <span class="text-muted small">Uploaded on <?= $time->toLocalizedString('d MMM yyyy, HH:mm'); ?></span>
+
+                                                                        <p>
+                                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-laporanIns-<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
+                                                                        </p>
+                                                                        <!-- modal hapus laporan file instrumen -->
+                                                                        <div class="modal fade" id="modal-delete-laporanIns-<?= $laporanIns['id']; ?>" tabindex="-1" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered ">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title fw-bold">Hapus File</h5>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body text-center">
+                                                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                                        Yakin hapus file <?= $laporanIns['laporanInstrumen']; ?> ?
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                                        <form action="<?= base_url(); ?>/admin/deleteLaporanInstrumen/<?= $laporanIns['id']; ?>" method="post">
+                                                                                            <?= csrf_field(); ?>
+                                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                                        </form>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- end modal hapus laporan file instrumen -->
+
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        <?php endforeach; ?>
+                                                    </ul>
+
+                                                </div>
                                             </div>
+                                            <!-- ./content tab store dokumen -->
+
+
+                                            <!-- content tab upload dokumen -->
                                             <div class="tab-pane fade" id="laporan-tabs-upload" role="tabpanel" aria-labelledby="laporan-tabs-upload-tab">
 
                                                 <form action="<?= base_url(); ?>/admin/saveLaporanInstrumen/<?= $instrumenID; ?>" method="post" enctype="multipart/form-data">
@@ -134,10 +203,18 @@
                                                     </div>
                                                 </form>
                                             </div>
+                                            <!-- ./ content tab upload dokumen -->
 
+                                            <!-- content tab create dokumen -->
                                             <div class="tab-pane fade" id="laporan-tabs-create" role="tabpanel" aria-labelledby="laporan-tabs-create-tab">
                                                 create laporan
+                                                <div class="text-center mt-5 mb-3">
+                                                    <a href="#" class="btn btn-sm btn-primary">Add files</a>
+                                                    <a href="#" class="btn btn-sm btn-warning">Report contact</a>
+                                                </div>
                                             </div>
+                                            <!-- ./ content tab create dokumen -->
+
                                         </div>
 
                                     </div>
