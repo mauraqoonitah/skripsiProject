@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\AdminModel;
 use App\Models\ResponseModel;
 use App\Models\InstrumenModel;
+use App\Models\LaporanModel;
 
 
 
@@ -15,6 +16,7 @@ class Analisis extends BaseController
     protected $adminModel;
     protected $instrumenModel;
     protected $responseModel;
+    protected $laporanModel;
 
 
 
@@ -24,6 +26,7 @@ class Analisis extends BaseController
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->responseModel = new ResponseModel();
+        $this->laporanModel = new LaporanModel();
     }
     public function home()
     {
@@ -71,8 +74,8 @@ class Analisis extends BaseController
     {
         // validasi input
         if (!$this->validate([
-            'uploadLaporanIns' => [
-                'rules' => 'uploaded[uploadLaporanIns]|mime_in[uploadLaporanIns,application/pdf,application/docx,application/msword]|ext_in[uploadLaporanIns,docx,pdf]',
+            'laporanInstrumen' => [
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/docx,application/msword]|ext_in[laporanInstrumen,docx,pdf]',
                 'errors' => [
                     'uploaded' => 'Pilih file terlebih dahulu',
                     'mime_in' => 'File bukan format docx atau pdf  file',
@@ -85,20 +88,21 @@ class Analisis extends BaseController
 
             return redirect()->to('/admin/laporanKepuasan/' . $insID)->withInput();
         }
-        dd('berhasil');
+        // ambil file
+        $fileLaporanInstrumen = $this->mRequest->getFile('laporanInstrumen');
+        // pindahin path simpan file
+        $fileLaporanInstrumen->move('dokumenLaporan');
+        // ambil nama file
+        $namaFileLaporanInstrumen = $fileLaporanInstrumen->getName();
 
-        // $data =
-        //     [
-        //         'title' => 'Laporan Survei Kepuasan',
-        //         'instrumen' => $this->instrumenModel->getInstrumen($insID),
-        //         'responsePertanyaan' => $this->responseModel->getResponseButir($insID),
-        //         'responseJawaban' => $this->responseModel->getResponseJawaban($insID),
-        //         'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($insID),
-        //         'validation' => \Config\Services::validation()
-        //     ];
-        // $this->jenisRespondenModel->save($data);
+        $data =
+            [
+                'instrumenID' => $this->mRequest->getVar('instrumenID'),
+                'laporanInstrumen' => $namaFileLaporanInstrumen
+            ];
+        $this->laporanModel->save($data);
 
-        session()->setFlashdata('message', 'Data berhasil ditambahkan');
+        session()->setFlashdata('message', 'Dokumen berhasil disimpan!');
 
         return redirect()->to('/admin/laporanKepuasan/' . $insID);
     }

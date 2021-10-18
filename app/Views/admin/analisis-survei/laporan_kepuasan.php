@@ -76,6 +76,11 @@
 
                         <div class="row">
                             <div class="col-12">
+                                <!-- flash success tambah data  -->
+                                <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+                                <!-- ./ flash success tambah data  -->
+
+
                                 <!-- flash gagal tambah data  -->
                                 <?php if (session()->getFlashdata('messageError')) :  ?>
                                     <div class="alert alert-danger d-flex align-items-center fw-bold" role="alert">
@@ -117,16 +122,15 @@
                                                 <form action="<?= base_url(); ?>/admin/saveLaporanInstrumen/<?= $instrumenID; ?>" method="post" enctype="multipart/form-data">
 
                                                     <?= csrf_field(); ?>
-                                                    <div class="container">
-                                                        <label for="formFileLg" class="form-label">Large file input example</label>
-                                                        <input class="form-control form-control-lg fs-6 <?= ($validation->hasError('uploadLaporanIns')) ? 'is-invalid' : ''; ?>" id="formFileLg" type="file" id="uploadLaporanIns" name="uploadLaporanIns">
+                                                    <div class="container py-4">
+                                                        <label for="formFileLg" class="form-label fs-6">Upload Dokumen Laporan Instrumen <?= $kodeInstrumen; ?></label>
+                                                        <input class="form-control form-control-lg fs-6 <?= ($validation->hasError('laporanInstrumen')) ? 'is-invalid' : ''; ?>" id="formFileLg" type="file" id="laporanInstrumen" name="laporanInstrumen">
                                                         <div class=" invalid-feedback">
-                                                            <?= $validation->getError('uploadLaporanIns'); ?>
+                                                            <?= $validation->getError('laporanInstrumen'); ?>
                                                         </div>
+                                                        <input type="hidden" name="instrumenID" value="<?= $instrumenID; ?>">
 
-                                                        <div class="col-auto">
-                                                            <button type="submit" class="btn btn-primary mb-3">Upload</button>
-                                                        </div>
+                                                        <button type="submit" class="btn btn-primary mb-3">Upload</button>
                                                     </div>
                                                 </form>
                                             </div>
