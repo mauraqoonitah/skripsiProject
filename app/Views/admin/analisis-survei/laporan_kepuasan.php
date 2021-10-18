@@ -135,7 +135,7 @@ use CodeIgniter\I18n\Time;
                                                                         </span>
                                                                     </div>
                                                                     <div class="col-10 ">
-                                                                        <a href="" class="btn-link text-dark mt-4" style="font-size: larger;"> <?= $laporanIns['laporanInstrumen']; ?></a>
+                                                                        <a href="<?= base_url(); ?>/dokumenLaporan/<?= $laporanIns['laporanInstrumen']; ?>" class="btn-link text-dark mt-4" style="font-size: larger;"> <?= $laporanIns['laporanInstrumen']; ?></a>
 
                                                                         <br>
                                                                         <?php
@@ -151,13 +151,13 @@ use CodeIgniter\I18n\Time;
 
                                                                         <div class="mt-2">
                                                                             <span class="mr-3">
-                                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-laporanIns-<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
-                                                                            </span>
-                                                                            <span class="mr-3">
                                                                                 <a href="<?= base_url(); ?>/admin/editLaporanInstrumen/<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-edit mr-1"></i> Edit</a>
                                                                             </span>
                                                                             <span class="mr-3">
-                                                                                <a href="#" class="link-black text-sm text-decoration-none"><i class="fas fa-download mr-1"></i> Download</a>
+                                                                                <a href="<?= base_url(); ?>/dokumenLaporan/<?= $laporanIns['laporanInstrumen']; ?>" target="_blank" class="link-black text-sm text-decoration-none"><i class="fas fa-download mr-1"></i> Download</a>
+                                                                            </span>
+                                                                            <span class="mr-3">
+                                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-laporanIns-<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
                                                                             </span>
                                                                         </div>
                                                                         <!-- modal hapus laporan file instrumen -->
