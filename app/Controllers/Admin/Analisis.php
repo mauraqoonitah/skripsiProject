@@ -62,11 +62,44 @@ class Analisis extends BaseController
             'responsePertanyaan' => $this->responseModel->getResponseButir($insID),
             'responseJawaban' => $this->responseModel->getResponseJawaban($insID),
             'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($insID),
-
-
-
+            'validation' => \Config\Services::validation()
 
         ];
         return view('admin/analisis-survei/laporan_kepuasan', $data);
+    }
+    public function saveLaporanInstrumen($insID)
+    {
+        // validasi input
+        if (!$this->validate([
+            'uploadLaporanIns' => [
+                'rules' => 'uploaded[uploadLaporanIns]|mime_in[uploadLaporanIns,application/pdf,application/docx,application/msword]|ext_in[uploadLaporanIns,docx,pdf]',
+                'errors' => [
+                    'uploaded' => 'Pilih file terlebih dahulu',
+                    'mime_in' => 'File bukan format docx atau pdf  file',
+                    'ext_in' => 'File bukan format docx atau pdf extension',
+                ]
+            ]
+
+        ])) {
+            session()->setFlashdata('messageError', 'Gagal menyimpan.');
+
+            return redirect()->to('/admin/laporanKepuasan/' . $insID)->withInput();
+        }
+        dd('berhasil');
+
+        // $data =
+        //     [
+        //         'title' => 'Laporan Survei Kepuasan',
+        //         'instrumen' => $this->instrumenModel->getInstrumen($insID),
+        //         'responsePertanyaan' => $this->responseModel->getResponseButir($insID),
+        //         'responseJawaban' => $this->responseModel->getResponseJawaban($insID),
+        //         'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($insID),
+        //         'validation' => \Config\Services::validation()
+        //     ];
+        // $this->jenisRespondenModel->save($data);
+
+        session()->setFlashdata('message', 'Data berhasil ditambahkan');
+
+        return redirect()->to('/admin/laporanKepuasan/' . $insID);
     }
 }

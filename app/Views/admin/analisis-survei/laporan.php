@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="alert alert-rouge fw-bold mt-3 col-lg-10" role="alert">
-                    <strong class="text-rouge">Pilih kategori untuk melihat hasil survei kepuasan </strong>
+                    <strong class="text-rouge fs-6">Pilih kategori untuk membuat laporan hasil survei kepuasan </strong>
                 </div>
                 <div class="col-lg-2 align-middle">
                     <a href="<?= base_url(); ?>/admin/analisisKepuasan">
