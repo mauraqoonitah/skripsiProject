@@ -71,6 +71,61 @@ class Analisis extends BaseController
         ];
         return view('admin/analisis-survei/laporan_kepuasan', $data);
     }
+
+
+    public function editLaporanInstrumen($id)
+    {
+        $data = [
+            'title' => 'Edit Laporan Instrumen',
+            'joinLaporanWithInstrumen' => $this->laporanModel->joinLaporanWithInstrumen($id),
+
+            'validation' => \Config\Services::validation()
+        ];
+
+        return view('admin/analisis-survei/edit_laporan_instrumen', $data);
+    }
+
+    //ubah 
+    public function updateLaporanInstrumen($id)
+    {
+        $instrumenID = $this->mRequest->getVar('instrumenID');
+        // validasi input
+        if (!$this->validate([
+            'laporanInstrumen' => [
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xslsx,ppt,pptx]',
+                'errors' => [
+                    'uploaded' => 'Pilih file terlebih dahulu',
+                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xsl/.xslx file',
+                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xsl/.xslx',
+                ]
+            ]
+
+        ])) {
+            session()->setFlashdata('messageError', 'Gagal menyimpan.');
+
+            return redirect()->to('/admin/editLaporanInstrumen/' . $id)->withInput();
+        }
+        // get value file baru
+        $laporanInstrumen = $this->mRequest->getFile('laporanInstrumen');
+        // pindahkan file
+        $laporanInstrumen->move('dokumenLaporan');
+        $newNamaFile = $laporanInstrumen->getName();
+        // hapus file lama
+        unlink('dokumenLaporan/' . $this->mRequest->getVar('oldNamaFile'));
+
+        $this->laporanModel->save(
+            [
+                'id' => $id,
+                'instrumenID' => $instrumenID,
+                'laporanInstrumen' => $newNamaFile
+            ]
+        );
+
+        session()->setFlashdata('message', 'Dokumen berhasil diubah');
+
+        return redirect()->to('/admin/laporanKepuasan/' . $instrumenID);
+    }
+
     public function saveLaporanInstrumen($insID)
     {
         // validasi input

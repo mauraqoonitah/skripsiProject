@@ -123,30 +123,43 @@ use CodeIgniter\I18n\Time;
                                             <!-- content tab store dokumen -->
                                             <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                                                 <div class="container py-4">
-                                                    <h5>Dokumen Laporan Instrumen <?= $kodeInstrumen; ?></h5>
+                                                    <label class="form-label fs-6">Dokumen Laporan Instrumen <?= $kodeInstrumen; ?></label>
+
                                                     <ul class="list-unstyled">
                                                         <?php foreach ($getLaporanInstrumen as $laporanIns) :  ?>
                                                             <li>
                                                                 <div class="row mt-3">
-                                                                    <div class="col-2 ">
+                                                                    <div class="col-2 text-center">
                                                                         <span style="font-size: 48px; color: Dodgerblue;">
                                                                             <i class="far fa-file"></i>
                                                                         </span>
-
-
                                                                     </div>
                                                                     <div class="col-10 ">
-                                                                        <a href="" class="btn-link text-dark mt-2" style="font-size: larger;"> <?= $laporanIns['laporanInstrumen']; ?></a>
+                                                                        <a href="" class="btn-link text-dark mt-4" style="font-size: larger;"> <?= $laporanIns['laporanInstrumen']; ?></a>
 
                                                                         <br>
                                                                         <?php
-                                                                        $time = Time::parse($laporanIns['created_at'], 'Asia/Jakarta');
+                                                                        $timeCreated = Time::parse($laporanIns['created_at'], 'Asia/Jakarta');
+                                                                        $timeUpdated = Time::parse($laporanIns['updated_at'], 'Asia/Jakarta');
                                                                         ?>
-                                                                        <span class="text-muted small">Uploaded on <?= $time->toLocalizedString('d MMM yyyy, HH:mm'); ?></span>
+                                                                        <span class="text-muted small">Dibuat pada <?= $timeCreated->toLocalizedString('HH:mm, d MMM yyyy'); ?></span>
 
-                                                                        <p>
-                                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-laporanIns-<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
-                                                                        </p>
+                                                                        <?php if ($laporanIns['created_at'] !== $laporanIns['updated_at']) : ?>
+                                                                            <br>
+                                                                            <span class="text-muted small">Diubah pada <?= $timeUpdated->toLocalizedString('HH:mm, d MMM yyyy'); ?></span>
+                                                                        <?php endif; ?>
+
+                                                                        <div class="mt-2">
+                                                                            <span class="mr-3">
+                                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-laporanIns-<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-trash-alt mr-1"></i> Hapus</a>
+                                                                            </span>
+                                                                            <span class="mr-3">
+                                                                                <a href="<?= base_url(); ?>/admin/editLaporanInstrumen/<?= $laporanIns['id']; ?>" class="link-black text-sm text-decoration-none"><i class="fas fa-edit mr-1"></i> Edit</a>
+                                                                            </span>
+                                                                            <span class="mr-3">
+                                                                                <a href="#" class="link-black text-sm text-decoration-none"><i class="fas fa-download mr-1"></i> Download</a>
+                                                                            </span>
+                                                                        </div>
                                                                         <!-- modal hapus laporan file instrumen -->
                                                                         <div class="modal fade" id="modal-delete-laporanIns-<?= $laporanIns['id']; ?>" tabindex="-1" aria-hidden="true">
                                                                             <div class="modal-dialog modal-dialog-centered ">
@@ -177,6 +190,7 @@ use CodeIgniter\I18n\Time;
                                                                     </div>
                                                                 </div>
                                                             </li>
+                                                            <hr>
                                                         <?php endforeach; ?>
                                                     </ul>
 

@@ -21,4 +21,13 @@ class LaporanModel extends Model
             ->where('instrumenID', $id)
             ->findAll();
     }
+
+    public function joinLaporanWithInstrumen($id)
+    {
+        return $this
+            ->join('instrumen', 'instrumen.id = laporan.instrumenID')
+            ->select('*, laporan.id as laporanID')
+            ->where('laporan.id', $id)
+            ->findAll();
+    }
 }
