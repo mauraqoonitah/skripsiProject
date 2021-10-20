@@ -1,7 +1,10 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
+<?php
 
+use CodeIgniter\I18n\Time;
+?>
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -118,5 +121,59 @@
     </section>
     <!-- /.content -->
 </div>
+<?php
+date_default_timezone_set('Asia/Jakarta');
+$timeNow = Time::now()->toDateTimeString(); ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#tableResponden').DataTable({
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Responden Instrumen Kepuasan',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Responden Instrumen Kepuasan',
+                    messageTop: '(downloaded on: <?php echo $timeNow; ?>)',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Responden Instrumen Kepuasan',
+                    messageTop: '(downloaded on: <?php echo $timeNow; ?>)',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Responden Instrumen Kepuasan',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>

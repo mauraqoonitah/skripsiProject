@@ -97,10 +97,7 @@ use CodeIgniter\I18n\Time;
                         <!-- ./ flash gagal tambah data  -->
 
                         <div class="container py-3 my-3">
-                            <?php foreach ($responsePertanyaan as $rID) : ?>
-                                <h5 class="text-rouge text-center"> <?= $rID['kodeInstrumen']; ?> - <?= $rID['nama']; ?></h5>
-                            <?php endforeach; ?>
-
+                            <h5 class="text-rouge text-center"> <?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></h5>
                         </div>
                         <div class="card card-primary card-outline card-outline-tabs">
                             <div class="card-header p-0 border-bottom-0">
@@ -131,7 +128,7 @@ use CodeIgniter\I18n\Time;
 
                                             <?= csrf_field(); ?>
                                             <div class="container py-4">
-                                                <label for="formFileLg" class="form-label fs-6">Info Hasil Survei Kepuasan pada Instrumen <?= $rID['kodeInstrumen'];; ?></label>
+                                                <label for="formFileLg" class="form-label fs-6">Info Hasil Survei Kepuasan pada Instrumen <?= $kodeInstrumen; ?></label>
 
                                                 <p class="text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </p>
 
