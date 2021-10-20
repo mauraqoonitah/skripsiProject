@@ -74,11 +74,11 @@
                     </div>
                 </div>
 
-                <!-- STACKED BAR CHART -->
-                <div class="col-lg-8 mx-auto mb-5 mt-3">
-                    <div class="chart">
-                        <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
-                    </div>
+                <!-- BAR CHART -->
+                <div class="col-lg-10 mx-auto mt-3">
+                    <figure class="highcharts-figure-instrumen">
+                        <div id="chart-hasil-instrumen"></div>
+                    </figure>
                 </div>
 
                 <!-- DataTables Example -->
@@ -87,7 +87,7 @@
                     <section>
                         <!-- section table 1 -->
                         <div class="table-responsive ">
-                            <table id="table-kelola-survei" class="display table-bordered table-hover" style="width:100%">
+                            <table id="table-hasil-instrumen" class="display table-bordered table-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th rowspan="2"> No.</th>
@@ -102,7 +102,7 @@
                                         <th>Sangat Tidak Puas</th>
                                     </tr>
                                 </thead>
-                                <tbody class="">
+                                <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($responsePertanyaan as $rID) :  ?>
                                         <?php $questionID = $rID['id']; ?>
@@ -194,7 +194,6 @@
                                 </tfoot>
                             </table>
                         </div>
-
                     </section>
                 </div>
             </div>
@@ -202,71 +201,126 @@
         </div>
     </section>
     <!-- /.content -->
-
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<!-- chart -->
 <script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Sangat Puas', 'Puas', 'Cukup Puas', 'Tidak Puas', 'Sangat Tidak Puas'],
-            datasets: [{
-                barPercentage: 0.8,
-                label: '# Tanggapan',
-                data: [
-                    <?= $totalSkor5; ?>,
-                    <?= $totalSkor4; ?>,
-                    <?= $totalSkor3; ?>,
-                    <?= $totalSkor2; ?>,
-                    <?= $totalSkor1; ?>,
-                ],
-                backgroundColor: [
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)',
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(255, 159, 64, 0.6)',
-                ],
-                borderColor: [
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            }]
+    Highcharts.chart('chart-hasil-instrumen', {
+        chart: {
+            type: 'column'
         },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+        title: {
+            text: '<?= $namaInstrumen; ?>',
+        },
+        subtitle: {
+            text: 'Tanggapan Responden'
+        },
+        xAxis: {
+            categories: [
+                'Sangat Puas',
+                'Puas',
+                'Cukup Puas',
+                'Tidak Puas',
+                'Sangat Tidak Puas'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Jumlah Tanggapan'
+            }
+        },
+        tooltip: {
+            formatter: function() {
+                return '<b>' + this.series.name + '</b> : ' +
+                    this.point.y;
+            }
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0,
+                colorByPoint: true
             },
 
-            plugins: {
-                title: {
-                    display: true,
-                    text: '<?= $namaInstrumen; ?>',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                }
-            }
+        },
+        borderColor: '#303030',
+        colors: ['rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            'rgba(75, 192, 192, 0.6)',
+            'rgba(153, 102, 255, 0.6)',
+        ],
 
-        }
+        series: [{
+            name: 'Tingkat Kepuasan',
+            data: [
+                <?= $totalSkor5; ?>,
+                <?= $totalSkor4; ?>,
+                <?= $totalSkor3; ?>,
+                <?= $totalSkor2; ?>,
+                <?= $totalSkor1; ?>,
+            ]
+
+        }],
+
     });
 </script>
 
+<!-- datatables -->
+<script>
+    $(document).ready(function() {
+        $('#table-hasil-instrumen').DataTable({
+            "pageLength": 50,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Hasil Survei Kepuasan <?= $namaInstrumen; ?>',
+                    messageTop: 'Jumlah Responden : <?= $jumlahRespondenIns; ?>',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
 
+                },
+                {
+                    extend: 'excel',
+                    title: 'Hasil Survei Kepuasan <?= $namaInstrumen; ?>',
+                    messageTop: 'Jumlah Responden : <?= $jumlahRespondenIns; ?>',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Hasil Survei Kepuasan | <?= $namaInstrumen; ?>',
+                    messageTop: 'Jumlah Responden : <?= $jumlahRespondenIns; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Hasil Survei Kepuasan | <?= $namaInstrumen; ?> | Jumlah Responden : <?= $jumlahRespondenIns; ?>',
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>
