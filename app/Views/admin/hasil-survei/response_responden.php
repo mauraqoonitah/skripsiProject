@@ -45,7 +45,7 @@ use CodeIgniter\I18n\Time;
                                 <div class="user-block">
                                     <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>/../../img/user_profile.png" alt="user image">
                                     <span class="username">
-                                        <span class="text-rouge fs-5"><?= $res['fullname']; ?></span>
+                                        <span class="text-rouge fs-5"><?= $fullname = $res['fullname']; ?></span>
                                     </span>
                                     <span class="description">Last Activity -
                                         <?php foreach ($lastActivity as $last) : ?>
@@ -70,20 +70,21 @@ use CodeIgniter\I18n\Time;
                         <div class="form-group row p-0 m-0">
                             <span class="col-sm-4 col-form-label p-0"><strong>Email</strong></span>
                             <span class="col-sm-8 col-form-label p-0">
-                                <?= $res['email']; ?>
+                                <?= $email = $res['email']; ?>
                             </span>
                         </div>
                         <hr>
                         <div class="form-group row p-0 m-0">
                             <span class="col-sm-4 col-form-label p-0"><strong>Role</strong></span>
                             <span class="col-sm-8 col-form-label p-0">
-                                <?= $res['role']; ?>
+                                <?= $role = $res['role']; ?>
                             </span>
                         </div>
                         <hr>
 
                         <p class="text-muted">userID <?= $userID = $res['userID']; ?></p>
                     <?php endforeach; ?>
+
                     </div>
                 </div>
             </div>
@@ -92,6 +93,7 @@ use CodeIgniter\I18n\Time;
             <!-- list tanggapan per instrumen -->
             <div class="accordion accordion-flush mx-auto">
                 <?php foreach ($responseInsId as $rIns) : ?>
+                    <?php $instrumenID =  $rIns['instrumenID'];  ?>
                     <div class="accordion-item mb-5">
                         <!-- header collapse - kategori  -->
                         <h5 class="accordion-header" id="accord-<?= $rIns['instrumenID']; ?>">
@@ -110,33 +112,22 @@ use CodeIgniter\I18n\Time;
                         </div>
 
                         <!-- content collapse - kategori  -->
-                        <div id="collapse-<?= $rIns['instrumenID']; ?>" class="accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
+                        <div id="collapse-<?= $rIns['instrumenID']; ?>" class=" accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
                             <div class="accordion-body">
                                 <section class="content">
                                     <div class="container-fluid">
                                         <section>
-
-                                            <!-- STACKED BAR CHART -->
-                                            <!-- <div class="my-4">
-                                                        <div class="chart">
-                                                            <canvas id="myChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"> </canvas>
-                                                        </div>
-                                                    </div> -->
-
-                                            <table id="tableResponden" class="table table-bordered table-bordered table-hover text-wrap">
+                                            <table id="tableResponden-<?= $instrumenID ?>" class="display table-bordered table-hover" style="width:100%">
                                                 <thead class="bg-thead">
                                                     <tr>
-                                                        <th>No.</th>
+                                                        <th class="text-center p-0 fw-bold">No.</th>
                                                         <th>Butir Pernyataan</th>
-                                                        <th>Jawaban</th>
+                                                        <th class="text-center p-0">Jawaban</th>
                                                         <th class="text-center">Tingkat Kepuasan</th>
                                                     </tr>
                                                 </thead>
 
-
                                                 <tbody>
-
-
                                                     <?php
                                                     $i = 1;
                                                     $insID = $rIns['instrumenID'];
@@ -161,17 +152,91 @@ use CodeIgniter\I18n\Time;
                                                             // get jawaban by questionID
                                                             $responseModel = model('ResponseModel');
                                                             $this->responseModel = new $responseModel;
-                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
-                                                            <td class="text-center">
+                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID);
+                                                            ?>
+                                                            <td class="text-center p-0 ">
                                                                 <?php foreach ($sqlResponse as $response) : ?>
-                                                                    <?= $response['jawaban']; ?>
+                                                                    <?= $jwb = $response['jawaban']; ?>
                                                                 <?php endforeach; ?>
                                                             </td>
-                                                            <td>Sangat Baik</td>
+                                                            <td>
+                                                                <?php if ($jwb === '5') : ?>
+                                                                    Sangat Puas
+                                                                <?php endif; ?>
+                                                                <?php if ($jwb === '4') : ?>
+                                                                    Puas
+                                                                <?php endif; ?>
+                                                                <?php if ($jwb === '3') : ?>
+                                                                    Cukup Puas
+                                                                <?php endif; ?>
+                                                                <?php if ($jwb === '2') : ?>
+                                                                    Tidak Puas
+                                                                <?php endif; ?>
+                                                                <?php if ($jwb === '1') : ?>
+                                                                    Sangat Tidak Puas
+                                                                <?php endif; ?>
+                                                            </td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
                                             </table>
+
+                                            <!-- script export datatables -->
+                                            <?php
+                                            date_default_timezone_set('Asia/Jakarta');
+                                            $timeNow = Time::now()->toDateTimeString(); ?>
+                                            <script>
+                                                $(document).ready(function() {
+                                                    $('#tableResponden-<?= $instrumenID; ?>').DataTable({
+                                                        "pageLength": 25,
+                                                        dom: 'Bfrtip',
+                                                        buttons: [{
+                                                                extend: 'copy',
+                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                exportOptions: {
+                                                                    columns: [0, 1, ':visible']
+                                                                }
+
+                                                            },
+                                                            {
+                                                                extend: 'excel',
+                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?>',
+                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                autoFilter: true,
+                                                                sheetName: 'Hasil Survei',
+                                                                download: 'open',
+                                                                exportOptions: {
+                                                                    columns: [0, 1, ':visible']
+                                                                }
+                                                            },
+                                                            {
+                                                                extend: 'pdf',
+                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?>',
+                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                orientation: 'potrait',
+                                                                pageSize: 'A4',
+                                                                download: 'open',
+                                                                exportOptions: {
+                                                                    columns: [0, 1, ':visible']
+                                                                },
+                                                                footer: true
+
+                                                            },
+                                                            {
+                                                                extend: 'print',
+                                                                messageTop: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+
+                                                            },
+                                                            {
+                                                                extend: 'colvis',
+                                                                postfixButtons: ['colvisRestore']
+                                                            },
+
+                                                        ]
+                                                    });
+                                                });
+                                            </script>
+                                            <!-- script export datatables -->
                                         </section>
                                     </div>
                                 </section>
@@ -185,52 +250,5 @@ use CodeIgniter\I18n\Time;
         </div>
     </section>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ['Sangat Puas', 'Puas', 'Cukup Puas', 'Tidak Puas', 'Sangat Tidak Puas'],
-            datasets: [{
-                barPercentage: 0.8,
-                label: '# Tingkat Kepuasan',
-                data: [
-                    1, 2, 3, 4, 5
-                ],
-                backgroundColor: [
-                    'rgba(255, 206, 86, 0.6)',
-                    'rgba(54, 162, 235, 0.6)',
-                    'rgba(75, 192, 192, 0.6)',
-                    'rgba(153, 102, 255, 0.6)',
-                    'rgba(255, 99, 132, 0.6)',
-                    'rgba(255, 159, 64, 0.6)',
-                ],
-                borderColor: [
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-        }
-    });
-</script>
-
 
 <?= $this->endSection(); ?>
