@@ -39,6 +39,7 @@ class Admin extends BaseController
             'totalInstrumen' => count($this->instrumenModel->getInstrumen()),
             'totalKategori' => count($this->adminModel->getCategory()),
             'totalTanggapan' => count($this->responseModel->getTotalResponse()),
+            'totalPernyataan' => count($this->pernyataanModel->getPernyataan()),
 
         ];
         return view('admin/index', $data);

@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="fw-bold"> Laporan Survei Instrumen Kepuasan</h1>
+                    <h1 class="fw-bold"> Laporan Analisis Survei Instrumen Kepuasan</h1>
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">

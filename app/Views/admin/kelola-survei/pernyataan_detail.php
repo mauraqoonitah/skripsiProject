@@ -61,12 +61,13 @@
                             <h6 class="my-3 py-2 text-muted">Petunjuk Pengisian Instrumen</h6>
                             <!-- buat petunjuk pengisian -->
                             <!-- Button trigger modal -->
-
-                            <?php if (empty($petunjukInstrumenModel)) : ?>
+                            <?php if (in_groups('Admin')) : ?>
+                                <?php if (empty($petunjukInstrumenModel)) : ?>
                                 <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
                                     <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
                                 </button>
-
+                                
+                                <?php endif; ?>
                             <?php endif; ?>
 
                             <?php foreach ($petunjukInstrumenModel as $isi) : ?>

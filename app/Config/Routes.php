@@ -131,6 +131,10 @@ $routes->delete('/admin/deleteLaporanInstrumen/(:any)', 'Admin\Analisis::deleteL
 $routes->post('/admin/updateLaporanInstrumen/(:any)', 'Admin\Analisis::updateLaporanInstrumen/$1');
 $routes->get('/admin/editLaporanInstrumen/(:any)', 'Admin\Analisis::editLaporanInstrumen/$1');
 
+$routes->post('/admin/saveLaporanAnalisis', 'Admin\Analisis::saveLaporanAnalisis');
+$routes->get('/admin/editLaporanAnalisis/(:any)', 'Admin\Analisis::editLaporanAnalisis/$1');
+$routes->post('/admin/updateLaporanAnalisis/(:any)', 'Admin\Analisis::updateLaporanAnalisis/$1');
+
 
 // menu kelola jenis responden
 $routes->get('/admin/jenisResponden', 'Admin\JenisResponden::index');

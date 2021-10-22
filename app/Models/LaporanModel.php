@@ -30,4 +30,17 @@ class LaporanModel extends Model
             ->where('laporan.id', $id)
             ->findAll();
     }
+
+    // =============== analisis =====================
+    public function getLaporanAnalisis($id = false)
+    {
+        if ($id == false) {
+            return $this
+                ->where('instrumenID', null)
+                ->findAll();
+        }
+        return $this
+            ->where('id', $id)
+            ->findAll();
+    }
 }

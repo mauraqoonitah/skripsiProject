@@ -504,6 +504,16 @@ p.scroll-horiz {
     color: #663366
 }
 
+.alert-cosmic {
+    color: #7a4c75;
+    background-color: rgba(122, 76, 117, .1);
+    background-color: rgba(122, 76, 117, .2);
+}
+
+.alert-cosmic .alert-link {
+    color: #663366
+}
+
 
 /* ./alert */
 

@@ -25,10 +25,10 @@
             <!-- jika belum ada response -->
             <?php if (sizeof($response) === 0) : ?>
                 <div class="row mb-4">
-                    <div class="mx-auto col-lg-4 col-sm-4">
+                    <div class="mx-auto col-lg-3 col-sm-3">
                         <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                        <p class=" text-center my-4 fs-5"> Responden belum mengisi survei.</p>
                     </div>
+                    <p class="text-center my-4 fs-5 text-rouge">Responden belum mengisi survei.</p>
                 </div>
             <?php endif; ?>
 
@@ -39,7 +39,7 @@
                     <?php foreach ($response as $r) : ?>
                         <div class="mb-4">
                             <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $r['id']; ?>" class="pilih-inst">
-                                <span class="text-rouge fw-bold"><?= $r['kodeInstrumen']; ?> - <?= $r['namaInstrumen']; ?></span>
+                                <span class="text-rouge fw-bold"><?= $r['kodeInstrumen']; ?> <br> <?= $r['namaInstrumen']; ?></span>
                             </a>
                         </div>
                     <?php endforeach; ?>

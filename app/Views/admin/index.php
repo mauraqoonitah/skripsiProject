@@ -53,12 +53,42 @@
                         </div>
                         <!-- ./col -->
 
-                        <div class="col-lg- col-6">
+                        <div class="col-lg-4 col-6">
                             <!-- small box -->
                             <div class="small-box bg-cosmic">
                                 <div class="inner text-white">
                                     <h3><?= $totalInstrumen; ?></h3>
                                     <p>Instrumen Kepuasan</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-cosmic">
+                                <div class="inner text-white">
+                                    <h3><?= $totalPernyataan; ?></h3>
+                                    <p>Butir Pernyataan</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-cosmic">
+                                <div class="inner text-white">
+                                    <h3><?= $totalPernyataan; ?></h3>
+                                    <p>Butir Pernyataan</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fas fa-users"></i>

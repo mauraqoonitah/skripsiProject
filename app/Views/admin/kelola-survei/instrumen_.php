@@ -29,10 +29,10 @@
             <!-- jika belum ada responden -->
             <?php if (empty($category)) : ?>
                 <div class="row mb-4">
-                    <div class="mx-auto col-lg-4 col-sm-4">
+                    <div class="mx-auto col-lg-3 col-sm-3">
                         <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                        <p class=" text-center my-4 fs-5"> Data belum ditambahkan.</p>
                     </div>
+                    <p class="text-center my-4 fs-5 text-rouge"> Data belum ditambahkan.</p>
                 </div>
             <?php endif; ?>
 
@@ -313,7 +313,10 @@
                                                                                 <th scope="row" class="align-middle text-center"> <?= $i++; ?></th>
                                                                                 <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
                                                                                 <td>
-                                                                                    <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Kelola Butir Pernyataan"> <?= $row['namaInstrumen']; ?> </a>
+                                                                                    <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                                                     title="<?php if (in_groups('Kontributor')) : ?>Lihat Butir Pernyataan <?php else: ?>Kelola Butir Pernyataan<?php endif; ?>" 
+                                                                                     
+                                                                                     > <?= $row['namaInstrumen']; ?> </a>
                                                                                 </td>
                                                                                 <td><?= $row['peruntukkanInstrumen']; ?></td>
                                                                                 <?php if (in_groups('Admin')) : ?>

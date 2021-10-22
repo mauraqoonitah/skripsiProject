@@ -26,10 +26,10 @@
             <!-- jika belum ada data -->
             <?php if (empty($responden)) : ?>
                 <div class="row mb-4">
-                    <div class="mx-auto col-lg-4 col-sm-4">
-                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                        <p class=" text-center my-4 fs-5"> Kategori Responden belum ditambahkan.</p>
+                    <div class="mx-auto col-lg-3 col-sm-3">
+                        <img src="<?= base_url(); ?>/img/.svg" class="img-fluid" />
                     </div>
+                    <p class="text-center my-4 fs-5 text-rouge">Kategori Responden belum ditambahkan.</p>
                 </div>
             <?php endif; ?>
 

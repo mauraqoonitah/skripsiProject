@@ -6,22 +6,13 @@
 
 use CodeIgniter\I18n\Time;
 ?>
-<?php foreach ($joinLaporanWithInstrumen as $rID) : ?>
-    <?php
-    $namaInstrumen = $rID['namaInstrumen'];
-    $kodeInstrumen = $rID['kodeInstrumen'];
-    $instrumenID = $rID['instrumenID'];
-    ?>
-<?php endforeach; ?>
-
-
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="fw-bold"> Edit Laporan</h1>
+                    <h1 class="fw-bold"> Edit Lawporan</h1>
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
@@ -58,12 +49,13 @@ use CodeIgniter\I18n\Time;
                         </div>
                     </div>
                 <?php endif; ?>
+
                 <!-- ./ flash gagal tambah data  -->
-                <?php foreach ($joinLaporanWithInstrumen as $laporanIns) :  ?>
+                <?php foreach ($getLaporanAnalisis as $laporanAnls) :  ?>
                     <div class="card">
                         <div class="card-body">
                             <div class="container py-4">
-                                <label class="form-label fs-6 text-rouge mb-3">Edit Laporan <?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></label>
+                                <label class="form-label fs-6 text-rouge mb-3">Edit Laporan</label>
 
 
                                 <div class="row">
@@ -78,18 +70,18 @@ use CodeIgniter\I18n\Time;
                                                         </span>
                                                     </div>
                                                     <div class="col-10 ">
-                                                        <a href="" class="btn-link text-dark mt-4" style="font-size: larger;"> <?= $oldNamaFile = $laporanIns['laporanInstrumen']; ?></a>
+                                                        <a href="" class="btn-link text-dark mt-4" style="font-size: larger;"> <?= $oldNamaFile = $laporanAnls['laporanInstrumen']; ?></a>
 
                                                         <br>
                                                         <?php
-                                                        $timeCreated = Time::parse($laporanIns['created_at'], 'Asia/Jakarta');
-                                                        $timeUpdated = Time::parse($laporanIns['updated_at'], 'Asia/Jakarta');
+                                                        $timeCreated = Time::parse($laporanAnls['created_at'], 'Asia/Jakarta');
+                                                        $timeUpdated = Time::parse($laporanAnls['updated_at'], 'Asia/Jakarta');
                                                         ?>
                                                         <span class="text-muted small">Dibuat pada <?= $timeCreated->toLocalizedString(' HH:mm, d MMM yyyy'); ?></span>
 
-                                                        <?php if ($laporanIns['created_at'] !== $laporanIns['updated_at']) : ?>
+                                                        <?php if ($laporanAnls['created_at'] !== $laporanAnls['updated_at']) : ?>
                                                             <br>
-                                                            <span class="text-muted small">Diubah pada <?= $timeUpdated->toLocalizedString(' HH:mm, d MMM yyyy'); ?></span>
+                                                            <span class="text-muted small">telah di ubah pada <?= $timeUpdated->toLocalizedString(' HH:mm, d MMM yyyy'); ?></span>
                                                         <?php endif; ?>
                                                         <br>
                                                     </div>
@@ -101,7 +93,7 @@ use CodeIgniter\I18n\Time;
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-2 col-form-label">Baru</label>
                                     <div class="col-sm-10">
-                                        <form action="<?= base_url(); ?>/admin/updateLaporanInstrumen/<?= $laporanIns['laporanID']; ?>" method="post" enctype="multipart/form-data">
+                                        <form action="<?= base_url(); ?>/admin/updateLaporanAnalisis/<?= $laporanAnls['id']; ?>" method="post" enctype="multipart/form-data">
 
                                             <?= csrf_field(); ?>
                                             <div class="row mt-3">
@@ -115,7 +107,6 @@ use CodeIgniter\I18n\Time;
                                                     <div class=" invalid-feedback">
                                                         <?= $validation->getError('laporanInstrumen'); ?>
                                                     </div>
-                                                    <input type="hidden" name="instrumenID" value="<?= $instrumenID; ?>">
                                                     <input type="hidden" name="oldNamaFile" value="<?= $oldNamaFile; ?>">
 
                                                     <button type="submit" class="btn btn-primary mb-3">Upload</button>

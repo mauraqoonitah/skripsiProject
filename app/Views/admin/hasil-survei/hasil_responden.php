@@ -33,10 +33,10 @@ use CodeIgniter\I18n\Time;
             <!-- jika belum ada responden -->
             <?php if (sizeof($responden) === 0) : ?>
                 <div class="row mb-4">
-                    <div class="mx-auto col-lg-4 col-sm-4">
+                    <div class="mx-auto col-lg-3 col-sm-3">
                         <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                        <p class=" text-center my-4 fs-5"> Responden belum mengisi survei.</p>
                     </div>
+                    <p class="text-center my-4 fs-5 text-rouge">Responden belum mengisi survei.</p>
                 </div>
             <?php endif; ?>
 
