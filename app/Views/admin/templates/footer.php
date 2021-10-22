@@ -267,6 +267,30 @@ $timeNow = Time::now()->toDateTimeString(); ?>
     })
 </script>
 
+<script type="text/javascript">
+    $('.form-check-show-grafik').on('click', function() {
+        const tampilId = $(this).data('tampil');
+        const id = $(this).data('id');
+
+        $.ajax({
+            alert('oke');
+
+            url: "<?= base_url(); ?>/admin/saveTampilGrafikStatus",
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: 'post',
+            data: {
+                tampilId: tampilId,
+                id: id
+            },
+            success: function() {
+                document.location.href = "<?= base_url(); ?>/admin/laporanSurvei"
+
+            }
+        })
+    });
+</script>
 
 </body>
 

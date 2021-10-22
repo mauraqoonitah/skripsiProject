@@ -18,7 +18,7 @@ class Analisis extends BaseController
     protected $responseModel;
     protected $laporanModel;
 
-
+    protected $helpers = ['tampilGrafik'];
 
     public function __construct()
     {
@@ -265,5 +265,33 @@ class Analisis extends BaseController
         session()->setFlashdata('message', 'Dokumen berhasil diubah');
 
         return redirect()->to('/admin/laporanSurvei');
+    }
+
+    public function saveTampilGrafikStatus($id)
+    {
+        // dd('oke');
+
+        $tampil_grafik = $this->mRequest->getPost('tampilId');
+        $id = $this->mRequest->getPost('id');
+
+
+        if ($tampil_grafik == "1") {
+            $this->instrumenModel->save(
+                [
+                    'id' => $id,
+                    'tampil_grafik' => '0'
+                ]
+            );
+            session()->setFlashdata('message', '  Grafik disembunyikan dari website');
+        }
+        if ($tampil_grafik == "0") {
+            $this->instrumenModel->save(
+                [
+                    'id' => $id,
+                    'tampil_grafik' => '1'
+                ]
+            );
+            session()->setFlashdata('message', '  Grafik ditampilkan ke website');
+        }
     }
 }

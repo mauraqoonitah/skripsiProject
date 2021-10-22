@@ -21,41 +21,76 @@
         <a href="<?= base_url(); ?>/admin/laporanSurvei">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
         </a>
+
     </section>
 
     <!-- Main content -->
     <section class="content mx-auto">
         <div class="container-fluid">
-            <div class="card border border-1 border-white rounded-3">
-                <h6 class="card-header"><?= $category['kodeCategory']; ?> <?= $category['namaCategory']; ?></h6>
+            <div class="alert alert-primary fw-bold" role="alert">
+                <strong class=" fs-6">Pilih Instrumen pada Kategori C.1 untuk Melihat Hasil Analisis Instrumen Kepuasan </strong>
+            </div>
+            <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+        </div>
 
-                <?php foreach ($getInstrumenBySlug as $ins) : ?>
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>">
-                                <div class="card p-2">
-                                    <div class="card-body">
-                                        <p class="card-text"><?= $ins['kodeInstrumen']; ?> <?= $ins['namaInstrumen']; ?></p>
-                                    </div>
-                                </div>
+        <div class="row p-4">
+            <?php foreach ($getInstrumenBySlug as $ins) : ?>
+                <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $ins['id']; ?>" method="post" enctype="multipart/form-data">
+                    <div class="col-lg-8">
+                        <div class="mb-4">
+                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst text-decoration-none">
+                                <span class="text-black"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
                             </a>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="form-check form-switch d-flex justify-content-center">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                <!-- <label class="form-check-label" for="flexSwitchCheckDefault">OFF</label> -->
-                            </div>
+                    </div>
+                    <div class="col-lg-4">
+                        status tampil <?= $ins['tampil_grafik']; ?>
+
+                        <div class="form-check mr-4">
+                            <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>">
                         </div>
                     </div>
-                <?php endforeach; ?>
-                <div class="card-footer text-muted text-center">
-                    On Off untuk menampilkan ke website
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- /.content -->
+                    <script type="text/javascript">
+                        $('.form-check-show-grafik-<?= $ins['id']; ?>').on('click', function() {
+                            const tampilId = $(this).data('tampil');
+                            const id = $(this).data('id');
+
+                            $.ajax(
+                                console.log('masuk <?= $ins['id']; ?>'), {
+                                    url: "<?= base_url(); ?>/admin/saveTampilGrafikStatus/<?= $ins['id']; ?>",
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest'
+                                    },
+                                    type: 'POST',
+                                    data: {
+                                        tampilId: tampilId,
+                                        id: id
+                                    },
+                                    success: function() {
+                                        document.location.href = "<?= base_url(); ?>/admin/laporanInstrumen/<?= $ins['slug']; ?>"
+                                        console.log('success ubah tampil grafik')
+                                        <?= session()->getFlashdata('message'); ?>
+
+
+
+                                    }
+                                })
+                        });
+                    </script>
+
+
+                <?php endforeach; ?>
+                </form>
+        </div>
+</div>
+<div class="card-footer text-muted text-center">
+    Switch On Off untuk menampilkan grafik kepuasan ke website
+</div>
+</div>
+</section>
+
+<!-- /.content -->
 </div>
 
 <?= $this->endSection(); ?>

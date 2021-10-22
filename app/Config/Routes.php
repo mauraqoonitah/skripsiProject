@@ -134,6 +134,7 @@ $routes->get('/admin/editLaporanInstrumen/(:any)', 'Admin\Analisis::editLaporanI
 $routes->post('/admin/saveLaporanAnalisis', 'Admin\Analisis::saveLaporanAnalisis');
 $routes->get('/admin/editLaporanAnalisis/(:any)', 'Admin\Analisis::editLaporanAnalisis/$1');
 $routes->post('/admin/updateLaporanAnalisis/(:any)', 'Admin\Analisis::updateLaporanAnalisis/$1');
+$routes->post('/admin/saveTampilGrafikStatus/(:any)', 'Admin\Analisis::saveTampilGrafikStatus/$1');
 
 
 // menu kelola jenis responden
