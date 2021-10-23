@@ -20,6 +20,7 @@ class Pages extends BaseController
         $this->adminModel = new AdminModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
+        $this->responseModel = new ResponseModel();
         $this->mRequest = service("request");
         $this->config = config('Auth');
     }
@@ -28,7 +29,9 @@ class Pages extends BaseController
     {
         $data = [
             'title' => 'Instrumen Kepuasan FMIPA UNJ',
-            'category' => $this->adminModel->getCategory(),
+            // 'category' => $this->adminModel->getCategory(),
+            'response' => $this->responseModel->getResponseByInstrumen(),
+
 
         ];
 

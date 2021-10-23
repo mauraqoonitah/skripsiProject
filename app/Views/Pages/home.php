@@ -28,14 +28,7 @@
                         <div class="carousel-inner mb-4" data-aos="zoom-in-down" data-aos-delay="500" data-aos-duration="2000">
                             <div class="carousel-item active" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p class="fs-6">Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan.</i>
-
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="carousel-item" data-bs-interval="5000">
-                                <div class="d-md-block">
-                                    <p class="fs-6"> Sistem penjaminan mutu pendidikan tinggi terdiri atas sistem penjaminan mutu internal yang dikembangkan oleh perguruan tinggi dan sistem penjaminan mutu eksternal yang dilakukan melalui akreditasi. <i>(Undang-Undang Republik Indonesia Nomor 12 Tahun 2012 Tentang Pendidikan Tinggi)
+                                    <p class="fs-6">Memelihara dan meningkatkan mutu pendidikan FMIPA UNJ secara internal untuk mewujudkan visi serta untuk memenuhi kebutuhan stakeholders melalui penyelenggaraan Tridharma Perguruan Tinggi.
                                         </i>
 
                                     </p>
@@ -43,7 +36,14 @@
                             </div>
                             <div class="carousel-item" data-bs-interval="5000">
                                 <div class="d-md-block">
-                                    <p class="fs-6"> Sistem Penjaminan Mutu Internal (SPMI) merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi oleh setiap perguruan tinggi secara otonom untuk mengendalikan dan meningkatkan penyelenggaraan pendidikan tinggi secara berencana dan berkelanjutan. SPMI direncanakan, dilaksanakan, dievaluasi, dikendalikan, dan dikembangkan oleh perguruan tinggi.</p>
+                                    <p class="fs-6"> SPMI merupakan kegiatan sistemik penjaminan mutu pendidikan tinggi
+                                        oleh perguruan tinggi untuk mengawasi penyelenggaraan pendidikan tinggi secara berkelanjutan.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="5000">
+                                <div class="d-md-block">
+                                    <p class="fs-6"> Suatu perguruan tinggi dinyatakan bermutu apabila: (1) perguruan tinggi mampu menetapkan dan mewujudkan visinya; (2) perguruan tinggi mampu menjabarkan visinya ke dalam sejumlah standar dan standar turunan; (3) perguruan tinggi mampu menerapkan, mengendalikan, dan mengembangkan sejumlah standar dan standar turunan untuk memenuhi kebutuhan stakeholders.</p>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                     </div>
                     <!-- ./carousel -->
                     <div class="d-flex flex-column flex-md-row">
-                        <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="2000">
+                        <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="1000">
                             <button type="button" class="btn btn-jumbotron btn-purple ">Isi Survei</button>
                         </a>
                     </div>
@@ -77,21 +77,23 @@
     <div id=passageWrapper>
         <h2 class="section-title">Kriteria Kepuasan</h2>
     </div>
+    <h5 class="text-center text-muted">Silakan akses untuk melihat hasil Survei Kepuasan di FMIPA UNJ</h5>
+
     <div class="container pt-5">
         <!-- ./sticky scrolled -->
         <div class="row">
-            <div class="mx-auto col-8">
-                <img src="<?= base_url(); ?>/img/undraw_in_sync.svg" class="img-fluid" />
-                <?php if (empty($category)) : ?>
+            <div class="mx-auto col-6">
+                <img src="<?= base_url(); ?>/img/undraw_Report.svg" class="img-fluid" />
+                <?php if (empty($response)) : ?>
                     <p class="text-muted text-center my-4 fs-5"> No results found</p>
                 <?php endif; ?>
             </div>
         </div>
 
         <div class="row obyek-menu mt-5">
-            <?php foreach ($category as $ctg) :  ?>
+            <?php foreach ($response as $rspns) :  ?>
                 <div class="obyek-list col-sm shadow-sm">
-                    <a href="./about.php" class="list-kategori"> <?= $ctg['namaCategory']; ?></a>
+                    <a href="./about.php" class="list-kategori"> <?= $rspns['namaInstrumen']; ?></a>
                 </div>
             <?php endforeach; ?>
 
@@ -99,14 +101,17 @@
     </div>
 </section>
 
-<section class="menu col-lg-8 mx-auto">
+<section class="menu col-lg-8 mx-auto mt-5">
     <div class="container-fluid">
-        <h2 class="section-title" id="obyek-menu">Grafik Kepuasan</h3>
-            <div class="row mt-3">
-                <div class="mx-auto col-8">
-                    <img src="<?= base_url(); ?>/img/undraw_Report.svg" class="img-fluid" />
-                    <p class="text-muted text-center my-4 fs-5"> No results found</p>
+        <h2 class="section-title" id="obyek-menu">Laporan Instrumen Kepuasan</h3>
+            <h5 class="text-center text-muted fs-5"> Penyusunan laporan diperlukan untuk memberikan gambaran kinerja FMIPA UNJ secara berkala sebagai rekomendasi tindak lanjut peningkatan kualitas mutu layanan.
+            </h5>
 
+            <div class="row mt-5">
+                <div class="mx-auto col-lg-4 col-sm-4">
+                    <a href="<?= base_url(''); ?>/admin/laporanSurvei" class="img-hover-zoom">
+                        <img src="<?= base_url(); ?>/img/undraw_Documents.png" class="img-fluid rounded-3 border border-2" />
+                    </a>
                 </div>
             </div>
     </div>

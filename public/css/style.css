@@ -343,6 +343,14 @@ footer {
     cursor: pointer;
 }
 
+.img-hover-zoom img {
+    transition: transform .5s ease;
+}
+
+.img-hover-zoom:hover img {
+    transform: scale(1.1);
+}
+
 .obyek-list:hover,
 .pilih-inst:hover {
     border: solid 1px rgba(161, 218, 254, .4);
