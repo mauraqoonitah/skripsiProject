@@ -17,6 +17,12 @@
                 </div>
             </div>
         </div><!-- /.container-fluid -->
+
+        <!-- flash success tambah data  -->
+        <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+        <!-- ./ flash success tambah data  -->
+
+
         <!-- back to previous page -->
         <a href="<?= base_url(); ?>/admin/laporanSurvei">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
@@ -30,7 +36,6 @@
             <div class="alert alert-primary fw-bold" role="alert">
                 <strong class=" fs-6">Pilih Instrumen pada Kategori C.1 untuk Melihat Hasil Analisis Instrumen Kepuasan </strong>
             </div>
-            <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
         </div>
 
         <div class="row p-4">
@@ -70,9 +75,6 @@
                                     success: function() {
                                         document.location.href = "<?= base_url(); ?>/admin/laporanInstrumen/<?= $ins['slug']; ?>"
                                         console.log('success ubah tampil grafik')
-                                        <?= session()->getFlashdata('message'); ?>
-
-
 
                                     }
                                 })

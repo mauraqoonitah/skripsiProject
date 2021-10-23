@@ -18,6 +18,9 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
+    <!-- flash success tambah data  -->
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+    <!-- ./ flash success tambah data  -->
 
     <!-- Main content -->
     <section class="content">
@@ -36,12 +39,48 @@
                 <div class="list-group center">
                     <div class="alert alert-primary fw-bold mb-5" role="alert">
                         Pilih instrumen untuk melihat tanggapan responden</div>
-                    <?php foreach ($response as $r) : ?>
-                        <div class="mb-4">
-                            <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $r['id']; ?>" class="pilih-inst">
-                                <span class="text-rouge fw-bold"><?= $r['kodeInstrumen']; ?> <br> <?= $r['namaInstrumen']; ?></span>
-                            </a>
-                        </div>
+                    <?php foreach ($response as $rspns) : ?>
+                        <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $rspns['id']; ?>" method="post" enctype="multipart/form-data">
+
+                            <div class="mb-4">
+                                <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $rspns['id']; ?>" class="pilih-inst">
+                                    <span class="text-rouge fw-bold"><?= $rspns['kodeInstrumen']; ?> <br> <?= $rspns['namaInstrumen']; ?></span>
+                                </a>
+                            </div>
+
+                            <div class="col-lg-4">
+                                status tampil <?= $rspns['tampil_grafik']; ?>
+
+                                <div class="form-check mr-4">
+                                    <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>">
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                $('.form-check-show-grafik-<?= $rspns['id']; ?>').on('click', function() {
+                                    const tampilId = $(this).data('tampil');
+                                    const id = $(this).data('id');
+
+                                    $.ajax(
+                                        console.log('masuk <?= $rspns['id']; ?>'), {
+                                            url: "<?= base_url(); ?>/admin/saveTampilGrafikStatus/<?= $rspns['id']; ?>",
+                                            headers: {
+                                                'X-Requested-With': 'XMLHttpRequest'
+                                            },
+                                            type: 'POST',
+                                            data: {
+                                                tampilId: tampilId,
+                                                id: id
+                                            },
+                                            success: function() {
+                                                document.location.href = "<?= base_url(); ?>/admin/hasil-survei/instrumen"
+                                                console.log('success ubah tampil grafik')
+                                            }
+                                        })
+                                });
+                            </script>
+
+                        </form>
                     <?php endforeach; ?>
                 </div>
             </div>
