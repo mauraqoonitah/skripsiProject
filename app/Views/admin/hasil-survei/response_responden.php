@@ -13,6 +13,7 @@ use CodeIgniter\I18n\Time;
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="fw-bold">Hasil Survei Kepuasan <br>(Responden)</h1>
+                    <span>(bugs) saat user mengisi lebih dari 1x pada instrumen yg sama</span>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

@@ -8,7 +8,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="fw-bold">(bugs) Hasil Survei Kepuasan<br> (Instrumen)</h1>
-                    <p>kalo ada duplicate instrumen dari user yg sama, dia gmn ya</p>
+                    <span>(bugs) saat user mengisi lebih dari 1x pada instrumen yg sama</span>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

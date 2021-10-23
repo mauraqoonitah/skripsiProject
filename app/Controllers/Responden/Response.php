@@ -63,9 +63,9 @@ class Response extends BaseController
 
     public function isiSurvei($id)
     {
-
         $instrumen = $this->instrumenModel->getInstrumen($id);
         $instrumenID =  $instrumen['id'];
+        $userID = user()->id;
 
         $data = [
             'title' => 'Isi Survei',
@@ -74,7 +74,7 @@ class Response extends BaseController
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
             'getInstrumenID' =>  $this->pernyataanModel->getPernyataanByInstrumenID($id),
             'getPetunjukIns' =>  $this->petunjukInstrumenModel->getPetunjukIns($id),
-            'cekRiwayatTgl' => $this->responseModel->cekRiwayatTgl($id, $instrumenID),
+            'cekRiwayatTgl' => $this->responseModel->cekRiwayatTgl($userID, $instrumenID),
             'validation' => \Config\Services::validation()
         ];
 

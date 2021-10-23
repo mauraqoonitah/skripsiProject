@@ -7,12 +7,14 @@ use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
+use App\Models\LaporanModel;
 
 class Pages extends BaseController
 {
     protected $adminModel;
     protected $instrumenModel;
     protected $pernyataanModel;
+    protected $laporanModel;
     protected $mRequest;
 
     public function __construct()
@@ -21,6 +23,7 @@ class Pages extends BaseController
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->responseModel = new ResponseModel();
+        $this->laporanModel = new LaporanModel();
         $this->mRequest = service("request");
         $this->config = config('Auth');
     }
@@ -70,5 +73,25 @@ class Pages extends BaseController
 
         ];
         return view('auth/forgot', $data);
+    }
+    public function hasilKepuasan($instrumenID)
+    {
+        $data = [
+            'title' => 'Instrumen Kepuasan FMIPA UNJ',
+            'responsePertanyaan' => $this->responseModel->getResponseButir($instrumenID),
+            'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($instrumenID),
+            'responseJawaban' => $this->responseModel->getResponseJawaban($instrumenID),
+
+            'instrumen' => $this->instrumenModel->getInstrumen($instrumenID),
+            'responsePertanyaan' => $this->responseModel->getResponseButir($instrumenID),
+            'responseJawaban' => $this->responseModel->getResponseJawaban($instrumenID),
+            'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($instrumenID),
+            'getLaporanInstrumen' => $this->laporanModel->getLaporanInstrumen($instrumenID),
+
+
+
+        ];
+
+        return view('pages/grafik_kepuasan', $data);
     }
 }

@@ -48,6 +48,11 @@ main {
     background-color: #4DB6AC;
 }
 
+.bg-rouge {
+    background-color: rgba(122, 76, 117, .2);
+    color: #ae435b;
+}
+
 .center {
     margin: 0 auto;
 }
@@ -95,6 +100,10 @@ tr {
 
 
 /* btn-rouge */
+
+.text-rouge {
+    color: rgb(174, 67, 91);
+}
 
 .btn-rouge {
     color: #fff !important;
@@ -313,6 +322,18 @@ footer {
     align-items: center;
     justify-content: center;
     transition: .8s;
+}
+
+.obyek-list-no-hov {
+    background-color: rgba(174, 67, 91, .1);
+    text-align: center;
+    padding: 1rem 20px;
+    border: solid 2px rgb(174, 67, 91, .4);
+    border-radius: .5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #passageWrapper {

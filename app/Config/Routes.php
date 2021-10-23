@@ -36,6 +36,7 @@ $routes->get('/index.php', 'Pages::index');
 $routes->get('/auth/login', 'Pages::login');
 $routes->get('/auth/register', 'Pages::register');
 $routes->get('/home/user', 'Pages::user');
+$routes->get('/grafik_kepuasan/(:any)', 'Pages::hasilKepuasan/$1');
 
 // admin
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);

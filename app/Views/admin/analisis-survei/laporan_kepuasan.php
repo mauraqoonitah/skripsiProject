@@ -399,7 +399,7 @@ use CodeIgniter\I18n\Time;
 
             },
             title: {
-                text: 'Tingkat Kepuasan'
+                text: 'Tingkat Kepuasan Butir Pernyataan'
             },
             subtitle: {
                 text: '<?= $namaInstrumen; ?>'
@@ -407,7 +407,7 @@ use CodeIgniter\I18n\Time;
             yAxis: {
                 allowDecimals: false,
                 title: {
-                    text: 'Jumlah'
+                    text: 'Jumlah Tanggapan'
                 }
             },
             tooltip: {

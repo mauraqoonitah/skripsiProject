@@ -93,7 +93,7 @@
         <div class="row obyek-menu mt-5">
             <?php foreach ($response as $rspns) :  ?>
                 <div class="obyek-list col-sm shadow-sm">
-                    <a href="./about.php" class="list-kategori"> <?= $rspns['namaInstrumen']; ?></a>
+                    <a href="<?= base_url(); ?>/grafik_kepuasan/<?= $rspns['id']; ?>" class="list-kategori"> <?= $rspns['namaInstrumen']; ?></a>
                 </div>
             <?php endforeach; ?>
 
