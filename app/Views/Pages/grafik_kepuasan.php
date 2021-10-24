@@ -1,170 +1,223 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+<?php if (empty($responsePertanyaan)) : ?>
 
-<?php foreach ($responsePertanyaan as $rID) {
-    $namaInstrumen = $rID['namaInstrumen'];
-    $kodeInstrumen = $rID['kodeInstrumen'];
-    $questionID = $rID['questionID'];
-    $instrumenID = $rID['instrumenID'];
-}  ?>
+    <section>
+        <div class="bd-masthead mb-3">
+            <div class="container px-4">
+                <div class="row my-4 pt-3">
+                    <div class="mx-auto col-lg-3 col-sm-3">
+                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                    </div>
+                    <p class="text-center my-4 fs-5 text-rouge"> Data tidak tersedia.</p>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a href="<?= base_url(); ?>/#instrumen">
+                        <button type="button" class="btn btn-cosmic mr-3">
+                            <i class="fas fa-chevron-left mr-3"></i> Kembali
+                        </button>
+                    </a>
+                </div>
 
-<?php
-$totalSkor5 = 0;
-$totalSkor4 = 0;
-$totalSkor3 = 0;
-$totalSkor2 = 0;
-$totalSkor1 = 0;
-foreach ($responseJawaban as $rJwb) : ?>
-    <?php
-    $jawaban = $rJwb['jawaban'];
-
-    if ($jawaban == '5') {
-        $totalSkor5++;
-    }
-    if ($jawaban == '4') {
-        $totalSkor4++;
-    }
-    if ($jawaban == '3') {
-        $totalSkor3++;
-    }
-    if ($jawaban == '2') {
-        // $skor2 = count(array($jawaban));
-        $totalSkor2++;
-    }
-    if ($jawaban == '1') {
-        $totalSkor1++;
-    }
-    ?>
-<?php endforeach; ?>
-
-
-<section class=" d-flex justify-content-center">
-    <div class="bd-masthead mb-3" id="content">
-        <div class="container px-4 px-md-3">
-            <div class="row align-items-lg-center obyek-list-no-hov">
-                <h4 class="text-rouge text-center">Hasil Survei Kepuasan</h4>
-                <h5 class="text-cosmic"> <?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></h5>
             </div>
-            <span class="text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span>
+        </div>
+    </section>
+
+<?php else : ?>
+    <?php foreach ($responsePertanyaan as $rID) {
+        $namaInstrumen = $rID['namaInstrumen'];
+        $kodeInstrumen = $rID['kodeInstrumen'];
+        $questionID = $rID['questionID'];
+        $instrumenID = $rID['instrumenID'];
+    }  ?>
+
+    <?php
+    $totalSkor5 = 0;
+    $totalSkor4 = 0;
+    $totalSkor3 = 0;
+    $totalSkor2 = 0;
+    $totalSkor1 = 0;
+    foreach ($responseJawaban as $rJwb) : ?>
+        <?php
+        $jawaban = $rJwb['jawaban'];
+
+        if ($jawaban == '5') {
+            $totalSkor5++;
+        }
+        if ($jawaban == '4') {
+            $totalSkor4++;
+        }
+        if ($jawaban == '3') {
+            $totalSkor3++;
+        }
+        if ($jawaban == '2') {
+            // $skor2 = count(array($jawaban));
+            $totalSkor2++;
+        }
+        if ($jawaban == '1') {
+            $totalSkor1++;
+        }
+        ?>
+    <?php endforeach; ?>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="bd-masthead" id="content">
+                <div class="container">
+                    <div class="row align-items-lg-center obyek-list-no-hov">
+                        <h4 class="text-rouge text-center">Hasil Survei Kepuasan</h4>
+                        <h5 class="text-cosmic"> <?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></h5>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <!-- BAR CHART -->
+            <div class="container">
+                <div class="card col-6 mx-auto">
+                    <div class="card-header text-center fw-bold bg-rouge">
+                        Tanggapan Tingkat Kepuasan pada Instrumen
+                    </div>
+                    <div class="card-body">
+                        <div class="container mb-5">
+                            <span class="card-title text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span><br>
+                            <span class="card-title text-muted fs-6">Terjawab : x </span>
+                        </div>
+                        <canvas id="chart-hasil-instrumen"></canvas>
+                    </div>
+                </div>
+
+                <div class="container mt-5 pt-5">
+                    <div class="card">
+                        <div class="card-header text-center fw-bold bg-rouge">
+                            Tingkat Kepuasan pada Butir Pernyataan Instrumen
+                        </div>
+                        <div class="card-body">
+                            <div class="container mb-5">
+                                <span class="card-title text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span><br>
+                                <span class="card-title text-muted fs-6">Terjawab : x </span>
+                            </div>
+                            <!-- highchart per butir pernyataan -->
+                            <script src="https://code.highcharts.com/highcharts.js"></script>
+                            <script src="https://code.highcharts.com/modules/data.js"></script>
+                            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+                            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+                            <figure class="highcharts-figure">
+                                <div id="container-highcharts" class="m-3"></div>
+
+                                <div class="content">
+                                    <div class="container">
+                                        <table id="datatable-chart-instrumen" class="table table-bordered table-hover mb-5 mt-3 border rounded-3 border-secondary">
+                                            <thead class="bg-rouge">
+                                                <tr class="text-center">
+                                                    <th>Butir Pernyataan</th>
+                                                    <th>Sangat Puas</th>
+                                                    <th>Puas</th>
+                                                    <th>Cukup Puas</th>
+                                                    <th>Tidak Puas</th>
+                                                    <th>Sangat Tidak Puas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($responsePertanyaan as $rID) :  ?>
+                                                    <?php
+                                                    $skor5 = 0;
+                                                    $skor4 = 0;
+                                                    $skor3 = 0;
+                                                    $skor2 = 0;
+                                                    $skor1 = 0;
+                                                    $skorNull = '';
+                                                    ?>
+                                                    <tr>
+                                                        <th>
+                                                            <?php $questionID = $rID['id']; ?>
+                                                            <?= $rID['butir']; ?>
+                                                        </th>
+                                                        <?php
+                                                        // get jawaban by questionID
+                                                        $responseModel = model('ResponseModel');
+                                                        $this->responseModel = new $responseModel;
+                                                        $sqlResponse =  $this->responseModel->getAllResponses($instrumenID, $questionID); ?>
+                                                        <td class="text-center">
+                                                            <?php foreach ($sqlResponse as $response) : ?>
+                                                                <?php $jawaban = $response['jawaban']; ?>
+                                                                <?php $questID = $response['questionID']; ?>
+                                                                <?php if ($jawaban == '5' && $questID == $questionID) {
+                                                                    $skor5++;
+                                                                }
+                                                                ?>
+                                                            <?php endforeach; ?>
+                                                            <?= $skor5; ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <?php foreach ($sqlResponse as $response) : ?>
+                                                                <?php $jawaban = $response['jawaban']; ?>
+                                                                <?php $questID = $response['questionID']; ?>
+                                                                <?php if ($jawaban == '4' && $questID == $questionID) {
+                                                                    $skor4++;
+                                                                }
+                                                                ?>
+                                                            <?php endforeach; ?>
+                                                            <?= $skor4; ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <?php foreach ($sqlResponse as $response) : ?>
+                                                                <?php $jawaban = $response['jawaban']; ?>
+                                                                <?php $questID = $response['questionID']; ?>
+                                                                <?php if ($jawaban == '3' && $questID == $questionID) {
+                                                                    $skor3++;
+                                                                }
+                                                                ?>
+                                                            <?php endforeach; ?>
+                                                            <?= $skor3; ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <?php foreach ($sqlResponse as $response) : ?>
+                                                                <?php $jawaban = $response['jawaban']; ?>
+                                                                <?php $questID = $response['questionID']; ?>
+                                                                <?php if ($jawaban == '2' && $questID == $questionID) {
+                                                                    $skor2++;
+                                                                }
+                                                                ?>
+                                                            <?php endforeach; ?>
+                                                            <?= $skor2; ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <?php foreach ($sqlResponse as $response) : ?>
+                                                                <?php $jawaban = $response['jawaban']; ?>
+                                                                <?php $questID = $response['questionID']; ?>
+                                                                <?php if ($jawaban == '1' && $questID == $questionID) {
+                                                                    $skor1++;
+                                                                }
+                                                                ?>
+                                                            <?php endforeach; ?>
+                                                            <?= $skor1; ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- BAR CHART -->
-<div class="col-lg-12">
-    <div class="container">
+    <button id="scrollToTopBtn" class=""><i class="fas fa-angle-double-up"></i></button>
+    </section>
 
-        <div class="col-6 mx-auto">
-            <canvas id="chart-hasil-instrumen" width="400" height="400"></canvas>
-        </div>
-
-        <div class="col-12 mt-5">
-
-            <!-- highchart per butir pernyataan -->
-            <script src="https://code.highcharts.com/highcharts.js"></script>
-            <script src="https://code.highcharts.com/modules/data.js"></script>
-            <script src="https://code.highcharts.com/modules/exporting.js"></script>
-            <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
-            <figure class="highcharts-figure">
-                <div id="container-highcharts" class="border rounded-3 m-3"></div>
-                <table id="datatable-chart-instrumen" class="table table-bordered table-hover my-5 border rounded-3 border-dark">
-                    <thead class="bg-rouge">
-                        <tr class="text-center">
-                            <th>Butir Pernyataan</th>
-                            <th>Sangat Puas</th>
-                            <th>Puas</th>
-                            <th>Cukup Puas</th>
-                            <th>Tidak Puas</th>
-                            <th>Sangat Tidak Puas</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($responsePertanyaan as $rID) :  ?>
-                            <?php
-                            $skor5 = 0;
-                            $skor4 = 0;
-                            $skor3 = 0;
-                            $skor2 = 0;
-                            $skor1 = 0;
-                            $skorNull = '';
-                            ?>
-                            <tr>
-                                <th>
-                                    <?php $questionID = $rID['id']; ?>
-                                    <?= $rID['butir']; ?>
-                                </th>
-                                <?php
-                                // get jawaban by questionID
-                                $responseModel = model('ResponseModel');
-                                $this->responseModel = new $responseModel;
-                                $sqlResponse =  $this->responseModel->getAllResponses($instrumenID, $questionID); ?>
-                                <td class="text-center">
-                                    <?php foreach ($sqlResponse as $response) : ?>
-                                        <?php $jawaban = $response['jawaban']; ?>
-                                        <?php $questID = $response['questionID']; ?>
-                                        <?php if ($jawaban == '5' && $questID == $questionID) {
-                                            $skor5++;
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                    <?= $skor5; ?>
-                                </td>
-                                <td class="text-center">
-                                    <?php foreach ($sqlResponse as $response) : ?>
-                                        <?php $jawaban = $response['jawaban']; ?>
-                                        <?php $questID = $response['questionID']; ?>
-                                        <?php if ($jawaban == '4' && $questID == $questionID) {
-                                            $skor4++;
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                    <?= $skor4; ?>
-                                </td>
-                                <td class="text-center">
-                                    <?php foreach ($sqlResponse as $response) : ?>
-                                        <?php $jawaban = $response['jawaban']; ?>
-                                        <?php $questID = $response['questionID']; ?>
-                                        <?php if ($jawaban == '3' && $questID == $questionID) {
-                                            $skor3++;
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                    <?= $skor3; ?>
-                                </td>
-                                <td class="text-center">
-                                    <?php foreach ($sqlResponse as $response) : ?>
-                                        <?php $jawaban = $response['jawaban']; ?>
-                                        <?php $questID = $response['questionID']; ?>
-                                        <?php if ($jawaban == '2' && $questID == $questionID) {
-                                            $skor2++;
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                    <?= $skor2; ?>
-                                </td>
-                                <td class="text-center">
-                                    <?php foreach ($sqlResponse as $response) : ?>
-                                        <?php $jawaban = $response['jawaban']; ?>
-                                        <?php $questID = $response['questionID']; ?>
-                                        <?php if ($jawaban == '1' && $questID == $questionID) {
-                                            $skor1++;
-                                        }
-                                        ?>
-                                    <?php endforeach; ?>
-                                    <?= $skor1; ?>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-
-
-                    </tbody>
-                </table>
-            </figure>
-        </div>
-    </div>
 
     <!-- pie chart per instrumen -->
     <script>
@@ -257,10 +310,5 @@ foreach ($responseJawaban as $rJwb) : ?>
         });
     </script>
 
-
-</div>
-
-<button id="scrollToTopBtn" class=""><i class="fas fa-angle-double-up"></i></button>
-</section>
-
+<?php endif; ?>
 <?= $this->endSection(); ?>
