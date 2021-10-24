@@ -38,9 +38,9 @@
             </div>
         </div>
 
-        <div class="row p-4">
-            <?php foreach ($getInstrumenBySlug as $ins) : ?>
-                <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $ins['id']; ?>" method="post" enctype="multipart/form-data">
+        <?php foreach ($getInstrumenBySlug as $ins) : ?>
+            <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $ins['id']; ?>" method="post" enctype="multipart/form-data">
+                <div class="row p-4">
                     <div class="col-lg-8">
                         <div class="mb-4">
                             <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst text-decoration-none">
@@ -49,10 +49,12 @@
                         </div>
                     </div>
                     <div class="col-lg-4">
-                        status tampil <?= $ins['tampil_grafik']; ?>
+                        <div class="form-check mr-4 d-flex align-items-center">
+                            <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($ins['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">
+                            <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
+                                <?php if ($ins['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
+                            </label>
 
-                        <div class="form-check mr-4">
-                            <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>">
                         </div>
                     </div>
 
@@ -80,11 +82,9 @@
                                 })
                         });
                     </script>
-
-
-                <?php endforeach; ?>
-                </form>
-        </div>
+                </div>
+            </form>
+        <?php endforeach; ?>
 </div>
 <div class="card-footer text-muted text-center">
     Switch On Off untuk menampilkan grafik kepuasan ke website

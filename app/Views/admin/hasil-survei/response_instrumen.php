@@ -1,6 +1,11 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
+
+<!-- flash success tambah data  -->
+<div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+<!-- ./ flash success tambah data  -->
+
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -64,8 +69,43 @@
     <section class="content">
         <div class="container-fluid">
             <div class="card">
-                <div class="card-header text-rouge d-flex align-items-center mb-3 py-4">
+                <div class="card-header text-rouge d-flex align-items-center  mb-3 py-4">
                     <h5> <?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></h5>
+
+                    <div class="ml-auto">
+                        <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $cekTampilGrafik['id']; ?>" method="post" enctype="multipart/form-data">
+                            <div class="form-check d-flex align-items-center">
+                                <input class="form-check-input form-check-show-grafik-<?= $cekTampilGrafik['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($cekTampilGrafik['tampil_grafik']); ?> data-tampil="<?= $cekTampilGrafik['tampil_grafik']; ?>" data-id="<?= $cekTampilGrafik['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($cekTampilGrafik['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">
+                                <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
+                                    <?php if ($cekTampilGrafik['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
+
+                                </label>
+                            </div>
+                            <script type="text/javascript">
+                                $('.form-check-show-grafik-<?= $cekTampilGrafik['id']; ?>').on('click', function() {
+                                    const tampilId = $(this).data('tampil');
+                                    const id = $(this).data('id');
+
+                                    $.ajax(
+                                        console.log('masuk <?= $cekTampilGrafik['id']; ?>'), {
+                                            url: "<?= base_url(); ?>/admin/saveTampilGrafikStatus/<?= $cekTampilGrafik['id']; ?>",
+                                            headers: {
+                                                'X-Requested-With': 'XMLHttpRequest'
+                                            },
+                                            type: 'POST',
+                                            data: {
+                                                tampilId: tampilId,
+                                                id: id
+                                            },
+                                            success: function() {
+                                                document.location.href = "<?= base_url(); ?>/admin/hasil-survei/instrumen/<?= $cekTampilGrafik['id'] ?>"
+                                                console.log('success ubah tampil grafik')
+                                            }
+                                        })
+                                });
+                            </script>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="container">

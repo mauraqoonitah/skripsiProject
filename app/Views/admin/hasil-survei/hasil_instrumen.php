@@ -56,9 +56,10 @@
                                 </div>
 
                                 <div class="col-lg-2 d-flex align-items-center">
-                                    <div class="form-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Show/Hide Grafik pada Website">
-                                        status <?= $rspns['tampil_grafik']; ?><br>
-                                        <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>">
+                                    <div class="form-check d-flex align-items-center">
+                                        <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($rspns['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">
+                                        <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
+                                            <?php if ($rspns['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
                                     </div>
                                 </div>
                             </div>

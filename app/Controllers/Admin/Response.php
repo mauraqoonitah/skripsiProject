@@ -57,10 +57,9 @@ class Response extends BaseController
             'responseJawaban' => $this->responseModel->getResponseJawaban($id),
             'responseJawabanLagi' => $this->responseModel->getResponseJawabanLagi($id),
             'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($id),
+            'cekTampilGrafik' => $this->instrumenModel->getInstrumen($id),
         ];
-        // $responseJawaban = $this->responseModel->getResponseJawaban($id);
-        // $countJawaban = $responseJawaban->countAll();
-        // dd($countJawaban);
+
         return view('admin/hasil-survei/response_instrumen', $data);
     }
 
