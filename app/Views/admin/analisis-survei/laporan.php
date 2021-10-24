@@ -28,7 +28,7 @@ use CodeIgniter\I18n\Time;
         <div class="container-fluid">
             <div class="row">
                 <div class="alert alert-primary fw-bold mt-3" role="alert">
-                    <strong class=" fs-6">Kelola Laporan Analisis Instrumen Kepuasan</strong>
+                    <strong class=" fs-6">Kelola Dokumen Hasil Instrumen Kepuasan</strong>
                 </div>
             </div>
             <div class="container col-lg-8">

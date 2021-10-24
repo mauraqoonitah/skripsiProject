@@ -127,7 +127,7 @@
                     <section>
                         <!-- section table 1 -->
                         <div class="table-responsive ">
-                            <table id="table-hasil-instrumen" class="display table-bordered table-hover" style="width:100%">
+                            <table id="table-hasil-instrumen" class="display table-bordered table-hover border border-2" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th rowspan="2"> No.</th>
