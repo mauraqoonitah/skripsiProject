@@ -35,26 +35,34 @@
                 </div>
             <?php endif; ?>
 
-            <div class="col-lg-8 mx-auto">
+            <div class="col-12">
+                <div class="alert alert-primary fw-bold mb-5" role="alert">
+                    Pilih instrumen untuk melihat tanggapan responden</div>
+            </div>
+
+            <div class="container">
                 <div class="list-group center">
-                    <div class="alert alert-primary fw-bold mb-5" role="alert">
-                        Pilih instrumen untuk melihat tanggapan responden</div>
                     <?php foreach ($response as $rspns) : ?>
                         <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $rspns['id']; ?>" method="post" enctype="multipart/form-data">
 
-                            <div class="mb-4">
-                                <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $rspns['id']; ?>" class="pilih-inst">
-                                    <span class="text-rouge fw-bold"><?= $rspns['kodeInstrumen']; ?> <br> <?= $rspns['namaInstrumen']; ?></span>
-                                </a>
-                            </div>
+                            <div class="row">
+                                <div class="col-10">
+                                    <div class="mb-4">
+                                        <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $rspns['id']; ?>" class="pilih-inst">
+                                            <span class="text-rouge fw-bold"><?= $rspns['kodeInstrumen']; ?> <br> <?= $rspns['namaInstrumen']; ?></span>
+                                        </a>
+                                    </div>
 
-                            <div class="col-lg-4">
-                                status tampil <?= $rspns['tampil_grafik']; ?>
+                                </div>
 
-                                <div class="form-check mr-4">
-                                    <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>">
+                                <div class="col-lg-2 d-flex align-items-center">
+                                    <div class="form-check" data-bs-toggle="tooltip" data-bs-placement="top" title="Show/Hide Grafik pada Website">
+                                        status <?= $rspns['tampil_grafik']; ?><br>
+                                        <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>">
+                                    </div>
                                 </div>
                             </div>
+
 
                             <script type="text/javascript">
                                 $('.form-check-show-grafik-<?= $rspns['id']; ?>').on('click', function() {
@@ -84,6 +92,7 @@
                     <?php endforeach; ?>
                 </div>
             </div>
+
         </div>
     </section>
 

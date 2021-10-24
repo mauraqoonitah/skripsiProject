@@ -32,8 +32,7 @@ class Pages extends BaseController
     {
         $data = [
             'title' => 'Instrumen Kepuasan FMIPA UNJ',
-            // 'category' => $this->adminModel->getCategory(),
-            'response' => $this->responseModel->getResponseByInstrumen(),
+            'responseActiveShowGrafik' => $this->responseModel->getResponseActiveShowGrafik(),
 
 
         ];

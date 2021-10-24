@@ -84,16 +84,23 @@
         <div class="row">
             <div class="mx-auto col-6">
                 <img src="<?= base_url(); ?>/img/undraw_Report.svg" class="img-fluid" />
-                <?php if (empty($response)) : ?>
+                <?php if (empty($responseActiveShowGrafik)) : ?>
                     <p class="text-muted text-center my-4 fs-5"> No results found</p>
                 <?php endif; ?>
             </div>
         </div>
 
         <div class="row obyek-menu mt-5">
-            <?php foreach ($response as $rspns) :  ?>
+            <?php foreach ($responseActiveShowGrafik as $showGrafik) :  ?>
                 <div class="obyek-list col-sm shadow-sm">
-                    <a href="<?= base_url(); ?>/grafik_kepuasan/<?= $rspns['id']; ?>" class="list-kategori"> <?= $rspns['namaInstrumen']; ?></a>
+                    <form action="<?= base_url(); ?>/grafik_kepuasan/<?= $showGrafik['id']; ?>" method="post" enctype="multipart/form-data">
+                        <?= csrf_field(); ?>
+                        <button class="btn btn-no-focus" type="submit">
+                            <div class="list-kategori">
+                                <?= $showGrafik['namaInstrumen']; ?>
+                            </div>
+                        </button>
+                    </form>
                 </div>
             <?php endforeach; ?>
 

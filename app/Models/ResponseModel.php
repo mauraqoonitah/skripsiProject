@@ -42,6 +42,14 @@ class ResponseModel extends Model
             ->groupBy('kodeCategory')
             ->findAll();
     }
+    public function getResponseActiveShowGrafik()
+    {
+        return $this
+            ->join('instrumen', 'instrumen.id = response.instrumenID')
+            ->where('instrumen.tampil_grafik', '1')
+            ->groupBy('kodeCategory')
+            ->findAll();
+    }
     public function getResponseButir($id)
     {
         return $this

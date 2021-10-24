@@ -211,7 +211,13 @@
                     </div>
                 </div>
             </div>
-
+            <div class="d-flex justify-content-center my-5">
+                <a href="<?= base_url(); ?>/#instrumen">
+                    <button type="button" class="btn btn-cosmic mr-3">
+                        <i class="fas fa-chevron-left mr-3"></i> Kembali
+                    </button>
+                </a>
+            </div>
         </div>
     </section>
 
