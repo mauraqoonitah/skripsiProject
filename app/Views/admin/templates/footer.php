@@ -122,6 +122,103 @@ $timeNow = Time::now()->toDateTimeString(); ?>
             ]
         });
     });
+
+    $(document).ready(function() {
+        $('#table-hasil-kategori').DataTable({
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Data Kategori Instrumen Kepuasan',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Data Kategori Instrumen Kepuasan',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Daftar Kategori Instrumen',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Data Kategori Instrumen Kepuasan',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Data Kategori Instrumen Kepuasan',
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+    $(document).ready(function() {
+        $('#table-hasil-instrumen').DataTable({
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Data Instrumen Kepuasan',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Data Instrumen Kepuasan',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Daftar Instrumen',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Data Instrumen Kepuasan',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Data Instrumen Kepuasan',
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
     $(document).ready(function() {
         $('#datatable-chart-instrumen').DataTable({
             "pageLength": 25,

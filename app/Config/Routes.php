@@ -66,9 +66,11 @@ $routes->post('/admin/updateKategori_/(:any)', 'Admin\Kategori_::updateKategori_
 $routes->delete('/admin/deleteKategori_/(:any)', 'Admin\Kategori_::deleteKategori_/$1');
 //./ new
 
-// $routes->get('/admin/kelola-survei/kategori', 'Admin\Kategori::kelolaKategori');
+$routes->get('/admin/lihatKategori', 'Admin\Kategori::kelolaKategori');
+$routes->get('/admin/lihatInstrumen', 'Admin\Instrumen::kelolaInstrumen');
 // $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
 // $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
+// $routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
 // $routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
 // $routes->post('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
 
