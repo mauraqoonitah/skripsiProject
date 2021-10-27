@@ -29,7 +29,7 @@
     <section class="content mb-5">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-4 mx-auto">
                     <div class="my-4 ">
                         <img src="<?= base_url(); ?>/img/undraw_Organize.svg" class="img-fluid" />
                     </div>

@@ -206,5 +206,63 @@
     </section>
     <!-- /.content -->
 </div>
+<?php
+
+use CodeIgniter\I18n\Time;
+
+date_default_timezone_set('Asia/Jakarta');
+$timeNow = Time::now()->toDateTimeString(); ?>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table-jenis-responden').DataTable({
+            "paging": false,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Kategori Responden',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Kategori Responden',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Kategori Responden',
+                    messageBottom: 'created on: <?php echo $timeNow; ?>',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Kategori Responden',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>

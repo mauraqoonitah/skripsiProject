@@ -62,10 +62,6 @@
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
 
-<!-- chart js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-
 <?php
 
 use CodeIgniter\I18n\Time;
@@ -75,55 +71,6 @@ $timeNow = Time::now()->toDateTimeString(); ?>
 
 
 <script>
-    $(document).ready(function() {
-        $('#table-jenis-responden').DataTable({
-            "paging": false,
-            dom: 'Bfrtip',
-            buttons: [{
-                    extend: 'copy',
-                    title: 'Kategori Responden',
-                    exportOptions: {
-                        columns: [0, 1, ':visible']
-                    }
-
-                },
-                {
-                    extend: 'excel',
-                    title: 'Kategori Responden',
-                    messageBottom: 'created on: <?php echo $timeNow; ?>',
-                    autoFilter: true,
-                    sheetName: 'Hasil Survei',
-                    download: 'open',
-                    exportOptions: {
-                        columns: [0, 1, ':visible']
-                    }
-                },
-                {
-                    extend: 'pdf',
-                    title: 'Kategori Responden',
-                    messageBottom: 'created on: <?php echo $timeNow; ?>',
-                    orientation: 'potrait',
-                    pageSize: 'A4',
-                    download: 'open',
-                    exportOptions: {
-                        columns: [0, 1, ':visible']
-                    },
-                    footer: true
-
-                },
-                {
-                    extend: 'print',
-                    messageTop: 'Kategori Responden',
-
-                },
-                {
-                    extend: 'colvis',
-                    postfixButtons: ['colvisRestore']
-                },
-
-            ]
-        });
-    });
     $(document).ready(function() {
         $('#table-kelola-survei').DataTable({
             "pageLength": 25,
