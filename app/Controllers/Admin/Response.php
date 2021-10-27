@@ -61,6 +61,7 @@ class Response extends BaseController
             'jumlahTanggapanIns' => $this->responseModel->getJumlahTanggapanIns($id),
             'cekTampilGrafik' => $this->instrumenModel->getInstrumen($id),
         ];
+        // dd($data);
 
         return view('admin/hasil-survei/response_instrumen', $data);
     }

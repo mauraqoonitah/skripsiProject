@@ -67,6 +67,7 @@ class Response extends BaseController
         $instrumenID =  $instrumen['id'];
         $userID = user()->id;
 
+
         $data = [
             'title' => 'Isi Survei',
             'instrumen' => $this->instrumenModel->getInstrumen($id),
@@ -91,6 +92,8 @@ class Response extends BaseController
         $instrumenID =  $this->mRequest->getVar('instrumenID');
         $getInstrumenID =   $this->pernyataanModel->getPernyataanByInstrumenID($instrumenID);
 
+        $uniqueID = random_string('alnum', 16);
+
         foreach ($getInstrumenID as $butir) {
             if ($this->mRequest->getPost("checkbox-jawaban-" . $butir['id']) != Null) {
                 $jawaban = $this->mRequest->getPost('checkbox-jawaban-' . $butir['id']);
@@ -104,8 +107,11 @@ class Response extends BaseController
                         'responden' => $this->mRequest->getVar('responden'),
                         'jawaban' => $jawaban,
                         'userID'  => user()->id,
+                        'uniqueID' => $uniqueID,
+
                         'created_at'  => date('Y-m-d H:i:s'),
                     ];
+
                 $this->responseModel->save($data);
             }
         }
