@@ -63,10 +63,10 @@
                             <!-- Button trigger modal -->
                             <?php if (in_groups('Admin')) : ?>
                                 <?php if (empty($petunjukInstrumenModel)) : ?>
-                                <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
-                                    <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
-                                </button>
-                                
+                                    <button type="button" class="btn btn-info ml-auto" data-bs-toggle="modal" data-bs-target="#modalBuatPetunjuk">
+                                        <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
+                                    </button>
+
                                 <?php endif; ?>
                             <?php endif; ?>
 
@@ -295,57 +295,68 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- form tambah butir -->
-                <form action="<?= base_url(); ?>/admin/savePernyataan/<?= $instrumen['id']; ?>" method="post">
-                    <?= csrf_field(); ?>
+                <div class="container">
+                    <!-- form tambah butir -->
+                    <form action="<?= base_url(); ?>/admin/savePernyataan/<?= $instrumen['id']; ?>" method="post">
+                        <?= csrf_field(); ?>
 
-                    <!-- nama Instrumen -->
-                    <input class="form-control" type="hidden" name="instrumenID" value="<?= $instrumen['id'] ?>" readonly>
+                        <!-- nama Instrumen -->
+                        <input class="form-control" type="hidden" name="instrumenID" value="<?= $instrumen['id'] ?>" readonly>
 
-                    <!-- kode kategori (slug) -->
-                    <input class="form-control" type="hidden" name="kodeCategory" value="<?= $instrumen['kodeCategory'] ?>" readonly>
+                        <!-- kode kategori (slug) -->
+                        <input class="form-control" type="hidden" name="kodeCategory" value="<?= $instrumen['kodeCategory'] ?>" readonly>
 
-                    <!-- nama Instrumen -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="kode-kategori" class="col-sm-2 col-form-label">Instrumen :</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" type="text" name="namaInstrumen" value="<?= $instrumen['namaInstrumen'] ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- responden -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="nama-instrumen" class="col-sm-2 col-form-label">Responden :</label>
-
-                            <div class="col-sm-10">
-                                <input class="form-control" type="text" name="peruntukkanInstrumen" value="<?= $instrumen['peruntukkanInstrumen'] ?>" readonly>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- isi butir -->
-                    <div class="form-group">
-                        <div class="mb-3 row">
-                            <label for="butir" class="col-sm-2 col-form-label">Isi Butir Pernyataan:</label>
-                            <div class="col-sm-10">
-
-                                <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir"></textarea>
-
-                                <div class=" invalid-feedback">
-                                    <?= $validation->getError('butir'); ?>
+                        <!-- nama Instrumen -->
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                                <label for="kode-kategori" class="col-sm-2 col-form-label">Instrumen :</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="namaInstrumen" value="<?= $instrumen['namaInstrumen'] ?>" readonly>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-success">Simpan</button>
-                    </div>
-                </form>
-                <!-- end form tambah butir -->
+
+                        <!-- responden -->
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                                <label for="nama-instrumen" class="col-sm-2 col-form-label">Responden :</label>
+
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="text" name="peruntukkanInstrumen" value="<?= $instrumen['peruntukkanInstrumen'] ?>" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- isi OLD -->
+                        <div class="form-group">
+                            <label for="butir" class="col-form-label">Isi Butir Pernyataan:</label>
+                            <div id="isianButir">
+                                <div class="row">
+                                    <div class="col-10 isianColButir mb-3">
+                                        <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir" placeholder="Isi Butir Pernyataan"></textarea>
+
+                                        <div class=" invalid-feedback">
+                                            <?= $validation->getError('butir'); ?>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 HapusColButir">
+
+                                        <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahBarisButirOld(); return false">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
+                        </div>
+                    </form>
+                    <!-- end form tambah butir -->
+                </div>
             </div>
 
         </div>
@@ -353,6 +364,40 @@
 </div>
 <!-- end modal tambah butir -->
 
+<script type="text/javascript">
+    var z = 1;
 
+    function tambahBarisButirOld() {
+        var group = document.getElementById('isianButir');
+
+        var row = document.createElement('div');
+        var isianColButir = document.createElement('div');
+        var hapusColButir = document.createElement('div');
+        row.setAttribute('class', 'row')
+        isianColButir.setAttribute('class', 'col-10 isianColButir mb-3')
+        hapusColButir.setAttribute('class', 'col-2 hapusColButir')
+
+        group.appendChild(row);
+        row.appendChild(isianColButir);
+        row.appendChild(hapusColButir);
+
+        var butir = document.createElement('textarea');
+        butir.setAttribute('name', 'butir[' + z + ']');
+        butir.setAttribute('class', 'form-control');
+        butir.setAttribute('placeholder', 'Isi Butir Pernyataan selanjutnya');
+
+        var hapus = document.createElement('span');
+
+        isianColButir.appendChild(butir);
+        hapusColButir.appendChild(hapus);
+
+        hapus.innerHTML = '<button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>';
+        hapus.onclick = function() {
+            row.parentNode.removeChild(row);
+        };
+
+        z++;
+    }
+</script>
 
 <?= $this->endSection(); ?>

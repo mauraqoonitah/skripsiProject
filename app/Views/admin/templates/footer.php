@@ -249,16 +249,6 @@ $timeNow = Time::now()->toDateTimeString(); ?>
     })
 </script>
 
-<!-- modal -->
-<script>
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-
-    myModal.addEventListener('shown.bs.modal', function() {
-        myInput.focus()
-    })
-</script>
-
 <!-- popovers -->
 <script>
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
