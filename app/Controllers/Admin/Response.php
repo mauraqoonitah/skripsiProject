@@ -57,6 +57,8 @@ class Response extends BaseController
             'responseJawaban' => $this->responseModel->getResponseJawaban($id),
             'responseJawabanLagi' => $this->responseModel->getResponseJawabanLagi($id),
             'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($id),
+            'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($id),
+            'jumlahTanggapanIns' => $this->responseModel->getJumlahTanggapanIns($id),
             'cekTampilGrafik' => $this->instrumenModel->getInstrumen($id),
         ];
 

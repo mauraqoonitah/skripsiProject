@@ -83,6 +83,15 @@ class ResponseModel extends Model
             ->countAllResults();
         // ->findAll();
     }
+    public function getJumlahTanggapanIns($instrumenID)
+    {
+        return $this
+            ->select('userID')
+            ->where('instrumenID', $instrumenID)
+            ->groupBy('created_at')
+            // ->findAll();
+            ->countAllResults();
+    }
 
     // ---------------- HASIL SURVEI - RESPONDEN --------------------------
     public function getResponseByInstrumenID($id)

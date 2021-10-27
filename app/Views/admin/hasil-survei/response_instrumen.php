@@ -110,7 +110,8 @@
 
                 <div class="container">
                     <div class="row justify-content-center ">
-                        <span class="text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span>
+                        <p class="text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </p>
+                        <p class="text-muted fs-6">Jumlah Tanggapan : <?= $jumlahTanggapanIns; ?> </p>
                     </div>
                 </div>
 
