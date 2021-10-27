@@ -111,7 +111,7 @@
                     <div class="modal fade" id="modalBuatPetunjuk" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header bg-cosmic text-white">
                                     <h5 class="modal-title" id="tambahButirLabel">Buat Petunjuk Instrumen <?= $instrumen['kodeInstrumen']; ?></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -238,7 +238,7 @@
                                     <div class="modal fade" id="modal-delete-butir-<?= $questions['id']; ?>" tabindex="-1" aria-labelledby="hapusButirLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered ">
                                             <div class="modal-content">
-                                                <div class="modal-header">
+                                                <div class="modal-header bg-cosmic text-white">
                                                     <h5 class="modal-title fw-bold" id="hapusButirLabel">Hapus Butir Pernyataan</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
@@ -290,7 +290,7 @@
 <div class="modal fade" id="tambahButirModal" tabindex="-1" aria-labelledby="tambahButirLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-cosmic text-white">
                 <h5 class="modal-title" id="tambahButirLabel">Tambah Butir Pernyataan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -309,8 +309,8 @@
                         <!-- nama Instrumen -->
                         <div class="form-group">
                             <div class="mb-3 row">
-                                <label for="kode-kategori" class="col-sm-2 col-form-label">Instrumen :</label>
-                                <div class="col-sm-10">
+                                <label for="kode-kategori" class="col-form-label">Instrumen :</label>
+                                <div class="container">
                                     <input class="form-control" type="text" name="namaInstrumen" value="<?= $instrumen['namaInstrumen'] ?>" readonly>
                                 </div>
                             </div>
@@ -319,9 +319,8 @@
                         <!-- responden -->
                         <div class="form-group">
                             <div class="mb-3 row">
-                                <label for="nama-instrumen" class="col-sm-2 col-form-label">Responden :</label>
-
-                                <div class="col-sm-10">
+                                <label for="nama-instrumen" class="col-form-label">Responden :</label>
+                                <div class="container">
                                     <input class="form-control" type="text" name="peruntukkanInstrumen" value="<?= $instrumen['peruntukkanInstrumen'] ?>" readonly>
                                 </div>
                             </div>
@@ -333,15 +332,14 @@
                             <div id="isianButir">
                                 <div class="row">
                                     <div class="col-10 isianColButir mb-3">
-                                        <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir" placeholder="Isi Butir Pernyataan"></textarea>
+                                        <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir[]" placeholder="Isi Butir Pernyataan"></textarea>
 
                                         <div class=" invalid-feedback">
                                             <?= $validation->getError('butir'); ?>
                                         </div>
                                     </div>
-                                    <div class="col-2 HapusColButir">
-
-                                        <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahBarisButirOld(); return false">
+                                    <div class="col-2 HapusColButir d-flex align-items-center">
+                                        <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahBarisButir(); return false">
                                             <i class="fas fa-plus"></i>
                                         </button>
 
@@ -367,7 +365,7 @@
 <script type="text/javascript">
     var z = 1;
 
-    function tambahBarisButirOld() {
+    function tambahBarisButir() {
         var group = document.getElementById('isianButir');
 
         var row = document.createElement('div');
@@ -375,7 +373,7 @@
         var hapusColButir = document.createElement('div');
         row.setAttribute('class', 'row')
         isianColButir.setAttribute('class', 'col-10 isianColButir mb-3')
-        hapusColButir.setAttribute('class', 'col-2 hapusColButir')
+        hapusColButir.setAttribute('class', 'col-2 HapusColButir d-flex align-items-center')
 
         group.appendChild(row);
         row.appendChild(isianColButir);

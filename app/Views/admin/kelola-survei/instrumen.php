@@ -87,7 +87,7 @@
                                 <div class="modal fade" id="modal-delete-instrumen-<?= $insCtg['id']; ?>" tabindex="-1" aria-labelledby="hapusInstrumenLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered ">
                                         <div class="modal-content">
-                                            <div class="modal-header">
+                                            <div class="modal-header bg-cosmic text-white">
                                                 <small class="text-muted" id="hapusInstrumenLabel"><?= $insCtg['namaInstrumen']; ?></small>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>

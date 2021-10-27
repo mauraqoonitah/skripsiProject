@@ -82,7 +82,7 @@ use CodeIgniter\I18n\Time;
                                                     <div class="modal fade" id="modal-delete-respoden-<?= $rpd['id']; ?>" tabindex="-1" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered ">
                                                             <div class="modal-content">
-                                                                <div class="modal-header">
+                                                                <div class="modal-header bg-cosmic text-white">
                                                                     <h5 class="modal-title fw-bold">Hapus Responden</h5>
                                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>

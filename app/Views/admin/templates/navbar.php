@@ -27,7 +27,7 @@
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-cosmic text-white">
                 <h5 class="mx-auto"> Keluar dari Halaman Admin?</h5>
             </div>
 

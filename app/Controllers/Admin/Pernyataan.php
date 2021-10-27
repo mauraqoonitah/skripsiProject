@@ -126,16 +126,20 @@ class Pernyataan extends BaseController
             return redirect()->to('admin/kelola-survei/butir/' . $id)->withInput();
         }
 
-        $data = [
-            'slug' => $slug,
-            'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-            'instrumenID' => $this->mRequest->getVar('instrumenID'),
-            'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
-            'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen'),
-            'butir' => $this->mRequest->getVar('butir'),
+        $isian_butir = $this->mRequest->getVar('butir[]');
+        foreach ($isian_butir as $cols_isian_butir) {
+            $data =
+                [
+                    'slug' => $slug,
+                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                    'instrumenID' => $this->mRequest->getVar('instrumenID'),
+                    'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                    'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen'),
+                    'butir' => $cols_isian_butir,
 
-        ];
-        $this->pernyataanModel->save($data);
+                ];
+            $this->pernyataanModel->save($data);
+        }
 
         session()->setFlashdata('message', 'Data Butir Pernyataan berhasil ditambahkan!');
         return redirect()->to('/admin/kelola-survei/butir/' . $id);
