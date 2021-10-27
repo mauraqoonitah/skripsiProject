@@ -36,7 +36,7 @@ class LaporanModel extends Model
     {
         if ($id == false) {
             return $this
-                ->where('instrumenID', null)
+                ->where('instrumenID', '0')
                 ->findAll();
         }
         return $this

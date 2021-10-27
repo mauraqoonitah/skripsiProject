@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2021 at 05:14 PM
+-- Generation Time: Oct 27, 2021 at 11:09 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -186,7 +186,8 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (260, '::1', 'sayaadmin@gmail.com', 29, '2021-10-16 20:26:55', 1),
 (261, '::1', 'vivirofiah_1313617001@mhs.unj.ac.id', 49, '2021-10-16 21:08:00', 1),
 (262, '::1', 'sayaadmin@gmail.com', 29, '2021-10-16 21:42:51', 1),
-(263, '::1', 'sayaadmin@gmail.com', 29, '2021-10-17 20:26:14', 1);
+(263, '::1', 'sayaadmin@gmail.com', 29, '2021-10-17 20:26:14', 1),
+(264, '::1', 'sayaadmin@gmail.com', 29, '2021-10-27 15:25:05', 1);
 
 -- --------------------------------------------------------
 
@@ -297,6 +298,7 @@ CREATE TABLE `instrumen` (
   `namaInstrumen` varchar(255) NOT NULL,
   `peruntukkanInstrumen` varchar(128) NOT NULL,
   `slug` varchar(11) NOT NULL,
+  `tampil_grafik` int(11) NOT NULL DEFAULT 0,
   `date_created` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -304,16 +306,17 @@ CREATE TABLE `instrumen` (
 -- Dumping data for table `instrumen`
 --
 
-INSERT INTO `instrumen` (`id`, `kodeCategory`, `kodeInstrumen`, `namaInstrumen`, `peruntukkanInstrumen`, `slug`, `date_created`) VALUES
-(89, 'C.1', 'C.1.1', 'Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ oleh Dosen', 'Dosen', 'c1', NULL),
-(90, 'C.1', 'C.1.2', 'Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ ubah Mahasiswa', 'Mahasiswa', 'c1', NULL),
-(91, 'C.2', 'C.2.1', 'Instrumen Kepuasan atas Layanan Manajemen UNJ', 'Alumni/Lulusan', 'c2', NULL),
-(93, 'C.1', 'C.1.3', 'Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ oleh Tenaga Pendidik', 'Tenaga Pendidik', 'c1', NULL),
-(94, 'C.2', 'C.2.2', 'Tata Kelola, Tata Pamong, dan Kerjasama oleh Dosen', 'Dosen', 'c2', NULL),
-(95, 'C.2', 'C.2.3', 'Tata Kelola, Tata Pamong, dan Kerjasama oleh Mahasiswa', 'Mahasiswa', 'c2', NULL),
-(96, 'C.7', 'C.7.1', 'Instrumen Atas Penelitian UNJ oleh Peneliti', 'Peneliti', 'c7', NULL),
-(97, 'C.9', 'C.9.1', 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'Pengguna Lulusan', 'c9', NULL),
-(98, 'C.4', 'C.4.2', 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Pendidik', 'Tenaga Pendidik', 'c4', NULL);
+INSERT INTO `instrumen` (`id`, `kodeCategory`, `kodeInstrumen`, `namaInstrumen`, `peruntukkanInstrumen`, `slug`, `tampil_grafik`, `date_created`) VALUES
+(89, 'C.1', 'C.1.1', 'Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ oleh Dosen', 'Dosen', 'c1', 1, NULL),
+(90, 'C.1', 'C.1.2', 'Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ ubah Mahasiswa', 'Mahasiswa', 'c1', 0, NULL),
+(91, 'C.2', 'C.2.1', 'Instrumen Kepuasan atas Layanan Manajemen UNJ', 'Alumni/Lulusan', 'c2', 0, NULL),
+(93, 'C.1', 'C.1.3', 'Instrumen Tingkat Pemahaman VMTS (Visi Misi) UNJ oleh Tenaga Pendidik', 'Tenaga Pendidik', 'c1', 0, NULL),
+(94, 'C.2', 'C.2.2', 'Tata Kelola, Tata Pamong, dan Kerjasama oleh Dosen', 'Dosen', 'c2', 0, NULL),
+(95, 'C.2', 'C.2.3', 'Tata Kelola, Tata Pamong, dan Kerjasama oleh Mahasiswa', 'Mahasiswa', 'c2', 0, NULL),
+(96, 'C.7', 'C.7.1', 'Instrumen Atas Penelitian UNJ oleh Peneliti', 'Peneliti', 'c7', 0, NULL),
+(97, 'C.9', 'C.9.1', 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'Pengguna Lulusan', 'c9', 0, NULL),
+(98, 'C.4', 'C.4.2', 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Pendidik', 'Tenaga Pendidik', 'c4', 0, NULL),
+(99, 'C.2', 'C.4.4', 'Tata Kelola, Tata Pamong, dan Kerjasama oleh Mitra', 'Mitra', 'c2', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -339,6 +342,29 @@ INSERT INTO `jenis_responden` (`id`, `responden`) VALUES
 (8, 'Pengabdi'),
 (5, 'Pengguna Lulusan'),
 (2, 'Tenaga Pendidik');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `laporan`
+--
+
+CREATE TABLE `laporan` (
+  `id` int(11) NOT NULL,
+  `laporanInstrumen` varchar(255) NOT NULL,
+  `instrumenID` int(100) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`id`, `laporanInstrumen`, `instrumenID`, `created_at`, `updated_at`) VALUES
+(1, 'TOR Pelatihan UI UX - KKL ILKOM 2021.docx', 0, '2021-10-27 15:59:59', '2021-10-27 15:59:59'),
+(2, 'MoU FORMAT APP PEDE.docx', 90, '2021-10-27 16:04:20', '2021-10-27 16:04:20'),
+(3, 'MOU PELANGI.doc', 0, '2021-10-27 16:07:14', '2021-10-27 16:07:14');
 
 -- --------------------------------------------------------
 
@@ -442,7 +468,10 @@ INSERT INTO `questions` (`id`, `butir`, `kodeCategory`, `instrumenID`, `namaInst
 (64, 'Tanggung jawab (penyelesaian tugas tepat waktu, hasil pekerjaan berkualitas baik)', 'C.9', 97, 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'c9', NULL, NULL),
 (65, 'UNJ memiliki dan menjalankan sistem seleksi, rekrutmen, orientasi, dan penempatan serta pengembangan tenaga kependidikan secara meritokrasi.', 'C.4', 98, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Pendidik', 'c4', NULL, NULL),
 (66, 'Ada pemberitahuan atau pengumuman tentang permintaan tenaga kependidikan yang baru.', 'C.4', 98, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Pendidik', 'c4', NULL, NULL),
-(67, 'Perencanaan kebutuhan tenaga kependidikan jangka panjang diinformasikan secara terbuka.', 'C.4', 98, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Pendidik', 'c4', NULL, NULL);
+(67, 'Perencanaan kebutuhan tenaga kependidikan jangka panjang diinformasikan secara terbuka.', 'C.4', 98, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Pendidik', 'c4', NULL, NULL),
+(68, 'isi 1', 'C.9', 97, 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'c9', NULL, NULL),
+(69, 'isi 2', 'C.9', 97, 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'c9', NULL, NULL),
+(70, 'isi 3', 'C.9', 97, 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'c9', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -703,6 +732,12 @@ ALTER TABLE `jenis_responden`
   ADD KEY `responden` (`responden`);
 
 --
+-- Indexes for table `laporan`
+--
+ALTER TABLE `laporan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -780,7 +815,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=264;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=265;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -810,13 +845,19 @@ ALTER TABLE `category_instrumen`
 -- AUTO_INCREMENT for table `instrumen`
 --
 ALTER TABLE `instrumen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT for table `jenis_responden`
 --
 ALTER TABLE `jenis_responden`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `laporan`
+--
+ALTER TABLE `laporan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -834,7 +875,7 @@ ALTER TABLE `petunjuk_instrumen`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `responden`

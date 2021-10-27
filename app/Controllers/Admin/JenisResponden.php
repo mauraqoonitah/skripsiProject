@@ -10,6 +10,8 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
+use Myth\Auth\Models\AuthGroupsModel;
+
 
 class JenisResponden extends BaseController
 {
@@ -19,6 +21,8 @@ class JenisResponden extends BaseController
     protected $jenisRespondenModel;
     protected $responseModel;
     protected $respondenModel;
+    protected $authGroupsModel;
+
     protected $mRequest;
 
 
@@ -30,6 +34,8 @@ class JenisResponden extends BaseController
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
+        $this->authGroupsModel = new AuthGroupsModel();
+
         $this->mRequest = service("request");
     }
 
@@ -68,6 +74,14 @@ class JenisResponden extends BaseController
                 'responden' => $this->mRequest->getVar('responden'),
             ];
         $this->jenisRespondenModel->save($data);
+
+        $data2 =
+            [
+                'name' => $this->mRequest->getVar('responden'),
+            ];
+        $this->authGroupsModel->save($data2);
+
+
 
         session()->setFlashdata('message', 'Data berhasil ditambahkan');
 

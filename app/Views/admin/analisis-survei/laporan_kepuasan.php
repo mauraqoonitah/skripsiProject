@@ -152,6 +152,9 @@ use CodeIgniter\I18n\Time;
                                                 <label class="form-label fs-6">Dokumen Laporan Analisis Instrumen <?= $kodeInstrumen; ?></label>
 
                                                 <ul class="list-unstyled">
+                                                    <?php if (empty($getLaporanInstrumen)) :  ?>
+                                                        <span class="text-rouge"> <i>Dokumen belum dibuat.</span></i>
+                                                    <?php endif; ?>
                                                     <?php foreach ($getLaporanInstrumen as $laporanIns) :  ?>
                                                         <li>
                                                             <div class="row mt-3">
