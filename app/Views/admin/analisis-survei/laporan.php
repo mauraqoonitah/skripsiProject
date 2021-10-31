@@ -73,6 +73,9 @@ use CodeIgniter\I18n\Time;
                                 <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                                     <div class="container py-4">
                                         <ul class="list-unstyled">
+                                            <?php if (empty($getLaporanAnalisis)) :  ?>
+                                                <span class="text-rouge"><i>Dokumen belum ditambahkan.</i></span>
+                                            <?php endif; ?>
 
                                             <?php foreach ($getLaporanAnalisis as $laporanAnls) :  ?>
                                                 <li>

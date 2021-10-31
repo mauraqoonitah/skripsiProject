@@ -13,7 +13,6 @@ use CodeIgniter\I18n\Time;
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="fw-bold">Hasil Survei Kepuasan <br>(Responden)</h1>
-                    <span>(bugs) saat user mengisi lebih dari 1x pada instrumen yg sama</span>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -95,10 +94,11 @@ use CodeIgniter\I18n\Time;
             <div class="accordion accordion-flush mx-auto">
                 <?php foreach ($responseInsId as $rIns) : ?>
                     <?php $instrumenID =  $rIns['instrumenID'];  ?>
+                    <?php $responseID =  $rIns['responseID'];  ?>
                     <div class="accordion-item mb-5">
                         <!-- header collapse - kategori  -->
-                        <h5 class="accordion-header" id="accord-<?= $rIns['instrumenID']; ?>">
-                            <div class="accordion-button rounded d-flex align-items-center col-lg-12 " id="accordionResponse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $rIns['instrumenID']; ?>" aria-expanded="true" aria-controls="collapse-<?= $rIns['instrumenID']; ?>">
+                        <h5 class="accordion-header" id="accord-<?= $rIns['responseID']; ?>">
+                            <div class="accordion-button rounded d-flex align-items-center col-lg-12 " id="accordionResponse" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-<?= $rIns['responseID']; ?>" aria-expanded="true" aria-controls="collapse-<?= $rIns['responseID']; ?>">
                                 <span class="fw-bold fs-6"><?= $rIns['kodeInstrumen']; ?> - <?= $rIns['namaInstrumen']; ?></span>
                             </div>
                         </h5>
@@ -113,12 +113,12 @@ use CodeIgniter\I18n\Time;
                         </div>
 
                         <!-- content collapse - kategori  -->
-                        <div id="collapse-<?= $rIns['instrumenID']; ?>" class=" accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['instrumenID']; ?>">
+                        <div id="collapse-<?= $rIns['responseID']; ?>" class=" accordion-collapse collapse " aria-labelledby="accord-<?= $rIns['responseID']; ?>">
                             <div class="accordion-body">
                                 <section class="content">
                                     <div class="container-fluid">
                                         <section>
-                                            <table id="tableResponden-<?= $instrumenID ?>" class="display table-bordered table-hover" style="width:100%">
+                                            <table id="tableResponden-<?= $responseID; ?>" class="display table-bordered table-hover" style="width:100%">
                                                 <thead class="bg-thead">
                                                     <tr>
                                                         <th class="text-center p-0 fw-bold">No.</th>
@@ -132,6 +132,7 @@ use CodeIgniter\I18n\Time;
                                                     <?php
                                                     $i = 1;
                                                     $insID = $rIns['instrumenID'];
+                                                    $uniqueID = $rIns['uniqueID'];
                                                     $db = db_connect();
                                                     $pernyataanModel = model('PernyataanModel');
                                                     $this->pernyataanModel = new $pernyataanModel;
@@ -153,7 +154,7 @@ use CodeIgniter\I18n\Time;
                                                             // get jawaban by questionID
                                                             $responseModel = model('ResponseModel');
                                                             $this->responseModel = new $responseModel;
-                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID);
+                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID);
                                                             ?>
                                                             <td class="text-center p-0 ">
                                                                 <?php foreach ($sqlResponse as $response) : ?>
@@ -188,12 +189,12 @@ use CodeIgniter\I18n\Time;
                                             $timeNow = Time::now()->toDateTimeString(); ?>
                                             <script>
                                                 $(document).ready(function() {
-                                                    $('#tableResponden-<?= $instrumenID; ?>').DataTable({
+                                                    $('#tableResponden-<?= $responseID; ?>').DataTable({
                                                         "pageLength": 25,
                                                         dom: 'Bfrtip',
                                                         buttons: [{
                                                                 extend: 'copy',
-                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
                                                                 exportOptions: {
                                                                     columns: [0, 1, ':visible']
                                                                 }
@@ -202,7 +203,7 @@ use CodeIgniter\I18n\Time;
                                                             {
                                                                 extend: 'excel',
                                                                 title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?>',
-                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
                                                                 autoFilter: true,
                                                                 sheetName: 'Hasil Survei',
                                                                 download: 'open',
@@ -213,10 +214,10 @@ use CodeIgniter\I18n\Time;
                                                             {
                                                                 extend: 'pdf',
                                                                 title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?>',
-                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
                                                                 orientation: 'potrait',
                                                                 pageSize: 'A4',
-                                                                download: 'open',
+                                                                // download: 'open',
                                                                 exportOptions: {
                                                                     columns: [0, 1, ':visible']
                                                                 },
@@ -225,7 +226,7 @@ use CodeIgniter\I18n\Time;
                                                             },
                                                             {
                                                                 extend: 'print',
-                                                                messageTop: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (downloaded on: <?php echo $timeNow; ?>)',
+                                                                messageTop: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
 
                                                             },
                                                             {

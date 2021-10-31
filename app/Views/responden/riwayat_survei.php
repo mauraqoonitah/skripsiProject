@@ -6,11 +6,11 @@
 use CodeIgniter\I18n\Time;
 ?>
 
-<div class="content-wrapper py-5" style="min-height: 80vh;">
+<div class="content-wrapper py-2" style="min-height: 80vh;">
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
-            <div class="row mb-2 mt-4 mb-5">
+            <div class="row mb-5">
                 <div class="col-lg-12 mx-auto text-center">
                     <h1 class="purple-text"> Riwayat Pengisian Survei
                     </h1>
@@ -73,6 +73,7 @@ use CodeIgniter\I18n\Time;
                                                 <section>
                                                     <div class="col-lg-12 mx-auto">
                                                         <p class="fw-bold mb-4">Terima kasih telah mengisi survei kepuasan. Inilah yang kami dapatkan dari Anda:<br></p>
+                                                        <?php $uniqueID = $rIns['uniqueID']; ?>
 
 
                                                         <?php foreach ($getPetunjukIns as $petunjuk) : ?>
@@ -122,7 +123,7 @@ use CodeIgniter\I18n\Time;
                                                                         // get jawaban by questionID
                                                                         $responseModel = model('ResponseModel');
                                                                         $this->responseModel = new $responseModel;
-                                                                        $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID); ?>
+                                                                        $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID); ?>
                                                                         <td class="text-center">
                                                                             <?php foreach ($sqlResponse as $response) : ?>
                                                                                 <?= $jwb =  $response['jawaban']; ?>

@@ -100,7 +100,7 @@ class ResponseModel extends Model
             ->select('*, response.id as responseID, response.instrumenID as insID')
             ->join('questions', 'questions.instrumenID = response.instrumenID')
             ->where('response.userID', $id)
-            ->groupBy('response.created_at')
+            ->groupBy('response.uniqueID')
             ->orderBy('response.id', 'desc')
             ->findAll();
     }
@@ -133,12 +133,13 @@ class ResponseModel extends Model
     }
 
 
-    public function getResponseByQuestID($id, $questionID)
+    public function getResponseByQuestID($id, $questionID, $uniqueID)
     {
         return $this
             ->join('questions', 'questions.instrumenID = response.instrumenID')
             ->where('response.userID', $id)
             ->where('response.questionID', $questionID)
+            ->where('response.uniqueID', $uniqueID)
             ->groupBy('response.jawaban')
             ->findAll();
     }

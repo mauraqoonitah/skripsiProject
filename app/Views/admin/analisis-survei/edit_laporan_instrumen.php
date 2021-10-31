@@ -67,7 +67,7 @@ use CodeIgniter\I18n\Time;
 
 
                                 <div class="row">
-                                    <label for="staticEmail" class="col-sm-2 col-form-label">Lama</label>
+                                    <label for="staticEmail" class="col-sm-2 col-form-label">Dokumen Lama</label>
                                     <div class="col-sm-10">
                                         <ul class="list-unstyled">
                                             <li>
@@ -99,7 +99,7 @@ use CodeIgniter\I18n\Time;
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-2 col-form-label">Baru</label>
+                                    <label for="inputPassword" class="col-sm-2 col-form-label">Dokumen Baru</label>
                                     <div class="col-sm-10">
                                         <form action="<?= base_url(); ?>/admin/updateLaporanInstrumen/<?= $laporanIns['laporanID']; ?>" method="post" enctype="multipart/form-data">
 
