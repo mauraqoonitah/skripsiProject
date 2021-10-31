@@ -200,7 +200,7 @@ $timeNow = Time::now()->toDateTimeString(); ?>
                     messageBottom: 'created on: <?php echo $timeNow; ?>',
                     orientation: 'potrait',
                     pageSize: 'A4',
-                    download: 'open',
+                    // download: 'open',
                     exportOptions: {
                         columns: [0, 1, ':visible']
                     },

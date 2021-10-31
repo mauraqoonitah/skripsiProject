@@ -29,6 +29,14 @@ class PernyataanModel extends Model
             ->where('instrumenID', $id)
             ->findAll();
     }
+    public function jumlahPernyataanByInstrumenID($id)
+    {
+        return $this
+            ->select('butir')
+            ->where('instrumenID', $id)
+            // ->findAll();
+            ->countAllResults();
+    }
     public function getButirByInstrumenID($instrumenID)
     {
         return $this

@@ -287,6 +287,7 @@
                                                                             <th scope="col" class="align-middle">No.</th>
                                                                             <th scope="col" class="align-middle text-center">Kode Instrumen</th>
                                                                             <th scope="col" class="align-middle">Nama Instrumen</th>
+                                                                            <th scope="col" class="align-middle text-center">Butir Pernyataan</th>
                                                                             <th scope="col" class="align-middle">Responden</th>
                                                                             <?php if (in_groups('Admin')) : ?>
                                                                                 <th scope="col" class="align-middle text-center">Aksi</th>
@@ -314,6 +315,15 @@
                                                                                 <td class="align-middle text-center"><?= $row['kodeInstrumen']; ?></td>
                                                                                 <td>
                                                                                     <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?php if (in_groups('Kontributor')) : ?>Lihat Butir Pernyataan <?php else : ?>Kelola Butir Pernyataan<?php endif; ?>"> <?= $row['namaInstrumen']; ?> </a>
+                                                                                </td>
+                                                                                <td class="text-center">
+                                                                                    <?php
+                                                                                    $insID = $row['id'];
+                                                                                    $pernyataanModel = model('PernyataanModel');
+                                                                                    $this->pernyataanModel = new $pernyataanModel;
+                                                                                    $jumlahButir =  $this->pernyataanModel->jumlahPernyataanByInstrumenID($insID);
+                                                                                    ?>
+                                                                                    <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $row['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="<?php if (in_groups('Kontributor')) : ?>Lihat Butir Pernyataan <?php else : ?>Kelola Butir Pernyataan<?php endif; ?>"> <?= $jumlahButir; ?></a>
                                                                                 </td>
                                                                                 <td><?= $row['peruntukkanInstrumen']; ?></td>
                                                                                 <?php if (in_groups('Admin')) : ?>

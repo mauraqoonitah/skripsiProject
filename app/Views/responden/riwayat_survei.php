@@ -103,7 +103,6 @@ use CodeIgniter\I18n\Time;
                                                                 <?php
                                                                 $i = 1;
                                                                 $insID = $rIns['instrumenID'];
-                                                                $db = db_connect();
                                                                 $pernyataanModel = model('PernyataanModel');
                                                                 $this->pernyataanModel = new $pernyataanModel;
                                                                 $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);

@@ -35,8 +35,9 @@
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Kode<br>Instrumen</th>
+                                    <th class="text-center">Kode<br>Instrumen</th>
                                     <th>Nama Instrumen</th>
+                                    <th class="text-center">Butir Pernyataan</th>
                                     <th>Responden</th>
                                 </tr>
                             </thead>
@@ -47,9 +48,18 @@
                                         <td class="text-center"><?= $i++; ?></td>
                                         <td class="text-center"><?= $ins['kodeInstrumen']; ?></td>
                                         <td>
-                                            <?= $ins['namaInstrumen']; ?>
+                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $ins['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Butir Pernyataan"> <?= $ins['namaInstrumen']; ?></a>
                                         </td>
+                                        <td class="text-center">
+                                            <?php
+                                            $insID = $ins['id'];
+                                            $pernyataanModel = model('PernyataanModel');
+                                            $this->pernyataanModel = new $pernyataanModel;
+                                            $jumlahButir =  $this->pernyataanModel->jumlahPernyataanByInstrumenID($insID);
+                                            ?>
+                                            <a id="a-hov" href="<?php echo base_url('/admin/kelola-survei/butir/' . $ins['id']) ?>" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Lihat Butir Pernyataan"> <?= $jumlahButir; ?></a>
 
+                                        </td>
                                         <td> <?= $ins['peruntukkanInstrumen']; ?> </td>
                                     </tr>
 
