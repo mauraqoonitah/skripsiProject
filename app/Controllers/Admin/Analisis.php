@@ -95,11 +95,11 @@ class Analisis extends BaseController
         // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
-                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xslsx,ppt,pptx]',
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
                 'errors' => [
                     'uploaded' => 'Pilih file terlebih dahulu',
-                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xsl/.xslx file',
-                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xsl/.xslx',
+                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xls/.xlsx file',
+                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xls/.xlsx',
                 ]
             ]
 
@@ -134,11 +134,11 @@ class Analisis extends BaseController
         // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
-                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xslsx,ppt,pptx]',
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
                 'errors' => [
                     'uploaded' => 'Pilih file terlebih dahulu',
-                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xsl/.xslx file',
-                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xsl/.xslx',
+                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xls/.xlsx file',
+                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xls/.xlsx',
                 ]
             ]
 
@@ -186,11 +186,11 @@ class Analisis extends BaseController
         // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
-                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xslsx,ppt,pptx]',
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
                 'errors' => [
                     'uploaded' => 'Pilih file terlebih dahulu',
-                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xsl/.xslx file',
-                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xsl/.xslx',
+                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xls/.xlsx file',
+                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xls/.xlsx',
                 ]
             ]
 
@@ -234,11 +234,11 @@ class Analisis extends BaseController
         // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
-                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xslsx,ppt,pptx]',
+                'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
                 'errors' => [
                     'uploaded' => 'Pilih file terlebih dahulu',
-                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xsl/.xslx file',
-                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xsl/.xslx',
+                    'mime_in' => 'File bukan format .doc/.docx/.pdf/.xls/.xlsx file',
+                    'ext_in' => 'File extensions bukan format .doc/.docx/.pdf/.xls/.xlsx',
                 ]
             ]
 
