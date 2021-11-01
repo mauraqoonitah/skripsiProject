@@ -48,19 +48,7 @@ class Instrumen_ extends BaseController
 
         return view('admin/kelola-survei/instrumen_', $data);
     }
-    // public function lihatInstrumen_($slug)
-    // {
-    //     $data = [
-    //         'title' => 'Kelola Instrumen',
-    //         'instrumen' => $this->instrumenModel->getInstrumen($slug),
-    //         'instrumenByCtg' => $this->instrumenModel->getInstrumenByCtg($slug),
-    //         'category' => $this->adminModel->getCategory($slug),
 
-    //         'validation' => \Config\Services::validation()
-    //     ];
-
-    //     return view('admin/kelola-survei/instrumen_', $data);
-    // }
 
     public function editInstrumen_($id)
     {
@@ -78,7 +66,44 @@ class Instrumen_ extends BaseController
 
     public function updateInstrumen_($id)
     {
+        $oldKodeIns = $this->instrumenModel->getInstrumen($id);
 
+        // check kode instrumen
+        if ($oldKodeIns['kodeInstrumen'] == $this->mRequest->getVar('kodeInstrumen')) {
+            $rule_kodeIns = 'required';
+        } else {
+            $rule_kodeIns = 'required|is_unique[instrumen.kodeInstrumen]';
+        }
+
+        //check peruntukkan instrumen
+        // if ($oldKodeIns['peruntukkanInstrumen'] == $this->mRequest->getVar('peruntukkanInstrumen')) {
+        //     $rule_peruntukkanIns = 'required';
+        // } else {
+        //     $rule_peruntukkanIns = 'required|is_unique[instrumen.peruntukkanInstrumen]';
+        // }
+
+        // validasi input
+        if (!$this->validate([
+            'kodeInstrumen' => [
+                'rules'  => $rule_kodeIns,
+                'errors' => [
+                    'required' => 'Kode Instrumen harus diisi.',
+                    'is_unique' => 'Kode Instrumen sudah terdaftar.'
+                ]
+            ],
+            // 'peruntukkanInstrumen' => [
+            //     'rules'  => $rule_peruntukkanIns,
+            //     'errors' => [
+            //         'required' => 'Peruntukkan Instrumen harus diisi.',
+            //         'is_unique' => 'Peruntukkan Instrumen sudah terdaftar.'
+            //     ]
+            // ],
+
+        ])) {
+            session()->setFlashdata('messageError', 'Gagal menyimpan.');
+
+            return redirect()->to('/admin/editInstrumen_/' . $id)->withInput();
+        }
         $this->instrumenModel->save(
             [
                 'id' => $id,

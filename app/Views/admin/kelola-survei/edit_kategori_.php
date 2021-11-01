@@ -82,8 +82,16 @@
                                 </span>
                             </div>
                             <div class="collapse" id="popover-kode-kategori">
-                                <p class="font-monospace text-secondary">
-                                    test popover - Masukkan kode kategori
+                                <p class="text-secondary">
+                                    <b>Kategori yang terdaftar :</b>
+                                <ul>
+                                    <?php foreach ($allCategory as $ctg) :  ?>
+                                        <li class="text-secondary">
+                                            <?= $ctg['kodeCategory'] . ' (' .  $ctg['namaCategory'] . ')'; ?>
+                                        </li>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </ul>
                                 </p>
                             </div>
                             <!-- end popover -->
