@@ -12,7 +12,7 @@ use CodeIgniter\I18n\Time;
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Hasil Survei Kepuasan <br>(Responden)</h1>
+                    <h1 class="fw-bold">Hasil Survei Kepuasan - Responden</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -158,24 +158,34 @@ use CodeIgniter\I18n\Time;
                                                             ?>
                                                             <td class="text-center p-0 ">
                                                                 <?php foreach ($sqlResponse as $response) : ?>
-                                                                    <?= $jwb = $response['jawaban']; ?>
+                                                                    <?php $jwb = $response['jawaban']; ?>
+                                                                    <?php if (empty($jwb)) : ?>
+                                                                        <span class="text-muted"><i>null</i></span>
+                                                                    <?php else : ?>
+                                                                        <?= $jwb; ?>
+
+                                                                    <?php endif; ?>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <td>
-                                                                <?php if ($jwb === '5') : ?>
-                                                                    Sangat Puas
-                                                                <?php endif; ?>
-                                                                <?php if ($jwb === '4') : ?>
-                                                                    Puas
-                                                                <?php endif; ?>
-                                                                <?php if ($jwb === '3') : ?>
-                                                                    Cukup Puas
-                                                                <?php endif; ?>
-                                                                <?php if ($jwb === '2') : ?>
-                                                                    Tidak Puas
-                                                                <?php endif; ?>
-                                                                <?php if ($jwb === '1') : ?>
-                                                                    Sangat Tidak Puas
+                                                                <?php if (empty($jwb)) : ?>
+                                                                    <span class="text-muted"><i>null</i></span>
+                                                                <?php else : ?>
+                                                                    <?php if ($jwb === '5') : ?>
+                                                                        Sangat Puas
+                                                                    <?php endif; ?>
+                                                                    <?php if ($jwb === '4') : ?>
+                                                                        Puas
+                                                                    <?php endif; ?>
+                                                                    <?php if ($jwb === '3') : ?>
+                                                                        Cukup Puas
+                                                                    <?php endif; ?>
+                                                                    <?php if ($jwb === '2') : ?>
+                                                                        Tidak Puas
+                                                                    <?php endif; ?>
+                                                                    <?php if ($jwb === '1') : ?>
+                                                                        Sangat Tidak Puas
+                                                                    <?php endif; ?>
                                                                 <?php endif; ?>
                                                             </td>
                                                         </tr>

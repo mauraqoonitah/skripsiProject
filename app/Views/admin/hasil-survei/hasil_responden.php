@@ -11,7 +11,7 @@ use CodeIgniter\I18n\Time;
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="fw-bold">Hasil Survei Kepuasan <br>(Responden)</h1>
+                    <h1 class="fw-bold">Hasil Survei Kepuasan - Responden</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

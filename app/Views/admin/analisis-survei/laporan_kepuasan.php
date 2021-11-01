@@ -140,7 +140,12 @@ use CodeIgniter\I18n\Time;
                                                 <?= csrf_field(); ?>
                                                 <div class="container py-4">
                                                     <label for="formFileLg" class="form-label fs-6">Info Hasil Survei Kepuasan pada Instrumen <?= $kodeInstrumen; ?></label>
-                                                    <p class="text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </p>
+                                                    <ul class="todo-list" data-widget="todo-list">
+                                                        <li>
+                                                            <span class="text">Jumlah Responden</span>
+                                                            <span class="badge badge-rouge"><?= $jumlahRespondenIns; ?></span>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </form>
                                         </div>
