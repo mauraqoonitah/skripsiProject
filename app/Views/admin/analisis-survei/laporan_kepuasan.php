@@ -142,12 +142,12 @@ use CodeIgniter\I18n\Time;
                                                     <label for="formFileLg" class="form-label fs-6">Info Hasil Survei Kepuasan pada Instrumen <?= $kodeInstrumen; ?></label>
                                                     <ul class="todo-list" data-widget="todo-list">
                                                         <li>
+                                                            <span class="badge rounded-pill badge-cosmic"><?= $jumlahRespondenIns; ?></span>
                                                             <span class="text">Jumlah Responden</span>
-                                                            <span class="badge badge-cosmic"><?= $jumlahRespondenIns; ?></span>
                                                         </li>
                                                         <li>
+                                                            <span class="badge rounded-pill badge-cosmic"><?= $jumlahTanggapanIns; ?></span>
                                                             <span class="text">Jumlah Tanggapan</span>
-                                                            <span class="badge badge-cosmic"><?= $jumlahTanggapanIns; ?></span>
                                                         </li>
                                                     </ul>
                                                 </div>

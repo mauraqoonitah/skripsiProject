@@ -119,12 +119,12 @@
                         <div class="container">
                             <ul class="todo-list">
                                 <li class="border">
+                                    <span class="badge rounded-pill badge-cosmic"><?= $jumlahRespondenIns; ?></span>
                                     <span class="text">Jumlah Responden</span>
-                                    <span class="badge badge-rouge"><?= $jumlahRespondenIns; ?></span>
                                 </li>
                                 <li class="border">
+                                    <span class="badge rounded-pill badge-cosmic"><?= $jumlahTanggapanIns; ?> </span>
                                     <span class="text">Jumlah Tanggapan</span>
-                                    <span class="badge badge-rouge"><?= $jumlahTanggapanIns; ?> </span>
                                 </li>
                             </ul>
                         </div>
