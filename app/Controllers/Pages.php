@@ -79,12 +79,10 @@ class Pages extends BaseController
             'title' => 'Instrumen Kepuasan FMIPA UNJ',
             'responsePertanyaan' => $this->responseModel->getResponseButir($instrumenID),
             'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($instrumenID),
+            'jumlahTanggapanIns' => $this->responseModel->getJumlahTanggapanIns($instrumenID),
             'responseJawaban' => $this->responseModel->getResponseJawaban($instrumenID),
 
             'instrumen' => $this->instrumenModel->getInstrumen($instrumenID),
-            'responsePertanyaan' => $this->responseModel->getResponseButir($instrumenID),
-            'responseJawaban' => $this->responseModel->getResponseJawaban($instrumenID),
-            'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($instrumenID),
             'getLaporanInstrumen' => $this->laporanModel->getLaporanInstrumen($instrumenID),
 
 

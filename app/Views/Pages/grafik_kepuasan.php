@@ -79,14 +79,22 @@
         <div class="container-fluid">
             <!-- BAR CHART -->
             <div class="container">
-                <div class="card col-6 mx-auto">
+                <div class="card col-lg-6 mx-auto">
                     <div class="card-header text-center fw-bold bg-rouge">
                         Tanggapan Tingkat Kepuasan pada Instrumen
                     </div>
                     <div class="card-body">
                         <div class="container mb-5">
-                            <span class="card-title text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span><br>
-                            <span class="card-title text-muted fs-6">Terjawab : x </span>
+                            <ul class="todo-list" data-widget="todo-list">
+                                <li>
+                                    <small class="text">Jumlah Responden</small>
+                                    <span class="badge badge-rouge"><?= $jumlahRespondenIns; ?></span>
+                                </li>
+                                <li>
+                                    <small class="text">Terjawab</small>
+                                    <span class="badge badge-rouge"><?= $jumlahTanggapanIns; ?></span>
+                                </li>
+                            </ul>
                         </div>
                         <canvas id="chart-hasil-instrumen"></canvas>
                     </div>
@@ -99,8 +107,16 @@
                         </div>
                         <div class="card-body">
                             <div class="container mb-5">
-                                <span class="card-title text-muted fs-6">Jumlah Responden : <?= $jumlahRespondenIns; ?> </span><br>
-                                <span class="card-title text-muted fs-6">Terjawab : x </span>
+                                <ul class="todo-list" data-widget="todo-list">
+                                    <li>
+                                        <small class="text">Jumlah Responden</small>
+                                        <span class="badge badge-rouge"><?= $jumlahRespondenIns; ?></span>
+                                    </li>
+                                    <li>
+                                        <small class="text">Terjawab</small>
+                                        <span class="badge badge-rouge"><?= $jumlahTanggapanIns; ?></span>
+                                    </li>
+                                </ul>
                             </div>
                             <!-- highchart per butir pernyataan -->
                             <script src="https://code.highcharts.com/highcharts.js"></script>
@@ -267,7 +283,7 @@
 
                     ],
                     borderWidth: 1,
-                    hoverOffset: 4
+                    hoverOffset: 10
                 }]
             },
             options: {
@@ -279,10 +295,14 @@
                     title: {
                         display: true,
                         text: 'Jumlah Tanggapan Tingkat Kepuasan Instrumen'
+                    },
+                    labels: {
+                        fontSize: 16,
+
                     }
+
                 }
             },
-
         });
     </script>
 
