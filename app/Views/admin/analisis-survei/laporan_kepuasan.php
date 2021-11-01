@@ -143,7 +143,11 @@ use CodeIgniter\I18n\Time;
                                                     <ul class="todo-list" data-widget="todo-list">
                                                         <li>
                                                             <span class="text">Jumlah Responden</span>
-                                                            <span class="badge badge-rouge"><?= $jumlahRespondenIns; ?></span>
+                                                            <span class="badge badge-cosmic"><?= $jumlahRespondenIns; ?></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="text">Jumlah Tanggapan</span>
+                                                            <span class="badge badge-cosmic"><?= $jumlahTanggapanIns; ?></span>
                                                         </li>
                                                     </ul>
                                                 </div>

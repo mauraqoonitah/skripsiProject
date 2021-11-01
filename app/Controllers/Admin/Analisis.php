@@ -68,6 +68,7 @@ class Analisis extends BaseController
             'responsePertanyaan' => $this->responseModel->getResponseButir($insID),
             'responseJawaban' => $this->responseModel->getResponseJawaban($insID),
             'jumlahRespondenIns' => $this->responseModel->getJumlahRespondenIns($insID),
+            'jumlahTanggapanIns' => $this->responseModel->getJumlahTanggapanIns($insID),
             'getLaporanInstrumen' => $this->laporanModel->getLaporanInstrumen($insID),
             'validation' => \Config\Services::validation()
 

@@ -47,14 +47,22 @@
 
                             <div class="row">
                                 <div class="col-10">
+                                    <?php
+                                    $insID = $rspns['id'];
+                                    $responseModel = model('ResponseModel');
+                                    $this->responseModel = new $responseModel;
+                                    $jmlTanggapan =  $this->responseModel->getJumlahTanggapanIns($insID);
+
+                                    ?>
                                     <div class="mb-4">
                                         <a href="<?= base_url() ?>/admin/hasil-survei/instrumen/<?= $rspns['id']; ?>" class="pilih-inst">
                                             <span class="text-rouge fw-bold"><?= $rspns['kodeInstrumen']; ?> <br> <?= $rspns['namaInstrumen']; ?></span>
+                                            <div class="d-flex align-items-center ml-auto">
+                                                <span class="badge badge-cosmic "><?= $jmlTanggapan; ?> </span>
+                                            </div>
                                         </a>
                                     </div>
-
                                 </div>
-
                                 <div class="col-lg-2 d-flex align-items-center">
                                     <div class="form-check d-flex align-items-center">
                                         <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($rspns['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">

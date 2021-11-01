@@ -43,13 +43,23 @@
                 <div class="row p-4">
                     <div class="col-lg-8">
                         <div class="mb-4">
+                            <?php
+                            $insID = $ins['id'];
+                            $responseModel = model('ResponseModel');
+                            $this->responseModel = new $responseModel;
+                            $jmlTanggapan =  $this->responseModel->getJumlahTanggapanIns($insID);
+
+                            ?>
                             <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst text-decoration-none">
                                 <span class="text-black"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
+                                <div class="d-flex align-items-center ml-auto">
+                                    <span class="badge badge-cosmic "><?= $jmlTanggapan; ?> </span>
+                                </div>
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="form-check mr-4 d-flex align-items-center">
+                    <div class="col-lg-4  d-flex align-items-center">
+                        <div class="form-check mr-4">
                             <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($ins['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">
                             <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
                                 <?php if ($ins['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
