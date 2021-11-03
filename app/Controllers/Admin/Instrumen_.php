@@ -66,23 +66,15 @@ class Instrumen_ extends BaseController
 
     public function updateInstrumen_($id)
     {
+        // check validasi kode instrumen
         $oldKodeIns = $this->instrumenModel->getInstrumen($id);
-
-        // check kode instrumen
         if ($oldKodeIns['kodeInstrumen'] == $this->mRequest->getVar('kodeInstrumen')) {
             $rule_kodeIns = 'required';
         } else {
             $rule_kodeIns = 'required|is_unique[instrumen.kodeInstrumen]';
         }
 
-        //check peruntukkan instrumen
-        // if ($oldKodeIns['peruntukkanInstrumen'] == $this->mRequest->getVar('peruntukkanInstrumen')) {
-        //     $rule_peruntukkanIns = 'required';
-        // } else {
-        //     $rule_peruntukkanIns = 'required|is_unique[instrumen.peruntukkanInstrumen]';
-        // }
-
-        // validasi input
+        // validasi input kode instrumen
         if (!$this->validate([
             'kodeInstrumen' => [
                 'rules'  => $rule_kodeIns,
@@ -91,19 +83,49 @@ class Instrumen_ extends BaseController
                     'is_unique' => 'Kode Instrumen sudah terdaftar.'
                 ]
             ],
-            // 'peruntukkanInstrumen' => [
-            //     'rules'  => $rule_peruntukkanIns,
-            //     'errors' => [
-            //         'required' => 'Peruntukkan Instrumen harus diisi.',
-            //         'is_unique' => 'Peruntukkan Instrumen sudah terdaftar.'
-            //     ]
-            // ],
-
         ])) {
             session()->setFlashdata('messageError', 'Gagal menyimpan.');
 
             return redirect()->to('/admin/editInstrumen_/' . $id)->withInput();
         }
+
+
+        // check validasi peruntukkan instrumen
+        $slug = $oldKodeIns['slug'];
+        // ambil old peruntukkan instrumen by slug as array
+        $getPeruntukkanCtg = $this->instrumenModel->getPeruntukkanBySlug($slug);
+        foreach ($getPeruntukkanCtg as $selected_data) {
+            $old_responden[] = $selected_data['peruntukkanInstrumen'];
+        }
+        // ambil input value peruntukkan instrumen
+        $peruntukkanInputVal = $this->mRequest->getVar('peruntukkanInstrumen');
+
+        // ambil old peruntukkan instrumen by instrumenID
+        $getInstrumenByID = $this->instrumenModel->getInstrumenByID($id);
+        foreach ($getInstrumenByID as $row) {
+            $oldPeruntukkanIns = $row['peruntukkanInstrumen'];
+        }
+
+        // jika responden belum terdaftar di kategori
+        if (!in_array($peruntukkanInputVal, $old_responden) || ($peruntukkanInputVal === $oldPeruntukkanIns)) {
+            $this->instrumenModel->save(
+                [
+                    'id' => $id,
+                    'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
+                    'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                    'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
+                    'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+
+                ]
+            );
+        } else {
+            // jika responden sudah terdaftar di kategori
+            session()->setFlashdata('messageError', 'Gagal menyimpan. Responden sudah pernah terdaftar pada kategori ini.');
+
+            return redirect()->to('/admin/editInstrumen_/' . $id)->withInput();
+        }
+
+
         $this->instrumenModel->save(
             [
                 'id' => $id,

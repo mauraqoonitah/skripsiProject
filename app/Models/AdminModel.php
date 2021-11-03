@@ -43,24 +43,20 @@ class AdminModel extends Model
     {
         if ($slug == false) {
             return $this
-
                 ->select('peruntukkanCategory')
                 ->orderBy('slug', 'asc')
                 ->where('slug', $slug)
                 ->findAll();
-
-            // return $this
-            //     ->groupBy('slug')
-            //     ->orderBy('id', 'desc')
-            //     ->findAll();
-
-            // select ONLY the rows based on the same value in the column[slug]
-            // return $this
-            //     ->orderBy('slug', 'asc')
-            //     ->findAll();
         }
 
         return $this->where(['slug' => $slug])->first();
+    }
+    public function getPeruntukkanCtg($slug)
+    {
+        return $this
+            // ->select('peruntukkanCategory')
+            ->where('slug', $slug)
+            ->findAll();
     }
 
     public function sizeSlug($slug)

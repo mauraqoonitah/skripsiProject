@@ -74,4 +74,10 @@ class InstrumenModel extends Model
             ->where('peruntukkanInstrumen', $jenisResponden)
             ->findAll();
     }
+    public function getPeruntukkanBySlug($slug)
+    {
+        return $this
+            ->where('slug', $slug)
+            ->findAll();
+    }
 }

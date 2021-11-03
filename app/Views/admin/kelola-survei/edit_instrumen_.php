@@ -49,6 +49,7 @@
             <div class="card mt-2">
                 <div class="card-header py-4 text-rouge">
                     <strong><?= $instrumen['kodeCategory']; ?> - <?= $instrumen['namaInstrumen']; ?></strong>
+
                 </div>
                 <div class="card-body p-4">
                     <form action="<?= base_url(); ?>/admin/updateInstrumen_/<?= $instrumen['id']; ?>" method="post">
@@ -86,7 +87,7 @@
                                 $instrumenBySlug =  $this->instrumenModel->getInstrumenByCtg($slug);
                                 ?>
                                 <p class="text-secondary">
-                                    <b>Kode Instrumen yang terdaftar :</b>
+                                    <b>Kode Instrumen yang terdaftar pada kategori ini :</b>
                                 <ul>
                                     <?php foreach ($instrumenBySlug as $kodeIns) :  ?>
                                         <li class="text-secondary">
@@ -102,27 +103,51 @@
                         <!-- peruntukkan instrumen -->
                         <div class="form-group">
                             <label for="peruntukkanInstrumen" class="col-form-label">Responden:</label>
+                            <!-- jenis responden -->
+                            <?php $selected_resp[] = $instrumen['peruntukkanInstrumen'];
+                            ?>
+                            <?php
+
+                            $peruntukkanInsBySlug =  $this->instrumenModel->getPeruntukkanBySlug($slug);
+                            ?>
+
 
                             <div class="input-group mb-3">
                                 <select class="form-select <?= ($validation->hasError('peruntukkanInstrumen')) ? 'is-invalid' : ''; ?>" id="peruntukkanInstrumen" name="peruntukkanInstrumen">
                                     <?php
                                     $db = db_connect();
-
                                     $slug = $instrumen['slug'];
-
                                     $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
-
                                     $respondenIns =  $db->query($sql, [$slug]);
+                                    ?>
 
-                                    foreach ($respondenIns->getResultArray() as $row) : ?>
 
-                                        <option value="<?= $row['peruntukkanCategory']; ?>"><?= $row['peruntukkanCategory']; ?></option>
+                                    <?php foreach ($respondenIns->getResultArray() as $row) : ?>
+
+                                        <option value="<?= $row['peruntukkanCategory']; ?>" <?php echo in_array($row['peruntukkanCategory'], $selected_resp) ? 'selected' : '' ?>><?= $row['peruntukkanCategory']; ?> </option>
 
                                     <?php endforeach; ?>
-                                    <div class="invalid-feedback">
-                                        <?= $validation->getError('peruntukkanInstrumen'); ?>
-                                    </div>
+
                                 </select>
+                                <!-- popover -->
+                                <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-responden-kategori" aria-expanded="false" aria-controls="popover-responden-kategori" style="cursor: pointer;">
+                                    <i class="fas fa-info"></i>
+                                </span>
+
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('peruntukkanInstrumen'); ?>
+                                </div>
+                            </div>
+                            <div class="collapse" id="popover-responden-kategori">
+                                <p class=" text-secondary">
+                                    <b>Responden yang terdaftar pada kategori ini :</b>
+                                <ul>
+                                    <?php foreach ($peruntukkanInsBySlug as $respondenCtg) :  ?>
+                                        <li class="text-secondary"><?= $respondenCtg['peruntukkanInstrumen']; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                </p>
                             </div>
 
                         </div>
