@@ -71,29 +71,39 @@ class Kategori_ extends BaseController
         return view('admin/kelola-survei/edit_kategori_', $data);
     }
 
-    public function updateKategori_($slug)
+    public function updateKategori_($id)
     {
         $peruntukkanCategory = $this->mRequest->getPost('peruntukkanCategory');
         $slug = url_title($this->mRequest->getPost('kodeCategory'), '-', true);
-        $oldSelectedResponden = $this->adminModel->getSelectedResponden($slug);
-        $sizeSlug = $this->adminModel->sizeSlug($slug);
 
+        $oldCtg = $this->adminModel->getCategoryById($id);
+        foreach ($oldCtg as $row) {
+            $oldSlug = $row['slug'];
+            $uniqueID =  $row['uniqueID'];
+        }
+
+        $oldSelectedResponden = $this->adminModel->getSelectedResponden($oldSlug);
+        $sizeSlug = $this->adminModel->sizeSlug($oldSlug);
+
+        // update nama kategori
         for ($i = 0; $i < $sizeSlug; $i++) {
 
             $data[] = array(
+                'uniqueID' => $uniqueID,
                 'slug' => $slug,
                 'namaCategory' => $this->mRequest->getVar('namaCategory'),
+                'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
             );
-            $this->adminModel->updateBatch($data, 'slug');
+            $this->adminModel->updateBatch($data, 'uniqueID');
         }
 
-        $old_responden = [];
         // get selected value (old data)
+        $old_responden = [];
         foreach ($oldSelectedResponden as $selected_data) {
             $old_responden[] = $selected_data['peruntukkanCategory'];
         }
 
-        //ADDED - ambil new insert nya
+        // ADDED responden kategori - ambil new insert nya
         foreach ($peruntukkanCategory as $add_val) {
             if (!in_array($add_val, $old_responden)) {
                 $data = [
@@ -107,7 +117,7 @@ class Kategori_ extends BaseController
             }
         }
 
-        //REMOVED - ambil data yang di remove
+        //REMOVED responden kategori- ambil data yang di remove
         foreach ($old_responden as $remove_val) {
             if (!in_array($remove_val, $peruntukkanCategory)) {
 
@@ -128,6 +138,7 @@ class Kategori_ extends BaseController
 
     public function tambahKategori_()
     {
+
         $data = [
             'title' => 'Tambah Data Kategori',
             'category' => $this->adminModel->getCategory(),
@@ -168,7 +179,7 @@ class Kategori_ extends BaseController
         }
 
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
-
+        $uniqueID = random_string('alnum', 16);
         $peruntukkanCategory = $this->mRequest->getVar('peruntukkanCategory');
 
         for ($i = 0; $i < sizeof($peruntukkanCategory); $i++) {
@@ -179,6 +190,7 @@ class Kategori_ extends BaseController
                     'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
                     'namaCategory' => $this->mRequest->getVar('namaCategory'),
                     'peruntukkanCategory' => $peruntukkanCategory[$i],
+                    'uniqueID' => $uniqueID,
                 ];
             $this->adminModel->save($data);
         }
