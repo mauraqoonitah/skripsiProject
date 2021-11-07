@@ -157,6 +157,7 @@ class Instrumen_ extends BaseController
     public function saveInstrumen_()
     {
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+        $peruntukkanInstrumen = $this->mRequest->getVar('peruntukkanInstrumen');
 
         // validasi input
         if (!$this->validate([
@@ -165,6 +166,13 @@ class Instrumen_ extends BaseController
                 'errors' => [
                     'required' => 'Kode Instrumen harus diisi.',
                     'is_unique' => 'Kode Instrumen sudah terdaftar.'
+                ]
+            ],
+            'peruntukkanInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.peruntukkanInstrumen]',
+                'errors' => [
+                    'required' => 'Nama Instrumen harus diisi.',
+                    'is_unique' => 'Peruntukkan Instrumen sudah terdaftar.'
                 ]
             ],
             'namaInstrumen' => [
@@ -176,6 +184,8 @@ class Instrumen_ extends BaseController
             ],
 
         ])) {
+            session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen sudah terdaftar.');
+
             return redirect()->to('/admin/kelola-survei/tambah_instrumen_/' . $slug)->withInput();
         }
 
