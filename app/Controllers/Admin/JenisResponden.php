@@ -69,18 +69,26 @@ class JenisResponden extends BaseController
             return redirect()->to('/admin/jenisResponden')->withInput();
         }
 
-        $data =
+        $dataResponden =
             [
                 'responden' => $this->mRequest->getVar('responden'),
             ];
-        $this->jenisRespondenModel->save($data);
+        $this->jenisRespondenModel->save($dataResponden);
 
-        $data2 =
+        $responden = $this->mRequest->getVar('responden');
+        $getRespondenID = $this->jenisRespondenModel->getJenisRespondenID($responden);
+
+        foreach ($getRespondenID as $rID) {
+            $resID = $rID['id'];
+        }
+
+        $dataAuthGroups =
             [
                 'name' => $this->mRequest->getVar('responden'),
+                'description' => $this->mRequest->getVar('responden'),
+                'jenisRespondenID' => $resID,
             ];
-        $this->authGroupsModel->save($data2);
-
+        $this->authGroupsModel->insert($dataAuthGroups);
 
 
         session()->setFlashdata('message', 'Data berhasil ditambahkan');
@@ -91,6 +99,8 @@ class JenisResponden extends BaseController
     public function deleteJenisResponden($id)
     {
         $this->jenisRespondenModel->delete($id);
+
+        $this->authGroupsModel->where('jenisRespondenID', $id)->delete();
 
         session()->setFlashdata('message', 'Jenis Responden berhasil dihapus');
 

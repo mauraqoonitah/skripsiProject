@@ -23,4 +23,11 @@ class JenisRespondenModel extends Model
 
         return $this->where(['id' => $id])->first();
     }
+    public function getJenisRespondenID($responden)
+    {
+        return $this
+            ->select('id')
+            ->where('responden', $responden)
+            ->findAll();
+    }
 }
