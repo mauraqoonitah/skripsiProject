@@ -44,6 +44,8 @@
             <?php endif; ?>
             <!-- ./ flash gagal tambah data  -->
 
+            <button type="button" class="btn btn-primary"> Kelola Dosen yang bisa mengisi instrumen kepuasan</button>
+
             <!-- card admin gpjm -->
             <div class="card">
                 <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
@@ -52,7 +54,7 @@
                         <!-- Button trigger modal -->
                         <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-GPJM" class="ml-auto">
                             <button type="button" class="btn btn-sm btn-rouge text-white">
-                                <i class="fas fa-plus"></i> Tambah Akun
+                                <i class="fas fa-plus"></i> Tambah Admin
                             </button></a>
 
                         <!-- modal tambah admin gpjm -->
@@ -64,8 +66,56 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <!-- form tambah admin gpjm -->
 
+                                        <!-- form tambah admin gpjm -->
+                                        <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
+                                            <?= csrf_field() ?>
+
+                                            <!-- role-->
+                                            <input type="hidden" name="role" value="Admin" />
+
+                                            <!-- email -->
+                                            <div class="form-group my-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.email') ?>
+                                                </div>
+                                            </div>
+
+                                            <!-- username -->
+                                            <div class="form-group mb-3">
+                                                <label for="username" class="form-label">Username</label>
+                                                <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.username') ?>
+                                                </div>
+                                            </div>
+
+                                            <!-- password -->
+                                            <div class="form-group row mb-3">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                    <div class="invalid-feedback">
+                                                        <?= session('errors.password') ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                                    <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                    <div class="invalid-feedback">
+                                                        <?= session('errors.pass_confirm') ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                    <i class="fas fa-save"></i>Simpan
+                                                </button>
+                                            </div>
+                                        </form>
                                         <!-- end form admin gpjm -->
                                     </div>
 
@@ -83,7 +133,7 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Nama</th>
+                                <th>Nama Lengkap</th>
                                 <th>Email</th>
                                 <th>Date Created</th>
                                 <th>Active</th>
@@ -91,16 +141,60 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td>X</td>
-                            </tr>
+                            <?php $i = 1; ?>
+                            <?php foreach ($getAdminUser as $admin) : ?>
+                                <tr>
+                                    <td class="text-center"><?= $i++; ?></td>
+                                    <td><?= $admin->fullname; ?></td>
+                                    <td><?= $admin->email; ?></td>
+                                    <td><?= $admin->created_at; ?></td>
+                                    <td><?= $admin->active; ?></td>
+
+                                    <td class="align-middle">
+                                        <div class="btn-group " role="group">
+                                            <a href="<?= base_url(); ?>/admin ?>" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
+                                                <button type="button" class="btn btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </a>
+
+                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
+                                                <button type="button" class="btn btn-sm">
+                                                    <i class="fas fa-trash-alt text-white"></i>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- modal hapus admin GPJM -->
+                                <div class="modal fade" id="modal-delete-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-cosmic text-white">
+                                                <h5 class="modal-title fw-bold">Hapus </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                Yakin hapus akun admin <?= $admin->fullname; ?>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                <form action="<?= base_url(); ?>/admin/" method="post">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+
                         </tbody>
                     </table>
                 </div>
@@ -111,12 +205,12 @@
             <!-- card admin kontributor -->
             <div class="card mt-5">
                 <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
-                    <h3 class="card-title">Admin Kontributor</h3>
+                    <h3 class="card-title">Kontributor</h3>
                     <?php if (in_groups('Admin')) : ?>
                         <!-- Button trigger modal -->
                         <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-kontributor" class="ml-auto">
                             <button type="button" class="btn btn-sm btn-rouge text-white">
-                                <i class="fas fa-plus"></i> Tambah Akun
+                                <i class="fas fa-plus"></i> Tambah Kontributor
                             </button></a>
 
                         <!-- modal tambah admin kontributor -->
@@ -129,7 +223,54 @@
                                     </div>
                                     <div class="modal-body">
                                         <!-- form tambah admin kontributor -->
+                                        <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
+                                            <?= csrf_field() ?>
 
+                                            <!-- role-->
+                                            <input type="hidden" name="role" value="Kontributor" />
+
+                                            <!-- email -->
+                                            <div class="form-group my-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.email') ?>
+                                                </div>
+                                            </div>
+
+                                            <!-- username -->
+                                            <div class="form-group mb-3">
+                                                <label for="username" class="form-label">Username</label>
+                                                <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                                <div class="invalid-feedback">
+                                                    <?= session('errors.username') ?>
+                                                </div>
+                                            </div>
+
+                                            <!-- password -->
+                                            <div class="form-group row mb-3">
+                                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                                    <label for="password" class="form-label">Password</label>
+                                                    <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                    <div class="invalid-feedback">
+                                                        <?= session('errors.password') ?>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                                    <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                    <div class="invalid-feedback">
+                                                        <?= session('errors.pass_confirm') ?>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex align-items-center">
+                                                <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                    <i class="fas fa-save"></i>Simpan
+                                                </button>
+                                            </div>
+                                        </form>
                                         <!-- end form admin kontributor -->
                                     </div>
 
@@ -154,16 +295,59 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>Internet
-                                    Explorer 4.0
-                                </td>
-                                <td>Win 95+</td>
-                                <td> 4</td>
-                                <td>X</td>
-                                <td>X</td>
-                            </tr>
+                            <?php $i = 1; ?>
+                            <?php foreach ($getKontributor as $kontributor) : ?>
+                                <tr>
+                                    <td class="text-center"><?= $i++; ?></td>
+                                    <td><?= $kontributor->fullname; ?></td>
+                                    <td><?= $kontributor->email; ?></td>
+                                    <td><?= $kontributor->created_at; ?></td>
+                                    <td><?= $kontributor->active; ?></td>
+
+                                    <td class="align-middle">
+                                        <div class="btn-group " role="group">
+                                            <a href="<?= base_url(); ?>/admin ?>" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
+                                                <button type="button" class="btn btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                            </a>
+
+                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $kontributor->id; ?>">
+                                                <button type="button" class="btn btn-sm">
+                                                    <i class="fas fa-trash-alt text-white"></i>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!-- modal hapus admin GPJM -->
+                                <div class="modal fade" id="modal-delete-adminGPJM-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-cosmic text-white">
+                                                <h5 class="modal-title fw-bold">Hapus </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                Yakin hapus akun admin <?= $kontributor->fullname; ?>?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                <form action="<?= base_url(); ?>/admin/" method="post">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
 
                         </tbody>
                     </table>

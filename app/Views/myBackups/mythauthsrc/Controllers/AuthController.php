@@ -66,11 +66,7 @@ class AuthController extends Controller
 		// No need to show a login form if the user
 		// is already logged in.
 		if ($this->auth->check()) {
-			// $redirectURL = session('redirect_url') ?? base_url('admin');
-			if (['filter' => 'role:Admin,Kontributor']) {
-				$redirectURL = site_url('admin');
-			}
-			$redirectURL = site_url('responden');
+			$redirectURL = session('redirect_url') ?? base_url('');
 
 			unset($_SESSION['redirect_url']);
 
@@ -117,12 +113,17 @@ class AuthController extends Controller
 			return redirect()->to(route_to('reset-password') . '?token=' . $this->auth->user()->reset_hash)->withCookies();
 		}
 
-		// $redirectURL = session('redirect_url') ?? base_url('admin');
-		// $redirectURL = site_url('admin');
-		if (['filter' => 'role:Admin,Kontributor']) {
-			$redirectURL = site_url('admin');
+		$authorize = service('authorization');
+		$authenticate = service('authentication');
+
+		// if ($authorize->inGroup('Admin', $authenticate->id())) {
+		// 	$redirectURL = base_url('admin');
+		// }
+		if ($authorize->inGroup('Kontributor', $authenticate->id()) || $authorize->inGroup('Admin', $authenticate->id())) {
+			$redirectURL = base_url('admin');
+		} else {
+			$redirectURL = base_url('responden');
 		}
-		$redirectURL = site_url('responden');
 
 		unset($_SESSION['redirect_url']);
 
@@ -238,9 +239,6 @@ class AuthController extends Controller
 	 */
 	public function register()
 	{
-		// $array_items = ['nim', 'nidn'];
-		// $this->session->remove($array_items);
-
 		// check if already logged in.
 		if ($this->auth->check()) {
 			return redirect()->back();
@@ -276,7 +274,7 @@ class AuthController extends Controller
 		// Validate basics first since some password rules rely on these fields
 		$rules = [
 			'username' => 'required|min_length[3]|max_length[30]|is_unique[users.username]',
-			'fullname' => 'required',
+			// 'fullname' => 'required',
 			'email'    => 'required|valid_email|is_unique[users.email]',
 			'role'    => 'required',
 
@@ -284,6 +282,7 @@ class AuthController extends Controller
 
 		if (!$this->validate($rules)) {
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+			session()->setFlashdata('messageError', 'Gagal menyimpan. Mohon cek data kembali.');
 		}
 
 		// Validate passwords since they can only be validated properly here
@@ -291,8 +290,9 @@ class AuthController extends Controller
 			'password'     => 'required|strong_password',
 			'pass_confirm' => 'required|matches[password]',
 		];
-
+		//disini
 		if (!$this->validate($rules)) {
+
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
 

@@ -38,6 +38,11 @@ $routes->get('/auth/register', 'Pages::register');
 $routes->get('/home/user', 'Pages::user');
 $routes->post('/grafik_kepuasan/(:any)', 'Pages::hasilKepuasan/$1');
 
+$routes->group('', ['namespace' => 'Myth\Auth\Controllers'], function ($routes) {
+	$routes->post('register', 'AuthController::attemptRegister');
+});
+
+
 // admin
 $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
 

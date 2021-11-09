@@ -46,8 +46,10 @@ class Auth extends BaseConfig
 		'checkAkun'		   => '\App\Views\Auth\check-akun',
 		'register_'		=> '\App\Views\Auth\register_',
 		'register'		=> '\App\Views\Auth\register',
-		'forgot'		  => 'Myth\Auth\Views\forgot',
-		'reset'		   => 'Myth\Auth\Views\reset',
+		// 'forgot'		  => 'Myth\Auth\Views\forgot',
+		'forgot'		  => '\App\Views\Auth\forgot',
+		// 'reset'		   => 'Myth\Auth\Views\reset',
+		'reset'		   => '\App\Views\Auth\reset',
 		'emailForgot'	 => 'Myth\Auth\Views\emails\forgot',
 		'emailActivation' => 'Myth\Auth\Views\emails\activation',
 	];

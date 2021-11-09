@@ -11,6 +11,8 @@ use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
 use Myth\Auth\Models\AuthGroupsModel;
+use Myth\Auth\Models\UserModel;
+
 
 
 class KelolaAkun extends BaseController
@@ -22,6 +24,7 @@ class KelolaAkun extends BaseController
     protected $responseModel;
     protected $respondenModel;
     protected $authGroupsModel;
+    protected $userModel;
 
     protected $mRequest;
 
@@ -35,6 +38,7 @@ class KelolaAkun extends BaseController
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
         $this->authGroupsModel = new AuthGroupsModel();
+        $this->userModel = new UserModel();
 
         $this->mRequest = service("request");
     }
@@ -44,6 +48,9 @@ class KelolaAkun extends BaseController
         $data = [
             'title' => 'Kelola Akun',
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
+            'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
+            'getAdminUser' => $this->userModel->getAdminUser(),
+            'getKontributor' => $this->userModel->getKontributor(),
 
             'validation' => \Config\Services::validation()
 

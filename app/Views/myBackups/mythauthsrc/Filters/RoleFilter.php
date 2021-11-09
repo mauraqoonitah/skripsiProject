@@ -1,4 +1,6 @@
-<?php namespace Myth\Auth\Filters;
+<?php
+
+namespace Myth\Auth\Filters;
 
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
@@ -24,21 +26,18 @@ class RoleFilter implements FilterInterface
 	 */
 	public function before(RequestInterface $request, $params = null)
 	{
-		if (! function_exists('logged_in'))
-		{
+		if (!function_exists('logged_in')) {
 			helper('auth');
 		}
 
-		if (empty($params))
-		{
+		if (empty($params)) {
 			return;
 		}
 
 		$authenticate = service('authentication');
 
 		// if no user is logged in then send to the login form
-		if (! $authenticate->check())
-		{
+		if (!$authenticate->check()) {
 			session()->set('redirect_url', current_url());
 			return redirect('login');
 		}
@@ -46,21 +45,17 @@ class RoleFilter implements FilterInterface
 		$authorize = service('authorization');
 
 		// Check each requested permission
-		foreach ($params as $group)
-		{
-			if($authorize->inGroup($group, $authenticate->id()))
-			{
+		foreach ($params as $group) {
+			if ($authorize->inGroup($group, $authenticate->id())) {
 				return;
 			}
 		}
 
-		if ($authenticate->silent())
-		{
+		if ($authenticate->silent()) {
 			$redirectURL = session('redirect_url') ?? '/';
 			unset($_SESSION['redirect_url']);
 			return redirect()->to($redirectURL)->with('error', lang('Auth.notEnoughPrivilege'));
-		}
-		else {
+		} else {
 			throw new PermissionException(lang('Auth.notEnoughPrivilege'));
 		}
 	}
@@ -81,7 +76,6 @@ class RoleFilter implements FilterInterface
 	 */
 	public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
 	{
-
 	}
 
 	//--------------------------------------------------------------------
