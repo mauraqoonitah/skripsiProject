@@ -147,6 +147,9 @@ $routes->delete('/admin/deleteJenisResponden/(:any)', 'Admin\JenisResponden::del
 $routes->post('/admin/saveJenisResponden', 'Admin\JenisResponden::saveJenisResponden');
 $routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updateJenisResponden/$1');
 
+// menu kelola akun
+$routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index');
+
 
 
 // responden

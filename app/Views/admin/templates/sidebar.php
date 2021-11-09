@@ -85,12 +85,18 @@
                         </p>
                     </a>
                 </li>
-                <li>
-                    <small>
+                <?php if (in_groups('Admin')) : ?>
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mb-2"> </div>
+                    <li class="nav-item">
+                        <a href="<?= base_url(); ?>/admin/kelolaAkun" class="nav-link <?= $uri->getSegment(2) == 'kelolaAkun' ? 'active"' : '' ?>">
+                            <i class="nav-icon fas fa-user-plus mx-2"></i>Kelola Akun<br>
+                            </p>
+                        </a>
+                    </li>
+                <?php endif; ?>
 
-                        <hr class="text-white dropdown-divider">
-                    </small>
-                </li>
+                <div class="user-panel mb-2"> </div>
 
                 <li class=" nav-item">
                     <a href="<?= base_url('logout'); ?>" class="nav-link " role="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
@@ -99,6 +105,7 @@
                         </p>
                     </a>
                 </li>
+                <div class="user-panel mb-2"> </div>
 
             </ul>
         </nav>
