@@ -154,6 +154,7 @@ $routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updat
 
 // menu kelola akun
 $routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index');
+$routes->post('/admin/kelolaAkun/activeStatus/(:any)', 'Admin\kelolaAkun::activeStatus/$1');
 
 
 

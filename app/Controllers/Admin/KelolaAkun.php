@@ -58,4 +58,29 @@ class KelolaAkun extends BaseController
 
         return view('admin/kelola-akun/kelola_akun', $data);
     }
+
+    public function activeStatus($id)
+    {
+
+        $is_active = $this->mRequest->getPost('activeId');
+
+        if ($is_active == "1") {
+            $this->userModel->save(
+                [
+                    'id' => $id,
+                    'active' => '0'
+                ]
+            );
+            session()->setFlashdata('message', 'Admin Dinonaktifkan ');
+        }
+        if ($is_active == null) {
+            $this->userModel->save(
+                [
+                    'id' => $id,
+                    'active' => '1'
+                ]
+            );
+            session()->setFlashdata('message', 'Admin Aktif ');
+        }
+    }
 }

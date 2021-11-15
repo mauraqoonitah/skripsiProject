@@ -1,6 +1,10 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
+<!-- flash success tambah data  -->
+<div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+<!-- ./ flash success tambah data  -->
+
 <div class="content-wrapper px-2 pb-5">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -44,7 +48,9 @@
             <?php endif; ?>
             <!-- ./ flash gagal tambah data  -->
 
-            <button type="button" class="btn btn-primary"> Kelola Dosen yang bisa mengisi instrumen kepuasan</button>
+            <div class="alert alert-primary text-center fw-bold" role="alert">
+                <strong> Kelola Admin GPjM </strong>
+            </div>
 
             <!-- card admin gpjm -->
             <div class="card">
@@ -148,12 +154,56 @@
                                     <td><?= $admin->fullname; ?></td>
                                     <td><?= $admin->email; ?></td>
                                     <td><?= $admin->created_at; ?></td>
-                                    <td><?= $admin->active; ?></td>
+
+                                    <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
+                                        <td>
+                                            <?php
+                                            $is_active = $admin->active;
+                                            ?>
+                                            <div class="form-check mr-4">
+                                                <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
+                                            </div>
+                                        </td>
+
+                                        <!-- is_active checkbox -->
+                                        <script>
+                                            // get data
+                                            $('.form-check-input-status-admin-<?= $admin->id; ?>').on('click', function() {
+                                                const activeId = $(this).data('active');
+                                                const id = $(this).data('id');
+
+                                                console.log('kepencet');
+                                                console.log(activeId);
+                                                console.log(id);
+
+                                                $.ajax(
+                                                    console.log('masuk' + id), {
+                                                        url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>",
+                                                        headers: {
+                                                            'X-Requested-With': 'XMLHttpRequest'
+                                                        },
+                                                        type: 'post',
+                                                        data: {
+                                                            activeId: activeId,
+                                                            id: id
+                                                        },
+                                                        success: function() {
+                                                            document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
+                                                            console.log('successs')
+
+                                                        }
+                                                    })
+
+                                            });
+                                        </script>
+                                        <!-- ./is_active checkbox -->
+                                    </form>
+
 
                                     <td class="align-middle">
                                         <div class="btn-group " role="group">
-                                            <a href="<?= base_url(); ?>/admin ?>" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
-                                                <button type="button" class="btn btn-sm">
+                                            <a href="#" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-lihat-adminGPJM-<?= $admin->id; ?>">
+                                                <button type=" button" class="btn btn-sm">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </a>
@@ -192,6 +242,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- ./modal hapus admin GPJM -->
+
+                                <!-- modal Lihat admin GPJM -->
+                                <div class="modal fade" id="modal-lihat-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-cosmic text-white">
+                                                <h5 class="modal-title fw-bold">Lihat </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                isi
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./modal lihat GPJM -->
+
+
 
                             <?php endforeach; ?>
 
@@ -202,8 +271,12 @@
             </div>
             <!-- ./card admin gpjm -->
 
+            <div class="alert alert-primary text-center fw-bold mt-5" role="alert">
+                <strong> Kelola Kontributor </strong>
+            </div>
+
             <!-- card admin kontributor -->
-            <div class="card mt-5">
+            <div class="card mt-2">
                 <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
                     <h3 class="card-title">Kontributor</h3>
                     <?php if (in_groups('Admin')) : ?>
@@ -302,17 +375,32 @@
                                     <td><?= $kontributor->fullname; ?></td>
                                     <td><?= $kontributor->email; ?></td>
                                     <td><?= $kontributor->created_at; ?></td>
-                                    <td><?= $kontributor->active; ?></td>
+                                    <td>
+                                        <?php
+                                        $kontributor_is_active = $kontributor->active;
+                                        if ($kontributor_is_active == null) : ?>
+                                            no
+                                        <?php else : ?>
+                                            <i class="fas fa-check"></i>
+                                            <?= $kontributor_is_active; ?>
+                                        <?php endif; ?>
+
+                                        <div class="form-check mr-4">
+                                            <input class="form-check-input-status" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
+                                        </div>
+
+
+                                    </td>
 
                                     <td class="align-middle">
                                         <div class="btn-group " role="group">
-                                            <a href="<?= base_url(); ?>/admin ?>" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail">
-                                                <button type="button" class="btn btn-sm">
+                                            <a href="#" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-lihat-kontributor-<?= $kontributor->id; ?>">
+                                                <button type=" button" class="btn btn-sm">
                                                     <i class="fas fa-eye"></i>
                                                 </button>
                                             </a>
 
-                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $kontributor->id; ?>">
+                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
                                                 <button type="button" class="btn btn-sm">
                                                     <i class="fas fa-trash-alt text-white"></i>
                                                 </button>
@@ -320,8 +408,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <!-- modal hapus admin GPJM -->
-                                <div class="modal fade" id="modal-delete-adminGPJM-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
+                                <!-- modal hapus kontributor -->
+                                <div class="modal fade" id="modal-delete-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered ">
                                         <div class="modal-content">
                                             <div class="modal-header bg-cosmic text-white">
@@ -346,6 +434,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- ./modal hapus kontributor -->
+
+                                <!-- modal Lihat kontributor-->
+                                <div class="modal fade" id="modal-lihat-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered ">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-cosmic text-white">
+                                                <h5 class="modal-title fw-bold">Lihat </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                isi
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ./modal lihat kontributor -->
+
 
                             <?php endforeach; ?>
 
@@ -356,6 +462,10 @@
             </div>
             <!-- ./card admin kontributor -->
 
+
+            <div class="alert alert-primary text-center fw-bold" role="alert">
+                <strong> Kelola Dosen </strong>
+            </div>
 
 
         </div>
@@ -467,5 +577,6 @@
     });
 </script>
 <!-- ./table kontributor -->
+
 
 <?= $this->endSection(); ?>
