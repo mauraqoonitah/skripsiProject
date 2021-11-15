@@ -71,7 +71,7 @@ class KelolaAkun extends BaseController
                     'active' => '0'
                 ]
             );
-            session()->setFlashdata('message', 'Admin Dinonaktifkan ');
+            session()->setFlashdata('message', 'Admin dinonaktifkan');
         }
         if ($is_active == null) {
             $this->userModel->save(
@@ -80,7 +80,19 @@ class KelolaAkun extends BaseController
                     'active' => '1'
                 ]
             );
-            session()->setFlashdata('message', 'Admin Aktif ');
+            session()->setFlashdata('message', 'Admin diaktifkan ');
         }
+    }
+
+
+    public function deleteUser($id)
+    {
+        $this->userModel->delete($id);
+
+        // $this->authGroupsModel->where('jenisRespondenID', $id)->delete();
+
+        session()->setFlashdata('message', 'Akun berhasil dihapus');
+
+        return redirect()->to('/admin/kelolaAkun');
     }
 }

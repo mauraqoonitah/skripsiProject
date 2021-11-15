@@ -1,6 +1,13 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
+
+<?php
+
+use CodeIgniter\I18n\Time;
+?>
+
+
 <!-- flash success tambah data  -->
 <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
 <!-- ./ flash success tambah data  -->
@@ -133,17 +140,19 @@
 
                 </div>
                 <!-- /.card-header -->
+
+                <!-- KELOLA ADMIN GPJM -->
                 <div class="card-body">
 
                     <table id="table-admin-gpjm" class="table table-bordered display row-border">
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Nama Lengkap</th>
                                 <th>Email</th>
-                                <th>Date Created</th>
-                                <th>Active</th>
-                                <th>Menu</th>
+                                <th>Username</th>
+                                <th>Tgl Dibuat</th>
+                                <th>Status Aktif</th>
+                                <th>Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -151,9 +160,14 @@
                             <?php foreach ($getAdminUser as $admin) : ?>
                                 <tr>
                                     <td class="text-center"><?= $i++; ?></td>
-                                    <td><?= $admin->fullname; ?></td>
                                     <td><?= $admin->email; ?></td>
-                                    <td><?= $admin->created_at; ?></td>
+                                    <td><?= $admin->username; ?></td>
+                                    <td>
+                                        <?php
+                                        $timeCreated = Time::parse($admin->created_at, 'Asia/Jakarta');
+                                        ?>
+                                        <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
+                                    </td>
 
                                     <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
                                         <td>
@@ -172,27 +186,20 @@
                                                 const activeId = $(this).data('active');
                                                 const id = $(this).data('id');
 
-                                                console.log('kepencet');
-                                                console.log(activeId);
-                                                console.log(id);
-
-                                                $.ajax(
-                                                    console.log('masuk' + id), {
-                                                        url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>",
-                                                        headers: {
-                                                            'X-Requested-With': 'XMLHttpRequest'
-                                                        },
-                                                        type: 'post',
-                                                        data: {
-                                                            activeId: activeId,
-                                                            id: id
-                                                        },
-                                                        success: function() {
-                                                            document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
-                                                            console.log('successs')
-
-                                                        }
-                                                    })
+                                                $.ajax({
+                                                    url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>",
+                                                    headers: {
+                                                        'X-Requested-With': 'XMLHttpRequest'
+                                                    },
+                                                    type: 'post',
+                                                    data: {
+                                                        activeId: activeId,
+                                                        id: id
+                                                    },
+                                                    success: function() {
+                                                        document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
+                                                    }
+                                                })
 
                                             });
                                         </script>
@@ -201,19 +208,11 @@
 
 
                                     <td class="align-middle">
-                                        <div class="btn-group " role="group">
-                                            <a href="#" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-lihat-adminGPJM-<?= $admin->id; ?>">
-                                                <button type=" button" class="btn btn-sm">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </a>
-
-                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
-                                                <button type="button" class="btn btn-sm">
-                                                    <i class="fas fa-trash-alt text-white"></i>
-                                                </button>
-                                            </a>
-                                        </div>
+                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
+                                            <button type="button" class="btn btn-sm">
+                                                <i class="fas fa-trash-alt text-white"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 <!-- modal hapus admin GPJM -->
@@ -226,12 +225,12 @@
                                             </div>
                                             <div class="modal-body text-center">
                                                 <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                Yakin hapus akun admin <?= $admin->fullname; ?>?
+                                                Yakin hapus akun admin <?= $admin->username; ?>?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                <form action="<?= base_url(); ?>/admin/" method="post">
+                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $admin->id; ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -243,31 +242,13 @@
                                     </div>
                                 </div>
                                 <!-- ./modal hapus admin GPJM -->
-
-                                <!-- modal Lihat admin GPJM -->
-                                <div class="modal fade" id="modal-lihat-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered ">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-cosmic text-white">
-                                                <h5 class="modal-title fw-bold">Lihat </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                isi
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./modal lihat GPJM -->
-
-
-
                             <?php endforeach; ?>
 
                         </tbody>
                     </table>
                 </div>
-                <!-- /.card-body -->
+                <!-- ./KELOLA ADMIN GPJM -->
+
             </div>
             <!-- ./card admin gpjm -->
 
@@ -275,7 +256,7 @@
                 <strong> Kelola Kontributor </strong>
             </div>
 
-            <!-- card admin kontributor -->
+            <!-- KELOLA ADMIN KONTRIBUTOR -->
             <div class="card mt-2">
                 <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
                     <h3 class="card-title">Kontributor</h3>
@@ -360,11 +341,11 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Nama</th>
                                 <th>Email</th>
-                                <th>Date Created</th>
-                                <th>Active</th>
-                                <th>Menu</th>
+                                <th>Username</th>
+                                <th>Tgl Dibuat</th>
+                                <th>Status Aktif</th>
+                                <th>Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -372,40 +353,52 @@
                             <?php foreach ($getKontributor as $kontributor) : ?>
                                 <tr>
                                     <td class="text-center"><?= $i++; ?></td>
-                                    <td><?= $kontributor->fullname; ?></td>
                                     <td><?= $kontributor->email; ?></td>
-                                    <td><?= $kontributor->created_at; ?></td>
+                                    <td><?= $kontributor->username; ?></td>
                                     <td>
                                         <?php
-                                        $kontributor_is_active = $kontributor->active;
-                                        if ($kontributor_is_active == null) : ?>
-                                            no
-                                        <?php else : ?>
-                                            <i class="fas fa-check"></i>
-                                            <?= $kontributor_is_active; ?>
-                                        <?php endif; ?>
-
-                                        <div class="form-check mr-4">
-                                            <input class="form-check-input-status" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
-                                        </div>
-
-
+                                        $timeCreated = Time::parse($kontributor->created_at, 'Asia/Jakarta');
+                                        ?>
+                                        <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
                                     </td>
+                                    <td>
+                                        <div class="form-check mr-4">
+                                            <input class="form-check-input-status-kontributor-<?= $kontributor->id; ?>" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
+
+                                        </div>
+                                    </td>
+                                    <!-- is_active checkbox -->
+                                    <script>
+                                        // get data
+                                        $('.form-check-input-status-kontributor-<?= $kontributor->id; ?>').on('click', function() {
+                                            const activeId = $(this).data('active');
+                                            const id = $(this).data('id');
+
+                                            $.ajax({
+                                                url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $kontributor->id; ?>",
+                                                headers: {
+                                                    'X-Requested-With': 'XMLHttpRequest'
+                                                },
+                                                type: 'post',
+                                                data: {
+                                                    activeId: activeId,
+                                                    id: id
+                                                },
+                                                success: function() {
+                                                    document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
+                                                }
+                                            })
+
+                                        });
+                                    </script>
+                                    <!-- ./is_active checkbox -->
 
                                     <td class="align-middle">
-                                        <div class="btn-group " role="group">
-                                            <a href="#" class="btn btn-sm btn-info text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-lihat-kontributor-<?= $kontributor->id; ?>">
-                                                <button type=" button" class="btn btn-sm">
-                                                    <i class="fas fa-eye"></i>
-                                                </button>
-                                            </a>
-
-                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
-                                                <button type="button" class="btn btn-sm">
-                                                    <i class="fas fa-trash-alt text-white"></i>
-                                                </button>
-                                            </a>
-                                        </div>
+                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
+                                            <button type="button" class="btn btn-sm">
+                                                <i class="fas fa-trash-alt text-white"></i>
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                                 <!-- modal hapus kontributor -->
@@ -418,12 +411,12 @@
                                             </div>
                                             <div class="modal-body text-center">
                                                 <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                Yakin hapus akun admin <?= $kontributor->fullname; ?>?
+                                                Yakin hapus akun admin <?= $kontributor->username; ?>?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                <form action="<?= base_url(); ?>/admin/" method="post">
+                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $kontributor->id; ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -435,24 +428,6 @@
                                     </div>
                                 </div>
                                 <!-- ./modal hapus kontributor -->
-
-                                <!-- modal Lihat kontributor-->
-                                <div class="modal fade" id="modal-lihat-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered ">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-cosmic text-white">
-                                                <h5 class="modal-title fw-bold">Lihat </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                isi
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- ./modal lihat kontributor -->
-
-
                             <?php endforeach; ?>
 
                         </tbody>
@@ -460,13 +435,11 @@
                 </div>
                 <!-- /.card-body -->
             </div>
-            <!-- ./card admin kontributor -->
+            <!-- ./KELOLA ADMIN KONTRIBUTOR -->
 
-
-            <div class="alert alert-primary text-center fw-bold" role="alert">
+            <div class="alert alert-primary text-center fw-bold mt-5" role="alert">
                 <strong> Kelola Dosen </strong>
             </div>
-
 
         </div>
     </section>
