@@ -84,7 +84,7 @@ use CodeIgniter\I18n\Time;
                                     <div class="col-lg-8">
                                         <h3 class="card-title">Admin GPjM</h3>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex justify-content-end">
                                         <?php if (in_groups('Admin')) : ?>
                                             <!-- Button trigger modal -->
                                             <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-GPJM" class="ml-auto">
@@ -280,7 +280,7 @@ use CodeIgniter\I18n\Time;
                                     <div class="col-lg-8">
                                         <h3 class="card-title">Kontributor</h3>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex justify-content-end">
                                         <?php if (in_groups('Admin')) : ?>
                                             <!-- Button trigger modal -->
                                             <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-kontributor" class="ml-auto">
@@ -469,7 +469,7 @@ use CodeIgniter\I18n\Time;
                                     <div class="col-lg-8">
                                         <h3 class="card-title">Responden Dosen</h3>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-4 d-flex justify-content-end">
                                         <?php if (in_groups('Admin')) : ?>
                                             <!-- Button trigger modal -->
                                             <a data-bs-toggle="modal" data-bs-target="#modal-tambah-dosen" class="ml-auto">
@@ -548,6 +548,7 @@ use CodeIgniter\I18n\Time;
                                     </div>
 
                                 </div>
+
                                 <!-- /.card-header -->
                                 <div class="table-responsive">
                                     <table id="table-admin-dosen" class="table table-bordered display row-border compact">
@@ -565,11 +566,54 @@ use CodeIgniter\I18n\Time;
                                         </thead>
                                         <tbody>
                                             <?php $i = 1; ?>
+
                                             <?php foreach ($getDosen as $dosen) : ?>
                                                 <tr>
                                                     <td class="text-center"><?= $i++; ?></td>
                                                     <td>
-                                                        nama instrumen
+                                                        <button class="btn btn-sm btn-primary" type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modal-select-instrumen-responden-<?= $dosen->id; ?>">
+                                                            Lihat Instrumen
+                                                        </button>
+                                                        <!-- modal pilih instrumen responden -->
+                                                        <div class="modal fade" id="modal-select-instrumen-responden-<?= $dosen->id; ?>" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-cosmic text-white">
+                                                                        <h5 class="modal-title fw-bold">Pilih Instrumen </h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Pilih Instrumen yang dapat diisi oleh akun <u><?= $dosen->email; ?></u></p>
+                                                                        <div class="card">
+                                                                            <select name="peruntukkanCategory[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
+                                                                                <?php foreach ($instrumenByResponden as $listInstrumen) : ?>
+                                                                                    <option value="<?= $listInstrumen['namaInstrumen']; ?>"><?= $listInstrumen['namaInstrumen']; ?></option>
+                                                                                <?php endforeach; ?>
+
+                                                                            </select>
+                                                                        </div>
+                                                                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+                                                                        <script>
+                                                                            $(".form-select-instrumen-dosen-<?= $dosen->id; ?>").select2({
+                                                                                dropdownParent: $('#modal-select-instrumen-responden-<?= $dosen->id; ?>')
+                                                                            });
+                                                                        </script>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                        <form action="<?= base_url(); ?>/admin/savePilihanInstrumenDosen-<?= $dosen->id; ?>" method="post">
+                                                                            <?= csrf_field(); ?>
+                                                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                                                        </form>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ./modal pilih instrumen responden -->
                                                     </td>
                                                     <td>
                                                         <?= $dosen->email; ?>
@@ -616,7 +660,7 @@ use CodeIgniter\I18n\Time;
 
                                                         </td>
 
-                                                        <td class="align-middle">
+                                                        <td class="">
                                                             <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-< ?= $resp['id']; ?>">
                                                                 <button type="button" class="btn btn-sm">
                                                                     <i class="fas fa-trash-alt text-white"></i>
@@ -659,6 +703,8 @@ use CodeIgniter\I18n\Time;
                                         </tbody>
                                     </table>
                                 </div>
+
+
                             </div>
                             <!-- ./KELOLA responden dosen -->
                         </div>

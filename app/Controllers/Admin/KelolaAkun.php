@@ -45,6 +45,8 @@ class KelolaAkun extends BaseController
 
     public function index()
     {
+        $roleDosen = 'Dosen';
+
         $data = [
             'title' => 'Kelola Akun',
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
@@ -53,6 +55,9 @@ class KelolaAkun extends BaseController
             'getKontributor' => $this->userModel->getKontributor(),
             'getUserInstrumen' => $this->instrumenModel->getUserInstrumen(),
             'getDosen' => $this->userModel->getDosen(),
+            'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($roleDosen),
+
+
 
 
             'validation' => \Config\Services::validation()
