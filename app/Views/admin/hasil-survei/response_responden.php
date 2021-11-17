@@ -118,81 +118,82 @@ use CodeIgniter\I18n\Time;
                                 <section class="content">
                                     <div class="container-fluid">
                                         <section>
-                                            <table id="tableResponden-<?= $responseID; ?>" class="display table-bordered table-hover" style="width:100%">
-                                                <thead class="bg-thead">
-                                                    <tr>
-                                                        <th class="text-center p-0 fw-bold">No.</th>
-                                                        <th>Butir Pernyataan</th>
-                                                        <th class="text-center p-0">Jawaban</th>
-                                                        <th class="text-center">Tingkat Kepuasan</th>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <?php
-                                                    $i = 1;
-                                                    $insID = $rIns['instrumenID'];
-                                                    $uniqueID = $rIns['uniqueID'];
-                                                    $db = db_connect();
-                                                    $pernyataanModel = model('PernyataanModel');
-                                                    $this->pernyataanModel = new $pernyataanModel;
-                                                    $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
-
-                                                    foreach ($sql as $row) : ?>
-                                                        <?php $questionID = $row['questionID']; ?>
+                                            <div class="table-responsive">
+                                                <table id="tableResponden-<?= $responseID; ?>" class="display table-bordered table-hover" style="width:100%">
+                                                    <thead class="bg-thead">
                                                         <tr>
-                                                            <td class="text-center"><?= $i++; ?></td>
-                                                            <td>
-                                                                <?= $row['butir']; ?>
-                                                            </td>
+                                                            <th class="text-center p-0 fw-bold">No.</th>
+                                                            <th>Butir Pernyataan</th>
+                                                            <th class="text-center p-0">Jawaban</th>
+                                                            <th class="text-center">Tingkat Kepuasan</th>
+                                                        </tr>
+                                                    </thead>
 
-                                                            <?php foreach ($respondenDataDiri as $res) :  ?>
-                                                                <?php $userID = $res['userID'] ?>
-                                                            <?php endforeach; ?>
+                                                    <tbody>
+                                                        <?php
+                                                        $i = 1;
+                                                        $insID = $rIns['instrumenID'];
+                                                        $uniqueID = $rIns['uniqueID'];
+                                                        $db = db_connect();
+                                                        $pernyataanModel = model('PernyataanModel');
+                                                        $this->pernyataanModel = new $pernyataanModel;
+                                                        $sql =  $this->pernyataanModel->getButirByInstrumenID($insID);
 
-                                                            <?php
-                                                            // get jawaban by questionID
-                                                            $responseModel = model('ResponseModel');
-                                                            $this->responseModel = new $responseModel;
-                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID);
-                                                            ?>
-                                                            <td class="text-center p-0 ">
-                                                                <?php foreach ($sqlResponse as $response) : ?>
-                                                                    <?php $jwb = $response['jawaban']; ?>
+                                                        foreach ($sql as $row) : ?>
+                                                            <?php $questionID = $row['questionID']; ?>
+                                                            <tr>
+                                                                <td class="text-center"><?= $i++; ?></td>
+                                                                <td>
+                                                                    <?= $row['butir']; ?>
+                                                                </td>
+
+                                                                <?php foreach ($respondenDataDiri as $res) :  ?>
+                                                                    <?php $userID = $res['userID'] ?>
+                                                                <?php endforeach; ?>
+
+                                                                <?php
+                                                                // get jawaban by questionID
+                                                                $responseModel = model('ResponseModel');
+                                                                $this->responseModel = new $responseModel;
+                                                                $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID);
+                                                                ?>
+                                                                <td class="text-center p-0 ">
+                                                                    <?php foreach ($sqlResponse as $response) : ?>
+                                                                        <?php $jwb = $response['jawaban']; ?>
+                                                                        <?php if (empty($jwb)) : ?>
+                                                                            <span class="text-muted"><i>null</i></span>
+                                                                        <?php else : ?>
+                                                                            <?= $jwb; ?>
+
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; ?>
+                                                                </td>
+                                                                <td>
                                                                     <?php if (empty($jwb)) : ?>
                                                                         <span class="text-muted"><i>null</i></span>
                                                                     <?php else : ?>
-                                                                        <?= $jwb; ?>
-
+                                                                        <?php if ($jwb === '5') : ?>
+                                                                            Sangat Puas
+                                                                        <?php endif; ?>
+                                                                        <?php if ($jwb === '4') : ?>
+                                                                            Puas
+                                                                        <?php endif; ?>
+                                                                        <?php if ($jwb === '3') : ?>
+                                                                            Cukup Puas
+                                                                        <?php endif; ?>
+                                                                        <?php if ($jwb === '2') : ?>
+                                                                            Tidak Puas
+                                                                        <?php endif; ?>
+                                                                        <?php if ($jwb === '1') : ?>
+                                                                            Sangat Tidak Puas
+                                                                        <?php endif; ?>
                                                                     <?php endif; ?>
-                                                                <?php endforeach; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php if (empty($jwb)) : ?>
-                                                                    <span class="text-muted"><i>null</i></span>
-                                                                <?php else : ?>
-                                                                    <?php if ($jwb === '5') : ?>
-                                                                        Sangat Puas
-                                                                    <?php endif; ?>
-                                                                    <?php if ($jwb === '4') : ?>
-                                                                        Puas
-                                                                    <?php endif; ?>
-                                                                    <?php if ($jwb === '3') : ?>
-                                                                        Cukup Puas
-                                                                    <?php endif; ?>
-                                                                    <?php if ($jwb === '2') : ?>
-                                                                        Tidak Puas
-                                                                    <?php endif; ?>
-                                                                    <?php if ($jwb === '1') : ?>
-                                                                        Sangat Tidak Puas
-                                                                    <?php endif; ?>
-                                                                <?php endif; ?>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                             <!-- script export datatables -->
                                             <?php
                                             date_default_timezone_set('Asia/Jakarta');

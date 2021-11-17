@@ -80,4 +80,13 @@ class InstrumenModel extends Model
             ->where('slug', $slug)
             ->findAll();
     }
+    public function getUserInstrumen()
+    {
+        return $this
+            ->join('users', 'users.role = instrumen.peruntukkanInstrumen')
+            ->where('role', 'Dosen')
+            ->findAll();
+
+        // ->get()->getResultArray();
+    }
 }

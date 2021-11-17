@@ -150,6 +150,12 @@ class UserModel extends Model
             ->where('role', 'Kontributor')
             ->findAll();
     }
+    public function getDosen()
+    {
+        return $this
+            ->where('role', 'Dosen')
+            ->findAll();
+    }
 
     public function lastActivity($id)
     {

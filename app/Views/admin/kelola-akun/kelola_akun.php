@@ -55,392 +55,618 @@ use CodeIgniter\I18n\Time;
             <?php endif; ?>
             <!-- ./ flash gagal tambah data  -->
 
-            <div class="alert alert-primary text-center fw-bold" role="alert">
-                <strong> Kelola Admin GPjM </strong>
-            </div>
 
-            <!-- card admin gpjm -->
-            <div class="card">
-                <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
-                    <h3 class="card-title">Admin GPjM</h3>
-                    <?php if (in_groups('Admin')) : ?>
-                        <!-- Button trigger modal -->
-                        <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-GPJM" class="ml-auto">
-                            <button type="button" class="btn btn-sm btn-rouge text-white">
-                                <i class="fas fa-plus"></i> Tambah Admin
-                            </button></a>
+            <div class="card card-primary card-outline card-outline-tabs">
+                <div class="card-header p-0 border-bottom-0">
+                    <ul class="nav nav-tabs" id="custom-tabs-four-tab" role="tablist">
 
-                        <!-- modal tambah admin gpjm -->
-                        <div class="modal fade" id="modal-tambah-admin-GPJM" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-cosmic text-white">
-                                        <h5 class="modal-title text-center">Tambah Admin GPjM</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-app active fw-bold" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true" class="fw-bold">Admin</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-app fw-bold" id="kontributor-tab" data-toggle="pill" href="#tabs-kontributor" role="tab" aria-controls="tabs-kontributor" aria-selected="false">Kontributor</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-app fw-bold" id="dosen-tab" data-toggle="pill" href="#tabs-dosen" role="tab" aria-controls="tabs-dosen" aria-selected="false">Dosen</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="custom-tabs-four-tabContent">
+                        <!-- content tab admin gpjm -->
+                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                            <!-- card admin gpjm -->
+                            <div class="card-body">
+                                <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
+                                    <div class="col-lg-8">
+                                        <h3 class="card-title">Admin GPjM</h3>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="col-lg-4">
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <!-- Button trigger modal -->
+                                            <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-GPJM" class="ml-auto">
+                                                <button type="button" class="btn btn-sm btn-rouge text-white">
+                                                    <i class="fas fa-plus"></i> Tambah Admin
+                                                </button></a>
 
-                                        <!-- form tambah admin gpjm -->
-                                        <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
-                                            <?= csrf_field() ?>
+                                            <!-- modal tambah admin gpjm -->
+                                            <div class="modal fade" id="modal-tambah-admin-GPJM" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-cosmic text-white">
+                                                            <h5 class="modal-title text-center">Tambah Admin GPjM</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
 
-                                            <!-- role-->
-                                            <input type="hidden" name="role" value="Admin" />
+                                                            <!-- form tambah admin gpjm -->
+                                                            <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
+                                                                <?= csrf_field() ?>
 
-                                            <!-- email -->
-                                            <div class="form-group my-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.email') ?>
-                                                </div>
-                                            </div>
+                                                                <!-- role-->
+                                                                <input type="hidden" name="role" value="Admin" />
 
-                                            <!-- username -->
-                                            <div class="form-group mb-3">
-                                                <label for="username" class="form-label">Username</label>
-                                                <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.username') ?>
-                                                </div>
-                                            </div>
+                                                                <!-- email -->
+                                                                <div class="form-group my-3">
+                                                                    <label for="email" class="form-label">Email</label>
+                                                                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= session('errors.email') ?>
+                                                                    </div>
+                                                                </div>
 
-                                            <!-- password -->
-                                            <div class="form-group row mb-3">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="password" class="form-label">Password</label>
-                                                    <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
-                                                    <div class="invalid-feedback">
-                                                        <?= session('errors.password') ?>
+                                                                <!-- username -->
+                                                                <div class="form-group mb-3">
+                                                                    <label for="username" class="form-label">Username</label>
+                                                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= session('errors.username') ?>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- password -->
+                                                                <div class="form-group row mb-3">
+                                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                                        <label for="password" class="form-label">Password</label>
+                                                                        <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                                        <div class="invalid-feedback">
+                                                                            <?= session('errors.password') ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                                                        <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                                        <div class="invalid-feedback">
+                                                                            <?= session('errors.pass_confirm') ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="d-flex align-items-center">
+                                                                    <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                                        <i class="fas fa-save"></i>Simpan
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                            <!-- end form admin gpjm -->
+                                                        </div>
+
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                                    <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
-                                                    <div class="invalid-feedback">
-                                                        <?= session('errors.pass_confirm') ?>
-                                                    </div>
-                                                </div>
                                             </div>
-
-                                            <div class="d-flex align-items-center">
-                                                <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                    <i class="fas fa-save"></i>Simpan
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <!-- end form admin gpjm -->
+                                            <!-- end modal tambah admin gpjm -->
+                                        <?php endif; ?>
                                     </div>
 
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="table-responsive">
+                                    <table id="table-admin-gpjm" class="table table-bordered display row-border">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Email</th>
+                                                <th>Username</th>
+                                                <th>Tgl Dibuat</th>
+                                                <th>Status Aktif</th>
+                                                <th>Hapus</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($getAdminUser as $admin) : ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $i++; ?></td>
+                                                    <td><?= $admin->email; ?></td>
+                                                    <td><?= $admin->username; ?></td>
+                                                    <td>
+                                                        <?php
+                                                        $timeCreated = Time::parse($admin->created_at, 'Asia/Jakarta');
+                                                        ?>
+                                                        <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
+                                                    </td>
+
+                                                    <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
+                                                        <td>
+                                                            <?php
+                                                            $is_active = $admin->active;
+                                                            ?>
+                                                            <div class="form-check mr-4">
+                                                                <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
+                                                            </div>
+                                                        </td>
+
+                                                        <!-- is_active checkbox -->
+                                                        <script>
+                                                            // get data
+                                                            $('.form-check-input-status-admin-<?= $admin->id; ?>').on('click', function() {
+                                                                const activeId = $(this).data('active');
+                                                                const id = $(this).data('id');
+
+                                                                $.ajax({
+                                                                    url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>",
+                                                                    headers: {
+                                                                        'X-Requested-With': 'XMLHttpRequest'
+                                                                    },
+                                                                    type: 'post',
+                                                                    data: {
+                                                                        activeId: activeId,
+                                                                        id: id
+                                                                    },
+                                                                    success: function() {
+                                                                        document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
+                                                                    }
+                                                                })
+
+                                                            });
+                                                        </script>
+                                                        <!-- ./is_active checkbox -->
+                                                    </form>
+
+
+                                                    <td class="align-middle">
+                                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
+                                                            <button type="button" class="btn btn-sm">
+                                                                <i class="fas fa-trash-alt text-white"></i>
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <!-- modal hapus admin GPJM -->
+                                                <div class="modal fade" id="modal-delete-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered ">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-cosmic text-white">
+                                                                <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                Yakin hapus akun admin <?= $admin->username; ?>?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $admin->id; ?>" method="post">
+                                                                    <?= csrf_field(); ?>
+                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                </form>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- ./modal hapus admin GPJM -->
+                                            <?php endforeach; ?>
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+                            <!-- ./card admin gpjm -->
                         </div>
-                        <!-- end modal tambah admin gpjm -->
-                    <?php endif; ?>
+                        <!-- ./content tab admin gpjm -->
 
-                </div>
-                <!-- /.card-header -->
+                        <!-- content tab kontributor -->
+                        <div class="tab-pane fade" id="tabs-kontributor" role="tabpanel" aria-labelledby="kontributor-tab">
+                            <!-- KELOLA ADMIN KONTRIBUTOR -->
+                            <div class="card-body">
+                                <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
+                                    <div class="col-lg-8">
+                                        <h3 class="card-title">Kontributor</h3>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <!-- Button trigger modal -->
+                                            <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-kontributor" class="ml-auto">
+                                                <button type="button" class="btn btn-sm btn-rouge text-white">
+                                                    <i class="fas fa-plus"></i> Tambah Kontributor
+                                                </button></a>
 
-                <!-- KELOLA ADMIN GPJM -->
-                <div class="card-body">
+                                            <!-- modal tambah admin kontributor -->
+                                            <div class="modal fade" id="modal-tambah-admin-kontributor" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-cosmic text-white">
+                                                            <h5 class="modal-title text-center">Tambah Admin Kontributor</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- form tambah admin kontributor -->
+                                                            <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
+                                                                <?= csrf_field() ?>
 
-                    <table id="table-admin-gpjm" class="table table-bordered display row-border">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>Tgl Dibuat</th>
-                                <th>Status Aktif</th>
-                                <th>Hapus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($getAdminUser as $admin) : ?>
-                                <tr>
-                                    <td class="text-center"><?= $i++; ?></td>
-                                    <td><?= $admin->email; ?></td>
-                                    <td><?= $admin->username; ?></td>
-                                    <td>
-                                        <?php
-                                        $timeCreated = Time::parse($admin->created_at, 'Asia/Jakarta');
-                                        ?>
-                                        <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
-                                    </td>
+                                                                <!-- role-->
+                                                                <input type="hidden" name="role" value="Kontributor" />
 
-                                    <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
-                                        <td>
-                                            <?php
-                                            $is_active = $admin->active;
-                                            ?>
-                                            <div class="form-check mr-4">
-                                                <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
+                                                                <!-- email -->
+                                                                <div class="form-group my-3">
+                                                                    <label for="email" class="form-label">Email</label>
+                                                                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= session('errors.email') ?>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- username -->
+                                                                <div class="form-group mb-3">
+                                                                    <label for="username" class="form-label">Username</label>
+                                                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= session('errors.username') ?>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- password -->
+                                                                <div class="form-group row mb-3">
+                                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                                        <label for="password" class="form-label">Password</label>
+                                                                        <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                                        <div class="invalid-feedback">
+                                                                            <?= session('errors.password') ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                                                        <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                                        <div class="invalid-feedback">
+                                                                            <?= session('errors.pass_confirm') ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="d-flex align-items-center">
+                                                                    <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                                        <i class="fas fa-save"></i>Simpan
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                            <!-- end form admin kontributor -->
+                                                        </div>
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </td>
-
-                                        <!-- is_active checkbox -->
-                                        <script>
-                                            // get data
-                                            $('.form-check-input-status-admin-<?= $admin->id; ?>').on('click', function() {
-                                                const activeId = $(this).data('active');
-                                                const id = $(this).data('id');
-
-                                                $.ajax({
-                                                    url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>",
-                                                    headers: {
-                                                        'X-Requested-With': 'XMLHttpRequest'
-                                                    },
-                                                    type: 'post',
-                                                    data: {
-                                                        activeId: activeId,
-                                                        id: id
-                                                    },
-                                                    success: function() {
-                                                        document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
-                                                    }
-                                                })
-
-                                            });
-                                        </script>
-                                        <!-- ./is_active checkbox -->
-                                    </form>
-
-
-                                    <td class="align-middle">
-                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
-                                            <button type="button" class="btn btn-sm">
-                                                <i class="fas fa-trash-alt text-white"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <!-- modal hapus admin GPJM -->
-                                <div class="modal fade" id="modal-delete-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered ">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-cosmic text-white">
-                                                <h5 class="modal-title fw-bold">Hapus </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                Yakin hapus akun admin <?= $admin->username; ?>?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $admin->id; ?>" method="post">
-                                                    <?= csrf_field(); ?>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                </form>
-
-
-                                            </div>
-                                        </div>
+                                            <!-- end modal tambah admin kontributor -->
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <!-- ./modal hapus admin GPJM -->
-                            <?php endforeach; ?>
+                                <!-- /.card-header -->
+                                <div class="table-responsive">
+                                    <table id="table-admin-kontributor" class="table table-bordered display row-border">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Email</th>
+                                                <th>Username</th>
+                                                <th>Tgl Dibuat</th>
+                                                <th>Status Aktif</th>
+                                                <th>Hapus</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($getKontributor as $kontributor) : ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $i++; ?></td>
+                                                    <td><?= $kontributor->email; ?></td>
+                                                    <td><?= $kontributor->username; ?></td>
+                                                    <td>
+                                                        <?php
+                                                        $timeCreated = Time::parse($kontributor->created_at, 'Asia/Jakarta');
+                                                        ?>
+                                                        <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
+                                                    </td>
+                                                    <td>
+                                                        <div class="form-check mr-4">
+                                                            <input class="form-check-input-status-kontributor-<?= $kontributor->id; ?>" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
 
-                        </tbody>
-                    </table>
-                </div>
-                <!-- ./KELOLA ADMIN GPJM -->
+                                                        </div>
+                                                    </td>
+                                                    <!-- is_active checkbox -->
+                                                    <script>
+                                                        // get data
+                                                        $('.form-check-input-status-kontributor-<?= $kontributor->id; ?>').on('click', function() {
+                                                            const activeId = $(this).data('active');
+                                                            const id = $(this).data('id');
 
-            </div>
-            <!-- ./card admin gpjm -->
+                                                            $.ajax({
+                                                                url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $kontributor->id; ?>",
+                                                                headers: {
+                                                                    'X-Requested-With': 'XMLHttpRequest'
+                                                                },
+                                                                type: 'post',
+                                                                data: {
+                                                                    activeId: activeId,
+                                                                    id: id
+                                                                },
+                                                                success: function() {
+                                                                    document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
+                                                                }
+                                                            })
 
-            <div class="alert alert-primary text-center fw-bold mt-5" role="alert">
-                <strong> Kelola Kontributor </strong>
-            </div>
+                                                        });
+                                                    </script>
+                                                    <!-- ./is_active checkbox -->
 
-            <!-- KELOLA ADMIN KONTRIBUTOR -->
-            <div class="card mt-2">
-                <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
-                    <h3 class="card-title">Kontributor</h3>
-                    <?php if (in_groups('Admin')) : ?>
-                        <!-- Button trigger modal -->
-                        <a data-bs-toggle="modal" data-bs-target="#modal-tambah-admin-kontributor" class="ml-auto">
-                            <button type="button" class="btn btn-sm btn-rouge text-white">
-                                <i class="fas fa-plus"></i> Tambah Kontributor
-                            </button></a>
+                                                    <td class="align-middle">
+                                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
+                                                            <button type="button" class="btn btn-sm">
+                                                                <i class="fas fa-trash-alt text-white"></i>
+                                                            </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <!-- modal hapus kontributor -->
+                                                <div class="modal fade" id="modal-delete-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered ">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-cosmic text-white">
+                                                                <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center">
+                                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                Yakin hapus akun admin <?= $kontributor->username; ?>?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                        <!-- modal tambah admin kontributor -->
-                        <div class="modal fade" id="modal-tambah-admin-kontributor" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-cosmic text-white">
-                                        <h5 class="modal-title text-center">Tambah Admin Kontributor</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- form tambah admin kontributor -->
-                                        <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
-                                            <?= csrf_field() ?>
+                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $kontributor->id; ?>" method="post">
+                                                                    <?= csrf_field(); ?>
+                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                </form>
 
-                                            <!-- role-->
-                                            <input type="hidden" name="role" value="Kontributor" />
 
-                                            <!-- email -->
-                                            <div class="form-group my-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.email') ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- username -->
-                                            <div class="form-group mb-3">
-                                                <label for="username" class="form-label">Username</label>
-                                                <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
-                                                <div class="invalid-feedback">
-                                                    <?= session('errors.username') ?>
-                                                </div>
-                                            </div>
-
-                                            <!-- password -->
-                                            <div class="form-group row mb-3">
-                                                <div class="col-sm-6 mb-3 mb-sm-0">
-                                                    <label for="password" class="form-label">Password</label>
-                                                    <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
-                                                    <div class="invalid-feedback">
-                                                        <?= session('errors.password') ?>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-6">
-                                                    <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                                    <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
-                                                    <div class="invalid-feedback">
-                                                        <?= session('errors.pass_confirm') ?>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                <!-- ./modal hapus kontributor -->
+                                            <?php endforeach; ?>
 
-                                            <div class="d-flex align-items-center">
-                                                <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                    <i class="fas fa-save"></i>Simpan
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <!-- end form admin kontributor -->
-                                    </div>
-
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+                            <!-- ./KELOLA ADMIN KONTRIBUTOR -->
                         </div>
-                        <!-- end modal tambah admin kontributor -->
-                    <?php endif; ?>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
+                        <!-- ./ content tab kontributor -->
 
-                    <table id="table-admin-kontributor" class="table table-bordered display row-border">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Email</th>
-                                <th>Username</th>
-                                <th>Tgl Dibuat</th>
-                                <th>Status Aktif</th>
-                                <th>Hapus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($getKontributor as $kontributor) : ?>
-                                <tr>
-                                    <td class="text-center"><?= $i++; ?></td>
-                                    <td><?= $kontributor->email; ?></td>
-                                    <td><?= $kontributor->username; ?></td>
-                                    <td>
-                                        <?php
-                                        $timeCreated = Time::parse($kontributor->created_at, 'Asia/Jakarta');
-                                        ?>
-                                        <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
-                                    </td>
-                                    <td>
-                                        <div class="form-check mr-4">
-                                            <input class="form-check-input-status-kontributor-<?= $kontributor->id; ?>" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
+                        <!-- content tab dosen -->
+                        <div class="tab-pane fade" id="tabs-dosen" role="tabpanel" aria-labelledby="dosen-tab">
 
-                                        </div>
-                                    </td>
-                                    <!-- is_active checkbox -->
-                                    <script>
-                                        // get data
-                                        $('.form-check-input-status-kontributor-<?= $kontributor->id; ?>').on('click', function() {
-                                            const activeId = $(this).data('active');
-                                            const id = $(this).data('id');
-
-                                            $.ajax({
-                                                url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $kontributor->id; ?>",
-                                                headers: {
-                                                    'X-Requested-With': 'XMLHttpRequest'
-                                                },
-                                                type: 'post',
-                                                data: {
-                                                    activeId: activeId,
-                                                    id: id
-                                                },
-                                                success: function() {
-                                                    document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
-                                                }
-                                            })
-
-                                        });
-                                    </script>
-                                    <!-- ./is_active checkbox -->
-
-                                    <td class="align-middle">
-                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
-                                            <button type="button" class="btn btn-sm">
-                                                <i class="fas fa-trash-alt text-white"></i>
-                                            </button>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <!-- modal hapus kontributor -->
-                                <div class="modal fade" id="modal-delete-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered ">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-cosmic text-white">
-                                                <h5 class="modal-title fw-bold">Hapus </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body text-center">
-                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                Yakin hapus akun admin <?= $kontributor->username; ?>?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $kontributor->id; ?>" method="post">
-                                                    <?= csrf_field(); ?>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                </form>
-
-
-                                            </div>
-                                        </div>
+                            <?= csrf_field(); ?>
+                            <!-- KELOLA responden dosen -->
+                            <div class="card-body">
+                                <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
+                                    <div class="col-lg-8">
+                                        <h3 class="card-title">Responden Dosen</h3>
                                     </div>
+                                    <div class="col-lg-4">
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <!-- Button trigger modal -->
+                                            <a data-bs-toggle="modal" data-bs-target="#modal-tambah-dosen" class="ml-auto">
+                                                <button type="button" class="btn btn-sm btn-rouge text-white">
+                                                    <i class="fas fa-plus"></i> Tambah
+                                                </button></a>
+
+                                            <!-- modal tambah responden dosen -->
+                                            <div class="modal fade" id="modal-tambah-dosen" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-cosmic text-white">
+                                                            <h5 class="modal-title text-center">Tambah Responden Dosen</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- form tambah responden dosen -->
+                                                            <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
+                                                                <?= csrf_field() ?>
+
+                                                                <!-- role-->
+                                                                <input type="hidden" name="role" value="Dosen" />
+
+
+
+                                                                <!-- email -->
+                                                                <div class="form-group my-3">
+                                                                    <label for="email" class="form-label">Email</label>
+                                                                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= session('errors.email') ?>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- username -->
+                                                                <div class="form-group mb-3">
+                                                                    <label for="username" class="form-label">Username</label>
+                                                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                                                    <div class="invalid-feedback">
+                                                                        <?= session('errors.username') ?>
+                                                                    </div>
+                                                                </div>
+
+                                                                <!-- password -->
+                                                                <div class="form-group row mb-3">
+                                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                                        <label for="password" class="form-label">Password</label>
+                                                                        <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                                        <div class="invalid-feedback">
+                                                                            <?= session('errors.password') ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-6">
+                                                                        <label for="pass_confirm" class=" form-label">Repeat Password</label>
+                                                                        <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                                        <div class="invalid-feedback">
+                                                                            <?= session('errors.pass_confirm') ?>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="d-flex align-items-center">
+                                                                    <button type="submit" class="btn btn-success ml-auto mt-3">
+                                                                        <i class="fas fa-save"></i>Simpan
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                            <!-- end form responden dosen -->
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end modal tambah responden dosen -->
+                                        <?php endif; ?>
+                                    </div>
+
                                 </div>
-                                <!-- ./modal hapus kontributor -->
-                            <?php endforeach; ?>
+                                <!-- /.card-header -->
+                                <div class="table-responsive">
+                                    <table id="table-admin-dosen" class="table table-bordered display row-border compact">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Instrumen</th>
+                                                <th>Email</th>
+                                                <th>Username</th>
+                                                <?php if (in_groups('Admin')) : ?>
+                                                    <th>Status Aktif</th>
+                                                    <th>Hapus</th>
+                                                <?php endif; ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $i = 1; ?>
+                                            <?php foreach ($getDosen as $dosen) : ?>
+                                                <tr>
+                                                    <td class="text-center"><?= $i++; ?></td>
+                                                    <td>
+                                                        nama instrumen
+                                                    </td>
+                                                    <td>
+                                                        <?= $dosen->email; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $dosen->username; ?>
+                                                    </td>
+                                                    <?php if (in_groups('Admin')) : ?>
+                                                        <td>
+                                                            <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $dosen->id; ?>" method="post" enctype="multipart/form-data">
+                                                                <?php
+                                                                $is_active = $dosen->active;
+                                                                ?>
+                                                                <div class="form-check mr-4">
+                                                                    <input class="form-check-input-status-dosen-<?= $dosen->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $dosen->id; ?>">
+                                                                </div>
 
-                        </tbody>
-                    </table>
+                                                                <!-- is_active checkbox -->
+                                                                <script>
+                                                                    // get data
+                                                                    $('.form-check-input-status-dosen-<?= $dosen->id; ?>').on('click', function() {
+                                                                        const activeId = $(this).data('active');
+                                                                        const id = $(this).data('id');
+
+                                                                        $.ajax({
+                                                                            url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $dosen->id; ?>",
+                                                                            headers: {
+                                                                                'X-Requested-With': 'XMLHttpRequest'
+                                                                            },
+                                                                            type: 'post',
+                                                                            data: {
+                                                                                activeId: activeId,
+                                                                                id: id
+                                                                            },
+                                                                            success: function() {
+                                                                                document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
+                                                                            }
+                                                                        })
+
+                                                                    });
+                                                                </script>
+                                                                <!-- ./is_active checkbox -->
+                                                            </form>
+
+                                                        </td>
+
+                                                        <td class="align-middle">
+                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-< ?= $resp['id']; ?>">
+                                                                <button type="button" class="btn btn-sm">
+                                                                    <i class="fas fa-trash-alt text-white"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>
+                                                    <?php endif; ?>
+                                                </tr>
+
+                                                <?php if (in_groups('Admin')) : ?>
+                                                    <!-- modal hapus responden -->
+                                                    <div class="modal fade" id="modal-delete-jenisResponden-< ?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered ">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-cosmic text-white">
+                                                                    <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                    Yakin hapus < ?=$resp['responden']; ?>?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                    <form action="<?= base_url(); ?>/admin/deleteJenisResponden/< ?= $resp['id']; ?>" method="post">
+                                                                        <?= csrf_field(); ?>
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                    </form>
+
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                <?php endif; ?>
+                                                <!-- end modal hapus responden -->
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- ./KELOLA responden dosen -->
+                        </div>
+                        <!-- ./ content tab dosen -->
+
+                    </div>
                 </div>
-                <!-- /.card-body -->
             </div>
-            <!-- ./KELOLA ADMIN KONTRIBUTOR -->
-
-            <div class="alert alert-primary text-center fw-bold mt-5" role="alert">
-                <strong> Kelola Dosen </strong>
-            </div>
-
         </div>
     </section>
     <!-- /.content -->
@@ -550,6 +776,5 @@ use CodeIgniter\I18n\Time;
     });
 </script>
 <!-- ./table kontributor -->
-
 
 <?= $this->endSection(); ?>

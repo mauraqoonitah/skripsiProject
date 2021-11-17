@@ -2,6 +2,7 @@
 
 <?= $this->section('content'); ?>
 
+
 <section class="landing-page d-flex justify-content-center">
 
     <div class="bd-masthead mb-3" id="content">

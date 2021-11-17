@@ -51,6 +51,9 @@ class KelolaAkun extends BaseController
             'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
             'getAdminUser' => $this->userModel->getAdminUser(),
             'getKontributor' => $this->userModel->getKontributor(),
+            'getUserInstrumen' => $this->instrumenModel->getUserInstrumen(),
+            'getDosen' => $this->userModel->getDosen(),
+
 
             'validation' => \Config\Services::validation()
 

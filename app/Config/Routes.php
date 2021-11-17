@@ -73,16 +73,6 @@ $routes->delete('/admin/deleteKategori_/(:any)', 'Admin\Kategori_::deleteKategor
 
 $routes->get('/admin/lihatKategori', 'Admin\Kategori::kelolaKategori');
 $routes->get('/admin/lihatInstrumen', 'Admin\Instrumen::kelolaInstrumen');
-// $routes->get('/admin/kelola-survei/edit_kategori', 'Admin\Kategori::kelolaKategori');
-// $routes->get('/admin/kelola-survei/tambah_kategori', 'Admin\Kategori::tambahKategori');
-// $routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
-// $routes->get('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
-// $routes->post('/admin/editKategori/(:any)', 'Admin\Kategori::editKategori/$1');
-
-// $routes->post('/admin/saveKategori', 'Admin\Kategori::saveKategori');
-// $routes->post('/admin/updateKategori/(:any)', 'Admin\Kategori::updateKategori/$1');
-// $routes->delete('/admin/deleteKategori/(:any)', 'Admin\Kategori::deleteKategori/$1');
-
 
 // admin menu kelola instrumen
 // new instrumen_

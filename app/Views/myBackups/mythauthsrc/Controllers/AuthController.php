@@ -330,6 +330,7 @@ class AuthController extends Controller
 		$this->session->set('username', $usernameRegistering);
 
 		// Success!
+
 		return redirect()->route('login')->with('message', lang('Auth.registerSuccess'));
 	}
 

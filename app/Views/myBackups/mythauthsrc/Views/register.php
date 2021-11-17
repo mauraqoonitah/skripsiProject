@@ -22,7 +22,7 @@
 
                         <div class="form-group">
                             <label for="username"><?= lang('Auth.username') ?></label>
-                            <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
+                            <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>/<?= lang('Auth.email') ?>" value="<?= old('username') ?>">
                         </div>
 
                         <div class="form-group">
