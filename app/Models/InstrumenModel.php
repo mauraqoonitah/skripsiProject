@@ -63,6 +63,7 @@ class InstrumenModel extends Model
     public function getInstrumenByResponden($peruntukkanInstrumen)
     {
         return $this
+            ->select('*', 'instrumen.id as instrumenID')
             ->where('peruntukkanInstrumen', $peruntukkanInstrumen)
             ->orderBy('kodeInstrumen', 'asc')
             ->findAll();
@@ -88,5 +89,14 @@ class InstrumenModel extends Model
             ->findAll();
 
         // ->get()->getResultArray();
+    }
+
+    public function getInstrumenByPermission($permissionId)
+    {
+        return $this
+            ->join('auth_permissions', 'auth_permissions.name = instrumen.id')
+            ->where('auth_permissions.name', $permissionId)
+
+            ->findAll();
     }
 }

@@ -1,4 +1,6 @@
-<?php namespace Myth\Auth\Authorization;
+<?php
+
+namespace Myth\Auth\Authorization;
 
 use CodeIgniter\Database\BaseResult;
 use CodeIgniter\Database\Query;
@@ -15,7 +17,7 @@ class PermissionModel extends Model
     protected $useTimestamps = false;
 
     protected $validationRules = [
-        'name' => 'required|max_length[255]|is_unique[auth_permissions.name,name,{name}]',
+        'name' => 'required|int[11]|is_unique[auth_permissions.name,name,{name}]',
         'description' => 'max_length[255]',
     ];
 
@@ -33,8 +35,7 @@ class PermissionModel extends Model
         // Check user permissions and take advantage of caching
         $userPerms = $this->getPermissionsForUser($userId);
 
-        if (count($userPerms) && array_key_exists($permissionId, $userPerms))
-        {
+        if (count($userPerms) && array_key_exists($permissionId, $userPerms)) {
             return true;
         }
 
@@ -99,8 +100,7 @@ class PermissionModel extends Model
      */
     public function getPermissionsForUser(int $userId): array
     {
-        if (null === $found = cache("{$userId}_permissions"))
-        {
+        if (null === $found = cache("{$userId}_permissions")) {
             $fromUser = $this->db->table('auth_users_permissions')
                 ->select('id, auth_permissions.name')
                 ->join('auth_permissions', 'auth_permissions.id = permission_id', 'inner')
@@ -118,8 +118,7 @@ class PermissionModel extends Model
             $combined = array_merge($fromUser, $fromGroup);
 
             $found = [];
-            foreach ($combined as $row)
-            {
+            foreach ($combined as $row) {
                 $found[$row->id] = strtolower($row->name);
             }
 

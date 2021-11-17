@@ -27,7 +27,6 @@
 <script>
     $(".form-select-responden").select2();
     $(".form-select-kategori").select2();
-    $(".form-select-instrumen-dosen").select2();
 </script>
 
 <!-- summernote ; include summernote css/js -->

@@ -77,7 +77,7 @@ use CodeIgniter\I18n\Time;
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-four-tabContent">
                         <!-- content tab admin gpjm -->
-                        <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                        <div class="tab-pane fade  show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                             <!-- card admin gpjm -->
                             <div class="card-body">
                                 <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
@@ -493,8 +493,6 @@ use CodeIgniter\I18n\Time;
                                                                 <!-- role-->
                                                                 <input type="hidden" name="role" value="Dosen" />
 
-
-
                                                                 <!-- email -->
                                                                 <div class="form-group my-3">
                                                                     <label for="email" class="form-label">Email</label>
@@ -555,9 +553,9 @@ use CodeIgniter\I18n\Time;
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Instrumen</th>
                                                 <th>Email</th>
                                                 <th>Username</th>
+                                                <th>Instrumen</th>
                                                 <?php if (in_groups('Admin')) : ?>
                                                     <th>Status Aktif</th>
                                                     <th>Hapus</th>
@@ -570,9 +568,16 @@ use CodeIgniter\I18n\Time;
                                             <?php foreach ($getDosen as $dosen) : ?>
                                                 <tr>
                                                     <td class="text-center"><?= $i++; ?></td>
+
+                                                    <td>
+                                                        <?= $dosen->email; ?>
+                                                    </td>
+                                                    <td>
+                                                        <?= $dosen->username; ?>
+                                                    </td>
                                                     <td>
                                                         <button class="btn btn-sm btn-primary" type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modal-select-instrumen-responden-<?= $dosen->id; ?>">
-                                                            Lihat Instrumen
+                                                            Daftar Instrumen
                                                         </button>
                                                         <!-- modal pilih instrumen responden -->
                                                         <div class="modal fade" id="modal-select-instrumen-responden-<?= $dosen->id; ?>" tabindex="-1" aria-hidden="true">
@@ -585,13 +590,32 @@ use CodeIgniter\I18n\Time;
                                                                     <div class="modal-body">
                                                                         <p>Pilih Instrumen yang dapat diisi oleh akun <u><?= $dosen->email; ?></u></p>
                                                                         <div class="card">
-                                                                            <select name="peruntukkanCategory[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
-                                                                                <?php foreach ($instrumenByResponden as $listInstrumen) : ?>
-                                                                                    <option value="<?= $listInstrumen['namaInstrumen']; ?>"><?= $listInstrumen['namaInstrumen']; ?></option>
-                                                                                <?php endforeach; ?>
+                                                                            <?php
+                                                                            // $authorize = $auth = service('authorization');
+                                                                            // $cek = $authorize->hasPermission(3, $userId);
 
+                                                                            $userId =  $dosen->id;
+                                                                            $permissionModel = model('PermissionModel');
+                                                                            $this->permissionModel = new $permissionModel;
+                                                                            $getPermission =  $this->permissionModel->getPermissionsForUser($userId);
+                                                                            ?>
+
+                                                                            <select name="test[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
+                                                                                <?php foreach ($getPermission as $userPermission) : ?>
+                                                                                    <?php
+                                                                                    $permissionId = $userPermission;
+                                                                                    $instrumenModel = model('InstrumenModel');
+                                                                                    $this->instrumenModel = new $instrumenModel;
+                                                                                    $getInstrumenByPermission =  $this->instrumenModel->getInstrumenByPermission($permissionId);
+                                                                                    foreach ($getInstrumenByPermission as $getInsPermiss) {
+                                                                                        $insPermiss = $getInsPermiss['namaInstrumen'];
+                                                                                    }
+                                                                                    ?>
+                                                                                    <option value="<?= $userPermission; ?>"><?= $insPermiss; ?></option>
+                                                                                <?php endforeach; ?>
                                                                             </select>
                                                                         </div>
+
                                                                         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
                                                                         <script>
@@ -614,12 +638,6 @@ use CodeIgniter\I18n\Time;
                                                             </div>
                                                         </div>
                                                         <!-- ./modal pilih instrumen responden -->
-                                                    </td>
-                                                    <td>
-                                                        <?= $dosen->email; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?= $dosen->username; ?>
                                                     </td>
                                                     <?php if (in_groups('Admin')) : ?>
                                                         <td>
@@ -706,16 +724,19 @@ use CodeIgniter\I18n\Time;
 
 
                             </div>
-                            <!-- ./KELOLA responden dosen -->
-                        </div>
-                        <!-- ./ content tab dosen -->
 
+
+                        </div>
+                        <!-- ./KELOLA responden dosen -->
                     </div>
+                    <!-- ./ content tab dosen -->
+
                 </div>
             </div>
         </div>
-    </section>
-    <!-- /.content -->
+</div>
+</section>
+<!-- /.content -->
 </div>
 <!-- table admin gpjm -->
 <script type="text/javascript">

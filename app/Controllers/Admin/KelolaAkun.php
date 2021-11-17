@@ -12,6 +12,7 @@ use App\Models\ResponseModel;
 use App\Models\RespondenModel;
 use Myth\Auth\Models\AuthGroupsModel;
 use Myth\Auth\Models\UserModel;
+use Myth\Auth\Authorization\PermissionModel;
 
 
 
@@ -25,6 +26,7 @@ class KelolaAkun extends BaseController
     protected $respondenModel;
     protected $authGroupsModel;
     protected $userModel;
+    protected $permissionModel;
 
     protected $mRequest;
 
@@ -39,6 +41,7 @@ class KelolaAkun extends BaseController
         $this->respondenModel = new RespondenModel();
         $this->authGroupsModel = new AuthGroupsModel();
         $this->userModel = new UserModel();
+        $this->permissionModel = new PermissionModel();
 
         $this->mRequest = service("request");
     }
@@ -56,9 +59,6 @@ class KelolaAkun extends BaseController
             'getUserInstrumen' => $this->instrumenModel->getUserInstrumen(),
             'getDosen' => $this->userModel->getDosen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($roleDosen),
-
-
-
 
             'validation' => \Config\Services::validation()
 

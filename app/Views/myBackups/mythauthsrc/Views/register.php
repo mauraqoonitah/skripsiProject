@@ -22,11 +22,11 @@
 
                         <div class="form-group">
                             <label for="username"><?= lang('Auth.username') ?></label>
-                            <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>/<?= lang('Auth.email') ?>" value="<?= old('username') ?>">
+                            <input type="text" class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
                         </div>
 
                         <div class="form-group">
-                            <label for="password"><?= lang('Auth.password') ?></label>
+                            <aulabel for="password"><?= lang('Auth.password') ?></aulabel>
                             <input type="password" name="password" class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
                         </div>
 
