@@ -44,6 +44,7 @@
     <?php $selected_resp = [];
     foreach ($getSelectedResponden as $resp) {
         $selected_resp[] = $resp['peruntukkanCategory'];
+        var_dump($selected_resp);
     };
     ?>
 

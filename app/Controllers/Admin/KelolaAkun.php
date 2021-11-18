@@ -13,6 +13,7 @@ use App\Models\RespondenModel;
 use Myth\Auth\Models\AuthGroupsModel;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Authorization\PermissionModel;
+// use Myth\Auth\Authorization\FlatAuthorization;
 
 
 
@@ -27,6 +28,7 @@ class KelolaAkun extends BaseController
     protected $authGroupsModel;
     protected $userModel;
     protected $permissionModel;
+    // protected $flatAuthorization;
 
     protected $mRequest;
 
@@ -42,6 +44,7 @@ class KelolaAkun extends BaseController
         $this->authGroupsModel = new AuthGroupsModel();
         $this->userModel = new UserModel();
         $this->permissionModel = new PermissionModel();
+        // $this->flatAuthorization = new FlatAuthorization();
 
         $this->mRequest = service("request");
     }
@@ -49,7 +52,6 @@ class KelolaAkun extends BaseController
     public function index()
     {
         $roleDosen = 'Dosen';
-
         $data = [
             'title' => 'Kelola Akun',
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
@@ -59,10 +61,14 @@ class KelolaAkun extends BaseController
             'getUserInstrumen' => $this->instrumenModel->getUserInstrumen(),
             'getDosen' => $this->userModel->getDosen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($roleDosen),
+            'getAllInstrumenByDosen' => $this->instrumenModel->getAllInstrumenByDosen(),
 
+            // 'getInstrumenByPermission' => $this->instrumenModel->getInstrumenByPermission($permissionId),
+            'getAllPermissions' => $this->permissionModel->findAll(),
             'validation' => \Config\Services::validation()
 
         ];
+
 
         return view('admin/kelola-akun/kelola_akun', $data);
     }

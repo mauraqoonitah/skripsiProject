@@ -77,7 +77,7 @@ use CodeIgniter\I18n\Time;
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-four-tabContent">
                         <!-- content tab admin gpjm -->
-                        <div class="tab-pane fade  show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                        <div class="tab-pane fade  " id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                             <!-- card admin gpjm -->
                             <div class="card-body">
                                 <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
@@ -460,7 +460,7 @@ use CodeIgniter\I18n\Time;
                         <!-- ./ content tab kontributor -->
 
                         <!-- content tab dosen -->
-                        <div class="tab-pane fade" id="tabs-dosen" role="tabpanel" aria-labelledby="dosen-tab">
+                        <div class="tab-pane fade show active" id="tabs-dosen" role="tabpanel" aria-labelledby="dosen-tab">
 
                             <?= csrf_field(); ?>
                             <!-- KELOLA responden dosen -->
@@ -547,6 +547,8 @@ use CodeIgniter\I18n\Time;
 
                                 </div>
 
+
+
                                 <!-- /.card-header -->
                                 <div class="table-responsive">
                                     <table id="table-admin-dosen" class="table table-bordered display row-border compact">
@@ -590,6 +592,9 @@ use CodeIgniter\I18n\Time;
                                                                     <div class="modal-body">
                                                                         <p>Pilih Instrumen yang dapat diisi oleh akun <u><?= $dosen->email; ?></u></p>
                                                                         <div class="card">
+
+
+
                                                                             <?php
                                                                             // $authorize = $auth = service('authorization');
                                                                             // $cek = $authorize->hasPermission(3, $userId);
@@ -600,20 +605,46 @@ use CodeIgniter\I18n\Time;
                                                                             $getPermission =  $this->permissionModel->getPermissionsForUser($userId);
                                                                             ?>
 
+
                                                                             <select name="test[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
                                                                                 <?php foreach ($getPermission as $userPermission) : ?>
+                                                                                    <?php $permissionId = $userPermission; ?>
+
                                                                                     <?php
-                                                                                    $permissionId = $userPermission;
                                                                                     $instrumenModel = model('InstrumenModel');
                                                                                     $this->instrumenModel = new $instrumenModel;
-                                                                                    $getInstrumenByPermission =  $this->instrumenModel->getInstrumenByPermission($permissionId);
-                                                                                    foreach ($getInstrumenByPermission as $getInsPermiss) {
-                                                                                        $insPermiss = $getInsPermiss['namaInstrumen'];
-                                                                                    }
+                                                                                    $getSelectedInsByPermission =  $this->instrumenModel->getSelectedInsByPermission($permissionId);
+
                                                                                     ?>
-                                                                                    <option value="<?= $userPermission; ?>"><?= $insPermiss; ?></option>
+                                                                                    <?php
+                                                                                    $selectedInsPerm = [];
+                                                                                    foreach ($getSelectedInsByPermission as $insUser) : ?>
+                                                                                        <?php $selectedInsPerm[] = $insUser['namaInstrumen']; ?>
+                                                                                        <?php $selectedInsPerm2 = $insUser['namaInstrumen']; ?>
+
+                                                                                    <?php endforeach; ?>
+                                                                                    <?php var_dump($selectedInsPerm); ?>
+
+
+                                                                                    <?php foreach ($getAllInstrumenByDosen as $allIns) : ?>
+                                                                                        <p><?php $allInstrumen = $allIns['namaInstrumen']; ?></p>
+                                                                                        <p><?php $allInstrumen2 = $allIns['namaInstrumen']; ?></p>
+
+                                                                                        <option value="a" <?php echo in_array($allInstrumen, $selectedInsPerm) ? 'selected' : '' ?>>
+                                                                                            <?= $allInstrumen; ?></option>
+
+                                                                                    <?php endforeach; ?>
                                                                                 <?php endforeach; ?>
+
+
+
+
+
                                                                             </select>
+
+
+
+
                                                                         </div>
 
                                                                         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

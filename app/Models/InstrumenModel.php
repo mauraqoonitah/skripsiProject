@@ -91,12 +91,20 @@ class InstrumenModel extends Model
         // ->get()->getResultArray();
     }
 
-    public function getInstrumenByPermission($permissionId)
+    public function getSelectedInsByPermission($permissionId)
     {
         return $this
             ->join('auth_permissions', 'auth_permissions.name = instrumen.id')
             ->where('auth_permissions.name', $permissionId)
+            ->get()->getResultArray();
 
+        // ->findAll();
+    }
+    public function getAllInstrumenByDosen()
+    {
+        return $this
+            ->select('namaInstrumen')
+            ->join('auth_permissions', 'auth_permissions.name = instrumen.id')
             ->findAll();
     }
 }
