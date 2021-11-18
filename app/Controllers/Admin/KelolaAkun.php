@@ -33,6 +33,7 @@ class KelolaAkun extends BaseController
     protected $mRequest;
 
 
+
     public function __construct()
     {
         $this->adminModel = new AdminModel();
@@ -44,8 +45,10 @@ class KelolaAkun extends BaseController
         $this->authGroupsModel = new AuthGroupsModel();
         $this->userModel = new UserModel();
         $this->permissionModel = new PermissionModel();
-        // $this->flatAuthorization = new FlatAuthorization();
+        // $this->load->database();
 
+        // $this->flatAuthorization = new FlatAuthorization();
+        $this->authorize = service('authorization');
         $this->mRequest = service("request");
     }
 
@@ -62,6 +65,7 @@ class KelolaAkun extends BaseController
             'getDosen' => $this->userModel->getDosen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($roleDosen),
             'getAllInstrumenByDosen' => $this->instrumenModel->getAllInstrumenByDosen(),
+            'getAllInsByPermission' => $this->instrumenModel->getAllInsByPermission(),
 
             // 'getInstrumenByPermission' => $this->instrumenModel->getInstrumenByPermission($permissionId),
             'getAllPermissions' => $this->permissionModel->findAll(),
@@ -71,6 +75,62 @@ class KelolaAkun extends BaseController
 
 
         return view('admin/kelola-akun/kelola_akun', $data);
+    }
+
+    public function updateInsDosen($userId)
+    {
+        $db = \Config\Database::connect();
+        $instrumenDosen = $this->mRequest->getPost('instrumenDosen');
+
+
+        $arrPermissionId =  $this->permissionModel->getPermissionsForUser($userId);
+        $permissionId = array_map('intval', $arrPermissionId);
+
+        foreach ($permissionId as $pId) {
+            $name = $pId;
+
+            $query   = $db->query("SELECT * FROM instrumen INNER JOIN auth_permissions ON auth_permissions.name = instrumen.id WHERE name = $name ");
+            $results = $query->getResultArray();
+        }
+
+        // get selected value (old data)
+        $oldSelectedInstrumen = [];
+        foreach ($results as $selected_data) {
+            $oldSelectedInstrumen[] = $selected_data['namaInstrumen'];
+        }
+        // ADDED - ambil new insert nya
+        foreach ($instrumenDosen as $add_val) {
+            if (!in_array($add_val, $oldSelectedInstrumen)) {
+                $data = [
+                    'permissionID' => $add_val,
+                    'userID' => $add_val,
+                    'name' => $add_val,
+
+                ];
+                // var_dump($data);
+
+                var_dump($add_val . " ADDED <br>");
+                // $this->adminModel->insert($data);
+            }
+        }
+
+        //REMOVED - ambil data yang di remove
+        foreach ($oldSelectedInstrumen as $remove_val) {
+            if (!in_array($remove_val, $instrumenDosen)) {
+
+                $data = [
+                    'name' => $remove_val,
+                ];
+                // var_dump($data);
+                var_dump($remove_val . " REMOVED <br>");
+                // $this->adminModel->where($data)->delete();
+            }
+        }
+
+
+        // session()->setFlashdata('message', ' Pilihan Instrumen berhasil diubah');
+
+        // return redirect()->to('/admin/kelolaAkun');
     }
 
     public function activeStatus($id)

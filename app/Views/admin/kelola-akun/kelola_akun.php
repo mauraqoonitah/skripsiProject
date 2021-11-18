@@ -550,6 +550,8 @@ use CodeIgniter\I18n\Time;
 
 
                                 <!-- /.card-header -->
+
+
                                 <div class="table-responsive">
                                     <table id="table-admin-dosen" class="table table-bordered display row-border compact">
                                         <thead>
@@ -581,94 +583,95 @@ use CodeIgniter\I18n\Time;
                                                         <button class="btn btn-sm btn-primary" type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modal-select-instrumen-responden-<?= $dosen->id; ?>">
                                                             Daftar Instrumen
                                                         </button>
-                                                        <!-- modal pilih instrumen responden -->
-                                                        <div class="modal fade" id="modal-select-instrumen-responden-<?= $dosen->id; ?>" tabindex="-1" aria-hidden="true">
-                                                            <div class="modal-dialog modal-lg modal-dialog-centered ">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header bg-cosmic text-white">
-                                                                        <h5 class="modal-title fw-bold">Pilih Instrumen </h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>Pilih Instrumen yang dapat diisi oleh akun <u><?= $dosen->email; ?></u></p>
-                                                                        <div class="card">
-
-
-
-                                                                            <?php
-                                                                            // $authorize = $auth = service('authorization');
-                                                                            // $cek = $authorize->hasPermission(3, $userId);
-
-                                                                            $userId =  $dosen->id;
-                                                                            $permissionModel = model('PermissionModel');
-                                                                            $this->permissionModel = new $permissionModel;
-                                                                            $getPermission =  $this->permissionModel->getPermissionsForUser($userId);
-                                                                            ?>
-
-
-                                                                            <select name="test[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
-                                                                                <?php foreach ($getPermission as $userPermission) : ?>
-                                                                                    <?php $permissionId = $userPermission; ?>
-
-                                                                                    <?php
-                                                                                    $instrumenModel = model('InstrumenModel');
-                                                                                    $this->instrumenModel = new $instrumenModel;
-                                                                                    $getSelectedInsByPermission =  $this->instrumenModel->getSelectedInsByPermission($permissionId);
-
-                                                                                    ?>
-                                                                                    <?php
-                                                                                    $selectedInsPerm = [];
-                                                                                    foreach ($getSelectedInsByPermission as $insUser) : ?>
-                                                                                        <?php $selectedInsPerm[] = $insUser['namaInstrumen']; ?>
-                                                                                        <?php $selectedInsPerm2 = $insUser['namaInstrumen']; ?>
-
-                                                                                    <?php endforeach; ?>
-                                                                                    <?php var_dump($selectedInsPerm); ?>
-
-
-                                                                                    <?php foreach ($getAllInstrumenByDosen as $allIns) : ?>
-                                                                                        <p><?php $allInstrumen = $allIns['namaInstrumen']; ?></p>
-                                                                                        <p><?php $allInstrumen2 = $allIns['namaInstrumen']; ?></p>
-
-                                                                                        <option value="a" <?php echo in_array($allInstrumen, $selectedInsPerm) ? 'selected' : '' ?>>
-                                                                                            <?= $allInstrumen; ?></option>
-
-                                                                                    <?php endforeach; ?>
-                                                                                <?php endforeach; ?>
-
-
-
-
-
-                                                                            </select>
-
-
-
-
+                                                        <!-- form update instrumen dosen -->
+                                                        <form action="<?= base_url(); ?>/admin/updateInsDosen/<?= $dosen->id; ?>" method="post">
+                                                            <?= csrf_field(); ?>
+                                                            <!-- modal pilih instrumen responden -->
+                                                            <div class="modal fade" id="modal-select-instrumen-responden-<?= $dosen->id; ?>" tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg modal-dialog-centered ">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-cosmic text-white">
+                                                                            <h5 class="modal-title fw-bold">Pilih Instrumen </h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
+                                                                        <div class="modal-body">
+                                                                            <p>Pilih Instrumen yang dapat diisi oleh akun <u><?= $dosen->email; ?></u></p>
+                                                                            <div class="card">
 
-                                                                        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-                                                                        <script>
-                                                                            $(".form-select-instrumen-dosen-<?= $dosen->id; ?>").select2({
-                                                                                dropdownParent: $('#modal-select-instrumen-responden-<?= $dosen->id; ?>')
-                                                                            });
-                                                                        </script>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                                        <form action="<?= base_url(); ?>/admin/savePilihanInstrumenDosen-<?= $dosen->id; ?>" method="post">
+                                                                                <?php
+                                                                                // $authorize = $auth = service('authorization');
+                                                                                // $cek = $authorize->hasPermission(3, $userId);
+
+                                                                                $userId =  $dosen->id;
+                                                                                $permissionModel = model('PermissionModel');
+                                                                                $this->permissionModel = new $permissionModel;
+                                                                                $getPermission =  $this->permissionModel->getPermissionsForUser($userId);
+
+                                                                                ?>
+
+
+                                                                                <select name="instrumenDosen[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
+                                                                                    <?php foreach ($getPermission as $userPermission) : ?>
+                                                                                        <?php
+                                                                                        $permissionId = (int) $userPermission;
+
+                                                                                        ?>
+
+                                                                                        <?php
+                                                                                        $db = db_connect();
+                                                                                        $instrumenModel = model('InstrumenModel');
+                                                                                        $this->instrumenModel = new $instrumenModel;
+                                                                                        $getSelectedInsByPermission =  $this->instrumenModel->getSelectedInsByPermission($permissionId);
+                                                                                        $name = $permissionId;
+                                                                                        $sql = "SELECT * FROM instrumen INNER JOIN auth_permissions ON auth_permissions.name = instrumen.id WHERE name = ? ";
+
+
+                                                                                        $yuk =  $db->query($sql, [$name]);
+                                                                                        $selectedInsPerm = [];
+                                                                                        foreach ($yuk->getResultArray() as $getSelectedInsByPermission2) {
+                                                                                            $selectedInsPerm[] = $getSelectedInsByPermission2['namaInstrumen'];
+                                                                                            $selectedInsPerm2 = $getSelectedInsByPermission2['namaInstrumen'];
+                                                                                            // var_dump($selectedInsPerm);
+                                                                                        }
+
+                                                                                        // var_dump($getSelectedInsByPermission);
+                                                                                        ?>
+
+                                                                                        <?php foreach ($getAllInstrumenByDosen as $allIns) : ?>
+                                                                                            <p><?php $allInstrumen = $allIns['namaInstrumen']; ?></p>
+                                                                                            <p><?php $allInsPerm = $allIns['name']; ?></p>
+                                                                                            <p><?php $allInstrumen2 = $allIns['namaInstrumen']; ?></p>
+
+                                                                                            <option value="<?= $allInsPerm; ?>" <?php echo in_array($allInstrumen, $selectedInsPerm) ? 'selected' : '' ?>>
+                                                                                                <?= $allInstrumen; ?></option>
+
+                                                                                        <?php endforeach; ?>
+                                                                                    <?php endforeach; ?>
+
+                                                                                </select>
+                                                                            </div>
+                                                                            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+                                                                            <script>
+                                                                                $(".form-select-instrumen-dosen-<?= $dosen->id; ?>").select2({
+                                                                                    dropdownParent: $('#modal-select-instrumen-responden-<?= $dosen->id; ?>')
+                                                                                });
+                                                                            </script>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
                                                                             <?= csrf_field(); ?>
                                                                             <button type="submit" class="btn btn-success">Simpan</button>
-                                                                        </form>
 
-
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- ./modal pilih instrumen responden -->
+                                                            <!-- ./modal pilih instrumen responden -->
+                                                        </form>
                                                     </td>
                                                     <?php if (in_groups('Admin')) : ?>
                                                         <td>
@@ -752,7 +755,7 @@ use CodeIgniter\I18n\Time;
                                         </tbody>
                                     </table>
                                 </div>
-
+                                </form>
 
                             </div>
 
