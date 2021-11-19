@@ -238,15 +238,41 @@ use CodeIgniter\I18n\Time;
                                                                         <?php if (in_groups('Admin')) : ?>
                                                                             <!-- remove permission -->
                                                                             <td class="d-flex justify-content-center ">
-                                                                                <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus Akses">
-                                                                                    <form action="<?= base_url(); ?>/admin/kelolaAkun/removePermission/<?= $permissionId; ?>/<?= $userID; ?>" method="post">
-                                                                                        <button type="submit" class="btn btn-sm" id="remove_permission">
-                                                                                            <i class=" fas fa-user-minus text-white"></i>
-                                                                                        </button>
-                                                                                    </form>
+                                                                                <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-permission-<?= $permissionId; ?>-userID-<?= $userID; ?>">
+                                                                                    <button type="button" class="btn btn-sm" id="remove_permission">
+                                                                                        <i class=" fas fa-user-minus text-white"></i>
+                                                                                    </button>
                                                                                 </a>
                                                                             </td>
                                                                             <!-- ./remove permission   -->
+
+                                                                            <!-- modal hapus admin GPJM -->
+                                                                            <div class="modal fade" id="modal-delete-permission-<?= $permissionId; ?>-userID-<?= $userID; ?>" tabindex="-1" aria-hidden="true">
+                                                                                <div class="modal-dialog modal-dialog-centered ">
+                                                                                    <div class="modal-content">
+                                                                                        <div class="modal-header bg-cosmic text-white">
+                                                                                            <h5 class="modal-title fw-bold">Hapus Akses</h5>
+                                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                        </div>
+                                                                                        <div class="modal-body text-center">
+                                                                                            <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                                            Anda akan menghapus akses akun <u><?= $dosen->email; ?></u> pada kuesioner <?= $insDosen['namaInstrumen']; ?> ?
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                                            <form action="<?= base_url(); ?>/admin/kelolaAkun/removePermission/<?= $permissionId; ?>/<?= $userID; ?>" method="post">
+                                                                                                <?= csrf_field(); ?>
+                                                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                                            </form>
+
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- ./modal hapus admin GPJM -->
+
                                                                         <?php endif; ?>
                                                                     </tr>
                                                                     </tbody>
