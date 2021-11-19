@@ -188,4 +188,14 @@ class KelolaAkun extends BaseController
 
         return redirect()->to('/admin/kelolaAkun');
     }
+
+    public function removePermission($permissionId, $userId)
+    {
+        $authorize = service('authorization');
+        $authorize->removePermissionFromUser($permissionId, $userId);
+
+        session()->setFlashdata('message', 'Akses berhasil dihapus');
+
+        return redirect()->to('/admin/kelolaAkun');
+    }
 }
