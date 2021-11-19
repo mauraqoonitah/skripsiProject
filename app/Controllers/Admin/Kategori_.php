@@ -60,6 +60,7 @@ class Kategori_ extends BaseController
             'getSelectedResponden' => $this->adminModel->getSelectedResponden($slug),
             'validation' => \Config\Services::validation()
         ];
+        // dd($data);
 
         //jika url diketik asal dan kategori tidak ada di tabel
         // menampilkan custom error page 

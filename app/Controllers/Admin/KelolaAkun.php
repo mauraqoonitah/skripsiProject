@@ -13,7 +13,7 @@ use App\Models\RespondenModel;
 use Myth\Auth\Models\AuthGroupsModel;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Authorization\PermissionModel;
-// use Myth\Auth\Authorization\FlatAuthorization;
+use Myth\Auth\Authorization\FlatAuthorization;
 
 
 
@@ -28,7 +28,7 @@ class KelolaAkun extends BaseController
     protected $authGroupsModel;
     protected $userModel;
     protected $permissionModel;
-    // protected $flatAuthorization;
+    protected $authorize;
 
     protected $mRequest;
 
@@ -46,9 +46,8 @@ class KelolaAkun extends BaseController
         $this->userModel = new UserModel();
         $this->permissionModel = new PermissionModel();
         // $this->load->database();
-
-        // $this->flatAuthorization = new FlatAuthorization();
         $this->authorize = service('authorization');
+        // $this->flatAuthorization = new FlatAuthorization();
         $this->mRequest = service("request");
     }
 
@@ -61,20 +60,40 @@ class KelolaAkun extends BaseController
             'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
             'getAdminUser' => $this->userModel->getAdminUser(),
             'getKontributor' => $this->userModel->getKontributor(),
-            'getUserInstrumen' => $this->instrumenModel->getUserInstrumen(),
-            'getDosen' => $this->userModel->getDosen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($roleDosen),
-            'getAllInstrumenByDosen' => $this->instrumenModel->getAllInstrumenByDosen(),
-            'getAllInsByPermission' => $this->instrumenModel->getAllInsByPermission(),
 
-            // 'getInstrumenByPermission' => $this->instrumenModel->getInstrumenByPermission($permissionId),
-            'getAllPermissions' => $this->permissionModel->findAll(),
             'validation' => \Config\Services::validation()
 
         ];
 
 
         return view('admin/kelola-akun/kelola_akun', $data);
+    }
+
+    public function editAkunDosen($userId)
+    {
+        // $getPermissionsForUser = $this->permissionModel->getPermissionsForUser($userId);
+
+        // $selected_permissionName = [];
+        // foreach ($getPermissionsForUser as $selected_data) {
+        //     $selected_permissionName[] = $selected_data;
+        //     var_dump($selected_permissionName);
+
+        //     $getSelectedInsByPermission = $this->instrumenModel->getSelectedInsByPermission($selected_permissionName);
+        //     var_dump($getSelectedInsByPermission);
+        // };
+
+
+        $data = [
+            'title' => 'Ubah Data Instrumen Dosen',
+            'getDataDosen' => $this->userModel->getDataDosen($userId),
+            'getPermissionsForUser' => $this->permissionModel->getPermissionsForUser($userId),
+            'getAllInstrumenDosen' => $this->instrumenModel->getAllInstrumenDosen(),
+
+
+            'validation' => \Config\Services::validation()
+        ];
+        return view('/admin/kelola-akun/edit_akun_dosen', $data);
     }
 
     public function updateInsDosen($userId)

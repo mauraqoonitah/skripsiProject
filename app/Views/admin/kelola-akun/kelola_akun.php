@@ -8,9 +8,6 @@ use CodeIgniter\I18n\Time;
 ?>
 
 
-<!-- flash success tambah data  -->
-<div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
-<!-- ./ flash success tambah data  -->
 
 <div class="content-wrapper px-2 pb-5">
     <!-- Content Header (Page header) -->
@@ -76,8 +73,9 @@ use CodeIgniter\I18n\Time;
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-four-tabContent">
-                        <!-- content tab admin gpjm -->
-                        <div class="tab-pane fade  " id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                        <!-- ================================= content tab gpjm ==================================== -->
+
+                        <div class="tab-pane fade show active " id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
                             <!-- card admin gpjm -->
                             <div class="card-body">
                                 <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
@@ -278,7 +276,8 @@ use CodeIgniter\I18n\Time;
                         </div>
                         <!-- ./content tab admin gpjm -->
 
-                        <!-- content tab kontributor -->
+                        <!-- ================================= content tab kontributor ============================= -->
+
                         <div class="tab-pane fade" id="tabs-kontributor" role="tabpanel" aria-labelledby="kontributor-tab">
                             <!-- KELOLA ADMIN KONTRIBUTOR -->
                             <div class="card-body">
@@ -469,8 +468,8 @@ use CodeIgniter\I18n\Time;
                         </div>
                         <!-- ./ content tab kontributor -->
 
-                        <!-- content tab dosen -->
-                        <div class="tab-pane fade show active" id="tabs-dosen" role="tabpanel" aria-labelledby="dosen-tab">
+                        <!-- ================================= content tab dosen ==================================== -->
+                        <div class="tab-pane fade " id="tabs-dosen" role="tabpanel" aria-labelledby="dosen-tab">
 
                             <?= csrf_field(); ?>
                             <!-- KELOLA responden dosen -->
@@ -560,214 +559,126 @@ use CodeIgniter\I18n\Time;
                                 </div>
 
 
-
-                                <!-- /.card-header -->
-
-
-                                <div class="table-responsive">
-                                    <table id="table-admin-dosen" class="table table-bordered display row-border compact">
-                                        <thead>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>Email</th>
-                                                <th>Username</th>
-                                                <th>Instrumen</th>
-                                                <?php if (in_groups('Admin')) : ?>
-                                                    <th>Status Aktif</th>
-                                                    <th>Hapus</th>
-                                                <?php endif; ?>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $i = 1; ?>
-
-                                            <?php foreach ($getDosen as $dosen) : ?>
-                                                <tr>
-                                                    <td class="text-center"><?= $i++; ?></td>
-
-                                                    <td>
-                                                        <?= $dosen->email; ?>
-                                                    </td>
-                                                    <td>
-                                                        <?= $dosen->username; ?>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-sm btn-primary" type="button" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#modal-select-instrumen-responden-<?= $dosen->id; ?>">
-                                                            Daftar Instrumen
-                                                        </button>
-                                                        <!-- form update instrumen dosen -->
-                                                        <form action="<?= base_url(); ?>/admin/updateInsDosen/<?= $dosen->id; ?>" method="post">
-                                                            <?= csrf_field(); ?>
-                                                            <!-- modal pilih instrumen responden -->
-                                                            <div class="modal fade" id="modal-select-instrumen-responden-<?= $dosen->id; ?>" tabindex="-1" aria-hidden="true">
-                                                                <div class="modal-dialog modal-lg modal-dialog-centered ">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header bg-cosmic text-white">
-                                                                            <h5 class="modal-title fw-bold">Pilih Instrumen </h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <p>Pilih Instrumen yang dapat diisi oleh akun <u><?= $dosen->email; ?></u></p>
-                                                                            <div class="card">
-
-
-
-                                                                                <?php
-                                                                                // $authorize = $auth = service('authorization');
-                                                                                // $cek = $authorize->hasPermission(3, $userId);
-
-                                                                                $userId =  $dosen->id;
-                                                                                $permissionModel = model('PermissionModel');
-                                                                                $this->permissionModel = new $permissionModel;
-                                                                                $getPermission =  $this->permissionModel->getPermissionsForUser($userId);
-
-                                                                                ?>
-
-
-                                                                                <select name="instrumenDosen[]" class="form-select form-select-instrumen-dosen-<?= $dosen->id; ?>" id="form-select-instrumen-dosen-<?= $dosen->id; ?>" multiple>
-                                                                                    <?php foreach ($getPermission as $userPermission) : ?>
-                                                                                        <?php
-                                                                                        $permissionId = (int) $userPermission;
-
-                                                                                        ?>
-
-                                                                                        <?php
-                                                                                        $db = db_connect();
-                                                                                        $instrumenModel = model('InstrumenModel');
-                                                                                        $this->instrumenModel = new $instrumenModel;
-                                                                                        $getSelectedInsByPermission =  $this->instrumenModel->getSelectedInsByPermission($permissionId);
-                                                                                        $name = $permissionId;
-                                                                                        $sql = "SELECT * FROM instrumen INNER JOIN auth_permissions ON auth_permissions.name = instrumen.id WHERE name = ? ";
-
-
-                                                                                        $yuk =  $db->query($sql, [$name]);
-                                                                                        $selectedInsPerm = [];
-                                                                                        foreach ($yuk->getResultArray() as $getSelectedInsByPermission2) {
-                                                                                            $selectedInsPerm[] = $getSelectedInsByPermission2['namaInstrumen'];
-                                                                                            $selectedInsPerm2 = $getSelectedInsByPermission2['namaInstrumen'];
-                                                                                            // var_dump($selectedInsPerm);
-                                                                                        }
-
-                                                                                        // var_dump($getSelectedInsByPermission);
-                                                                                        ?>
-
-                                                                                        <?php foreach ($getAllInstrumenByDosen as $allIns) : ?>
-                                                                                            <p><?php $allInstrumen = $allIns['namaInstrumen']; ?></p>
-                                                                                            <p><?php $allInsPerm = $allIns['name']; ?></p>
-                                                                                            <p><?php $allInstrumen2 = $allIns['namaInstrumen']; ?></p>
-
-                                                                                            <option value="<?= $allInsPerm; ?>" <?php echo in_array($allInstrumen, $selectedInsPerm) ? 'selected' : '' ?>>
-                                                                                                <?= $allInstrumen; ?></option>
-
-                                                                                        <?php endforeach; ?>
-                                                                                    <?php endforeach; ?>
-
-                                                                                </select>
-                                                                            </div>
-                                                                            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-                                                                            <script>
-                                                                                $(".form-select-instrumen-dosen-<?= $dosen->id; ?>").select2({
-                                                                                    dropdownParent: $('#modal-select-instrumen-responden-<?= $dosen->id; ?>')
-                                                                                });
-                                                                            </script>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                                            <?= csrf_field(); ?>
-                                                                            <button type="submit" class="btn btn-success">Simpan</button>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!-- ./modal pilih instrumen responden -->
-                                                        </form>
-                                                    </td>
-                                                    <?php if (in_groups('Admin')) : ?>
-                                                        <td>
-                                                            <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $dosen->id; ?>" method="post" enctype="multipart/form-data">
-                                                                <?php
-                                                                $is_active = $dosen->active;
-                                                                ?>
-                                                                <div class="form-check mr-4">
-                                                                    <input class="form-check-input-status-dosen-<?= $dosen->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $dosen->id; ?>">
-                                                                </div>
-
-                                                                <!-- is_active checkbox -->
-                                                                <script>
-                                                                    // get data
-                                                                    $('.form-check-input-status-dosen-<?= $dosen->id; ?>').on('click', function() {
-                                                                        const activeId = $(this).data('active');
-                                                                        const id = $(this).data('id');
-
-                                                                        $.ajax({
-                                                                            url: "<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $dosen->id; ?>",
-                                                                            headers: {
-                                                                                'X-Requested-With': 'XMLHttpRequest'
-                                                                            },
-                                                                            type: 'post',
-                                                                            data: {
-                                                                                activeId: activeId,
-                                                                                id: id
-                                                                            },
-                                                                            success: function() {
-                                                                                document.location.href = "<?= base_url(); ?>/admin/kelolaAkun"
-                                                                            }
-                                                                        })
-
-                                                                    });
-                                                                </script>
-                                                                <!-- ./is_active checkbox -->
-                                                            </form>
-
-                                                        </td>
-
-                                                        <td class="">
-                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-< ?= $resp['id']; ?>">
-                                                                <button type="button" class="btn btn-sm">
-                                                                    <i class="fas fa-trash-alt text-white"></i>
-                                                                </button>
-                                                            </a>
-                                                        </td>
-                                                    <?php endif; ?>
-                                                </tr>
-
-                                                <?php if (in_groups('Admin')) : ?>
-                                                    <!-- modal hapus responden -->
-                                                    <div class="modal fade" id="modal-delete-jenisResponden-< ?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered ">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header bg-cosmic text-white">
-                                                                    <h5 class="modal-title fw-bold">Hapus </h5>
-                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body text-center">
-                                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                                    Yakin hapus < ?=$resp['responden']; ?>?
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                                    <form action="<?= base_url(); ?>/admin/deleteJenisResponden/< ?= $resp['id']; ?>" method="post">
-                                                                        <?= csrf_field(); ?>
-                                                                        <input type="hidden" name="_method" value="DELETE">
-                                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                    </form>
-
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <!-- end modal hapus responden -->
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3 mt-5">
+                                    <div class="col-lg-8">
+                                        <h3 class="card-title">List Instrumen yang dapat diisi oleh Dosen</h3>
+                                    </div>
                                 </div>
-                                </form>
+
+                                <div class="accordion" id="accordionExample">
+
+                                    <?php foreach ($instrumenByResponden as $insDosen) : ?>
+                                        <div class="accordion-item my-3">
+                                            <h5 class="accordion-header" id="headingOne">
+                                                <button class="accordion-button rounded d-flex align-items-center col-lg-12" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIns-<?= $insDosen['slug']; ?>" aria-expanded="true" aria-controls="collapseIns-<?= $insDosen['slug']; ?>">
+                                                    <span class="fw-bold fs-6"> <?= $insDosen['kodeInstrumen']; ?> - <?= $insDosen['namaInstrumen']; ?></span>
+
+                                                </button>
+                                            </h5>
+
+                                            <div id="collapseIns-<?= $insDosen['slug']; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                <div class="accordion-body">
+                                                    <div class="table-responsive">
+                                                        id Ins : <?= $permissionNameDosen = $insDosen['id']; ?>
+                                                        <table class="table table-bordered display row-border ">
+
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No.</th>
+                                                                    <th>Email</th>
+                                                                    <th>Username</th>
+                                                                    <?php if (in_groups('Admin')) : ?>
+                                                                        <th>Remove</th>
+                                                                    <?php endif; ?>
+                                                                </tr>
+                                                            </thead>
+
+                                                            <?php
+                                                            $db = db_connect();
+                                                            $name = $permissionNameDosen;
+                                                            $sql = "SELECT * FROM auth_permissions WHERE name = ? ";
+                                                            $getAuthPermissions =  $db->query($sql, [$name]);
+                                                            $i = 1;
+
+                                                            foreach ($getAuthPermissions->getResultArray() as $getPermissionId) {
+                                                                $permissionId = $getPermissionId['id'];
+                                                            }
+                                                            ?>
+
+                                                            <?php
+                                                            $sql_2 = "SELECT * FROM auth_users_permissions WHERE permission_id = ? ";
+                                                            $getUsersPermissions =  $db->query($sql_2, [$permissionId]); ?>
+                                                            <?php foreach ($getUsersPermissions->getResultArray() as $getUserId) : ?>
+                                                                <?php $userID = $getUserId['user_id'];
+
+                                                                // get data dosen by user id
+                                                                $userModel = model('UserModel');
+                                                                $this->userModel = new $userModel;
+                                                                $getDataDosen = $this->userModel->getDataDosen($userID);
+                                                                ?>
+
+                                                                <?php foreach ($getDataDosen as $dosen) : ?>
+
+                                                                    <tr>
+                                                                        <td class="text-center"><?= $i++; ?></td>
+                                                                        <td>
+                                                                            <?= $dosen->email; ?>
+                                                                        </td>
+                                                                        <td>
+                                                                            <?= $dosen->username; ?>
+                                                                        </td>
+                                                                        <?php if (in_groups('Admin')) : ?>
+                                                                            <td class="d-flex justify-content-center ">
+                                                                                <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-< ?= $resp['id']; ?>">
+                                                                                    <button type="button" class="btn btn-sm">
+                                                                                        <i class="fas fa-user-minus text-white"></i>
+                                                                                    </button>
+                                                                                </a>
+                                                                            </td>
+                                                                        <?php endif; ?>
+                                                                    </tr>
+
+                                                                    <?php if (in_groups('Admin')) : ?>
+                                                                        <!-- modal hapus responden -->
+                                                                        <div class="modal fade" id="modal-delete-jenisResponden-< ?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
+                                                                            <div class="modal-dialog modal-dialog-centered ">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header bg-cosmic text-white">
+                                                                                        <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body text-center">
+                                                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                                        Yakin hapus < ?=$resp['responden']; ?>?
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                                        <form action="<?= base_url(); ?>/admin/deleteJenisResponden/< ?= $resp['id']; ?>" method="post">
+                                                                                            <?= csrf_field(); ?>
+                                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                                        </form>
+
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                    <!-- end modal hapus responden -->
+                                                                    </tbody>
+
+                                                                <?php endforeach; ?>
+
+                                                            <?php endforeach; ?>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
 
                             </div>
 

@@ -6,7 +6,7 @@ use CodeIgniter\Database\BaseResult;
 use CodeIgniter\Database\Query;
 use CodeIgniter\Model;
 
-class PermissionModel extends Model
+class PermissionModelll extends Model
 {
     protected $table = 'auth_permissions';
 

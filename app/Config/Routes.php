@@ -143,8 +143,9 @@ $routes->post('/admin/saveJenisResponden', 'Admin\JenisResponden::saveJenisRespo
 $routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updateJenisResponden/$1');
 
 // menu kelola akun
-$routes->get('/admin/kelolaAkun/(:any)', 'Admin\kelolaAkun::index',  ['filter' => 'role:Admin']);
 $routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index', ['filter' => 'role:Admin']);
+$routes->get('/admin/kelolaAkun/editAkunDosen/(:any)', 'Admin\kelolaAkun::editAkunDosen/$1');
+
 $routes->post('/admin/kelolaAkun/activeStatus/(:any)', 'Admin\kelolaAkun::activeStatus/$1');
 $routes->delete('/admin/kelolaAkun/deleteUser/(:any)', 'Admin\kelolaAkun::deleteUser/$1');
 $routes->post('/admin/updateInsDosen/(:any)', 'Admin\kelolaAkun::updateInsDosen/$1');
