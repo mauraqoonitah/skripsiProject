@@ -61,6 +61,7 @@ class KelolaAkun extends BaseController
             'getAdminUser' => $this->userModel->getAdminUser(),
             'getKontributor' => $this->userModel->getKontributor(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($roleDosen),
+            'getAllDosen' => $this->userModel->getDosen(),
 
             'validation' => \Config\Services::validation()
 
@@ -191,10 +192,23 @@ class KelolaAkun extends BaseController
 
     public function removePermission($permissionId, $userId)
     {
-        $authorize = service('authorization');
-        $authorize->removePermissionFromUser($permissionId, $userId);
+        $this->authorize->removePermissionFromUser($permissionId, $userId);
 
         session()->setFlashdata('message', 'Akses berhasil dihapus');
+
+        return redirect()->to('/admin/kelolaAkun');
+    }
+
+    public function addAkunPermission()
+    {
+        $selectedInput = $this->mRequest->getPost('addAkunPermission');
+        $input = explode("/", $selectedInput);
+
+        $permissionId = $input[0];
+        $userId = $input[1];
+        $this->authorize->addPermissionToUser($permissionId, $userId);
+
+        session()->setFlashdata('message', 'Akses berhasil ditambahkan ke akun');
 
         return redirect()->to('/admin/kelolaAkun');
     }

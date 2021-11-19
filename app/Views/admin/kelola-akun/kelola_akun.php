@@ -83,7 +83,7 @@ use CodeIgniter\I18n\Time;
                             <div class="card-body">
                                 <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3">
                                     <div class="col-lg-8">
-                                        <h3 class="card-title">Responden Dosen</h3>
+                                        <h3 class="card-title">Responden: Dosen</h3>
                                     </div>
                                     <div class="col-lg-4 d-flex justify-content-end">
                                         <?php if (in_groups('Admin')) : ?>
@@ -165,10 +165,15 @@ use CodeIgniter\I18n\Time;
 
                                 </div>
 
+                                <div class="container">
+                                    <?php foreach ($getAllDosen as $allDosen) :  ?>
+                                        <p><?= $allDosen->email; ?> </p>
+                                    <?php endforeach; ?>
+                                </div>
 
                                 <div class="card-header text-rouge d-flex align-items-center row py-3 mb-3 mt-5">
                                     <div class="col-lg-8">
-                                        <h3 class="card-title">List Instrumen yang dapat diisi oleh Dosen</h3>
+                                        <h3 class="card-title">List Instrumen yang dapat diisi oleh Responden: Dosen</h3>
                                     </div>
                                 </div>
 
@@ -276,9 +281,51 @@ use CodeIgniter\I18n\Time;
                                                                         <?php endif; ?>
                                                                     </tr>
                                                                     </tbody>
+
+
                                                                 <?php endforeach; ?>
                                                             <?php endforeach; ?>
+                                                            <button type="button" class="btn btn-sm btn-warning " data-bs-toggle="modal" data-bs-target="#tambahAkunPermissionModal-<?= $permissionId; ?>-userID-<?= $userID; ?>">
+                                                                <i class=" fas fa-plus"></i> Tambah Akun
+                                                            </button>
+                                                            <!-- modal tambah akun -->
+                                                            <div class="modal fade" id="tambahAkunPermissionModal-<?= $permissionId; ?>-userID-<?= $userID; ?>" tabindex="-1">
+                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-cosmic text-white">
+                                                                            <h5 class="modal-title" id="tambahButirLabel">Buat Akses pada Instrumen</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="container">
+                                                                                <?= csrf_field(); ?>
+                                                                                <!-- isi OLD -->
+                                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/addAkunPermission" method="post">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Instrumen :</label>
+                                                                                        <input class="form-control" type="text" value="<?= $insDosen['namaInstrumen']; ?>" readonly>
+
+                                                                                        <label class="col-form-label">Pilih akun untuk mengakses instrumen kepuasan ini:</label>
+                                                                                        <select class="form-select" name="addAkunPermission" required>
+                                                                                            <?php foreach ($getAllDosen as $allDosen) :  ?>
+                                                                                                <option value="<?= $permissionId; ?>/<?= $allDosen->id; ?>"><?= $allDosen->email; ?></option>
+                                                                                            <?php endforeach; ?>
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </table>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -862,4 +909,5 @@ use CodeIgniter\I18n\Time;
         }
     }
 </script>
+
 <?= $this->endSection(); ?>

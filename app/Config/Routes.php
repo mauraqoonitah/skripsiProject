@@ -146,6 +146,7 @@ $routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updat
 $routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index', ['filter' => 'role:Admin']);
 $routes->get('/admin/kelolaAkun/editAkunDosen/(:any)', 'Admin\kelolaAkun::editAkunDosen/$1');
 $routes->post('/admin/kelolaAkun/removePermission/(:any)', 'Admin\kelolaAkun::removePermission/$1');
+$routes->post('/admin/kelolaAkun/addAkunPermission', 'Admin\kelolaAkun::addAkunPermission');
 
 
 $routes->post('/admin/kelolaAkun/activeStatus/(:any)', 'Admin\kelolaAkun::activeStatus/$1');
