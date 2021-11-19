@@ -49,14 +49,16 @@
                                         <div class="form-group row mb-3">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label for="password" class="form-label">Password</label>
-                                                <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                <input type="password" name="password" id="inputPassword" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                                <input type="checkbox" onclick="showPassword()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.password') ?>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                                <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                <input type="password" name="pass_confirm" id="inputPasswordConfirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                                <input type="checkbox" onclick="showPasswordConfirm()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
                                                 <div class="invalid-feedback">
                                                     <?= session('errors.pass_confirm') ?>
                                                 </div>
@@ -167,14 +169,16 @@
                                 <div class="form-group row mb-3">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                        <input type="password" name="password" id="inputPassword" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                        <input type="checkbox" onclick="showPassword()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
                                         <div class="invalid-feedback">
                                             <?= session('errors.password') ?>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                        <input type="password" name="pass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                        <input type="password" name="pass_confirm" id="inputPasswordConfirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                        <input type="checkbox" onclick="showPasswordConfirm()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
                                         <div class="invalid-feedback">
                                             <?= session('errors.pass_confirm') ?>
                                         </div>
@@ -215,4 +219,25 @@
 
     getText();
 </script>
+
+<script>
+    function showPassword() {
+        var x = document.getElementById("inputPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+
+    function showPasswordConfirm() {
+        var x = document.getElementById("inputPass_confirm");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+
 <?= $this->endSection('auth-content'); ?>

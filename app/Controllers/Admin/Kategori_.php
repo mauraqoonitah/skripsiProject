@@ -103,6 +103,7 @@ class Kategori_ extends BaseController
             $old_responden[] = $selected_data['peruntukkanCategory'];
         }
 
+
         // ADDED responden kategori - ambil new insert nya
         foreach ($peruntukkanCategory as $add_val) {
             if (!in_array($add_val, $old_responden)) {
