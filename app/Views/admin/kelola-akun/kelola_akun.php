@@ -218,11 +218,70 @@ use CodeIgniter\I18n\Time;
                                                             }
                                                             ?>
 
+                                                            <button type="button" class="btn btn-sm btn-warning " data-bs-toggle="modal" data-bs-target="#tambahAkunPermissionModal-<?= $permissionId; ?>">
+                                                                <i class=" fas fa-plus"></i> Tambah Akun
+                                                            </button>
+                                                            <!-- modal tambah akun -->
+                                                            <div class="modal fade" id="tambahAkunPermissionModal-<?= $permissionId; ?>" tabindex="-1">
+                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-cosmic text-white">
+                                                                            <h5 class="modal-title" id="tambahButirLabel">Buat Akses pada Instrumen</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+                                                                            <?php
+                                                                            $sql_2 = "SELECT * FROM auth_users_permissions WHERE permission_id = ? ";
+                                                                            $getUsersPermissions =  $db->query($sql_2, [$permissionId]); ?>
+
+                                                                            <?php $userIdnya = []; ?>
+                                                                            <?php foreach ($getUsersPermissions->getResultArray() as $getUserId) : ?>
+
+                                                                                <?php
+                                                                                $userIdnya[] = $getUserId['user_id'];
+                                                                                $userID = $getUserId['user_id'];
+                                                                                var_dump($userIdnya); ?>
+                                                                            <?php endforeach; ?>
+
+                                                                            <div class="container">
+                                                                                <?= csrf_field(); ?>
+                                                                                <!-- isi OLD -->
+                                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/addAkunPermission" method="post">
+                                                                                    <div class="form-group">
+                                                                                        <label class="col-form-label">Instrumen :</label>
+                                                                                        <input class="form-control" type="text" value="<?= $insDosen['namaInstrumen']; ?>" readonly>
+
+                                                                                        <label class="col-form-label">Pilih akun untuk mengakses instrumen kepuasan ini:</label>
+                                                                                        <select name="addAkunPermission[]" class="form-select form-select-responden-dosen-<?= $permissionId; ?>" style="width: 100%" multiple>
+                                                                                            <?php foreach ($getAllDosen as $allDosen) :  ?>
+                                                                                                <option value="<?= $permissionId; ?>/<?= $allDosen->id; ?>" <?php echo in_array($allDosen->id, $userIdnya) ? 'selected' : '' ?>> <?= $allDosen->email; ?></option>
+                                                                                            <?php endforeach; ?>
+                                                                                        </select>
+
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             <?php
                                                             $sql_2 = "SELECT * FROM auth_users_permissions WHERE permission_id = ? ";
                                                             $getUsersPermissions =  $db->query($sql_2, [$permissionId]); ?>
+
+                                                            <?php $userIdnya = []; ?>
                                                             <?php foreach ($getUsersPermissions->getResultArray() as $getUserId) : ?>
-                                                                <?php $userID = $getUserId['user_id'];
+
+                                                                <?php
+                                                                $userIdnya[] = $getUserId['user_id'];
+                                                                $userID = $getUserId['user_id'];
+                                                                var_dump($userIdnya);
+
                                                                 echo "user id " . $userID;
 
                                                                 // get data dosen by user id
@@ -231,10 +290,26 @@ use CodeIgniter\I18n\Time;
                                                                 $getDataDosen = $this->userModel->getDataDosen($userID);
                                                                 ?>
 
+
                                                                 <?php foreach ($getDataDosen as $dosen) : ?>
+                                                                    <?php
+                                                                    $userId =  $dosen->id;
+                                                                    $permissionModel = model('PermissionModel');
+                                                                    $this->permissionModel = new $permissionModel;
+                                                                    // $doesUserHavePermission =  $this->permissionModel->doesUserHavePermission($userId, $permissionId);
+                                                                    // var_dump($doesUserHavePermission);
+
+
+                                                                    ?>
+                                                                    <?php $old_selected_dosen = [];
+
+                                                                    $old_selected_dosen[] = $userId;
+
+                                                                    ?>
                                                                     <tr>
                                                                         <td class="text-center"><?= $i++; ?></td>
                                                                         <td>
+                                                                            <?= $dosen->id; ?>
                                                                             <?= $dosen->email; ?>
                                                                         </td>
                                                                         <td>
@@ -283,49 +358,18 @@ use CodeIgniter\I18n\Time;
                                                                     </tbody>
 
 
+
                                                                 <?php endforeach; ?>
+
                                                             <?php endforeach; ?>
-                                                            <button type="button" class="btn btn-sm btn-warning " data-bs-toggle="modal" data-bs-target="#tambahAkunPermissionModal-<?= $permissionId; ?>-userID-<?= $userID; ?>">
-                                                                <i class=" fas fa-plus"></i> Tambah Akun
-                                                            </button>
-                                                            <!-- modal tambah akun -->
-                                                            <div class="modal fade" id="tambahAkunPermissionModal-<?= $permissionId; ?>-userID-<?= $userID; ?>" tabindex="-1">
-                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header bg-cosmic text-white">
-                                                                            <h5 class="modal-title" id="tambahButirLabel">Buat Akses pada Instrumen</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <div class="container">
-                                                                                <?= csrf_field(); ?>
-                                                                                <!-- isi OLD -->
-                                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/addAkunPermission" method="post">
-                                                                                    <div class="form-group">
-                                                                                        <label class="col-form-label">Instrumen :</label>
-                                                                                        <input class="form-control" type="text" value="<?= $insDosen['namaInstrumen']; ?>" readonly>
-
-                                                                                        <label class="col-form-label">Pilih akun untuk mengakses instrumen kepuasan ini:</label>
-                                                                                        <select class="form-select" name="addAkunPermission" required>
-                                                                                            <?php foreach ($getAllDosen as $allDosen) :  ?>
-                                                                                                <option value="<?= $permissionId; ?>/<?= $allDosen->id; ?>"><?= $allDosen->email; ?></option>
-                                                                                            <?php endforeach; ?>
-                                                                                        </select>
-
-                                                                                    </div>
-                                                                                    <div class="modal-footer">
-                                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                                                        <button type="submit" class="btn btn-success">Simpan</button>
-                                                                                    </div>
-                                                                                </form>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            <!-- select2 -->
+                                                            <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+                                                            <script>
+                                                                $(".form-select-responden-dosen-<?= $permissionId; ?>").select2({
+                                                                    dropdownParent: $('#tambahAkunPermissionModal-<?= $permissionId; ?>')
+                                                                });
+                                                            </script>
                                                         </table>
-
-
                                                     </div>
                                                 </div>
                                             </div>

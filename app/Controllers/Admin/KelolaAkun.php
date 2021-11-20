@@ -202,11 +202,12 @@ class KelolaAkun extends BaseController
     public function addAkunPermission()
     {
         $selectedInput = $this->mRequest->getPost('addAkunPermission');
-        $input = explode("/", $selectedInput);
-
-        $permissionId = $input[0];
-        $userId = $input[1];
-        $this->authorize->addPermissionToUser($permissionId, $userId);
+        foreach ($selectedInput as $selected_input) {
+            $input = explode("/", $selected_input);
+            $permissionId = $input[0];
+            $userId = $input[1];
+            $this->authorize->addPermissionToUser($permissionId, $userId);
+        }
 
         session()->setFlashdata('message', 'Akses berhasil ditambahkan ke akun');
 
