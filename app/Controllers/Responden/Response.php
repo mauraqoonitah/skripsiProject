@@ -10,6 +10,7 @@ use App\Models\PernyataanModel;
 use App\Models\ResponseModel;
 use App\Models\PetunjukInstrumenModel;
 use Myth\Auth\Models\UserModel;
+use Myth\Auth\Authorization\PermissionModel;
 
 
 class Response extends BaseController
@@ -20,6 +21,7 @@ class Response extends BaseController
     protected $responseModel;
     protected $petunjukInstrumenModel;
     protected $userModel;
+    protected $permissionModel;
 
 
 
@@ -32,18 +34,23 @@ class Response extends BaseController
         $this->responseModel = new ResponseModel();
         $this->petunjukInstrumenModel = new PetunjukInstrumenModel();
         $this->userModel = new UserModel();
+        $this->permissionModel = new PermissionModel();
     }
 
     public function index()
     {
         $role = user()->role;
+        $userId = user()->id;
+
 
         $data = [
             'title' => 'Pilih Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($role),
+            'permissionsForUser' => $this->permissionModel->getPermissionsForUser($userId),
 
         ];
+
         return view('responden/berandaResponden', $data);
     }
     public function pilihInstrumen($id)

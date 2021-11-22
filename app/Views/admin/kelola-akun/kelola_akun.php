@@ -412,7 +412,6 @@ use CodeIgniter\I18n\Time;
                                                                         <tr>
                                                                             <td class="text-center"><?= $i++; ?></td>
                                                                             <td>
-                                                                                <?= $dosen['id']; ?>
                                                                                 <?= $dosen['email']; ?>
                                                                             </td>
                                                                             <td>

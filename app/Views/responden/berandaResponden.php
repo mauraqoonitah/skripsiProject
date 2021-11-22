@@ -29,27 +29,69 @@
 
             <div class="row">
                 <div class="col-lg-8 mx-auto d-flex justify-content-center">
-                    <?php if (sizeof($instrumenByResponden) === 0) : ?>
-                        <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
-                            <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
-                                Maaf, kuesioner untuk responden <?= user()->role; ?> tidak ditemukan.
+                    <?php if (user()->role === 'Dosen') : ?>
+                        <?php if (sizeof($permissionsForUser) === 0) : ?>
+                            <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
+                                <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
+                                    Maaf, kuesioner belum tersedia.
+                                </div>
                             </div>
-                        </div>
+                        <?php else : ?>
+
+                            <?php
+                            $dosenId = user()->id;
+
+                            $permissionsForUser = $this->permissionModel->getPermissionsForUser($dosenId);
+                            foreach ($permissionsForUser as $row) : ?>
+                                <?php
+                                $permissionNameUser = $row;
+
+                                $getSelectedInsByPermission = $this->instrumenModel->getSelectedInsByPermission($permissionNameUser);
+                                // get instrumen
+                                foreach ($getSelectedInsByPermission as $rowIns) : ?>
+                                    <form action="<?= base_url(); ?>/responden/isiSurvei/<?= $rowIns['instrumenId']; ?>" method="post">
+                                        <button class="btn" type="submit">
+                                            <div class="row mb-4 mx-auto">
+                                                <div class="pilih-inst">
+                                                    <?= $rowIns['namaInstrumen']; ?>
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </form>
+
+                                <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+
                     <?php else : ?>
-                        <?php
-                        foreach ($instrumenByResponden as $ins) : ?>
-                            <form action="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" method="post">
-                                <button class="btn" type="submit">
-                                    <div class="row mb-4 mx-auto">
-                                        <div class="pilih-inst">
-                                            <?= $ins['namaInstrumen']; ?>
+
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <?php if (sizeof($instrumenByResponden) === 0) : ?>
+                                    <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
+                                        <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
+                                            Maaf, kuesioner untuk responden <?= user()->role; ?> tidak ditemukan.
                                         </div>
                                     </div>
-                                </button>
-                            </form>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                                <?php else : ?>
+                                    <?php
+                                    foreach ($instrumenByResponden as $ins) : ?>
+                                        <form action="<?= base_url(); ?>/responden/isiSurvei/<?= $ins['id']; ?>" method="post">
+                                            <button class="btn" type="submit">
+                                                <div class="mb-4 ">
+                                                    <div class="pilih-inst">
+                                                        <?= $ins['namaInstrumen']; ?>
+                                                    </div>
+                                                </div>
+                                            </button>
+                                        </form>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
 
+
+                            </div>
+                        </div>
+                    <?php endif; ?>
 
                 </div>
             </div>

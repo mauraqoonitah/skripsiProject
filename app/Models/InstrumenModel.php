@@ -95,7 +95,7 @@ class InstrumenModel extends Model
     public function getSelectedInsByPermission($permissionId)
     {
         return $this
-            // ->select('instrumen.*, auth_permissions.name AS name')
+            ->select('instrumen.*, auth_permissions.name AS name, instrumen.id AS instrumenId')
             ->join('auth_permissions', 'auth_permissions.name = instrumen.id')
             ->where('auth_permissions.name', $permissionId)
             ->get()->getResultArray();
