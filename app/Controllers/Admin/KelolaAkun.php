@@ -202,26 +202,34 @@ class KelolaAkun extends BaseController
     public function addAkunPermission()
     {
         $db = \Config\Database::connect();
-        $selectedInputUserId = $this->mRequest->getPost('addAkunPermission');
-        $selectedInputPermId = $this->mRequest->getPost('permission_id');
+        $selectedUserId = $this->mRequest->getPost('addAkunPermission');
+        $selectedPermissionId = $this->mRequest->getPost('permission_id');
 
         $sql_2 = "SELECT * FROM auth_users_permissions WHERE permission_id = ? ";
-        $getUsersPermissions =  $db->query($sql_2, [$selectedInputPermId]);
-        $oldSelected_DosenUserId = [];
+        $getUsersPermissions =  $db->query($sql_2, [$selectedPermissionId]);
+        $oldSelected_userId = [];
         foreach ($getUsersPermissions->getResultArray() as $getUserId) {
-            $oldSelected_DosenUserId[] = $getUserId['user_id'];
+            $oldSelected_userId[] = $getUserId['user_id'];
         }
-        // dd($oldSelected_DosenUserId);
+        // dd($oldSelected_userId);
 
         // ADDED - ambil new insert select nya
-        foreach ($selectedInputUserId as $add_val) {
-            if (!in_array($add_val, $oldSelected_DosenUserId)) {
+        foreach ($selectedUserId as $add_val) {
+            if (!in_array($add_val, $oldSelected_userId)) {
                 // dd($add_val);
-                $this->authorize->addPermissionToUser($selectedInputPermId, $add_val);
+                session()->setFlashdata('message', 'Akses berhasil ditambahkan ke akun');
+                $this->authorize->addPermissionToUser($selectedPermissionId, $add_val);
             }
         }
 
-        session()->setFlashdata('message', 'Akses berhasil ditambahkan ke akun');
+        //REMOVED - ambil data yang di remove
+        foreach ($oldSelected_userId as $remove_val) {
+            if (!in_array($remove_val, $selectedUserId)) {
+                // dd($remove_val);
+                session()->setFlashdata('message', 'Akses berhasil dihapus dari akun');
+                $this->authorize->removePermissionFromUser($selectedPermissionId, $remove_val);
+            }
+        }
 
         return redirect()->to('/admin/kelolaAkun');
     }

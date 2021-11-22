@@ -191,7 +191,7 @@ use CodeIgniter\I18n\Time;
                                             <div id="collapseIns-<?= $insDosen['slug']; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                 <div class="accordion-body">
                                                     <div class="table-responsive">
-                                                        id Ins : <?= $permissionNameDosen = $insDosen['id']; ?>
+                                                        <?php $permissionNameDosen = $insDosen['id']; ?>
                                                         <table class="table table-bordered display row-border ">
 
                                                             <thead>
@@ -214,7 +214,7 @@ use CodeIgniter\I18n\Time;
 
                                                             foreach ($getAuthPermissions->getResultArray() as $getPermissionId) {
                                                                 $permissionId = $getPermissionId['id'];
-                                                                echo "permission id " . $permissionId;
+                                                                // echo "permission id " . $permissionId;
                                                             }
                                                             ?>
 
@@ -223,7 +223,7 @@ use CodeIgniter\I18n\Time;
                                                             </button>
                                                             <!-- modal tambah akun -->
                                                             <div class="modal fade" id="tambahAkunPermissionModal-<?= $permissionId; ?>" tabindex="-1">
-                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header bg-cosmic text-white">
                                                                             <h5 class="modal-title" id="tambahButirLabel">Buat Akses pada Instrumen</h5>
@@ -241,7 +241,7 @@ use CodeIgniter\I18n\Time;
                                                                                 <?php
                                                                                 $userIdnya[] = $getUserId['user_id'];
                                                                                 $userID = $getUserId['user_id'];
-                                                                                var_dump($userIdnya); ?>
+                                                                                ?>
                                                                             <?php endforeach; ?>
 
                                                                             <div class="container">
@@ -252,7 +252,7 @@ use CodeIgniter\I18n\Time;
                                                                                         <label class="col-form-label">Instrumen :</label>
                                                                                         <input class="form-control" type="text" value="<?= $insDosen['namaInstrumen']; ?>" readonly>
 
-                                                                                        <label class="col-form-label">Pilih akun untuk mengakses instrumen kepuasan ini:</label>
+                                                                                        <label class="col-form-label mt-3">Pilih akun yang dapat mengakses instrumen kepuasan ini:</label>
                                                                                         <select name="addAkunPermission[]" class="form-select form-select-responden-dosen-<?= $permissionId; ?>" style="width: 100%" multiple>
                                                                                             <?php foreach ($getAllDosen as $allDosen) :  ?>
                                                                                                 <option value="<?= $allDosen->id; ?>" <?php echo in_array($allDosen->id, $userIdnya) ? 'selected' : '' ?>> <?= $allDosen->email; ?></option>
@@ -261,7 +261,7 @@ use CodeIgniter\I18n\Time;
                                                                                         <input type="hidden" name="permission_id" value="<?= $permissionId; ?>">
 
                                                                                     </div>
-                                                                                    <div class="modal-footer">
+                                                                                    <div class="modal-footer mt-5">
                                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                                                                         <button type="submit" class="btn btn-success">Simpan</button>
                                                                                     </div>
@@ -281,16 +281,15 @@ use CodeIgniter\I18n\Time;
                                                                 <?php
                                                                 $userIdnya[] = $getUserId['user_id'];
                                                                 $userID = $getUserId['user_id'];
-                                                                var_dump($userIdnya);
+                                                                // var_dump($userIdnya);
 
-                                                                echo "user id " . $userID;
+                                                                // echo "user id " . $userID;
 
                                                                 // get data dosen by user id
                                                                 $userModel = model('UserModel');
                                                                 $this->userModel = new $userModel;
                                                                 $getDataDosen = $this->userModel->getDataDosen($userID);
                                                                 ?>
-
 
                                                                 <?php foreach ($getDataDosen as $dosen) : ?>
                                                                     <?php
@@ -299,12 +298,6 @@ use CodeIgniter\I18n\Time;
                                                                     $this->permissionModel = new $permissionModel;
                                                                     // $doesUserHavePermission =  $this->permissionModel->doesUserHavePermission($userId, $permissionId);
                                                                     // var_dump($doesUserHavePermission);
-
-
-                                                                    ?>
-                                                                    <?php $old_selected_dosen = [];
-
-                                                                    $old_selected_dosen[] = $userId;
 
                                                                     ?>
                                                                     <tr>
@@ -327,7 +320,7 @@ use CodeIgniter\I18n\Time;
                                                                             </td>
                                                                             <!-- ./remove permission   -->
 
-                                                                            <!-- modal hapus admin GPJM -->
+                                                                            <!-- modal remove permissio-->
                                                                             <div class="modal fade" id="modal-delete-permission-<?= $permissionId; ?>-userID-<?= $userID; ?>" tabindex="-1" aria-hidden="true">
                                                                                 <div class="modal-dialog modal-dialog-centered ">
                                                                                     <div class="modal-content">
@@ -352,7 +345,7 @@ use CodeIgniter\I18n\Time;
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <!-- ./modal hapus admin GPJM -->
+                                                                            <!-- ./modal remove permissio-->
 
                                                                         <?php endif; ?>
                                                                     </tr>
@@ -367,7 +360,8 @@ use CodeIgniter\I18n\Time;
                                                             <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
                                                             <script>
                                                                 $(".form-select-responden-dosen-<?= $permissionId; ?>").select2({
-                                                                    dropdownParent: $('#tambahAkunPermissionModal-<?= $permissionId; ?>')
+                                                                    dropdownParent: $('#tambahAkunPermissionModal-<?= $permissionId; ?>'),
+                                                                    placeholder: "Klik Disini"
                                                                 });
                                                             </script>
                                                         </table>
