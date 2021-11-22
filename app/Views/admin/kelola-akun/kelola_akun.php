@@ -92,7 +92,7 @@ use CodeIgniter\I18n\Time;
                                 <!-- content collapse  -->
                                 <div class="collapse my-3" id="collapse-list-dosen">
                                     <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4 mb-3">
-                                        <h3 class="card-title">Lihat Daftar Dosen</h3>
+                                        <h3 class="card-title">List Dosen</h3>
                                         <?php if (in_groups('Admin')) : ?>
                                             <!-- Button trigger modal -->
                                             <a data-bs-toggle="modal" data-bs-target="#modal-tambah-dosen" class="ml-auto">
@@ -172,34 +172,110 @@ use CodeIgniter\I18n\Time;
                                         <!-- end modal tambah responden dosen -->
                                     <?php endif; ?>
 
-                                    <table class="table table-bordered table-hover display row-border ">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col" class="align-middle">No.</th>
-                                                <th scope="col">Email</th>
-                                                <th scope="col">Username</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php $i = 1; ?>
-                                            <?php foreach ($getAllDosen as $allDosen) :  ?>
+                                    <div class="table-responsive">
+                                        <table id="table-allDosen" class="table table-bordered display row-border">
+
+                                            <thead>
                                                 <tr>
-                                                    <td scope="row" class="align-middle text-center"> <?= $i++; ?></td>
-                                                    <td><?= $allDosen->email; ?> </td>
-                                                    <td><?= $allDosen->username; ?> </td>
+                                                    <th scope="col" class="align-middle">No.</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Username</th>
+                                                    <th scope="col">Instrumen</th>
+                                                    <th scope="col" class="text-center">Status Aktif</th>
+                                                    <th scope="col">Hapus</th>
                                                 </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php $i = 1; ?>
+                                                <?php foreach ($getAllDosen as $allDosen) :  ?>
+                                                    <tr>
+                                                        <td class="text-center fw-bold"> <?= $i++; ?></td>
+                                                        <td class="fw-bold"><?= $allDosen->email; ?> </td>
+                                                        <td><?= $allDosen->username; ?> </td>
+                                                        <td>
+                                                            <?php
+                                                            $permissionModel = model('PermissionModel');
+                                                            $this->permissionModel = new $permissionModel;
+                                                            $instrumenModel = model('InstrumenModel');
+                                                            $this->instrumenModel = new $instrumenModel;
+
+                                                            $dosenId = $allDosen->id;
+
+                                                            $permissionsForUser = $this->permissionModel->getPermissionsForUser($dosenId);
+                                                            foreach ($permissionsForUser as $row) {
+                                                                $permissionNameUser = $row;
+
+                                                                $getSelectedInsByPermission = $this->instrumenModel->getSelectedInsByPermission($permissionNameUser);
+                                                                foreach ($getSelectedInsByPermission as $rowIns) {
+                                                                    $selectedInstrumen = $rowIns['namaInstrumen'];
+                                                                    $selectedKodeIns = $rowIns['kodeInstrumen'];
+                                                                    echo '<ul><li>' . $selectedKodeIns . ' - ' . $selectedInstrumen . '</li></ul> ';
+                                                                }
+                                                            }
+                                                            ?>
+
+                                                        </td>
+                                                        <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $allDosen->id; ?>" method="post" enctype="multipart/form-data">
+                                                            <td class="text-center ">
+                                                                <?php
+                                                                $is_active = $allDosen->active;
+
+                                                                if ($is_active === true) {
+                                                                    echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
+                                                                } else {
+                                                                    echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
+                                                                }
+                                                                ?>
+
+                                                            </td>
+
+                                                        </form>
+
+                                                        <td>
+                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-allDosen-<?= $allDosen->id; ?>">
+                                                                <button type="button" class="btn btn-sm">
+                                                                    <i class="fas fa-trash-alt text-white"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>
+                                                        <!-- modal hapus admin GPJM -->
+                                                        <div class="modal fade" id="modal-delete-allDosen-<?= $allDosen->id; ?>" tabindex="-1" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered ">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header bg-cosmic text-white">
+                                                                        <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-center">
+                                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                        Yakin hapus akun <u><?= $allDosen->email; ?></u>?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                        <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $allDosen->id; ?>" method="post">
+                                                                            <?= csrf_field(); ?>
+                                                                            <input type="hidden" name="_method" value="DELETE">
+                                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                        </form>
 
 
-
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ./modal hapus admin GPJM -->
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 <!-- ./content collapse   -->
 
                                 <!-- button collapse list akses instrumen -->
                                 <p>
-                                    <button class="btn btn-rouge btn-sm mt-3 px-3 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-akses" aria-expanded="false">
+                                    <button class="btn btn-rouge btn-sm mt-4 px-3 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-akses" aria-expanded="false">
                                         <i class="fas fa-chevron-down"> </i> Instrumen yang dapat diisi oleh Dosen
                                     </button>
                                 </p>
@@ -519,8 +595,8 @@ use CodeIgniter\I18n\Time;
                                             <?php $i = 1; ?>
                                             <?php foreach ($getAdminUser as $admin) : ?>
                                                 <tr>
-                                                    <td class="text-center"><?= $i++; ?></td>
-                                                    <td><?= $admin->email; ?></td>
+                                                    <td class="text-center fw-bold"><?= $i++; ?></td>
+                                                    <td class="fw-bold"><?= $admin->email; ?></td>
                                                     <td><?= $admin->username; ?></td>
                                                     <td>
                                                         <?php
@@ -814,6 +890,62 @@ use CodeIgniter\I18n\Time;
 </section>
 <!-- /.content -->
 </div>
+
+<!-- table all dosen -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table-allDosen').DataTable({
+            "paging": false,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: 'Dosen',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: 'Dosen',
+                    autoFilter: true,
+                    sheetName: 'List Dosen',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: 'Dosen',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: 'Dosen',
+
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
+</script>
+<!-- ./table all dosen -->
+
+
+
 <!-- table admin gpjm -->
 <script type="text/javascript">
     $(document).ready(function() {

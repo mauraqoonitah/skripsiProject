@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 20, 2021 at 09:22 AM
+-- Generation Time: Nov 22, 2021 at 09:02 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -122,11 +122,11 @@ INSERT INTO `auth_groups_users` (`group_id`, `user_id`) VALUES
 (3, 54),
 (3, 55),
 (3, 56),
+(3, 60),
 (4, 37),
 (5, 38),
 (5, 45),
-(5, 49),
-(7, 36);
+(5, 49);
 
 -- --------------------------------------------------------
 
@@ -240,7 +240,10 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (304, '::1', 'kontributor.instrumenkepuasan@gmail.com', 48, '2021-11-19 16:20:13', 1),
 (305, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-19 16:25:27', 1),
 (306, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-19 19:59:53', 1),
-(307, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-20 11:33:06', 1);
+(307, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-20 11:33:06', 1),
+(308, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-22 11:09:58', 1),
+(309, '::1', 'qpmaura@gmail.com', 59, '2021-11-22 14:47:10', 1),
+(310, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-22 14:48:10', 1);
 
 -- --------------------------------------------------------
 
@@ -316,7 +319,8 @@ CREATE TABLE `auth_users_permissions` (
 --
 
 INSERT INTO `auth_users_permissions` (`user_id`, `permission_id`) VALUES
-(54, 3),
+(54, 1),
+(54, 2),
 (56, 1),
 (56, 2),
 (56, 3);
@@ -700,7 +704,6 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `fullname`, `role`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(36, 'qpmaura@gmail.com', 'maura', 'maura', 'Pengguna Lulusan', 'default.svg', '$2y$10$ws94Y8YASKhlcF0UletRnOdjXq7qmyapjbwowYgAxxDn/WoyLRhxa', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-04 03:13:22', '2021-10-04 03:13:57', NULL),
 (37, 'mauraqoonitah15@gmail.com', 'maura123', 'maura qoonitah', 'Tenaga Pendidik', 'default.svg', '$2y$10$AvZqE3Xp6Y8sI/sKchXnUORq3cScmfnqBWGUgbtBchrL2hlehiFPW', NULL, '2021-10-16 00:53:16', NULL, NULL, NULL, NULL, 1, 0, '2021-10-04 03:15:13', '2021-10-16 00:53:16', NULL),
 (38, 'dwisolihatun_1313617018@mhs.unj.ac.id', 'dwisolihatun', 'Dwi Solihatun', 'Mahasiswa', 'default.svg', '$2y$10$RZBMhTC2NjolRiaVycln1uOMySUqNVUh0KHjEnKXPT94.vRwYTez.', NULL, NULL, NULL, '9883fd93c8583e4dc2d82282415005ea', NULL, NULL, 0, 0, '2021-10-04 03:24:31', '2021-10-04 03:24:31', NULL),
 (45, 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 'mauraputri', 'Maura Qoonitah Putri', 'Mahasiswa', 'default.svg', '$2y$10$nb8s8sT9hoD5ahvfJ4NiUOsMwc.f79FtG.J4qyc6T3i91cWRgvXWK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 21:04:32', '2021-10-11 21:12:05', NULL),
@@ -708,8 +711,9 @@ INSERT INTO `users` (`id`, `email`, `username`, `fullname`, `role`, `user_image`
 (49, 'vivirofiah_1313617001@mhs.unj.ac.id', 'vivirofiah', 'Vivi Rofiah', 'Mahasiswa', 'default.svg', '$2y$10$34fcArAtH8rejXISTmn0U.pJ6p6w82MhS5YX0H49LPBIN9kboEgri', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-10-16 21:06:06', '2021-10-16 21:07:51', NULL),
 (54, 'mauraqipi@gmail.com', 'dosen123', 'dosen123', 'Dosen', 'default.svg', '$2y$10$oNsRYTgsua08I8SrB2.SVOAaOT5XJmdLJB7vF9pjylBEr1qyGGgZ.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:27:45', '2021-11-16 23:28:41', NULL),
 (55, 'gpjm.instrumenkepuasan@gmail.com', 'admin_gpjm', 'admin gpjm', 'Admin', 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-11-16 23:37:34', NULL),
-(56, 'dosen.instrumenkepuasan@gmail.com', 'dosen1', NULL, 'Dosen', 'default.svg', '$2y$10$WzMEP6sRRZ6Fl/h2bQM07.z6WbF.mCEpBF74oFgjylo06o.24XfH.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-17 08:42:22', '2021-11-17 08:59:49', NULL),
-(57, 'test123@gmail.com', 'test124', NULL, 'Kontributor', 'default.svg', '$2y$10$.w4SPmJ/7j95LwMec99lJeXkWtCt/cK3SS/pz.w9zjGib0q8BsGli', NULL, NULL, NULL, '018bdbadda7d6237fcab262716a731e0', NULL, NULL, 0, 0, '2021-11-17 09:22:26', '2021-11-17 09:22:26', NULL);
+(56, 'dosen.instrumenkepuasan@gmail.com', 'dosen1', NULL, 'Dosen', 'default.svg', '$2y$10$WzMEP6sRRZ6Fl/h2bQM07.z6WbF.mCEpBF74oFgjylo06o.24XfH.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-17 08:42:22', '2021-11-22 14:27:15', NULL),
+(57, 'test123@gmail.com', 'test124', NULL, 'Kontributor', 'default.svg', '$2y$10$.w4SPmJ/7j95LwMec99lJeXkWtCt/cK3SS/pz.w9zjGib0q8BsGli', NULL, NULL, NULL, '018bdbadda7d6237fcab262716a731e0', NULL, NULL, 0, 0, '2021-11-17 09:22:26', '2021-11-17 09:22:26', NULL),
+(60, 'qpmaura@gmail.com', 'qpmaura', NULL, 'Dosen', 'default.svg', '$2y$10$xcTodtqBGWhsfvYHomhroel2mW0hPMlnmkpwmVtK5HrRr1gI7ZX8S', NULL, NULL, NULL, '2e346534788473a964616a00fde20299', NULL, NULL, 0, 0, '2021-11-22 14:59:07', '2021-11-22 14:59:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -917,7 +921,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=308;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=311;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1001,7 +1005,7 @@ ALTER TABLE `tingkat_kepuasan`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `user_check`
