@@ -255,9 +255,10 @@ use CodeIgniter\I18n\Time;
                                                                                         <label class="col-form-label">Pilih akun untuk mengakses instrumen kepuasan ini:</label>
                                                                                         <select name="addAkunPermission[]" class="form-select form-select-responden-dosen-<?= $permissionId; ?>" style="width: 100%" multiple>
                                                                                             <?php foreach ($getAllDosen as $allDosen) :  ?>
-                                                                                                <option value="<?= $permissionId; ?>/<?= $allDosen->id; ?>" <?php echo in_array($allDosen->id, $userIdnya) ? 'selected' : '' ?>> <?= $allDosen->email; ?></option>
+                                                                                                <option value="<?= $allDosen->id; ?>" <?php echo in_array($allDosen->id, $userIdnya) ? 'selected' : '' ?>> <?= $allDosen->email; ?></option>
                                                                                             <?php endforeach; ?>
                                                                                         </select>
+                                                                                        <input type="hidden" name="permission_id" value="<?= $permissionId; ?>">
 
                                                                                     </div>
                                                                                     <div class="modal-footer">
@@ -293,7 +294,7 @@ use CodeIgniter\I18n\Time;
 
                                                                 <?php foreach ($getDataDosen as $dosen) : ?>
                                                                     <?php
-                                                                    $userId =  $dosen->id;
+                                                                    $userId =  $dosen['id'];
                                                                     $permissionModel = model('PermissionModel');
                                                                     $this->permissionModel = new $permissionModel;
                                                                     // $doesUserHavePermission =  $this->permissionModel->doesUserHavePermission($userId, $permissionId);
@@ -309,11 +310,11 @@ use CodeIgniter\I18n\Time;
                                                                     <tr>
                                                                         <td class="text-center"><?= $i++; ?></td>
                                                                         <td>
-                                                                            <?= $dosen->id; ?>
-                                                                            <?= $dosen->email; ?>
+                                                                            <?= $dosen['id']; ?>
+                                                                            <?= $dosen['email']; ?>
                                                                         </td>
                                                                         <td>
-                                                                            <?= $dosen->username; ?>
+                                                                            <?= $dosen['username']; ?>
                                                                         </td>
                                                                         <?php if (in_groups('Admin')) : ?>
                                                                             <!-- remove permission -->
@@ -336,7 +337,7 @@ use CodeIgniter\I18n\Time;
                                                                                         </div>
                                                                                         <div class="modal-body text-center">
                                                                                             <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                                                            Anda akan menghapus akses akun <u><?= $dosen->email; ?></u> pada kuesioner <?= $insDosen['namaInstrumen']; ?> ?
+                                                                                            Anda akan menghapus akses akun <u><?= $dosen['email']; ?></u> pada kuesioner <?= $insDosen['namaInstrumen']; ?> ?
                                                                                         </div>
                                                                                         <div class="modal-footer">
                                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>

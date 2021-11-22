@@ -127,7 +127,7 @@ class KelolaAkun extends BaseController
                     'name' => $add_val,
 
                 ];
-                // var_dump($data);
+                // dd($data);
 
                 var_dump($add_val . " ADDED <br>");
                 // $this->adminModel->insert($data);
@@ -201,12 +201,24 @@ class KelolaAkun extends BaseController
 
     public function addAkunPermission()
     {
-        $selectedInput = $this->mRequest->getPost('addAkunPermission');
-        foreach ($selectedInput as $selected_input) {
-            $input = explode("/", $selected_input);
-            $permissionId = $input[0];
-            $userId = $input[1];
-            $this->authorize->addPermissionToUser($permissionId, $userId);
+        $db = \Config\Database::connect();
+        $selectedInputUserId = $this->mRequest->getPost('addAkunPermission');
+        $selectedInputPermId = $this->mRequest->getPost('permission_id');
+
+        $sql_2 = "SELECT * FROM auth_users_permissions WHERE permission_id = ? ";
+        $getUsersPermissions =  $db->query($sql_2, [$selectedInputPermId]);
+        $oldSelected_DosenUserId = [];
+        foreach ($getUsersPermissions->getResultArray() as $getUserId) {
+            $oldSelected_DosenUserId[] = $getUserId['user_id'];
+        }
+        // dd($oldSelected_DosenUserId);
+
+        // ADDED - ambil new insert select nya
+        foreach ($selectedInputUserId as $add_val) {
+            if (!in_array($add_val, $oldSelected_DosenUserId)) {
+                // dd($add_val);
+                $this->authorize->addPermissionToUser($selectedInputPermId, $add_val);
+            }
         }
 
         session()->setFlashdata('message', 'Akses berhasil ditambahkan ke akun');

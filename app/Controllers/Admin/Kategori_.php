@@ -84,6 +84,7 @@ class Kategori_ extends BaseController
         }
 
         $oldSelectedResponden = $this->adminModel->getSelectedResponden($oldSlug);
+        // dd($oldSelectedResponden);
         $sizeSlug = $this->adminModel->sizeSlug($oldSlug);
 
         // update nama kategori
@@ -103,6 +104,7 @@ class Kategori_ extends BaseController
         foreach ($oldSelectedResponden as $selected_data) {
             $old_responden[] = $selected_data['peruntukkanCategory'];
         }
+        // dd($old_responden);
 
 
         // ADDED responden kategori - ambil new insert nya
@@ -114,6 +116,7 @@ class Kategori_ extends BaseController
                     'namaCategory' => $this->mRequest->getVar('namaCategory'),
                     'peruntukkanCategory' => $add_val,
                 ];
+                dd($add_val);
                 // var_dump($add_val . " ADDED <br>");
                 $this->adminModel->insert($data);
             }
