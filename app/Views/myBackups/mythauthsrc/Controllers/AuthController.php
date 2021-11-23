@@ -281,7 +281,6 @@ class AuthController extends Controller
 		}
 
 		$users = model(UserModel::class);
-		$userCheckModel = model(UserCheckModel::class);
 
 		// Validate basics first since some password rules rely on these fields
 		$rules = [
@@ -307,14 +306,15 @@ class AuthController extends Controller
 
 			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 		}
-
 		// Save the user
 		$allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
 		$user = new User($this->mRequest->getPost($allowedPostFields));
 
 		$this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
 
+
 		$role = $this->mRequest->getVar('role');
+
 		// Ensure default group gets assigned if set
 		if (!empty($this->config->defaultUserGroup)) {
 			$users = $users->withGroup($this->config->defaultUserGroup);
@@ -325,6 +325,16 @@ class AuthController extends Controller
 		if (!$users->save($user)) {
 			return redirect()->back()->withInput()->with('errors', $users->errors());
 		}
+
+		// insert new data user to user_check table
+		$email = $this->mRequest->getPost('email');
+		$dataUserCheck = [
+			'email' => $email,
+			'role' => $role,
+		];
+		$this->userCheckModel->save($dataUserCheck);
+
+
 		// if role is admin, redirect to another page
 		// check if already logged in.
 		if (logged_in()) {
