@@ -31,12 +31,19 @@ class UserCheckModel extends Model
             ->where('nim', $nim)
             ->findAll();
     }
-    public function getUserEmail($nim, $nidn)
+    public function getUserCheckByEmail($email)
+    {
+        return $this
+            ->where('email', $email)
+            ->findAll();
+    }
+    public function getUserEmail($nim, $nidn, $email)
     {
         return $this
             ->select('email')
             ->where('nim', $nim)
             ->orWhere('nidn', $nidn)
+            ->orWhere('email', $email)
             ->findAll();
     }
 }

@@ -12,7 +12,7 @@ class UserModel extends Model
     protected $primaryKey = 'id';
 
     protected $returnType = User::class;
-    protected $useSoftDeletes = true;
+    // protected $useSoftDeletes = true;
 
     protected $allowedFields = [
         'email', 'username', 'fullname', 'role', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
@@ -155,6 +155,13 @@ class UserModel extends Model
         return $this
             ->where('role', 'Dosen')
             ->findAll();
+    }
+    public function getDataDosen($id)
+    {
+        return $this
+            ->where('id', $id)
+            ->where('role', 'Dosen')
+            ->get()->getResultArray();
     }
 
     public function lastActivity($id)

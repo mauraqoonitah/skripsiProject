@@ -15,6 +15,7 @@ return [
     // Registration
     'registerDisabled'          => 'Maaf, akun pengguna baru tidak diperbolehkan untuk saat ini.',
     'registerSuccess'           => 'Selamat bergabung! Harap masuk dengan kredensial baru Anda.',
+    'registerDosenSuccess'      => 'Akun berhasil ditambahkan. Pengguna perlu mengaktivasi akun nya dengan mengklik link aktivasi di email terdaftar yang telah kami kirimkan.',
     'registerCLI'               => 'Pengguna baru dibuat: {0}, #{1}',
 
     // Activation

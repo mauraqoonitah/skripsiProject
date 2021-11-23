@@ -46,6 +46,7 @@ class AuthController extends Controller
 		$this->auth = service('authentication');
 
 		$this->mRequest = service("request");
+		$this->helper = helper('auth');
 
 		$this->userCheckModel = new UserCheckModel();
 		$this->userModel = new UserModel();
@@ -168,9 +169,12 @@ class AuthController extends Controller
 
 		$nim = $this->mRequest->getVar('nim');
 		$nidn = $this->mRequest->getVar('nidn');
+		$email = $this->mRequest->getVar('email');
+
 		$data = [
 			'userCheck' => $this->userCheckModel->getUserCheck(),
 			'userCheckByInput' => $this->userCheckModel->getUserCheckByInput($nim),
+			// 'getUserCheckByEmail' => $this->userCheckModel->getUserCheckByEmail($email),
 		];
 
 		// validasi input Check to see if data exists
@@ -187,6 +191,12 @@ class AuthController extends Controller
 					'is_unique' => 'Akun Anda tidak dikenali dan tidak dapat masuk saat ini.'
 				]
 			],
+			'email' => [
+				'rules'  => 'is_unique[user_check.email]',
+				'errors' => [
+					'is_unique' => 'Akun Anda tidak dikenali dan tidak dapat masuk saat ini.'
+				]
+			],
 		])) {
 			// if data in table doesn't exist
 			$this->session->setFlashdata('messageError', 'Akun Anda tidak dikenali dan tidak dapat masuk saat ini.');
@@ -196,11 +206,12 @@ class AuthController extends Controller
 		$newdataUser = [
 			'nim'  => $nim,
 			'nidn' => $nidn,
+			'email' => $email,
 		];
 		$this->session->set($newdataUser);
 
 		// jika users pernah mendaftar (cek di tabel users)
-		$emailUser = $this->userCheckModel->getUserEmail($nim, $nidn);
+		$emailUser = $this->userCheckModel->getUserEmail($nim, $nidn, $email);
 		foreach ($emailUser as $row) {
 			$emailUser = $row['email'];
 		}
@@ -270,6 +281,7 @@ class AuthController extends Controller
 		}
 
 		$users = model(UserModel::class);
+		$userCheckModel = model(UserCheckModel::class);
 
 		// Validate basics first since some password rules rely on these fields
 		$rules = [
@@ -313,6 +325,14 @@ class AuthController extends Controller
 		if (!$users->save($user)) {
 			return redirect()->back()->withInput()->with('errors', $users->errors());
 		}
+		// if role is admin, redirect to another page
+		// check if already logged in.
+		if (logged_in()) {
+			$userRole = user()->role;
+			if ($userRole === 'Admin') {
+				return redirect()->back()->with('message', lang('Auth.registerDosenSuccess'));
+			}
+		}
 
 		if ($this->config->requireActivation !== null) {
 			$activator = service('activator');
@@ -330,7 +350,6 @@ class AuthController extends Controller
 		$this->session->set('username', $usernameRegistering);
 
 		// Success!
-
 		return redirect()->route('login')->with('message', lang('Auth.registerSuccess'));
 	}
 

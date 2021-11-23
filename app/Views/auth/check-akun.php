@@ -44,10 +44,11 @@
                         <?= csrf_field() ?>
 
                         <div class="form-floating mb-3 pl-2">
-                            <input type="text" class="form-control " name="nim" id="nim" placeholder="NIM / NIDN">
-                            <label for="nim">NIM / NIDN</label>
+                            <input type="text" class="form-control " name="nim" id="nim" placeholder="EMAIL / NIM / NIDN ">
+                            <label for="nim">EMAIL / NIM / NIDN</label>
 
                             <input type="hidden" class="form-control " name="nidn" id="nidn">
+                            <input type="hidden" class="form-control " name="email" id="email">
                         </div>
 
                         <div class="d-grid gap-2">
@@ -90,6 +91,7 @@
         $("button").click(function() {
             var select = document.getElementById("nim").value
             $("#nidn").val(document.getElementById("nim").value);
+            $("#email").val(document.getElementById("nim").value);
         });
     });
 </script>
