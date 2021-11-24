@@ -9,6 +9,7 @@ use App\Models\RespondenModel;
 use App\Models\PernyataanModel;
 use App\Models\ResponseModel;
 use App\Models\PetunjukInstrumenModel;
+use App\Models\ProdiModel;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Authorization\PermissionModel;
 
@@ -21,6 +22,7 @@ class Response extends BaseController
     protected $responseModel;
     protected $petunjukInstrumenModel;
     protected $userModel;
+    protected $prodiModel;
     protected $permissionModel;
 
 
@@ -34,6 +36,7 @@ class Response extends BaseController
         $this->responseModel = new ResponseModel();
         $this->petunjukInstrumenModel = new PetunjukInstrumenModel();
         $this->userModel = new UserModel();
+        $this->prodiModel = new ProdiModel();
         $this->permissionModel = new PermissionModel();
     }
 
@@ -165,8 +168,46 @@ class Response extends BaseController
         $data = [
             'title' => 'Profil Saya',
             'getDataUser' => $this->userModel->getDataUser($userID),
+            'getProdi' => $this->prodiModel->getProdi(),
 
         ];
         return view('responden/isiDataDiri', $data);
+    }
+
+    public function updateDataDiri()
+    {
+
+        $userID  = user()->id;
+        // validasi input
+        if (!$this->validate([
+            'programStudi' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Program Studi harus diisi.',
+                ]
+            ],
+            'fullname' => [
+                'rules'  => 'required',
+                'errors' => [
+                    'required' => 'Nama Lengkap harus diisi.',
+                ]
+            ],
+
+        ])) {
+            session()->setFlashdata('messageError', 'Gagal menyimpan. Data belum lengkap!');
+
+            return redirect()->to('/responden/isiDataDiri/' . $userID)->withInput();
+        }
+        $data =
+            [
+                'id' => $userID,
+                'fullname' => $this->mRequest->getPost('fullname'),
+                'programStudi' => $this->mRequest->getPost('programStudi'),
+
+            ];
+        $this->userModel->save($data);
+        session()->setFlashdata('message', 'Data Berhasil Disimpan. <a href="/responden" class="fw-bold text-black">Klik Disini untuk Isi Survei Kepuasan</a>');
+
+        return redirect()->to('/responden/isiDataDiri/' . $userID);
     }
 }

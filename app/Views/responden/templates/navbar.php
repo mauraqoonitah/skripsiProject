@@ -17,7 +17,7 @@
             <div class="dropdown text-end">
                 <a href="#" class="d-block link-light text-decoration-none dropdown-toggle nav-link text-columbia-blue" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-user mx-2"></i>
-                    <span class="d-none d-md-inline"><?= user()->username; ?></span>
+                    <span class="d-none d-md-inline"><?= user()->username; ?> | <?= user()->role; ?></span>
 
                 </a>
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">

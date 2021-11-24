@@ -39,6 +39,11 @@
                         <?php else : ?>
 
                             <?php
+                            $permissionModel = model('PermissionModel');
+                            $this->permissionModel = new $permissionModel;
+                            $instrumenModel = model('InstrumenModel');
+                            $this->instrumenModel = new $instrumenModel;
+
                             $dosenId = user()->id;
 
                             $permissionsForUser = $this->permissionModel->getPermissionsForUser($dosenId);
