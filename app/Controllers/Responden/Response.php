@@ -10,6 +10,8 @@ use App\Models\PernyataanModel;
 use App\Models\ResponseModel;
 use App\Models\PetunjukInstrumenModel;
 use App\Models\ProdiModel;
+use App\Models\JenisRespondenModel;
+use App\Models\DataDiriPertanyaanModel;
 use Myth\Auth\Models\UserModel;
 use Myth\Auth\Authorization\PermissionModel;
 
@@ -23,6 +25,8 @@ class Response extends BaseController
     protected $petunjukInstrumenModel;
     protected $userModel;
     protected $prodiModel;
+    protected $jenisRespondenModel;
+    protected $pertanyaanDataDiriModel;
     protected $permissionModel;
 
 
@@ -37,6 +41,8 @@ class Response extends BaseController
         $this->petunjukInstrumenModel = new PetunjukInstrumenModel();
         $this->userModel = new UserModel();
         $this->prodiModel = new ProdiModel();
+        $this->jenisRespondenModel = new JenisRespondenModel();
+        $this->dataDiriPertanyaanModel = new DataDiriPertanyaanModel();
         $this->permissionModel = new PermissionModel();
     }
 
@@ -156,13 +162,23 @@ class Response extends BaseController
     public function isiDataDiri()
     {
         $userID  = user()->id;
+        $userRole  = user()->role;
+
+        $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($userRole);
+
+        foreach ($getJenisRespondenID as $data) {
+            $jenisRespondenId = $data['id'];
+        }
 
         $data = [
             'title' => 'Profil Saya',
             'getDataUser' => $this->userModel->getDataUser($userID),
             'getProdi' => $this->prodiModel->getProdi(),
+            'getPertanyaanByRespId' => $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId),
+
 
         ];
+        // dd($data);
         return view('responden/isiDataDiri', $data);
     }
 
