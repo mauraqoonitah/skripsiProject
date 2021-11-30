@@ -54,8 +54,35 @@
 
                         <div class="card-body p-4">
 
+
+                            <div class="mb-3">
+                                <?php foreach ($getPertanyaanByRespId as $data) : ?>
+                                    <?php
+                                    $pertanyaanId = $data['id'];
+                                    $dataDiriJawabanModel = model('DataDiriJawabanModel');
+                                    $this->dataDiriJawabanModel = new $dataDiriJawabanModel;
+                                    $getPilihan =  $this->dataDiriJawabanModel->getPilihanByPertanyaanId($pertanyaanId);
+                                    ?>
+
+                                    <label class="col-form-label mb-2"><?= $data['pertanyaan']; ?></label>
+                                    <?php if ($data['jenis'] == 'pilihan') :  ?>
+                                        <?php foreach ($getPilihan as $pilihan) : ?>
+                                            <div class="form-check mb-3 container">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" readonly>
+                                                <label class="form-check-label ml-2" for="flexRadioDefault1">
+                                                    <?= $pilihan['pilihan']; ?>
+                                                </label>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else : ?>
+                                        <div class="form-group mb-3">
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
                             <!-- modal tambah  pilihan -->
-                            <div class="modal fade" id="tambahDataDiri_pilihan" tabindex="-1" aria-labelledby="tambahButirLabel" aria-hidden="true">
+                            <div class=" modal fade" id="tambahDataDiri_pilihan" tabindex="-1" aria-labelledby="tambahButirLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header bg-cosmic text-white">
@@ -77,6 +104,8 @@
                                                             <div class="row">
                                                                 <div class="col-10 pilihanCol mb-3">
                                                                     <input type="text" placeholder="Masukkan Pilihan Jawaban" class="form-control" name="pilihan[]">
+                                                                    <input type="hidden" name="jenis" value="pilihan">
+
                                                                 </div>
                                                                 <div class="col-2 HapusColButir d-flex align-items-center">
                                                                     <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahDataDiri(); return false">
@@ -120,6 +149,8 @@
                                                     <div class="form-group">
                                                         <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-3" name="pertanyaan">
                                                         <input type="hidden" name="jenisRespondenID" value="<?= $responden['id'] ?>">
+                                                        <input type="hidden" name="jenis" value="isian">
+
                                                     </div>
 
                                                     <div class="modal-footer">

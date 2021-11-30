@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 05:26 AM
+-- Generation Time: Nov 30, 2021 at 07:19 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -510,21 +510,21 @@ CREATE TABLE `pertanyaan_data_diri` (
   `id` int(11) NOT NULL,
   `pertanyaan` varchar(255) NOT NULL,
   `jenisRespondenID` int(11) NOT NULL,
-  `uniqueId` varchar(255) NOT NULL
+  `uniqueId` varchar(255) NOT NULL,
+  `jenis` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pertanyaan_data_diri`
 --
 
-INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uniqueId`) VALUES
-(11, 'Program Studi', 4, '6UDsjHIKZ2eu9Ya5'),
-(12, 'Angkatan', 4, 'SRLrYUF2tvEPwZ0h'),
-(13, 'Unit/Biro/Lembaga', 4, 'zYuT96DBbV71AHMq'),
-(14, 'Alamat', 4, 'Fl5W0peDfLGEuAkI'),
-(15, 'okee', 4, 'WZ5RkUnz7PhpgroM'),
-(16, 'okee', 4, 'nHJrPwkd92OAtqWb'),
-(17, 'okeeer', 4, 'UxEs5SMLjw96A8Be');
+INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uniqueId`, `jenis`) VALUES
+(48, 'nama', 3, 'B6sJ3ULfdzg1V2iP', 'isian'),
+(49, 'NAMAID4', 4, 'PQbn8yztgqwrVoEu', 'isian'),
+(50, 'prodi', 3, '4EefydQAxJ72GHDL', 'pilihan'),
+(51, 'program studi (jika alumni unj)', 6, 'vp9TxDrzELh3ybsZ', 'pilihan'),
+(52, 'Nama Lengkap', 6, 'napV8RAEUOSZGXoy', 'isian'),
+(53, 'prodi', 4, 'lBb4jo6ZVQFiKHsM', 'pilihan');
 
 -- --------------------------------------------------------
 
@@ -571,13 +571,12 @@ CREATE TABLE `pilihan_jawaban_data_diri` (
 --
 
 INSERT INTO `pilihan_jawaban_data_diri` (`id`, `pertanyaanID`, `pilihan`) VALUES
-(12, 11, 'Matematika'),
-(13, 11, 'Ilmu Komputer'),
-(14, 12, '2017'),
-(15, 12, '2016'),
-(16, 13, 'Koorprodi'),
-(17, 13, 'Dekan'),
-(18, 14, 'ala');
+(29, 50, 'ilkom'),
+(30, 50, 'stat'),
+(31, 51, 'mat'),
+(32, 51, 'stat'),
+(33, 53, 'bio'),
+(34, 53, 'kim');
 
 -- --------------------------------------------------------
 
@@ -1064,7 +1063,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pertanyaan_data_diri`
 --
 ALTER TABLE `pertanyaan_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `petunjuk_instrumen`
@@ -1076,7 +1075,7 @@ ALTER TABLE `petunjuk_instrumen`
 -- AUTO_INCREMENT for table `pilihan_jawaban_data_diri`
 --
 ALTER TABLE `pilihan_jawaban_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `prodi`

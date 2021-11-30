@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PilihanJawabanDataDiriModel extends Model
+class DataDiriJawabanModel extends Model
 {
     protected $table      = 'pilihan_jawaban_data_diri';
     protected $allowedFields = ['id', 'pertanyaanID', 'pilihan'];
@@ -21,5 +21,11 @@ class PilihanJawabanDataDiriModel extends Model
         }
 
         return $this->where(['id' => $id])->first();
+    }
+    public function getPilihanByPertanyaanId($pertanyaanId)
+    {
+        return $this
+            ->where('pertanyaanID', $pertanyaanId)
+            ->findAll();
     }
 }

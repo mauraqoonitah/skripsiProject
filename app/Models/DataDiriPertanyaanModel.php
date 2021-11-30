@@ -4,10 +4,10 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class PertanyaanDataDiriModel extends Model
+class DataDiriPertanyaanModel extends Model
 {
     protected $table      = 'pertanyaan_data_diri';
-    protected $allowedFields = ['id', 'pertanyaan', 'jenisRespondenID', 'uniqueId'];
+    protected $allowedFields = ['id', 'pertanyaan', 'jenisRespondenID', 'uniqueId', 'jenis'];
 
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
@@ -21,5 +21,12 @@ class PertanyaanDataDiriModel extends Model
         }
 
         return $this->where('uniqueId', $id)->findAll();
+    }
+
+    public function getPertanyaanByRespId($respondenId)
+    {
+        return $this
+            ->where('jenisRespondenID', $respondenId)
+            ->findAll();
     }
 }

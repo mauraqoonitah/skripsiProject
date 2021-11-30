@@ -10,8 +10,8 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
-use App\Models\PertanyaanDataDiriModel;
-use App\Models\PilihanJawabanDataDiriModel;
+use App\Models\DataDiriPertanyaanModel;
+use App\Models\DataDiriJawabanModel;
 use Myth\Auth\Models\AuthGroupsModel;
 
 
@@ -38,8 +38,8 @@ class JenisResponden extends BaseController
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
-        $this->pilihanJawabanDataDiri = new PilihanJawabanDataDiriModel();
-        $this->pertanyaanDataDiriModel = new PertanyaanDataDiriModel();
+        $this->dataDiriJawabanModel = new DataDiriJawabanModel();
+        $this->dataDiriPertanyaanModel = new DataDiriPertanyaanModel();
         $this->authGroupsModel = new AuthGroupsModel();
 
         $this->mRequest = service("request");
@@ -141,14 +141,16 @@ class JenisResponden extends BaseController
         return redirect()->to('/admin/jenisResponden');
     }
 
-    public function kelolaDataDiri($id)
+    public function kelolaDataDiri($respondenId)
     {
         $data = [
             'title' => 'Edit Jenis Responden',
-            'responden' => $this->jenisRespondenModel->getJenisResponden($id),
+            'responden' => $this->jenisRespondenModel->getJenisResponden($respondenId),
+            'getPertanyaanByRespId' => $this->dataDiriPertanyaanModel->getPertanyaanByRespId($respondenId),
 
             'validation' => \Config\Services::validation()
         ];
+        // dd($data);
 
         return view('admin/jenis-responden/kelola_data_diri', $data);
     }
@@ -162,11 +164,13 @@ class JenisResponden extends BaseController
                 'uniqueId' => $uniqueId,
                 'pertanyaan' => $this->mRequest->getPost('pertanyaan'),
                 'jenisRespondenID' => $this->mRequest->getPost('jenisRespondenID'),
+                'jenis' => $this->mRequest->getPost('jenis'),
             ];
-        $this->pertanyaanDataDiriModel->save($dataPertanyaan);
+        $this->dataDiriPertanyaanModel->save($dataPertanyaan);
 
         // save to table pilihan_jawaban_data_diri
-        $getPertanyaanID = $this->pertanyaanDataDiriModel->getPertanyaan($uniqueId);
+        $getPertanyaanID = $this->dataDiriPertanyaanModel->getPertanyaan($uniqueId);
+
         foreach ($getPertanyaanID as $pertanyaan) {
             $pertanyaanId = $pertanyaan['id'];
         }
@@ -180,7 +184,7 @@ class JenisResponden extends BaseController
                         'pilihan' => $cols_pilihan,
 
                     ];
-                $this->pilihanJawabanDataDiri->save($dataPilihanJawaban);
+                $this->dataDiriJawabanModel->save($dataPilihanJawaban);
             }
         }
         session()->setFlashdata('message', 'Data berhasil disimpan');
