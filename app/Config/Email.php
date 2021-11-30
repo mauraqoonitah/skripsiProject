@@ -33,7 +33,7 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $protocol = 'smtp';
+	public $protocol = 'mail';
 
 	/**
 	 * The server path to Sendmail.

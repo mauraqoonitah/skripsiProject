@@ -141,18 +141,10 @@ class Response extends BaseController
     }
     public function riwayatSurvei($id)
     {
-        $respondenData = $this->responseModel->getResponseByInstrumenID($id);
-        foreach ($respondenData as $respData) {
-            $instrumenID = $respData['instrumenID'];
-        }
-
         $data = [
             'title' => 'Riwayat Pengisian Survei',
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
             'respondenData' => $this->responseModel->getRespondenData($id),
-            'getPetunjukIns' =>  $this->petunjukInstrumenModel->getPetunjukIns($instrumenID),
-
-
             'validation' => \Config\Services::validation()
 
 
@@ -203,6 +195,9 @@ class Response extends BaseController
                 'id' => $userID,
                 'fullname' => $this->mRequest->getPost('fullname'),
                 'programStudi' => $this->mRequest->getPost('programStudi'),
+                'angkatan' => $this->mRequest->getPost('angkatan'),
+                'institusi' => $this->mRequest->getPost('institusi'),
+                'alamat' => $this->mRequest->getPost('alamat'),
 
             ];
         $this->userModel->save($data);

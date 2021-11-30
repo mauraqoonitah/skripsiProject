@@ -75,26 +75,45 @@ use CodeIgniter\I18n\Time;
                                                         <p class="fw-bold mb-4">Terima kasih telah mengisi survei kepuasan. Inilah yang kami dapatkan dari Anda:<br></p>
                                                         <?php $uniqueID = $rIns['uniqueID']; ?>
 
+                                                        <?php if (!empty($getPetunjukIns)) : ?>
+                                                            <?php $insID = $rIns['instrumenID'];
+                                                            $petunjukInstrumenModel = model('PetunjukInstrumenModel');
+                                                            $this->petunjukInstrumenModel = new $petunjukInstrumenModel;
+                                                            $sqlPetunjukIns =  $this->petunjukInstrumenModel->getPetunjukIns($insID);
+                                                            ?>
+                                                            <?php foreach ($sqlPetunjukIns as $petunjuk) : ?>
+                                                                <?php
+                                                                $isiPetunjuk = $petunjuk['isiPetunjuk'];
+                                                                $idPetunjuk = $petunjuk['id'];
+                                                                $insIDPetunjuk = $petunjuk['instrumenID']; ?>
 
-                                                        <?php foreach ($getPetunjukIns as $petunjuk) : ?>
-                                                            <?php
-                                                            $isiPetunjuk = $petunjuk['isiPetunjuk'];
-                                                            $idPetunjuk = $petunjuk['id'];
-                                                            $insIDPetunjuk = $petunjuk['instrumenID']; ?>
 
+                                                                <div class="callout callout-info mb-5">
+                                                                    <h6 class="my-3">Petunjuk Pengisian Instrumen</h6>
+                                                                    <?= $isiPetunjuk; ?>
+                                                                </div>
+                                                            <?php endforeach; ?>
+                                                        <?php else : ?>
+                                                            <ul class="mb-3">
+                                                                <li><span>Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan sesuai dengan keadaan yang sebenarnya.</span></li>
+                                                                <li><span>Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</span></li>
+                                                                <li>Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
+                                                                <li>Pilih jawaban tingkat kepuasan pada pernyataan pada kolom yang disediakan dibawah ini.</li>
+                                                                <li>Keterangan Tingkat Kepuasan:</li>
+                                                                <span style="margin-left: 25px;">5 = Sangat Puas</span><br>
+                                                                <span style="margin-left: 25px;"><span>4 = Puas</span></span><br>
+                                                                <span style="margin-left: 25px;"><span>3 = Cukup Puas</span></span><br>
+                                                                <span style=" margin-left: 25px;"><span>2 = Tidak Puas</span></span><br>
+                                                                <span style=" margin-left: 25px;"><span>1 = Sangat Tidak Puas</span></span><br>
+                                                            </ul>
 
-                                                            <div class="callout callout-info mb-5">
-                                                                <h6 class="my-3">Petunjuk Pengisian Instrumen</h6>
-                                                                <?= $isiPetunjuk; ?>
-                                                            </div>
-                                                        <?php endforeach; ?>
-
+                                                        <?php endif; ?>
                                                         <table id="tableResponden" class="table table-bordered text-wrap">
                                                             <thead class="bg-thead">
                                                                 <tr>
                                                                     <th>No.</th>
                                                                     <th>Butir Pernyataan</th>
-                                                                    <th class="text-center">Skala</th>
+                                                                    <th class="text-center">Skala Kepuasan</th>
                                                                     <th class="text-center">Tingkat Kepuasan</th>
                                                                 </tr>
                                                             </thead>
@@ -114,38 +133,42 @@ use CodeIgniter\I18n\Time;
                                                                         <td>
                                                                             <?= $row['butir']; ?>
                                                                         </td>
-                                                                        <?php foreach ($respondenData as $res) :  ?>
-                                                                            <?php $userID = $res['userID'] ?>
-                                                                        <?php endforeach; ?>
-
-                                                                        <?php
-                                                                        // get jawaban by questionID
-                                                                        $responseModel = model('ResponseModel');
-                                                                        $this->responseModel = new $responseModel;
-                                                                        $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID); ?>
-                                                                        <td class="text-center">
-                                                                            <?php foreach ($sqlResponse as $response) : ?>
-                                                                                <?= $jwb =  $response['jawaban']; ?>
+                                                                        <?php if (!empty($respondenData)) : ?>
+                                                                            <?php foreach ($respondenData as $res) :  ?>
+                                                                                <?php $userID = $res['userID'] ?>
                                                                             <?php endforeach; ?>
-                                                                        </td>
-                                                                        <td>
-                                                                            <?php if ($jwb === '5') : ?>
-                                                                                Sangat Puas
-                                                                            <?php endif; ?>
-                                                                            <?php if ($jwb === '4') : ?>
-                                                                                Puas
-                                                                            <?php endif; ?>
-                                                                            <?php if ($jwb === '3') : ?>
-                                                                                Cukup Puas
-                                                                            <?php endif; ?>
-                                                                            <?php if ($jwb === '2') : ?>
-                                                                                Tidak Puas
-                                                                            <?php endif; ?>
-                                                                            <?php if ($jwb === '1') : ?>
-                                                                                Sangat Tidak Puas
-                                                                            <?php endif; ?>
 
-                                                                        </td>
+                                                                            <?php
+                                                                            // get jawaban by questionID
+                                                                            $responseModel = model('ResponseModel');
+                                                                            $this->responseModel = new $responseModel;
+                                                                            $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID); ?>
+                                                                            <td class="text-center">
+                                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                                    <?= $jwb =  $response['jawaban']; ?>
+                                                                                <?php endforeach; ?>
+                                                                            </td>
+
+                                                                            <td>
+                                                                                <?php if ($jwb === '5') : ?>
+                                                                                    Sangat Puas
+                                                                                <?php endif; ?>
+                                                                                <?php if ($jwb === '4') : ?>
+                                                                                    Puas
+                                                                                <?php endif; ?>
+                                                                                <?php if ($jwb === '3') : ?>
+                                                                                    Cukup Puas
+                                                                                <?php endif; ?>
+                                                                                <?php if ($jwb === '2') : ?>
+                                                                                    Tidak Puas
+                                                                                <?php endif; ?>
+                                                                                <?php if ($jwb === '1') : ?>
+                                                                                    Sangat Tidak Puas
+                                                                                <?php endif; ?>
+
+                                                                            </td>
+                                                                        <?php endif; ?>
+
                                                                     </tr>
                                                                 <?php endforeach; ?>
                                                             </tbody>

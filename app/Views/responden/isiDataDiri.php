@@ -8,6 +8,8 @@
             <div class="row mb-2">
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="purple-text"> Lengkapi Data Diri </h1>
+                    <span class="text-center small text-muted">sebagai <?= user()->role; ?></span>
+
                 </div>
 
             </div>
@@ -65,12 +67,12 @@
                                 <div class="mx-auto pr-3">
                                     <div class="mb-3 ">
                                         <label for="email" class="col-form-label">Email</label>
-                                        <input type="text" readonly class="form-control" id="email" value="<?= $user->email; ?>">
+                                        <input type="text" readonly class="form-control" id="email" name="email" value="<?= $user->email; ?>">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="username" class="col-form-label">Username</label>
-                                        <input type="text" readonly class="form-control" id="username" value="<?= $user->username; ?>">
+                                        <input type="text" readonly class="form-control" id="username" name="username" value="<?= $user->username; ?>">
                                     </div>
                                     <div class="mb-3">
                                         <label for="fullname" class="col-form-label">Nama Lengkap</label>
@@ -79,23 +81,25 @@
 
                                     <!-- mahasiswa -->
                                     <?php if (in_groups(5)) : ?>
-                                        <?php echo $selectedProdi = $user->programStudi; ?>
+                                        <?php $selectedProdi = $user->programStudi; ?>
 
-                                        <div class="mb-3">
-                                            <label for="prodi" class="col-form-label">Program Studi</label>
-                                            <select class="form-select" name="programStudi" aria-label="Default select example" required>
+                                        <?php if (!empty($getProdi)) : ?>
+                                            <div class="mb-3">
+                                                <label for="prodi" class="col-form-label">Program Studi</label>
+                                                <select class="form-select" name="programStudi" aria-label="Default select example" required>
+                                                    <option <?php echo ($selectedProdi === null) ? 'selected' : '' ?>>Pilih</option>
 
-                                                <?php foreach ($getProdi as $prodi) :  ?>
-                                                    <option value="<?= $prodi['id']; ?>" <?php echo in_array($prodi['id'], $selectedProdi) ? 'selected' : '' ?>><?= $prodi['nama_prodi']; ?></option>
+                                                    <?php foreach ($getProdi as $prodi) :  ?>
+                                                        <option value="<?= $prodi['id']; ?>" <?php echo ($prodi['id'] === $selectedProdi) ? 'selected' : '' ?>><?= $prodi['nama_prodi']; ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
 
-                                                <?php endforeach; ?>
-
-                                            </select>
-                                        </div>
+                                        <?php endif; ?>
 
                                         <div class="mb-3">
                                             <label for="angkatan" class="col-form-label">Angkatan</label>
-                                            <input type="text" class="form-control" id="angkatan" value="">
+                                            <input type="text" class="form-control" id="angkatan" name="angkatan" required>
                                         </div>
                                     <?php endif; ?>
                                     <!-- ./ mahasiswa -->
@@ -125,10 +129,9 @@
 
                                     <!-- tendik -->
                                     <?php if (in_groups(4)) : ?>
-
                                         <div class="mb-3">
                                             <label for="Unit" class="col-form-label">Unit/Biro/Lembaga (tendik)</label>
-                                            <input type="text" readonly class="form-control" id="Unit" value="">
+                                            <input type="text" class="form-control" name="institusi">
                                         </div>
                                     <?php endif; ?>
                                     <!-- ./tendik -->
@@ -137,8 +140,18 @@
                                     <?php if (in_groups(6)) : ?>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Asal Program Studi (alumni)</label>
-                                            <select class="form-select" name="programStudi" aria-label="Default select example">
-                                                <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                                            <?php $selectedProdi = $user->programStudi; ?>
+                                            <select class="form-select" name="programStudi" aria-label="Default select example" required>
+
+                                                <option selected>Pilih</option>
+                                                <?php foreach ($getProdi as $prodi) :  ?>
+
+                                                    <option value="<?= $prodi['id']; ?>" <?php if ($prodi['id'] === $selectedProdi) {
+                                                                                                echo 'selected';
+                                                                                            } ?>><?= $prodi['nama_prodi']; ?></option>
+
+                                                <?php endforeach; ?>
+
                                             </select>
                                         </div>
                                     <?php endif; ?>
@@ -148,18 +161,27 @@
                                     <?php if (in_groups(7)) : ?>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Asal Program Studi yang dinilai (pengguna lulusan)</label>
-                                            <select class="form-select" name="programStudi" aria-label="Default select example">
-                                                <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                                            <?php $selectedProdi = $user->programStudi; ?>
+                                            <select class="form-select" name="programStudi" aria-label="Default select example" required>
+
+                                                <option selected>Pilih</option>
+                                                <?php foreach ($getProdi as $prodi) :  ?>
+
+                                                    <option value="<?= $prodi['id']; ?>" <?php if ($prodi['id'] === $selectedProdi) {
+                                                                                                echo 'selected';
+                                                                                            } ?>><?= $prodi['nama_prodi']; ?></option>
+
+                                                <?php endforeach; ?>
 
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Institusi/Tempat Kerja(pengguna lulusan)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="institusi">
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Alamat (pengguna lulusan)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="alamat">
                                         </div>
 
                                     <?php endif; ?>
@@ -169,18 +191,27 @@
                                     <?php if (in_groups(8)) : ?>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Lembaga/Unit/Institusi/Industri (mitra)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="institusi">
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Asal program studi (jika alumni unj) (mitra)</label>
-                                            <select class="form-select" name="programStudi" aria-label="Default select example">
-                                                <option value="Pendidikan Matematika">Pendidikan Matematika</option>
+                                            <?php $selectedProdi = $user->programStudi; ?>
+                                            <select class="form-select" name="programStudi" aria-label="Default select example" required>
+
+                                                <option selected>Pilih</option>
+                                                <?php foreach ($getProdi as $prodi) :  ?>
+
+                                                    <option value="<?= $prodi['id']; ?>" <?php if ($prodi['id'] === $selectedProdi) {
+                                                                                                echo 'selected';
+                                                                                            } ?>><?= $prodi['nama_prodi']; ?></option>
+
+                                                <?php endforeach; ?>
 
                                             </select>
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Alamat (mitra)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="alamat">
                                         </div>
                                     <?php endif; ?>
                                     <!-- ./mitra -->
@@ -189,15 +220,15 @@
                                     <?php if (in_groups(11)) : ?>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Name (mitra luar)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="fullname">
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Institution/Workplace (mitra luar)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="institusi">
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="col-form-label">Address (mitra luar)</label>
-                                            <input type="text" class="form-control" id="">
+                                            <input type="text" class="form-control" name="alamat">
                                         </div>
                                     <?php endif; ?>
                                     <!-- ./mitra luar / partners-->

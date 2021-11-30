@@ -54,17 +54,17 @@
                         <?php endforeach; ?>
 
                         <?php if (empty($idPetunjuk) || empty($isiPetunjuk)) : ?>
-                            <ul>
+                            <ul class="mb-3">
                                 <li><span>Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan sesuai dengan keadaan yang sebenarnya.</span></li>
                                 <li><span>Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang.</span></li>
                                 <li>Setiap jawaban Saudara akan dijamin kerahasiaannya.</li>
-                                <li>Pilih jawaban tingkat kepuasan pada pernyataan pada kolom yang disediakan dibawah ini.</li><br>
+                                <li>Pilih jawaban tingkat kepuasan pada pernyataan pada kolom yang disediakan dibawah ini.</li>
                                 <li>Keterangan Tingkat Kepuasan:</li>
-                                <p style="margin-left: 25px;">5 = Sangat Puas</p>
-                                <p style="margin-left: 25px;"><span>4 = Puas</span></p>
-                                <p style="margin-left: 25px;"><span>3 = Cukup Puas</span></p>
-                                <p style=" margin-left: 25px;"><span>2 = Tidak Puas</span></p>
-                                <p style=" margin-left: 25px;"><span>1 = Sangat Tidak Puas</span></p>
+                                <span style="margin-left: 25px;">5 = Sangat Puas</span><br>
+                                <span style="margin-left: 25px;"><span>4 = Puas</span></span><br>
+                                <span style="margin-left: 25px;"><span>3 = Cukup Puas</span></span><br>
+                                <span style=" margin-left: 25px;"><span>2 = Tidak Puas</span></span><br>
+                                <span style=" margin-left: 25px;"><span>1 = Sangat Tidak Puas</span></span><br>
                             </ul>
 
                         <?php endif; ?>
