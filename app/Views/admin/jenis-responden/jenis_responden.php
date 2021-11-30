@@ -108,6 +108,7 @@
                                         <th>Kategori Responden</th>
                                         <th class="text-center ">Jumlah Responden</th>
                                         <th>Instrumen</th>
+                                        <th class="text-center ">Data Diri</th>
                                         <?php if (in_groups('Admin')) : ?>
                                             <th>Aksi</th>
                                         <?php endif; ?>
@@ -145,6 +146,17 @@
 
                                             </td>
 
+                                            <?php if (in_groups('Admin')) : ?>
+                                                <td class="align-middle ">
+                                                    <div class="btn-group " role="group">
+                                                        <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" class="btn btn-sm btn-success text-decoration-none d-flex justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Data Diri Kategori Responden">
+                                                            <button type="button" class="btn btn-sm">
+                                                                <i class="fas fa-th-list text-white"></i>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            <?php endif; ?>
 
                                             <?php if (in_groups('Admin')) : ?>
                                                 <td class="align-middle">

@@ -40,6 +40,7 @@ $routes->post('/grafik_kepuasan/(:any)', 'Pages::hasilKepuasan/$1');
 
 $routes->group('', ['namespace' => 'Myth\Auth\Controllers'], function ($routes) {
 	$routes->post('register', 'AuthController::attemptRegister');
+	$routes->get('reset', 'AuthController::resetPassword');
 });
 
 
@@ -141,6 +142,10 @@ $routes->get('/admin/editJenisResponden/(:any)', 'Admin\JenisResponden::editJeni
 $routes->delete('/admin/deleteJenisResponden/(:any)', 'Admin\JenisResponden::deleteJenisResponden/$1');
 $routes->post('/admin/saveJenisResponden', 'Admin\JenisResponden::saveJenisResponden');
 $routes->post('/admin/updateJenisResponden/(:any)', 'Admin\JenisResponden::updateJenisResponden/$1');
+
+$routes->get('/admin/kelolaDataDiri/(:any)', 'Admin\JenisResponden::kelolaDataDiri/$1');
+$routes->post('/admin/updateDataDiri/(:any)', 'Admin\JenisResponden::updateDataDiri/$1');
+
 
 // menu kelola akun
 $routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index', ['filter' => 'role:Admin']);

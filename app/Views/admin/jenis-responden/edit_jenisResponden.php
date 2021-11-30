@@ -35,7 +35,7 @@
                 <div class="col-lg-6">
                     <div class="card mt-2">
                         <div class="card-header py-4 text-rouge">
-                            <strong><?= $responden['responden'] ?></strong>
+                            <h5><?= $responden['responden'] ?></strong>
                         </div>
                         <div class="card-body p-4">
                             <form action="<?= base_url(); ?>/admin/updateJenisResponden/<?= $responden['id']; ?>" method="post">

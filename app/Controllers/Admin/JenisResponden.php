@@ -10,6 +10,8 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
+use App\Models\PertanyaanDataDiriModel;
+use App\Models\PilihanJawabanDataDiriModel;
 use Myth\Auth\Models\AuthGroupsModel;
 
 
@@ -22,6 +24,8 @@ class JenisResponden extends BaseController
     protected $responseModel;
     protected $respondenModel;
     protected $authGroupsModel;
+    protected $pilihanJawabanModel;
+    protected $pertanyaanDataDiriModel;
 
     protected $mRequest;
 
@@ -34,6 +38,8 @@ class JenisResponden extends BaseController
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
+        $this->pilihanJawabanDataDiri = new PilihanJawabanDataDiriModel();
+        $this->pertanyaanDataDiriModel = new PertanyaanDataDiriModel();
         $this->authGroupsModel = new AuthGroupsModel();
 
         $this->mRequest = service("request");
@@ -133,5 +139,51 @@ class JenisResponden extends BaseController
         session()->setFlashdata('message', 'Data berhasil diubah');
 
         return redirect()->to('/admin/jenisResponden');
+    }
+
+    public function kelolaDataDiri($id)
+    {
+        $data = [
+            'title' => 'Edit Jenis Responden',
+            'responden' => $this->jenisRespondenModel->getJenisResponden($id),
+
+            'validation' => \Config\Services::validation()
+        ];
+
+        return view('admin/jenis-responden/kelola_data_diri', $data);
+    }
+    public function updateDataDiri($id)
+    {
+        $uniqueId = random_string('alnum', 16);
+
+        // save to table pertanyaan_data_diri 
+        $dataPertanyaan =
+            [
+                'uniqueId' => $uniqueId,
+                'pertanyaan' => $this->mRequest->getPost('pertanyaan'),
+                'jenisRespondenID' => $this->mRequest->getPost('jenisRespondenID'),
+            ];
+        $this->pertanyaanDataDiriModel->save($dataPertanyaan);
+
+        // save to table pilihan_jawaban_data_diri
+        $getPertanyaanID = $this->pertanyaanDataDiriModel->getPertanyaan($uniqueId);
+        foreach ($getPertanyaanID as $pertanyaan) {
+            $pertanyaanId = $pertanyaan['id'];
+        }
+
+        $pilihan_jawaban = $this->mRequest->getVar('pilihan[]');
+        if (!empty($pilihan_jawaban)) {
+            foreach ($pilihan_jawaban as $cols_pilihan) {
+                $dataPilihanJawaban =
+                    [
+                        'pertanyaanID' => $pertanyaanId,
+                        'pilihan' => $cols_pilihan,
+
+                    ];
+                $this->pilihanJawabanDataDiri->save($dataPilihanJawaban);
+            }
+        }
+        session()->setFlashdata('message', 'Data berhasil disimpan');
+        return redirect()->back();
     }
 }
