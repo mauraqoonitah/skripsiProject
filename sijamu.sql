@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2021 at 07:19 AM
+-- Generation Time: Dec 01, 2021 at 02:23 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -269,7 +269,36 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (333, '::1', 'dosen.instrumenkepuasan@gmail.com', 56, '2021-11-30 07:40:44', 1),
 (334, '::1', 'mauraqoonitah15@gmail.com', 37, '2021-11-30 07:54:23', 1),
 (335, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-30 08:11:53', 1),
-(336, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-30 10:19:23', 1);
+(336, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-30 10:19:23', 1),
+(337, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-30 16:36:18', 1),
+(338, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-11-30 16:59:24', 1),
+(339, '::1', 'dosen.instrumenkepuasan@gmail.com', 56, '2021-11-30 17:16:50', 1),
+(340, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-11-30 17:17:54', 1),
+(341, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-11-30 17:33:51', 1),
+(342, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-11-30 17:38:03', 1),
+(343, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-11-30 17:39:31', 1),
+(344, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 13:22:04', 1),
+(345, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 13:32:18', 1),
+(346, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 14:48:10', 1),
+(347, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 14:54:13', 1),
+(348, '::1', 'admin_gpjm', NULL, '2021-12-01 15:13:53', 0),
+(349, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 15:14:04', 1),
+(350, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 15:15:16', 1),
+(351, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 15:16:50', 1),
+(352, '::1', 'mauraputri', NULL, '2021-12-01 15:18:52', 0),
+(353, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 15:18:59', 1),
+(354, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 15:21:52', 1),
+(355, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 15:23:12', 1),
+(356, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 16:06:57', 1),
+(357, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 16:10:32', 1),
+(358, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 17:02:27', 1),
+(359, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 17:12:46', 1),
+(360, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 19:55:01', 1),
+(361, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 19:56:54', 1),
+(362, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 20:05:55', 1),
+(363, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 20:08:19', 1),
+(364, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-01 20:14:15', 1),
+(365, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-01 20:18:47', 1);
 
 -- --------------------------------------------------------
 
@@ -519,12 +548,10 @@ CREATE TABLE `pertanyaan_data_diri` (
 --
 
 INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uniqueId`, `jenis`) VALUES
-(48, 'nama', 3, 'B6sJ3ULfdzg1V2iP', 'isian'),
-(49, 'NAMAID4', 4, 'PQbn8yztgqwrVoEu', 'isian'),
-(50, 'prodi', 3, '4EefydQAxJ72GHDL', 'pilihan'),
-(51, 'program studi (jika alumni unj)', 6, 'vp9TxDrzELh3ybsZ', 'pilihan'),
-(52, 'Nama Lengkap', 6, 'napV8RAEUOSZGXoy', 'isian'),
-(53, 'prodi', 4, 'lBb4jo6ZVQFiKHsM', 'pilihan');
+(1, 'Nama Lengkap', 3, 'WaALtNxEgGOo92Zz', 'isian'),
+(2, 'Alamat', 3, '5QWAtkYMRxHpcFj1', 'isian'),
+(3, 'Usia', 3, 'rRJLMDkhIx8ZalbO', 'pilihan'),
+(4, 'Jenis Kelamin', 3, 'yaZhYwUd54Xc2Pu3', 'pilihan');
 
 -- --------------------------------------------------------
 
@@ -571,12 +598,11 @@ CREATE TABLE `pilihan_jawaban_data_diri` (
 --
 
 INSERT INTO `pilihan_jawaban_data_diri` (`id`, `pertanyaanID`, `pilihan`) VALUES
-(29, 50, 'ilkom'),
-(30, 50, 'stat'),
-(31, 51, 'mat'),
-(32, 51, 'stat'),
-(33, 53, 'bio'),
-(34, 53, 'kim');
+(1, 3, '21'),
+(2, 3, '22'),
+(3, 3, '23'),
+(4, 4, 'Pria'),
+(5, 4, 'Wanita');
 
 -- --------------------------------------------------------
 
@@ -761,23 +787,27 @@ CREATE TABLE `users` (
   `force_pass_reset` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL,
+  `NamaLengkap` varchar(255) DEFAULT NULL,
+  `Alamat` varchar(255) DEFAULT NULL,
+  `Usia` varchar(255) DEFAULT NULL,
+  `JenisKelamin` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `fullname`, `role`, `programStudi`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(37, 'mauraqoonitah15@gmail.com', 'maura123', 'maura qoonitah', 'Tenaga Pendidik', NULL, 'default.svg', '$2y$10$AvZqE3Xp6Y8sI/sKchXnUORq3cScmfnqBWGUgbtBchrL2hlehiFPW', '64e066aa7059e8b83eaa2a2810b80fd8', '2021-10-16 00:53:16', '2021-11-30 11:16:38', NULL, NULL, NULL, 1, 0, '2021-10-04 03:15:13', '2021-11-30 10:16:38', NULL),
-(38, 'dwisolihatun_1313617018@mhs.unj.ac.id', 'dwisolihatun', 'Dwi Solihatun', 'Mahasiswa', NULL, 'default.svg', '$2y$10$RZBMhTC2NjolRiaVycln1uOMySUqNVUh0KHjEnKXPT94.vRwYTez.', NULL, NULL, NULL, '9883fd93c8583e4dc2d82282415005ea', NULL, NULL, 0, 0, '2021-10-04 03:24:31', '2021-10-04 03:24:31', NULL),
-(45, 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 'mauraputri', 'Maura Qoonitah Putri   ', 'Mahasiswa', 2, 'default.svg', '$2y$10$nb8s8sT9hoD5ahvfJ4NiUOsMwc.f79FtG.J4qyc6T3i91cWRgvXWK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 21:04:32', '2021-11-30 07:21:08', NULL),
-(48, 'kontributor.instrumenkepuasan@gmail.com', 'admin_kontributor', 'Kontributor Admn', 'Kontributor', NULL, 'default.svg', '$2y$10$cWI.2uYscaseBsiVwz3VCuqIXzGFKpmfnxncLx4ldBFsh1z8Zwl7q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 22:23:04', '2021-10-11 22:23:17', NULL),
-(49, 'vivirofiah_1313617001@mhs.unj.ac.id', 'vivirofiah', 'Vivi Rofiah', 'Mahasiswa', NULL, 'default.svg', '$2y$10$34fcArAtH8rejXISTmn0U.pJ6p6w82MhS5YX0H49LPBIN9kboEgri', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-10-16 21:06:06', '2021-10-16 21:07:51', NULL),
-(54, 'mauraqipi@gmail.com', 'dosen123', 'dosen123', 'Dosen', NULL, 'default.svg', '$2y$10$oNsRYTgsua08I8SrB2.SVOAaOT5XJmdLJB7vF9pjylBEr1qyGGgZ.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:27:45', '2021-11-16 23:28:41', NULL),
-(55, 'gpjm.instrumenkepuasan@gmail.com', 'admin_gpjm', 'admin gpjm', 'Admin', NULL, 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-11-16 23:37:34', NULL),
-(56, 'dosen.instrumenkepuasan@gmail.com', 'dosen1', 'Dosen ilkom              ', 'Dosen', 6, 'default.svg', '$2y$10$WzMEP6sRRZ6Fl/h2bQM07.z6WbF.mCEpBF74oFgjylo06o.24XfH.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-17 08:42:22', '2021-11-30 07:41:29', NULL),
-(84, 'qpmaura@gmail.com', 'dosenqp', NULL, 'Dosen', NULL, 'default.svg', '$2y$10$KXAVqKCXHgWXLk9Y0vyet.QuMYuYnhYH8wyftGjUXcRFlsK/qSdzS', '9dde6ce94b5e5651558fc147da675089', NULL, '2021-11-30 11:17:40', '0ba18983c5882e0665d2c090ba33e968', NULL, NULL, 0, 0, '2021-11-23 17:50:19', '2021-11-30 10:17:40', NULL);
+INSERT INTO `users` (`id`, `email`, `username`, `fullname`, `role`, `programStudi`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`, `NamaLengkap`, `Alamat`, `Usia`, `JenisKelamin`) VALUES
+(37, 'mauraqoonitah15@gmail.com', 'maura123', 'maura qoonitah', 'Tenaga Pendidik', NULL, 'default.svg', '$2y$10$AvZqE3Xp6Y8sI/sKchXnUORq3cScmfnqBWGUgbtBchrL2hlehiFPW', '64e066aa7059e8b83eaa2a2810b80fd8', '2021-10-16 00:53:16', '2021-11-30 11:16:38', NULL, NULL, NULL, 1, 0, '2021-10-04 03:15:13', '2021-11-30 10:16:38', NULL, NULL, NULL, NULL, NULL),
+(38, 'dwisolihatun_1313617018@mhs.unj.ac.id', 'dwisolihatun', 'Dwi Solihatun', 'Mahasiswa', NULL, 'default.svg', '$2y$10$RZBMhTC2NjolRiaVycln1uOMySUqNVUh0KHjEnKXPT94.vRwYTez.', NULL, NULL, NULL, '9883fd93c8583e4dc2d82282415005ea', NULL, NULL, 0, 0, '2021-10-04 03:24:31', '2021-10-04 03:24:31', NULL, NULL, NULL, NULL, NULL),
+(45, 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 'mauraputri', 'Maura Qoonitah Putri   ', 'Mahasiswa', 2, 'default.svg', '$2y$10$nb8s8sT9hoD5ahvfJ4NiUOsMwc.f79FtG.J4qyc6T3i91cWRgvXWK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 21:04:32', '2021-12-01 20:22:30', NULL, 'Maura Qoonitah', 'jl. raya bintara rt.002 rw.06 no.8 bekasi barat', '21', 'Wanita'),
+(48, 'kontributor.instrumenkepuasan@gmail.com', 'admin_kontributor', 'Kontributor Admn', 'Kontributor', NULL, 'default.svg', '$2y$10$cWI.2uYscaseBsiVwz3VCuqIXzGFKpmfnxncLx4ldBFsh1z8Zwl7q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 22:23:04', '2021-10-11 22:23:17', NULL, NULL, NULL, NULL, NULL),
+(49, 'vivirofiah_1313617001@mhs.unj.ac.id', 'vivirofiah', 'Vivi Rofiah', 'Mahasiswa', NULL, 'default.svg', '$2y$10$34fcArAtH8rejXISTmn0U.pJ6p6w82MhS5YX0H49LPBIN9kboEgri', NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2021-10-16 21:06:06', '2021-10-16 21:07:51', NULL, NULL, NULL, NULL, NULL),
+(54, 'mauraqipi@gmail.com', 'dosen123', 'dosen123', 'Dosen', NULL, 'default.svg', '$2y$10$oNsRYTgsua08I8SrB2.SVOAaOT5XJmdLJB7vF9pjylBEr1qyGGgZ.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:27:45', '2021-11-16 23:28:41', NULL, NULL, NULL, NULL, NULL),
+(55, 'gpjm.instrumenkepuasan@gmail.com', 'admin_gpjm', 'admin gpjm', 'Admin', NULL, 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-11-16 23:37:34', NULL, NULL, NULL, NULL, NULL),
+(56, 'dosen.instrumenkepuasan@gmail.com', 'dosen1', 'Dosen ilkom              ', 'Dosen', 6, 'default.svg', '$2y$10$WzMEP6sRRZ6Fl/h2bQM07.z6WbF.mCEpBF74oFgjylo06o.24XfH.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-17 08:42:22', '2021-11-30 07:41:29', NULL, NULL, NULL, NULL, NULL),
+(84, 'qpmaura@gmail.com', 'dosenqp', NULL, 'Dosen', NULL, 'default.svg', '$2y$10$KXAVqKCXHgWXLk9Y0vyet.QuMYuYnhYH8wyftGjUXcRFlsK/qSdzS', '9dde6ce94b5e5651558fc147da675089', NULL, '2021-11-30 11:17:40', '0ba18983c5882e0665d2c090ba33e968', NULL, NULL, 0, 0, '2021-11-23 17:50:19', '2021-11-30 10:17:40', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1003,13 +1033,13 @@ ALTER TABLE `auth_activation_attempts`
 -- AUTO_INCREMENT for table `auth_groups`
 --
 ALTER TABLE `auth_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=337;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=366;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1045,7 +1075,7 @@ ALTER TABLE `instrumen`
 -- AUTO_INCREMENT for table `jenis_responden`
 --
 ALTER TABLE `jenis_responden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `laporan`
@@ -1063,7 +1093,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pertanyaan_data_diri`
 --
 ALTER TABLE `pertanyaan_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `petunjuk_instrumen`
@@ -1075,7 +1105,7 @@ ALTER TABLE `petunjuk_instrumen`
 -- AUTO_INCREMENT for table `pilihan_jawaban_data_diri`
 --
 ALTER TABLE `pilihan_jawaban_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `prodi`

@@ -86,21 +86,28 @@
                                             ?>
 
                                             <label class="col-form-label"><?= $data['pertanyaan']; ?> :</label>
-                                            <input type="hidden" name="pertanyaan[]" value="<?= $data['pertanyaan']; ?> ">
+                                            <input type="hidden" name="pertanyaan[]" value="<?= $data['pertanyaan']; ?> 
+                                            ">
+                                            <?php
+                                            $oldJawaban = str_replace(' ', '', $data['pertanyaan']);
+                                            ?>
 
+                                            <!-- jika pertanyaan pilihan -->
                                             <?php if ($data['jenis'] == 'pilihan') :  ?>
-                                                <?php foreach ($getPilihan as $pilihan) : ?>
-                                                    <div class="form-check mb-3 ml-2">
-                                                        <input class="form-check-input" type="radio" name="isian[]" id="flexRadioDefault1">
+                                                <select name="pilihan-<?= $pertanyaanId; ?>" class="form-select" aria-label="Default select example">
+                                                    <option></option>
+                                                    <?php foreach ($getPilihan as $pilihan) : ?>
+                                                        <option value="<?= $pilihan['pilihan']; ?>" <?php echo ($pilihan['pilihan'] === $user->$oldJawaban) ? 'selected' : '' ?>> <?= $pilihan['pilihan']; ?></option>
 
-                                                        <label class="form-check-label ml-2" for="flexRadioDefault1">
-                                                            <?= $pilihan['pilihan']; ?>
-                                                        </label>
-                                                    </div>
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                </select>
+
+
+                                                <!-- jika pertanyaan isian -->
                                             <?php else : ?>
+
                                                 <div class="form-group mb-3">
-                                                    <input type="text" class="form-control" name="isian[]">
+                                                    <input type="text" class="form-control" name="isian[]" value="<?= $user->$oldJawaban; ?>">
                                                 </div>
                                             <?php endif; ?>
                                         <?php endforeach; ?>

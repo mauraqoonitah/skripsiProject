@@ -14,10 +14,11 @@ class UserModel extends Model
     protected $returnType = User::class;
     // protected $useSoftDeletes = true;
 
-    protected $allowedFields = [
-        'email', 'username', 'fullname', 'role', 'programStudi', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
-        'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'deleted_at',
-    ];
+    // protected $allowedFields = [
+    //     'email', 'username', 'fullname', 'role', 'programStudi', 'password_hash', 'reset_hash', 'reset_at', 'reset_expires', 'activate_hash',
+    //     'status', 'status_message', 'active', 'force_pass_reset', 'permissions', 'deleted_at',
+    // ];
+    protected $protectFields = false;
 
     protected $useTimestamps = true;
 
@@ -178,5 +179,13 @@ class UserModel extends Model
 
         // ->getRow();
         // ->get()->getLastRow();
+    }
+
+
+    public function getJawabanDataDiri()
+    {
+        return $this
+            ->where('role', 'Admin')
+            ->findAll();
     }
 }

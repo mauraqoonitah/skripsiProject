@@ -66,14 +66,12 @@
 
                                     <label class="col-form-label mb-2"><?= $data['pertanyaan']; ?></label>
                                     <?php if ($data['jenis'] == 'pilihan') :  ?>
-                                        <?php foreach ($getPilihan as $pilihan) : ?>
-                                            <div class="form-check mb-3 container">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" readonly>
-                                                <label class="form-check-label ml-2" for="flexRadioDefault1">
-                                                    <?= $pilihan['pilihan']; ?>
-                                                </label>
-                                            </div>
-                                        <?php endforeach; ?>
+                                        <select class="form-select" readonly>
+                                            <?php foreach ($getPilihan as $pilihan) : ?>
+                                                <option value="<?= $pilihan['pilihan']; ?>"> <?= $pilihan['pilihan']; ?></option>
+
+                                            <?php endforeach; ?>
+                                        </select>
                                     <?php else : ?>
                                         <div class="form-group mb-3">
                                             <input type="text" class="form-control" readonly>

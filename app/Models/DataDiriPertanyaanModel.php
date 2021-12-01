@@ -29,4 +29,11 @@ class DataDiriPertanyaanModel extends Model
             ->where('jenisRespondenID', $respondenId)
             ->findAll();
     }
+    public function getJenisPertanyaan($jenis, $jenisRespondenId)
+    {
+        return $this
+            ->where('jenis', $jenis)
+            ->where('jenisRespondenID', $jenisRespondenId)
+            ->findAll();
+    }
 }

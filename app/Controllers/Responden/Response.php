@@ -108,7 +108,7 @@ class Response extends BaseController
         $getInstrumenID =   $this->pernyataanModel->getPernyataanByInstrumenID($instrumenID);
 
         $uniqueID = random_string('alnum', 16);
-
+        dd(sizeof($getInstrumenID));
         foreach ($getInstrumenID as $butir) {
             if ($this->mRequest->getPost("checkbox-jawaban-" . $butir['id']) != Null) {
                 $jawaban = $this->mRequest->getPost('checkbox-jawaban-' . $butir['id']);
@@ -187,6 +187,7 @@ class Response extends BaseController
         // insert new field jawaban
         $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
         $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
+        // dd(sizeof($columnPertanyaan));
 
         for ($i = 0; $i < sizeof($getPostPertanyaan); $i++) {
             $userID  = user()->id;
@@ -204,22 +205,47 @@ class Response extends BaseController
 
                 $newFieldJawabanIsian = $this->mRequest->getVar('isian');
                 $newFieldJawabanPilihan = $this->mRequest->getVar('pilihan-' . $pertanyaanId);
-
+                // dd(sizeof($newFieldJawabanIsian));
+                // if jenis isian
                 for ($j = 0; $j < sizeof($newFieldJawabanIsian); $j++) {
 
-                    $data =
+                    $dataIsian =
                         [
                             'id' => $userID,
                             $columnPertanyaan[$j] => $newFieldJawabanIsian[$j],
                         ];
-                    $this->userModel->save($data);
+                    $this->userModel->save($dataIsian);
+                }
+
+                // if jenis pilihan
+                $getJenisPilihan = $this->dataDiriPertanyaanModel->getJenisPertanyaan('pilihan', $jenisRespondenId);
+                // dd($getJenisPilihan);
+
+
+                for ($k = 0; $k < sizeof($getJenisPilihan); $k++) {
+                    foreach ($getJenisPilihan as $jenisPilihan) {
+                        // dd(sizeof($getJenisPilihan));
+                        $pertanyaan = $jenisPilihan['pertanyaan'];
+                        $columnPertanyaanIsian = str_replace(' ', '', $pertanyaan);
+
+                        if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
+                            $jawaban = $this->mRequest->getVar('pilihan-' . $jenisPilihan['id']);
+                            // dd($jawaban);
+
+                            $dataPilihan =
+                                [
+                                    'id' => $userID,
+                                    $columnPertanyaanIsian => $jawaban,
+                                ];
+                            // dd($pert);
+                            // dd($dataPilihan);
+
+                            $this->userModel->save($dataPilihan);
+                        }
+                    }
                 }
             }
-            // ./jawaban
-
         }
-
-
 
         session()->setFlashdata('message', 'Data Berhasil Disimpan. <a href="/responden" class="fw-bold text-black">Klik Disini untuk Isi Survei Kepuasan</a>');
 
