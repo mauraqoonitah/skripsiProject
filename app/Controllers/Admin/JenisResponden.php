@@ -154,7 +154,7 @@ class JenisResponden extends BaseController
 
         return view('admin/jenis-responden/kelola_data_diri', $data);
     }
-    public function updateDataDiri($id)
+    public function updateDataDiri()
     {
         $uniqueId = random_string('alnum', 16);
 
@@ -189,6 +189,7 @@ class JenisResponden extends BaseController
         }
 
         $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
+        // $columnToLower = strtolower($getPostPertanyaan);
         $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
 
         $fields = [
