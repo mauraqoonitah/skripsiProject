@@ -187,6 +187,22 @@ class JenisResponden extends BaseController
                 $this->dataDiriJawabanModel->save($dataPilihanJawaban);
             }
         }
+
+        $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
+        $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
+
+        $fields = [
+            $columnPertanyaan => [
+                'type'       => 'VARCHAR',
+                'constraint' => 255,
+            ],
+        ];
+
+        $forge = \Config\Database::forge();
+        if ($forge->addColumn('users', $fields)) {
+            echo 'Database created!';
+        }
+
         session()->setFlashdata('message', 'Data berhasil disimpan');
         return redirect()->back();
     }

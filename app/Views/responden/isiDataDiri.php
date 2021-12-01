@@ -86,11 +86,13 @@
                                             ?>
 
                                             <label class="col-form-label"><?= $data['pertanyaan']; ?> :</label>
+                                            <input type="hidden" name="pertanyaan[]" value="<?= $data['pertanyaan']; ?> ">
 
                                             <?php if ($data['jenis'] == 'pilihan') :  ?>
                                                 <?php foreach ($getPilihan as $pilihan) : ?>
                                                     <div class="form-check mb-3 ml-2">
-                                                        <input class="form-check-input" type="radio" name="" id="flexRadioDefault1">
+                                                        <input class="form-check-input" type="radio" name="isian[]" id="flexRadioDefault1">
+
                                                         <label class="form-check-label ml-2" for="flexRadioDefault1">
                                                             <?= $pilihan['pilihan']; ?>
                                                         </label>
@@ -98,7 +100,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <div class="form-group mb-3">
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="isian[]">
                                                 </div>
                                             <?php endif; ?>
                                         <?php endforeach; ?>

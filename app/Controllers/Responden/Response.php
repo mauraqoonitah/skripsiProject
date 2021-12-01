@@ -29,10 +29,9 @@ class Response extends BaseController
     protected $pertanyaanDataDiriModel;
     protected $permissionModel;
 
-
-
     public function __construct()
     {
+
         $this->mRequest = service("request");
         $this->instrumenModel = new InstrumenModel();
         $this->respondenModel = new RespondenModel();
@@ -185,38 +184,43 @@ class Response extends BaseController
     public function updateDataDiri()
     {
 
-        $userID  = user()->id;
-        // validasi input
-        if (!$this->validate([
-            'programStudi' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Program Studi harus diisi.',
-                ]
-            ],
-            'fullname' => [
-                'rules'  => 'required',
-                'errors' => [
-                    'required' => 'Nama Lengkap harus diisi.',
-                ]
-            ],
+        // insert new field jawaban
+        $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
+        $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
 
-        ])) {
-            session()->setFlashdata('messageError', 'Gagal menyimpan. Data belum lengkap!');
+        for ($i = 0; $i < sizeof($getPostPertanyaan); $i++) {
+            $userID  = user()->id;
+            $userRole  = user()->role;
 
-            return redirect()->to('/responden/isiDataDiri/' . $userID)->withInput();
+            $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($userRole);
+
+            foreach ($getJenisRespondenID as $data) {
+                $jenisRespondenId = $data['id'];
+            }
+            $getPertanyaanByRespId = $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId);
+
+            foreach ($getPertanyaanByRespId as $getPertanyaanId) {
+                $pertanyaanId = $getPertanyaanId['id'];
+
+                $newFieldJawabanIsian = $this->mRequest->getVar('isian');
+                $newFieldJawabanPilihan = $this->mRequest->getVar('pilihan-' . $pertanyaanId);
+
+                for ($j = 0; $j < sizeof($newFieldJawabanIsian); $j++) {
+
+                    $data =
+                        [
+                            'id' => $userID,
+                            $columnPertanyaan[$j] => $newFieldJawabanIsian[$j],
+                        ];
+                    $this->userModel->save($data);
+                }
+            }
+            // ./jawaban
+
         }
-        $data =
-            [
-                'id' => $userID,
-                'fullname' => $this->mRequest->getPost('fullname'),
-                'programStudi' => $this->mRequest->getPost('programStudi'),
-                'angkatan' => $this->mRequest->getPost('angkatan'),
-                'institusi' => $this->mRequest->getPost('institusi'),
-                'alamat' => $this->mRequest->getPost('alamat'),
 
-            ];
-        $this->userModel->save($data);
+
+
         session()->setFlashdata('message', 'Data Berhasil Disimpan. <a href="/responden" class="fw-bold text-black">Klik Disini untuk Isi Survei Kepuasan</a>');
 
         return redirect()->to('/responden/isiDataDiri/' . $userID);
