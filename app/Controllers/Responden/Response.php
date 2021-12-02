@@ -50,13 +50,36 @@ class Response extends BaseController
         $role = user()->role;
         $userId = user()->id;
 
+        $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($role);
+        foreach ($getJenisRespondenID as $jenisRespondenId) {
+            $jenisRespId =  $jenisRespondenId['id'];
+        }
+
+        $getPertanyaanByRespId = $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespId);
+        // dd($getPertanyaanByRespId);
+
+
+        foreach ($getPertanyaanByRespId as $getPertanyaan) {
+            $pertanyaan = $getPertanyaan['pertanyaan'];
+            $columnPertanyaan = str_replace(' ', '', $pertanyaan);
+            // dd($columnPertanyaan);
+        }
+        $getDataUser = $this->userModel->getDataUser($userId);
+        foreach ($getDataUser as $userdata) {
+            $dataUser = $userdata->$columnPertanyaan;
+            // jika data diri user belum diisi lengkap
+            if (empty($dataUser)) {
+                session()->setFlashdata('messageWarning', 'Lengkapi data diri Anda sebelum isi survei instrumen kepuasan');
+                return redirect()->to('responden/isiDataDiri/' . $userId);
+            }
+        }
+
 
         $data = [
             'title' => 'Pilih Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
             'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($role),
             'permissionsForUser' => $this->permissionModel->getPermissionsForUser($userId),
-
         ];
 
         return view('responden/berandaResponden', $data);

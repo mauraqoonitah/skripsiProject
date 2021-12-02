@@ -8,9 +8,6 @@
         <div class="container">
             <div class="row ">
                 <div class="col-lg-8 mx-auto text-center">
-                    <div class="alert alert-warning mb-5" role="alert">
-                        A simple primary alert—check it out!
-                    </div>
                     <h1 class="text-cosmic" data-aos="zoom-in-up" data-aos-delay="500"> Pilih Instrumen <small class="text-muted"> untuk mengisi kuesioner</small></h1>
                     <span class="text-center small text-muted" data-aos="zoom-in-right" data-aos-duration="1000">sebagai <?= user()->role; ?></span>
                     <div class="my-4 col-lg-4 col-md-4 mx-auto">
