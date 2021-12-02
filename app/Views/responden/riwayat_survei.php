@@ -10,7 +10,7 @@ use CodeIgniter\I18n\Time;
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container">
-            <div class="row mb-5">
+            <div class="row mb-3">
                 <div class="col-lg-12 mx-auto text-center">
                     <h1 class="purple-text"> Riwayat Pengisian Survei
                     </h1>

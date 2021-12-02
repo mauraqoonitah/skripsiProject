@@ -203,12 +203,101 @@
                                         <i class="fas fa-chevron-left mr-3"></i> Kembali
                                     </button>
                                 </a>
-                                <a href="<?= base_url(); ?>/responden/saveSurvei">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalConfirmDataDiri">
                                     <button type="submit" class="btn btn-purple">
                                         Submit <i class="fas fa-check ml-3"></i>
                                     </button> </a>
                             </div>
                         </div>
+
+
+                        <!-- modal confirm data diri -->
+                        <div class="modal fade" id="modalConfirmDataDiri" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <!-- form confirm data diri -->
+                                        <form action="<?= base_url(); ?>/responden/saveSurvei" method="post">
+                                            <?= csrf_field(); ?>
+
+                                            <div class="form-group">
+                                                <div class="container">
+                                                    <!-- kolom data diri -->
+                                                    <?php foreach ($getDataUser as $user) : ?>
+                                                        <div class="d-flex justify-content-end mb-3">
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+
+                                                        <div class="alert alert-warning" role="alert">
+                                                            Pastikan data diri Anda sudah benar sebelum mengirim tanggapan.
+                                                        </div>
+
+                                                        <div class="mx-auto pr-3">
+                                                            <div class="mb-3 ">
+                                                                <label for="email" class="col-form-label">Email :</label>
+                                                                <input type="text" readonly class="form-control" id="email" name="email" value="<?= $user->email; ?>">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="username" class="col-form-label">Username :</label>
+                                                                <input type="text" readonly class="form-control" id="username" name="username" value="<?= $user->username; ?>">
+                                                            </div>
+
+                                                            <!-- data diri kategori responden -->
+                                                            <div class="mb-3">
+                                                                <?php foreach ($getPertanyaanByRespId as $data) : ?>
+                                                                    <?php
+                                                                    $pertanyaanId = $data['id'];
+                                                                    $dataDiriJawabanModel = model('DataDiriJawabanModel');
+                                                                    $this->dataDiriJawabanModel = new $dataDiriJawabanModel;
+                                                                    $getPilihan =  $this->dataDiriJawabanModel->getPilihanByPertanyaanId($pertanyaanId);
+                                                                    ?>
+
+                                                                    <label class="col-form-label"><?= $data['pertanyaan']; ?> :</label>
+                                                                    <input type="hidden" name="pertanyaan[]" value="<?= $data['pertanyaan']; ?> 
+                                            ">
+                                                                    <?php
+                                                                    $oldJawaban = str_replace(' ', '', $data['pertanyaan']);
+                                                                    ?>
+
+                                                                    <!-- jika pertanyaan pilihan -->
+                                                                    <?php if ($data['jenis'] == 'pilihan') :  ?>
+                                                                        <select name="pilihan-<?= $pertanyaanId; ?>" class="form-select" aria-label="Default select example" required>
+                                                                            <option></option>
+                                                                            <?php foreach ($getPilihan as $pilihan) : ?>
+                                                                                <option value="<?= $pilihan['pilihan']; ?>" <?php echo ($pilihan['pilihan'] === $user->$oldJawaban) ? 'selected' : '' ?>> <?= $pilihan['pilihan']; ?></option>
+
+                                                                            <?php endforeach; ?>
+                                                                        </select>
+
+
+                                                                        <!-- jika pertanyaan isian -->
+                                                                    <?php else : ?>
+
+                                                                        <div class="form-group mb-3">
+                                                                            <input type="text" class="form-control" name="isian[]" value="<?= $user->$oldJawaban; ?>" required>
+                                                                        </div>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            </div>
+
+                                                            <div class="d-grid gap-2 mt-5">
+                                                                <button type="submit" class="btn btn-success p-2">
+                                                                    <i class="far fa-check-circle mr-2 fa-lg"></i>Kirim Tanggapan
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    <?php endforeach; ?>
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- end form confirm data diri -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end modal confirm data diri -->
                         <!-- /.card-body -->
                         </form>
                     <?php endif; ?>

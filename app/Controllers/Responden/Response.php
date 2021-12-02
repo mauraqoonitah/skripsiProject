@@ -104,6 +104,11 @@ class Response extends BaseController
         $instrumen = $this->instrumenModel->getInstrumen($id);
         $instrumenID =  $instrumen['id'];
         $userID = user()->id;
+        $userRole = user()->role;
+        $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($userRole);
+        foreach ($getJenisRespondenID as $data) {
+            $jenisRespondenId = $data['id'];
+        }
 
 
         $data = [
@@ -114,6 +119,11 @@ class Response extends BaseController
             'getInstrumenID' =>  $this->pernyataanModel->getPernyataanByInstrumenID($id),
             'getPetunjukIns' =>  $this->petunjukInstrumenModel->getPetunjukIns($id),
             'cekRiwayatTgl' => $this->responseModel->cekRiwayatTgl($userID, $instrumenID),
+
+            'getDataUser' => $this->userModel->getDataUser($userID),
+            'getPertanyaanByRespId' => $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId),
+
+
             'validation' => \Config\Services::validation()
         ];
 
@@ -131,7 +141,7 @@ class Response extends BaseController
         $getInstrumenID =   $this->pernyataanModel->getPernyataanByInstrumenID($instrumenID);
 
         $uniqueID = random_string('alnum', 16);
-        dd(sizeof($getInstrumenID));
+        // dd(sizeof($getInstrumenID));
         foreach ($getInstrumenID as $butir) {
             if ($this->mRequest->getPost("checkbox-jawaban-" . $butir['id']) != Null) {
                 $jawaban = $this->mRequest->getPost('checkbox-jawaban-' . $butir['id']);
@@ -162,6 +172,71 @@ class Response extends BaseController
                 'email' => user()->email,
             ];
         $this->respondenModel->save($data_responden);
+
+
+        // update data diri 
+        // insert new field jawaban
+        $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
+        $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
+        // dd(sizeof($columnPertanyaan));
+
+        for ($i = 0; $i < sizeof($getPostPertanyaan); $i++) {
+            $userID  = user()->id;
+            $userRole  = user()->role;
+
+            $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($userRole);
+
+            foreach ($getJenisRespondenID as $data) {
+                $jenisRespondenId = $data['id'];
+            }
+            $getPertanyaanByRespId = $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId);
+
+            foreach ($getPertanyaanByRespId as $getPertanyaanId) {
+                $pertanyaanId = $getPertanyaanId['id'];
+
+                $newFieldJawabanIsian = $this->mRequest->getVar('isian');
+                $newFieldJawabanPilihan = $this->mRequest->getVar('pilihan-' . $pertanyaanId);
+                // dd(sizeof($newFieldJawabanIsian));
+                // if jenis isian
+                for ($j = 0; $j < sizeof($newFieldJawabanIsian); $j++) {
+
+                    $dataIsian =
+                        [
+                            'id' => $userID,
+                            $columnPertanyaan[$j] => $newFieldJawabanIsian[$j],
+                        ];
+                    $this->userModel->save($dataIsian);
+                }
+
+                // if jenis pilihan
+                $getJenisPilihan = $this->dataDiriPertanyaanModel->getJenisPertanyaan('pilihan', $jenisRespondenId);
+                // dd($getJenisPilihan);
+
+
+                for ($k = 0; $k < sizeof($getJenisPilihan); $k++) {
+                    foreach ($getJenisPilihan as $jenisPilihan) {
+                        // dd(sizeof($getJenisPilihan));
+                        $pertanyaan = $jenisPilihan['pertanyaan'];
+                        $columnPertanyaanIsian = str_replace(' ', '', $pertanyaan);
+
+                        if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
+                            $jawaban = $this->mRequest->getVar('pilihan-' . $jenisPilihan['id']);
+                            // dd($jawaban);
+
+                            $dataPilihan =
+                                [
+                                    'id' => $userID,
+                                    $columnPertanyaanIsian => $jawaban,
+                                ];
+                            // dd($pert);
+                            // dd($dataPilihan);
+
+                            $this->userModel->save($dataPilihan);
+                        }
+                    }
+                }
+            }
+        }
 
         session()->setFlashdata('message', 'Terima kasih telah mengisi Survei Kepuasan');
 
