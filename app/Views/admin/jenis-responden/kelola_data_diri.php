@@ -16,7 +16,7 @@
                     </ol>
                 </div>
                 <!-- back to previous page -->
-                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_">
+                <a href="<?= base_url(); ?>/admin/jenisResponden">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>
 
@@ -31,16 +31,16 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="row mt-3">
+            <div class="row">
                 <div class="col-lg-8">
-                    <div class="card mt-2">
-                        <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
-                            <h5><?= $responden['responden'] ?></h5>
+                    <div class="card">
+                        <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-3">
+                            <h5>Data Diri: <?= $responden['responden'] ?></h5>
                             <?php if (in_groups('Admin')) : ?>
                                 <!-- Button trigger modal -->
                                 <div class="dropdown ml-auto">
                                     <button class="btn btn-rouge dropdown-toggle ml-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class=" fas fa-plus"></i> Tambah Pertanyaan
+                                        <i class=" fas fa-plus"></i> Buat Pertanyaan
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tambahDataDiri_isian">Isian</a></li>
@@ -52,8 +52,13 @@
                             <?php endif; ?>
                         </div>
 
-                        <div class="card-body p-4">
+                        <div class="card-body px-4 py-3">
 
+                            <?php if (empty($getPertanyaanByRespId)) : ?>
+                                <div class="alert alert-rouge alert-dismissible fade show" role="alert">
+                                    <span class="text-cosmic"><i> Pertanyaan Data Diri pada Kategori Responden ini belum dibuat.</i></span>
+                                </div>
+                            <?php endif; ?>
                             <div class="mb-3">
                                 <?php foreach ($getPertanyaanByRespId as $data) : ?>
                                     <?php
@@ -71,12 +76,6 @@
 
                                     <!-- aksi -->
                                     <div class="btn-group" role="group">
-                                        <form method="post" action="<?= base_url(); ?>/admin/editPertanyaan/<?= $columnPertanyaan; ?>">
-                                            <button class="btn btn-sm text-decoration-none " data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
-                                                <i class="fas fa-edit fs-6 text-success"></i>
-                                            </button>
-                                        </form>
-
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-pertanyaan-<?= $columnPertanyaan; ?>">
                                             <button type="button" class="btn btn-sm " data-bs-placement="top" title="Hapus">
                                                 <i class="fas fa-trash-alt text-danger fs-6"></i>
@@ -138,23 +137,26 @@
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header bg-cosmic text-white">
-                                            <h6 class="modal-title" id="tambahButirLabel">Tambah Pertanyaan Data Diri <?= $responden['responden'] ?></h6>
+                                            <h6 class="modal-title" id="tambahButirLabel">Tambah Pertanyaan Pilihan Data Diri <?= $responden['responden'] ?></h6>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <div class="container mt-3">
+
                                                 <!-- form tambah pertanyaan -->
                                                 <form action="<?= base_url(); ?>/admin/updateDataDiri/<?= $responden['id']; ?>" method="post">
                                                     <?= csrf_field(); ?>
 
                                                     <!-- isi -->
                                                     <div class="form-group">
+                                                        <label class="form-label">Pertanyaan :</label>
                                                         <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-3" name="pertanyaan">
                                                         <input type="hidden" name="jenisRespondenID" value="<?= $responden['id'] ?>">
 
                                                         <div id="pilihanJwb">
                                                             <div class="row">
                                                                 <div class="col-10 pilihanCol mb-3">
+                                                                    <label class="form-label">Pilihan Jawaban :</label>
                                                                     <input type="text" placeholder="Masukkan Pilihan Jawaban" class="form-control" name="pilihan[]">
                                                                     <input type="hidden" name="jenis" value="pilihan">
 
@@ -167,6 +169,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <p class="text-muted small ">*Responden hanya dapat memilih satu pilihan jawaban</p>
                                                     </div>
 
                                                     <div class="modal-footer">
@@ -188,7 +191,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-md">
                                     <div class="modal-content">
                                         <div class="modal-header bg-cosmic text-white">
-                                            <h6 class="modal-title" id="tambahButirLabel">Tambah Pertanyaan Data Diri <?= $responden['responden'] ?></h6>
+                                            <h6 class="modal-title" id="tambahButirLabel">Buat Pertanyaan Isian Data Diri <?= $responden['responden'] ?></h6>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -199,6 +202,8 @@
 
                                                     <!-- isian -->
                                                     <div class="form-group">
+                                                        <label class="form-label">Pertanyaan :</label>
+
                                                         <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-3" name="pertanyaan">
                                                         <input type="hidden" name="jenisRespondenID" value="<?= $responden['id'] ?>">
                                                         <input type="hidden" name="jenis" value="isian">

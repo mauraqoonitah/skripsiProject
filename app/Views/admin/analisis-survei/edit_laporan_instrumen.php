@@ -32,7 +32,7 @@ use CodeIgniter\I18n\Time;
             </div>
         </div><!-- /.container-fluid -->
         <!-- back to previous page -->
-        <a href="<?= base_url(); ?>/admin/">
+        <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $instrumenID; ?>">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
         </a>
     </section>
@@ -63,8 +63,7 @@ use CodeIgniter\I18n\Time;
                     <div class="card">
                         <div class="card-body">
                             <div class="container py-4">
-                                <label class="form-label fs-6 text-rouge mb-3">Edit Laporan <?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></label>
-
+                                <label class="form-label fs-6 text-rouge mb-3"><?= $kodeInstrumen; ?> - <?= $namaInstrumen; ?></label>
 
                                 <div class="row">
                                     <label for="staticEmail" class="col-sm-2 col-form-label">Dokumen Lama</label>

@@ -12,7 +12,7 @@ use CodeIgniter\I18n\Time;
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="fw-bold"> Edit Lawporan</h1>
+                    <h1 class="fw-bold"> Edit Laporan</h1>
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@ use CodeIgniter\I18n\Time;
             </div>
         </div><!-- /.container-fluid -->
         <!-- back to previous page -->
-        <a href="<?= base_url(); ?>/admin/">
+        <a href="<?= base_url(); ?>/admin/laporanSurvei">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
         </a>
     </section>
@@ -55,9 +55,6 @@ use CodeIgniter\I18n\Time;
                     <div class="card">
                         <div class="card-body">
                             <div class="container py-4">
-                                <label class="form-label fs-6 text-rouge mb-3">Edit Laporan</label>
-
-
                                 <div class="row">
                                     <label for="staticEmail" class="col-sm-2 col-form-label">Dokumen Lama</label>
                                     <div class="col-sm-10">

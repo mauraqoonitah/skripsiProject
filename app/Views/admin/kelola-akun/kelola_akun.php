@@ -84,7 +84,7 @@ use CodeIgniter\I18n\Time;
                                 <!-- button collapse lihat Daftar Dosen -->
                                 <p>
                                     <button class="btn btn-rouge btn-sm  px-3 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-dosen" aria-expanded="false">
-                                        <i class="fas fa-chevron-down"> </i> List Daftar Dosen
+                                        <i class="fas fa-chevron-down"> </i> List Responden: Dosen
                                     </button>
                                 </p>
                                 <!-- ./button collapse lihat Daftar Dosen -->
@@ -231,9 +231,9 @@ use CodeIgniter\I18n\Time;
 
                                                         </form>
 
-                                                        <td>
-                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-allDosen-<?= $allDosen->id; ?>">
-                                                                <button type="button" class="btn btn-sm">
+                                                        <td class="d-flex justify-content-center">
+                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-allDosen-<?= $allDosen->id; ?>">
+                                                                <button type="button" class="btn btn-sm btn-danger">
                                                                     <i class="fas fa-trash-alt text-white"></i>
                                                                 </button>
                                                             </a>
@@ -587,7 +587,7 @@ use CodeIgniter\I18n\Time;
                                                 <th>Username</th>
                                                 <th>Tgl Dibuat</th>
                                                 <th>Status Aktif</th>
-                                                <th>Hapus</th>
+                                                <th class="text-center">Hapus</th>
                                             </tr>
                                         </thead>
                                         <tbody>

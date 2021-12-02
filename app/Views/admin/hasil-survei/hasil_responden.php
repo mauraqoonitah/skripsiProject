@@ -41,7 +41,7 @@ use CodeIgniter\I18n\Time;
             <?php endif; ?>
 
             <!-- DataTales Example -->
-            <div class="card shadow mb-4 border-light shadow">
+            <div class="card shadow mb-4 shadow">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-rouge">Hasil Survei Per-Responden</h6>
                 </div>
@@ -64,20 +64,28 @@ use CodeIgniter\I18n\Time;
                                         <tr>
                                             <td class="text-center"><?= $i++; ?></td>
                                             <td>
-                                                <?= $rpd['fullname']; ?>
+                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Tanggapan"> <?= $rpd['fullname']; ?></a>
+
                                             </td>
                                             <td><?= $rpd['role']; ?></td>
                                             <td>
-                                                <div class="d-grid gap-2 d-md-block">
-                                                    <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Tanggapan">
-                                                        Detail
-                                                    </a>
-                                                    <?php if (in_groups('Admin')) : ?>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-respoden-<?= $rpd['id']; ?>">
-                                                            <button type="button" class="btn btn-sm btn-danger">
-                                                                Hapus
+                                                <div class=" d-grid gap-2 d-md-block">
+                                                    <div class="btn-group" role="group">
+                                                        <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Tanggapan">
+                                                            <button type=" button" class="btn btn-sm btn-warning px-3">
+                                                                <i class="fas fa-info"></i>
                                                             </button>
                                                         </a>
+                                                    </div>
+
+                                                    <?php if (in_groups('Admin')) : ?>
+                                                        <div class="btn-group" role="group">
+                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-respoden-<?= $rpd['id']; ?>">
+                                                                <button type="button" class="btn btn-sm btn-danger">
+                                                                    <i class="fas fa-trash-alt"></i>
+                                                                </button>
+                                                            </a>
+                                                        </div>
 
                                                         <!-- modal hapus responden -->
                                                         <div class="modal fade" id="modal-delete-respoden-<?= $rpd['id']; ?>" tabindex="-1" aria-hidden="true">

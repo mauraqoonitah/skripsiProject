@@ -56,6 +56,7 @@ class Pernyataan extends BaseController
             'category' => $this->adminModel->getCategory($id),
             'instrumen' => $this->instrumenModel->getInstrumen($id),
             'petunjukInstrumenModel' => $this->petunjukInstrumenModel->getPetunjukIns($id),
+            'getPetunjukIns' => $this->petunjukInstrumenModel->getPetunjukIns($id),
 
             'validation' => \Config\Services::validation()
         ];
@@ -80,16 +81,15 @@ class Pernyataan extends BaseController
     //edit data
     public function updatePernyataan($id)
     {
-        $this->pernyataanModel->save(
-            [
-                'id' => $id,
-                'butir' => $this->mRequest->getVar('butir'),
-            ]
-        );
+        $data =  [
+            'id' => $id,
+            'butir' => $this->mRequest->getVar('butir'),
+        ];
+        $this->pernyataanModel->save($data);
 
         session()->setFlashdata('message', 'Data Pertanyaan berhasil diubah');
 
-        return redirect()->to('/admin/editPernyataan/' . $id);
+        return redirect()->back();
     }
 
     public function tambahPernyataan()
@@ -196,5 +196,19 @@ class Pernyataan extends BaseController
         }
 
         return view('admin/kelola-survei/edit_petunjuk', $data);
+    }
+
+    public function updatePetunjukPengisian($id)
+    {
+        $data = [
+            'id' => $id,
+            'isiPetunjuk' => $this->mRequest->getVar('isiPetunjuk'),
+
+        ];
+        $this->petunjukInstrumenModel->save($data);
+
+        session()->setFlashdata('message', 'Data Pertanyaan berhasil diubah');
+
+        return redirect()->back();
     }
 }

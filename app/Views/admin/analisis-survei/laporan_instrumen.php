@@ -34,7 +34,7 @@
     <section class="content mx-auto">
         <div class="container-fluid">
             <div class="alert alert-primary fw-bold" role="alert">
-                <strong class=" fs-6">Pilih Instrumen pada Kategori C.1 untuk Melihat Hasil Analisis Instrumen Kepuasan </strong>
+                <strong class=" fs-6">Pilih Instrumen </strong>
             </div>
         </div>
 
@@ -52,17 +52,17 @@
                             ?>
                             <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst text-decoration-none">
                                 <span class="text-black"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
-                                <div class="d-flex align-items-center ml-auto">
-                                    <span class="badge badge-cosmic "><?= $jmlTanggapan; ?> </span>
+                                <div class="d-flex align-items-center ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Tanggapan">
+                                    <span class=" badge badge-cosmic "><?= $jmlTanggapan; ?> </span>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-4  d-flex align-items-center">
+                    <div class=" col-lg-4 d-flex align-items-center">
                         <div class="form-check mr-4">
-                            <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($ins['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">
+                            <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($ins['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik kepuasan pada beranda website<?php else : ?> Klik untuk menampilkan grafik kepuasan pada beranda website<?php endif; ?>">
                             <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
-                                <?php if ($ins['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
+                                <?php if ($ins['tampil_grafik'] == '1') :  ?>Grafik Kepuasan Ditampilkan<?php else : ?> Grafik Kepuasan Disembunyikan<?php endif; ?>
                             </label>
 
                         </div>

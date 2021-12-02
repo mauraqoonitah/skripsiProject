@@ -49,7 +49,19 @@ class Instrumen_ extends BaseController
         return view('admin/kelola-survei/instrumen_', $data);
     }
 
+    public function lihatInstrumen()
+    {
+        $data = [
+            'title' => 'Export Data Instrumen',
+            'instrumen' => $this->instrumenModel->getInstrumen(),
 
+            'category' => $this->adminModel->getCategory(),
+
+            'validation' => \Config\Services::validation()
+        ];
+
+        return view('admin/kelola-survei/lihatInstrumen', $data);
+    }
     public function editInstrumen_($id)
     {
         $data = [
@@ -184,9 +196,9 @@ class Instrumen_ extends BaseController
             ],
 
         ])) {
-            session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen sudah terdaftar.');
+            session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen pada kategori sudah pernah terdaftar.');
 
-            return redirect()->to('/admin/kelola-survei/tambah_instrumen_/' . $slug)->withInput();
+            return redirect()->to('/admin/kelola-survei/instrumen_')->withInput();
         }
 
         $data =

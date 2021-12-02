@@ -20,7 +20,7 @@
                         <li class="breadcrumb-item active">Hasil Survei</li>
                     </ol>
                 </div>
-                <a href="<?= base_url(); ?>/admin/hasilSurveiInstrumen">
+                <a href="<?= base_url(); ?>/admin/hasil-survei/instrumen">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>
             </div>
@@ -74,7 +74,7 @@
                     <div class="ml-auto">
                         <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $cekTampilGrafik['id']; ?>" method="post" enctype="multipart/form-data">
                             <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input form-check-show-grafik-<?= $cekTampilGrafik['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($cekTampilGrafik['tampil_grafik']); ?> data-tampil="<?= $cekTampilGrafik['tampil_grafik']; ?>" data-id="<?= $cekTampilGrafik['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($cekTampilGrafik['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik pada beranda website<?php endif; ?>">
+                                <input class="form-check-input form-check-show-grafik-<?= $cekTampilGrafik['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($cekTampilGrafik['tampil_grafik']); ?> data-tampil="<?= $cekTampilGrafik['tampil_grafik']; ?>" data-id="<?= $cekTampilGrafik['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($cekTampilGrafik['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik kepuasan pada beranda website<?php endif; ?>">
                                 <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
                                     <?php if ($cekTampilGrafik['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
 
@@ -119,12 +119,12 @@
                         <div class="container">
                             <ul class="todo-list">
                                 <li class="border">
-                                    <span class="badge rounded-pill badge-cosmic"><?= $jumlahRespondenIns; ?></span>
-                                    <span class="text">Jumlah Responden</span>
+                                    <span class="text">Jumlah Responden: </span>
+                                    <span class="badge  badge-cosmic"><?= $jumlahRespondenIns; ?></span>
                                 </li>
                                 <li class="border">
-                                    <span class="badge rounded-pill badge-cosmic"><?= $jumlahTanggapanIns; ?> </span>
-                                    <span class="text">Jumlah Tanggapan</span>
+                                    <span class="text">Jumlah Tanggapan:</span>
+                                    <span class="badge  badge-cosmic"><?= $jumlahTanggapanIns; ?> </span>
                                 </li>
                             </ul>
                         </div>
@@ -136,7 +136,7 @@
                             <!-- section table 1 -->
                             <div class="table-responsive ">
                                 <table id="table-response-instrumen" class="display table-bordered table-hover border border-2" style="width:100%">
-                                    <thead>
+                                    <thead class="card-header text-rouge">
                                         <tr>
                                             <th rowspan="2"> No.</th>
                                             <th rowspan="2">Butir Pernyataan</th>

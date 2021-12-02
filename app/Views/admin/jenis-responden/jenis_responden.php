@@ -53,13 +53,13 @@
             <?php endif; ?>
             <!-- ./ flash gagal tambah data  -->
 
-            <div class="col-lg-12">
-                <div class="">
+            <div class="card">
+                <div class="card-body">
                     <?php if (in_groups('Admin')) : ?>
                         <!-- Button trigger modal -->
-                        <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="">
+                        <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="ml-auto">
                             <button type="button" class="btn btn-rouge text-white mb-4 py-2">
-                                <i class="fas fa-plus"></i> Tambah Responden
+                                <i class="fas fa-plus"></i> Tambah Kategori Responden
                             </button></a>
 
                         <!-- modal tambah kategori -->
@@ -99,117 +99,114 @@
                     <?php endif; ?>
                     <!-- end modal tambah kategori -->
 
-                    <div class="">
-                        <div class="table-responsive">
-                            <!-- datatables -->
-                            <table id="table-jenis-responden" class="display row-border table-hover striped table-bordered compact">
-                                <thead class="card-header py-3 text-rouge fs-6">
+                    <!-- datatables -->
+                    <div class="table-responsive">
+                        <table id="table-jenis-responden" class="display row-border table-hover striped table-bordered compact">
+                            <thead class="card-header py-3 text-rouge fs-6">
+                                <tr>
+                                    <th>Kategori Responden</th>
+                                    <th class="text-center ">Jumlah Responden</th>
+                                    <th>Instrumen yang dapat diisi</th>
+                                    <th scope="col" class="align-middle text-center">Kelola Data Diri</th>
+                                    <?php if (in_groups('Admin')) : ?>
+                                        <th scope="col" class="align-middle text-center">Aksi</th>
+                                    <?php endif; ?>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($responden as $resp) : ?>
                                     <tr>
-                                        <th>Kategori Responden</th>
-                                        <th class="text-center ">Jumlah Responden</th>
-                                        <th>Instrumen</th>
-                                        <th class="text-center ">Data Diri</th>
+                                        <td class="fw-bold pl-3"><?= $resp['responden']; ?> </td>
+
+                                        <td class="text-center ">
+                                            <?php
+                                            $jenisResponden = $resp['responden'];
+                                            $respondenModel = model('RespondenModel');
+                                            $this->respondenModel = new $respondenModel;
+                                            $jumlahResponden =  $this->respondenModel->getJumlahRespondenByRole($jenisResponden);
+                                            ?>
+                                            <?= $jumlahResponden; ?>
+                                        </td>
+
+                                        <td class="d-flex align-middle">
+                                            <?php
+                                            $jenisResponden = $resp['responden'];
+                                            $instrumenModel = model('InstrumenModel');
+                                            $this->instrumenModel = new $instrumenModel;
+                                            $sql =  $this->instrumenModel->getInstrumenByJenisResponden($jenisResponden);
+                                            ?>
+                                            <ul>
+                                                <?php foreach ($sql as $row) : ?>
+                                                    <li>
+                                                        <?= $row['kodeInstrumen']; ?> - <?= $row['namaInstrumen']; ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+
+                                        </td>
+
                                         <?php if (in_groups('Admin')) : ?>
-                                            <th>Aksi</th>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Data Diri Kategori Responden">
+                                                        <button type="button" class="btn btn-sm btn-success">
+                                                            <i class="fas fa-th-list text-white"></i>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        <?php endif; ?>
+
+                                        <?php if (in_groups('Admin')) : ?>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Nama Jenis Responden">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-<?= $resp['id']; ?>">
+                                                        <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </a>
+                                                </div>
+                                            </td>
+
+
                                         <?php endif; ?>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php foreach ($responden as $resp) : ?>
-                                        <tr>
-                                            <td class="fw-bold pl-3"><?= $resp['responden']; ?> </td>
 
-                                            <td class="text-center ">
-                                                <?php
-                                                $jenisResponden = $resp['responden'];
-                                                $respondenModel = model('RespondenModel');
-                                                $this->respondenModel = new $respondenModel;
-                                                $jumlahResponden =  $this->respondenModel->getJumlahRespondenByRole($jenisResponden);
-                                                ?>
-                                                <?= $jumlahResponden; ?>
-                                            </td>
-
-                                            <td class="d-flex align-middle">
-                                                <?php
-                                                $jenisResponden = $resp['responden'];
-                                                $instrumenModel = model('InstrumenModel');
-                                                $this->instrumenModel = new $instrumenModel;
-                                                $sql =  $this->instrumenModel->getInstrumenByJenisResponden($jenisResponden);
-                                                ?>
-                                                <ul>
-                                                    <?php foreach ($sql as $row) : ?>
-                                                        <li>
-                                                            <?= $row['kodeInstrumen']; ?> - <?= $row['namaInstrumen']; ?>
-                                                        </li>
-                                                    <?php endforeach; ?>
-                                                </ul>
-
-                                            </td>
-
-                                            <?php if (in_groups('Admin')) : ?>
-                                                <td class="align-middle ">
-                                                    <div class="btn-group " role="group">
-                                                        <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" class="btn btn-sm btn-success text-decoration-none d-flex justify-content-center" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Data Diri Kategori Responden">
-                                                            <button type="button" class="btn btn-sm">
-                                                                <i class="fas fa-th-list text-white"></i>
-                                                            </button>
-                                                        </a>
+                                    <?php if (in_groups('Admin')) : ?>
+                                        <!-- modal hapus responden -->
+                                        <div class="modal fade" id="modal-delete-jenisResponden-<?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered ">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-cosmic text-white">
+                                                        <h5 class="modal-title fw-bold">Hapus </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                </td>
-                                            <?php endif; ?>
-
-                                            <?php if (in_groups('Admin')) : ?>
-                                                <td class="align-middle">
-                                                    <div class="btn-group " role="group">
-                                                        <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Nama Jenis Responden">
-                                                            <button type="button" class="btn btn-sm">
-                                                                <i class="fas fa-edit"></i>
-                                                            </button>
-                                                        </a>
-
-                                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-jenisResponden-<?= $resp['id']; ?>">
-                                                            <button type="button" class="btn btn-sm">
-                                                                <i class="fas fa-trash-alt text-white"></i>
-                                                            </button>
-                                                        </a>
+                                                    <div class="modal-body text-center">
+                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                        Yakin hapus <?= $resp['responden']; ?>?
                                                     </div>
-                                                </td>
-                                            <?php endif; ?>
-                                        </tr>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                        <?php if (in_groups('Admin')) : ?>
-                                            <!-- modal hapus responden -->
-                                            <div class="modal fade" id="modal-delete-jenisResponden-<?= $resp['id']; ?>" tabindex="-1" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered ">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-cosmic text-white">
-                                                            <h5 class="modal-title fw-bold">Hapus </h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body text-center">
-                                                            <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                            Yakin hapus <?= $resp['responden']; ?>?
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                            <form action="<?= base_url(); ?>/admin/deleteJenisResponden/<?= $resp['id']; ?>" method="post">
-                                                                <?= csrf_field(); ?>
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                <button type="submit" class="btn btn-danger">Hapus</button>
-                                                            </form>
+                                                        <form action="<?= base_url(); ?>/admin/deleteJenisResponden/<?= $resp['id']; ?>" method="post">
+                                                            <?= csrf_field(); ?>
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
 
 
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        <?php endif; ?>
-                                        <!-- end modal hapus responden -->
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- end modal hapus responden -->
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

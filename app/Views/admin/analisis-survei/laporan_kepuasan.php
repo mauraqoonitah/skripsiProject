@@ -9,6 +9,18 @@ use CodeIgniter\I18n\Time;
 
 <div class="content-wrapper px-2">
     <!-- Content Header (Page header) -->
+
+    <!-- Main content -->
+    <?php foreach ($responsePertanyaan as $rID) : ?>
+        <?php
+        $namaInstrumen = $rID['namaInstrumen'];
+        $kodeInstrumen = $rID['kodeInstrumen'];
+        $questionID = $rID['questionID'];
+        $instrumenID = $rID['instrumenID'];
+        ?>
+    <?php endforeach; ?>
+
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -24,7 +36,7 @@ use CodeIgniter\I18n\Time;
             </div>
         </div><!-- /.container-fluid -->
         <!-- back to previous page -->
-        <a href="<?= base_url(); ?>/admin/laporanInstrumen">
+        <a href="<?= base_url(); ?>/admin/laporanSurvei">
             <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
         </a>
     </section>
@@ -142,12 +154,12 @@ use CodeIgniter\I18n\Time;
                                                     <label for="formFileLg" class="form-label fs-6">Info Hasil Survei Kepuasan pada Instrumen <?= $kodeInstrumen; ?></label>
                                                     <ul class="todo-list" data-widget="todo-list">
                                                         <li>
-                                                            <span class="badge rounded-pill badge-cosmic"><?= $jumlahRespondenIns; ?></span>
                                                             <span class="text">Jumlah Responden</span>
+                                                            <span class="badge badge-cosmic" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Responden"><?= $jumlahRespondenIns; ?></span>
                                                         </li>
                                                         <li>
-                                                            <span class="badge rounded-pill badge-cosmic"><?= $jumlahTanggapanIns; ?></span>
                                                             <span class="text">Jumlah Tanggapan</span>
+                                                            <span class="badge badge-cosmic" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Tanggapan"><?= $jumlahTanggapanIns; ?></span>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -279,7 +291,7 @@ use CodeIgniter\I18n\Time;
                             <div class="container-fluid my-5">
                                 <div class="table-responsive">
                                     <table id="datatable-chart-instrumen" class="table table-bordered table-hover table-striped border border-2">
-                                        <thead>
+                                        <thead class="card-header text-rouge">
                                             <tr class="text-center">
                                                 <th>Butir Pernyataan</th>
                                                 <th>Sangat Puas</th>

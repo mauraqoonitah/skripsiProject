@@ -78,11 +78,56 @@
                                             <i class=" fas fa-plus"></i> Buat Petunjuk Pengisian
                                         </button>
                                     <?php endif; ?>
+
                                     <?php if (!empty($isi['isiPetunjuk'])) : ?>
                                         <?php $isiPetunjukID = $isi['id']; ?>
-                                        <a href="<?= base_url(); ?>/admin/editPetunjukPengisian/<?= $isiPetunjukID; ?>" class="btn btn-warning text-decoration-none ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Petunjuk Pengisian">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
+                                        <button type="button" class="btn btn-warning ml-auto" data-bs-toggle="modal" data-bs-target="#modalEditPetunjukPengisian-<?= $isiPetunjukID; ?>">
+                                            <i class="fas fa-edit"></i> Edit Petunjuk Pengisian
+                                        </button>
+
+                                        <!-- modal edit isi petunjuk -->
+                                        <div class="modal fade" id="modalEditPetunjukPengisian-<?= $isiPetunjukID; ?>" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-cosmic text-white">
+                                                        <h5 class="modal-title" id="tambahButirLabel">Edit Petunjuk Instrumen <?= $instrumen['kodeInstrumen']; ?></h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <!-- form edit petunjuk -->
+                                                        <form action="<?= base_url(); ?>/admin/updatePetunjukPengisian/<?= $isiPetunjukID; ?>" method="post">
+                                                            <?= csrf_field(); ?>
+
+                                                            <div class="form-group">
+                                                                <div class="mb-3 row">
+                                                                    <div class="col-lg-12">
+                                                                        <?php foreach ($getPetunjukIns as $isi) : ?>
+                                                                            <?php if (empty($isi['isiPetunjuk'])) {
+                                                                                echo "Data masih kosong";
+                                                                            } ?>
+                                                                            <textarea id="summernote-petunjuk-pengisian" name="isiPetunjuk"><?= $isi['isiPetunjuk']; ?> </textarea>
+
+                                                                        <?php endforeach; ?>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                                <button type="submit" class="btn btn-success">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                        <!-- end form edit isi petunjuk -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end modal edit isi petunjuk -->
+
+
                                     <?php endif; ?>
                                 <?php endif; ?>
 
@@ -112,7 +157,7 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header bg-cosmic text-white">
-                                    <h5 class="modal-title" id="tambahButirLabel">Buat Petunjuk Instrumen <?= $instrumen['kodeInstrumen']; ?></h5>
+                                    <h5 class="modal-title" id="tambahButirLabel">Buat Petunjuk Pengisian Instrumen <?= $instrumen['kodeInstrumen']; ?></h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
@@ -223,9 +268,10 @@
                                         <?php if (in_groups('Admin')) : ?>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="<?= base_url(); ?>/admin/editPernyataan/<?= $questions['id']; ?>" class="btn btn-sm btn-warning text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Pernyataan">
+                                                    <button type="button" class="btn btn-sm btn-warning" data-bs-placement="top" title="Edit" data-bs-toggle="modal" data-bs-target="#modal-edit-butir-<?= $questions['id']; ?>">
                                                         <i class="fas fa-edit"></i>
-                                                    </a>
+                                                    </button>
+
                                                     <button type="button" class="btn btn-sm btn-danger" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#modal-delete-butir-<?= $questions['id']; ?>">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
@@ -233,6 +279,38 @@
                                             </td>
                                         <?php endif; ?>
                                     </tr>
+
+                                    <!-- modal edit butir Pernyataan -->
+                                    <div class="modal fade" id="modal-edit-butir-<?= $questions['id']; ?>" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                                            <div class="modal-content">
+                                                <form action="<?= base_url(); ?>/admin/updatePernyataan/<?= $questions['id']; ?>" method="post">
+                                                    <?= csrf_field(); ?>
+
+                                                    <div class="modal-header bg-cosmic text-white">
+                                                        <h5 class="modal-title fw-bold">Edit Butir Pernyataan</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group container">
+                                                            <div class="mb-3 row">
+                                                                <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir" placeholder="Isi Butir Pernyataan"><?= (old('butir')) ? old('butir') : $questions['butir']; ?></textarea>
+                                                                <input type="hidden" name="instrumenID" value="<?= $instrumen['id']; ?>">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                        <button type="submit" class="btn btn-success">
+                                                            <i class="fas fa-save"></i> Simpan
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end modal edit butir -->
 
                                     <!-- modal hapus Butir Pernyataan -->
                                     <div class="modal fade" id="modal-delete-butir-<?= $questions['id']; ?>" tabindex="-1" aria-labelledby="hapusButirLabel" aria-hidden="true">

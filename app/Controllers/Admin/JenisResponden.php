@@ -199,10 +199,16 @@ class JenisResponden extends BaseController
             ],
         ];
 
-        $forge = \Config\Database::forge();
-        if ($forge->addColumn('users', $fields)) {
-            echo 'Database created!';
+        $db = \Config\Database::connect();
+        // check if column is already exist
+        if ($db->fieldExists($columnPertanyaan, 'users')) {
+            session()->setFlashdata('message', 'Data berhasil disimpan');
+            return redirect()->back();
         }
+        // add new column to users table
+        $forge = \Config\Database::forge();
+        $forge->addColumn('users', $fields);
+
 
         session()->setFlashdata('message', 'Data berhasil disimpan');
         return redirect()->back();

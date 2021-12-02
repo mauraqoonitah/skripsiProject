@@ -48,6 +48,24 @@ class Kategori_ extends BaseController
 
         return view('admin/kelola-survei/kategori_', $data);
     }
+
+
+    public function lihatKategori()
+    {
+
+        $data = [
+            'title' => 'Export Data Kategori',
+            'category' => $this->adminModel->getCategory(),
+            'getPeruntukkan' => $this->adminModel->getPeruntukkan(),
+            'slug' => $this->mRequest->getVar('slug'),
+            'responden' => $this->jenisRespondenModel->getJenisResponden(),
+
+            'validation' => \Config\Services::validation()
+
+        ];
+
+        return view('admin/kelola-survei/lihatKategori', $data);
+    }
     public function editKategori_($slug)
     {
 

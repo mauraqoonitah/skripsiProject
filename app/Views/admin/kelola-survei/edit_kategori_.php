@@ -44,7 +44,6 @@
     <?php $selected_resp = [];
     foreach ($getSelectedResponden as $resp) {
         $selected_resp[] = $resp['peruntukkanCategory'];
-        var_dump($selected_resp);
     };
     ?>
 
@@ -54,11 +53,11 @@
             <!-- form edit kategori -->
             <form action="<?= base_url(); ?>/admin/updateKategori_/<?= $category['id']; ?>" method="post">
                 <?= csrf_field(); ?>
-                <div class="card mt-2">
+                <div class="card">
                     <div class="card-header text-rouge">
                         <strong> <?= $category['kodeCategory']; ?> - <?= $category['namaCategory']; ?></strong>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-5">
 
                         <!-- nama kategori -->
                         <div class="form-group">

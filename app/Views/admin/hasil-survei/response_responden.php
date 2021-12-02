@@ -20,7 +20,7 @@ use CodeIgniter\I18n\Time;
                         <li class="breadcrumb-item active">Hasil Survei</li>
                     </ol>
                 </div>
-                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden">
+                <a href="<?= base_url(); ?>/admin/hasil-survei/responden">
                     <i class="nav-icon fas fa-arrow-left pl-2 pt-4" style="font-size: 20px;"></i>
                 </a>
             </div>
@@ -89,6 +89,7 @@ use CodeIgniter\I18n\Time;
                 </div>
             </div>
             <!-- ./data diri responden -->
+            <h5 class="fw-bold mb-4 text-cosmic">Hasil Pengisian Survei dari Responden:<br></h5>
 
             <!-- list tanggapan per instrumen -->
             <div class="accordion accordion-flush mx-auto">
