@@ -128,13 +128,27 @@ class JenisResponden extends BaseController
     //ubah jenis responden
     public function updateJenisResponden($id)
     {
-        $this->jenisRespondenModel->save(
+
+        $data =
             [
                 'id' => $id,
                 'responden' => $this->mRequest->getVar('responden')
 
-            ]
-        );
+            ];
+        $this->jenisRespondenModel->save($data);
+
+        $updateData = $this->authGroupsModel->updateData($id);
+        foreach ($updateData as $authdata) {
+            $authDataId = $authdata['id'];
+        }
+
+        $dataAuth =
+            [
+                'id' => $authDataId,
+                'name' => $this->mRequest->getVar('responden'),
+                'description' => 'responden ' . $this->mRequest->getVar('responden')
+            ];
+        $this->authGroupsModel->save($dataAuth);
 
         session()->setFlashdata('message', 'Data berhasil diubah');
 

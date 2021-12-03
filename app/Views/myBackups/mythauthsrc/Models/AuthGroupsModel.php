@@ -14,4 +14,11 @@ class AuthGroupsModel extends Model
     protected $allowedFields = [
         'name', 'description', 'jenisRespondenID'
     ];
+
+    public function updateData($jenisRespId)
+    {
+        return $this
+            ->where('jenisRespondenID', $jenisRespId)
+            ->findAll();
+    }
 }
