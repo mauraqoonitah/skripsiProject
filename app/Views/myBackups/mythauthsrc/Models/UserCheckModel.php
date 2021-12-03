@@ -31,6 +31,7 @@ class UserCheckModel extends Model
             ->where('nim', $nim)
             ->findAll();
     }
+
     public function getUserCheckByEmail($email)
     {
         return $this
@@ -44,6 +45,14 @@ class UserCheckModel extends Model
             ->where('nim', $nim)
             ->orWhere('nidn', $nidn)
             ->orWhere('email', $email)
+            ->findAll();
+    }
+    public function getUserDataByregData($nim)
+    {
+        return $this
+            ->select('nim', 'nidn')
+            ->where('nim', $nim)
+            ->orWhere('nidn', $nim)
             ->findAll();
     }
 }

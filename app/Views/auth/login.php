@@ -27,8 +27,8 @@
 
                         <!-- username -->
                         <div class="form-floating mb-3 pl-2">
-                            <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Username">
-                            <label for="login" class="text-muted">Username</label>
+                            <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="Username/Email">
+                            <label for="login" class="text-muted">Username/Email</label>
                             <div class="invalid-feedback">
                                 <?= session('errors.login') ?>
                             </div>

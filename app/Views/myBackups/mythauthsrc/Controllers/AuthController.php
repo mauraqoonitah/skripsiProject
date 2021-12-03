@@ -128,7 +128,7 @@ class AuthController extends Controller
 
 		unset($_SESSION['redirect_url']);
 
-		return redirect()->to($redirectURL)->withCookies()->with('message', lang('Auth.loginSuccess'));
+		return redirect()->to($redirectURL)->withCookies();
 	}
 	/**
 	 * Displays the checkAkun form, or redirects
@@ -290,10 +290,16 @@ class AuthController extends Controller
 			'role'    => 'required',
 
 		];
+		$regData = $this->mRequest->getVar('regData');
 
 		if (!$this->validate($rules)) {
-			return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-			session()->setFlashdata('messageError', 'Gagal menyimpan. Mohon cek data kembali.');
+			if (!empty($regData)) {
+				return redirect()->route('checkAkun')->withInput()->with('errors', $this->validator->getErrors());
+				session()->setFlashdata('messageError', 'Gagal menyimpan. Mohon cek data kembali.');
+			} else {
+				return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+				session()->setFlashdata('messageError', 'Gagal menyimpan. Mohon cek data kembali.');
+			}
 		}
 
 		// Validate passwords since they can only be validated properly here

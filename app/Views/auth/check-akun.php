@@ -5,6 +5,30 @@
 <section class="auth-page d-flex justify-content-center align-items-center">
     <div class="auth-wrapper">
         <div class="auth-card row">
+
+            <div class="auth-wrapper-right col-md-4 d-flex align-items-center">
+                <div class="container pt-3 my-5">
+                    <div class="row">
+                        <span class="">Anda harus memiliki akun SIAKAD yang dapat dimiliki oleh:
+                        </span>
+                        <ul>
+                            <li>
+                                <b>Mahasiswa UNJ</b>
+                            </li>
+                            <li>
+                                <b> Dosen UNJ</b>
+                            </li>
+                        </ul>
+                        <p class="text-muted ">
+                            Bukan diantaranya? <a href="<?= url_to('register') ?>"> <u>Klik Disini</u>
+                            </a>
+                        </p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="auth-wrapper-left align-middle col-md-8">
                 <div class="container pt-3 mt-3">
                     <div class="container">
@@ -45,7 +69,7 @@
 
                         <div class="form-floating mb-3 pl-2">
                             <input type="text" class="form-control " name="nim" id="nim" placeholder="EMAIL / NIM / NIDN ">
-                            <label for="nim">EMAIL / NIM / NIDN</label>
+                            <label for="nim">EMAIL UNJ / NIM / NIDN</label>
 
                             <input type="hidden" class="form-control " name="nidn" id="nidn">
                             <input type="hidden" class="form-control " name="email" id="email">
@@ -58,27 +82,7 @@
                     </form>
                 </div>
             </div>
-            <div class="auth-wrapper-right col-md-4 d-flex align-items-center">
-                <div class="container pt-3 my-5">
-                    <div class="row">
-                        <span class="">Anda harus memiliki akun SIAKAD terlebih dahulu yang dapat dimiliki oleh:
-                        </span>
-                        <ul>
-                            <li>
-                                Mahasiswa UNJ
-                            </li>
-                            <li>
-                                Dosen UNJ
-                            </li>
-                        </ul>
-                        <hr>
-                        <p class="text-muted small">
-                            Bukan diantaranya? <a href="<?= url_to('register') ?>"> <u>Klik Disini</u>
-                            </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>

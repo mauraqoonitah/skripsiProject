@@ -138,7 +138,6 @@ class UserModel extends Model
             ->where('id', $id)
             ->findAll();
     }
-
     public function getAdminUser()
     {
         return $this
