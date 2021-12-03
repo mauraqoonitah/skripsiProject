@@ -54,20 +54,68 @@ use CodeIgniter\I18n\Time;
                                         <th class="text-center">No.</th>
                                         <th>Nama Lengkap</th>
                                         <th>Jenis Responden</th>
+                                        <!-- get all pertanyaan -->
+                                        <?php foreach ($getAllPertanyaan as $allPertanyaan) : ?>
+                                            <th><?= $colPertanyaan = $allPertanyaan['pertanyaan']; ?></th>
+                                        <?php endforeach; ?>
+
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
                                     <?php foreach ($responden as $rpd) : ?>
+                                        <?php $userId = $rpd['userID']; ?>
+                                        <?php $userRole = $rpd['role']; ?>
+
+                                        <!-- cari responden Id nya dulu -->
+                                        <?php
+                                        $jenisRespondenModel = model('JenisRespondenModel');
+                                        $this->jenisRespondenModel = new $jenisRespondenModel;
+
+                                        $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($userRole);
+                                        foreach ($getJenisRespondenID as $respId) {
+                                            $jenisRespondenId = $respId['id'];
+                                        }
+                                        ?>
 
                                         <tr>
                                             <td class="text-center"><?= $i++; ?></td>
-                                            <td>
-                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $rpd['userID']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Tanggapan"> <?= $rpd['fullname']; ?></a>
 
+                                            <!-- fullname -->
+                                            <td>
+                                                <a href="<?= base_url(); ?>/admin/hasilSurveiResponden/<?= $userId; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Lihat Profil"> <?= $rpd['fullname']; ?></a>
                                             </td>
+
+                                            <!-- role -->
                                             <td><?= $rpd['role']; ?></td>
+
+                                            <!-- tambahan data diri -->
+                                            <?php foreach ($getAllPertanyaan as $allPertanyaan) : ?>
+                                                <?php
+                                                $columnPertanyaan = $allPertanyaan['pertanyaan'];
+                                                $colPertanyaan = str_replace(' ', '', $columnPertanyaan);
+                                                ?>
+
+                                                <?php
+                                                $userModel = model('UserModel');
+                                                $this->userModel = new $userModel;
+                                                $getDataDiri =  $this->userModel->getDataUser($userId);
+                                                ?>
+                                                <?php
+                                                foreach ($getDataDiri as $datadiri) : ?>
+                                                    <?php
+                                                    if (empty($datadiri->$colPertanyaan)) {
+                                                        echo '<td> - </td>';
+                                                    } else {
+                                                        echo '<td>' . $datadiri->$colPertanyaan . '</td>';
+                                                    }
+                                                    ?>
+                                                <?php endforeach; ?>
+
+                                            <?php endforeach; ?>
+
+                                            <!-- aksi -->
                                             <td>
                                                 <div class=" d-grid gap-2 d-md-block">
                                                     <div class="btn-group" role="group">

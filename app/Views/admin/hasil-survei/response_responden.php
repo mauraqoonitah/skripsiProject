@@ -32,7 +32,7 @@ use CodeIgniter\I18n\Time;
 
 
             <!-- data diri responden -->
-            <div class="row mb-4 col-lg-6">
+            <div class="row mb-4 col-lg-12">
                 <div class="card card-outline card-primary">
                     <div class="card-header bg-white">
                         <div class="card-tools">
@@ -82,9 +82,28 @@ use CodeIgniter\I18n\Time;
                         </div>
                         <hr>
 
-                        <p class="text-muted">userID <?= $userID = $res['userID']; ?></p>
-                    <?php endforeach; ?>
+                        <?php foreach ($getPertanyaanByRespId as $data) : ?>
+                            <?php
+                                $pertanyaanId = $data['id'];
+                                $dataDiriJawabanModel = model('DataDiriJawabanModel');
+                                $this->dataDiriJawabanModel = new $dataDiriJawabanModel;
+                                $getPilihan =  $this->dataDiriJawabanModel->getPilihanByPertanyaanId($pertanyaanId);
+                                $oldJawaban = str_replace(' ', '', $data['pertanyaan']);
+                            ?>
 
+                            <div class="form-group row p-0 m-0">
+                                <span class="col-sm-4 col-form-label p-0"><strong><?= $data['pertanyaan']; ?> </strong></span>
+                                <span class="col-sm-8 col-form-label p-0">
+                                    <?= $res[$oldJawaban]; ?>
+
+                                </span>
+                            </div>
+                            <hr>
+
+                            <?php
+                            ?>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
                     </div>
                 </div>
             </div>

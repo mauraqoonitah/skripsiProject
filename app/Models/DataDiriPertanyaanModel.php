@@ -12,6 +12,12 @@ class DataDiriPertanyaanModel extends Model
     //kalo ada parameternya, cari yg pake where tadi
     // kalo gaada, ambil ssemua data kategori
 
+    public function getAllPertanyaan()
+    {
+        return $this
+            ->groupBy('pertanyaan')
+            ->findAll();
+    }
     public function getPertanyaan($id = false)
     {
         if ($id == false) {

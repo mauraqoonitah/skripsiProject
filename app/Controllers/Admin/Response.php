@@ -10,6 +10,7 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
+use App\Models\DataDiriPertanyaanModel;
 use Myth\Auth\Models\UserModel;
 
 
@@ -22,6 +23,8 @@ class Response extends BaseController
     protected $responseModel;
     protected $respondenModel;
     protected $userModel;
+    protected $dataDiriPertanyaanModel;
+
     protected $mRequest;
 
 
@@ -34,6 +37,8 @@ class Response extends BaseController
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
         $this->userModel = new UserModel();
+        $this->dataDiriPertanyaanModel = new DataDiriPertanyaanModel();
+
 
         $this->mRequest = service("request");
     }
@@ -78,18 +83,30 @@ class Response extends BaseController
         $data = [
             'title' => 'Data Responden',
             'responden' => $this->respondenModel->getRespondenList(),
+            'getAllPertanyaan' => $this->dataDiriPertanyaanModel->getAllPertanyaan(),
 
         ];
         return view('admin/hasil-survei/hasil_responden', $data);
     }
     public function responseResponden($id)
     {
+        $getDataUser = $this->userModel->getDataUser($id);
+        foreach ($getDataUser as $dataUser) {
+            $roleUser = $dataUser->role;
+        }
+
+        $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($roleUser);
+        foreach ($getJenisRespondenID as $respoId) {
+            $jenisRespondenId = $respoId['id'];
+        }
 
         $data = [
             'title' => 'Tanggapan Responden',
             'responseInsId' => $this->responseModel->getResponseByInstrumenID($id),
             'respondenDataDiri' => $this->respondenModel->joinRespondenUsers($id),
             'lastActivity' => $this->userModel->lastActivity($id),
+            'lastActivity' => $this->userModel->lastActivity($id),
+            'getPertanyaanByRespId' => $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId),
 
 
         ];

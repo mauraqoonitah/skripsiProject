@@ -196,7 +196,7 @@ use CodeIgniter\I18n\Time;
                 <strong class=" fs-6">Pilih Kategori untuk Melihat Hasil Analisis Instrumen Kepuasan </strong>
             </div>
 
-            <div class="col-lg-8 mx-auto">
+            <div class="col-lg-8">
                 <div class="list-group center">
                     <?php foreach ($category as $ctg) : ?>
                         <div class="mb-4">

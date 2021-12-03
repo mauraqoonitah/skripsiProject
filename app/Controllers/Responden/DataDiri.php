@@ -92,7 +92,8 @@ class DataDiri extends BaseController
 
                 $newFieldJawabanIsian = $this->mRequest->getVar('isian');
                 $newFieldJawabanPilihan = $this->mRequest->getVar('pilihan-' . $pertanyaanId);
-                // dd(sizeof($newFieldJawabanIsian));
+                dd($newFieldJawabanIsian);
+
                 // if jenis isian
                 for ($j = 0; $j < sizeof($newFieldJawabanIsian); $j++) {
 
@@ -113,6 +114,7 @@ class DataDiri extends BaseController
                     foreach ($getJenisPilihan as $jenisPilihan) {
                         // dd(sizeof($getJenisPilihan));
                         $pertanyaan = $jenisPilihan['pertanyaan'];
+
                         $columnPertanyaanIsian = str_replace(' ', '', $pertanyaan);
 
                         if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
