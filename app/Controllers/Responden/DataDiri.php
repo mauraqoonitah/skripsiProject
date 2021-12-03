@@ -64,18 +64,15 @@ class DataDiri extends BaseController
 
 
         ];
-        // dd($data);
         return view('responden/isiDataDiri', $data);
     }
 
     public function updateDataDiri()
     {
 
-        // insert new field jawaban
-        $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
-        $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
-        // dd(sizeof($columnPertanyaan));
+        // ----------- jika pertanyaan jenis isian ---------------------------
 
+        $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
         for ($i = 0; $i < sizeof($getPostPertanyaan); $i++) {
             $userID  = user()->id;
             $userRole  = user()->role;
@@ -85,52 +82,45 @@ class DataDiri extends BaseController
             foreach ($getJenisRespondenID as $data) {
                 $jenisRespondenId = $data['id'];
             }
-            $getPertanyaanByRespId = $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId);
 
-            foreach ($getPertanyaanByRespId as $getPertanyaanId) {
-                $pertanyaanId = $getPertanyaanId['id'];
+            $getPertanyaanJenisIsian = $this->dataDiriPertanyaanModel->getJenisPertanyaan('isian', $jenisRespondenId);
 
-                $newFieldJawabanIsian = $this->mRequest->getVar('isian');
-                $newFieldJawabanPilihan = $this->mRequest->getVar('pilihan-' . $pertanyaanId);
-                dd($newFieldJawabanIsian);
+            for ($l = 0; $l < sizeof($getPertanyaanJenisIsian); $l++) {
+                foreach ($getPertanyaanJenisIsian as $jenisIsian) {
+                    $newFieldJawabanIsian = $this->mRequest->getVar("isian-" . $jenisIsian['id']);
 
-                // if jenis isian
-                for ($j = 0; $j < sizeof($newFieldJawabanIsian); $j++) {
+                    $pertanyaanIsian = $jenisIsian['pertanyaan'];
 
-                    $dataIsian =
-                        [
-                            'id' => $userID,
-                            $columnPertanyaan[$j] => $newFieldJawabanIsian[$j],
-                        ];
-                    $this->userModel->save($dataIsian);
+                    $columnPertanyaanIsian = str_replace(' ', '', $pertanyaanIsian);
+
+                    if ($newFieldJawabanIsian != Null) {
+                        $dataIsian =
+                            [
+                                'id' => $userID,
+                                $columnPertanyaanIsian => $newFieldJawabanIsian,
+                            ];
+                        $this->userModel->save($dataIsian);
+                    }
                 }
+            }
 
-                // if jenis pilihan
-                $getJenisPilihan = $this->dataDiriPertanyaanModel->getJenisPertanyaan('pilihan', $jenisRespondenId);
-                // dd($getJenisPilihan);
+            // ----------- jika pertanyaan jenis pilihan ---------------------------
+            $getPertanyaanJenisPilihan = $this->dataDiriPertanyaanModel->getJenisPertanyaan('pilihan', $jenisRespondenId);
 
+            for ($k = 0; $k < sizeof($getPertanyaanJenisPilihan); $k++) {
+                foreach ($getPertanyaanJenisPilihan as $jenisPilihan) {
+                    $pertanyaan = $jenisPilihan['pertanyaan'];
+                    $columnPertanyaanPilihan = str_replace(' ', '', $pertanyaan);
 
-                for ($k = 0; $k < sizeof($getJenisPilihan); $k++) {
-                    foreach ($getJenisPilihan as $jenisPilihan) {
-                        // dd(sizeof($getJenisPilihan));
-                        $pertanyaan = $jenisPilihan['pertanyaan'];
+                    if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
+                        $jawaban = $this->mRequest->getVar('pilihan-' . $jenisPilihan['id']);
 
-                        $columnPertanyaanIsian = str_replace(' ', '', $pertanyaan);
-
-                        if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
-                            $jawaban = $this->mRequest->getVar('pilihan-' . $jenisPilihan['id']);
-                            // dd($jawaban);
-
-                            $dataPilihan =
-                                [
-                                    'id' => $userID,
-                                    $columnPertanyaanIsian => $jawaban,
-                                ];
-                            // dd($pert);
-                            // dd($dataPilihan);
-
-                            $this->userModel->save($dataPilihan);
-                        }
+                        $dataPilihan =
+                            [
+                                'id' => $userID,
+                                $columnPertanyaanPilihan => $jawaban,
+                            ];
+                        $this->userModel->save($dataPilihan);
                     }
                 }
             }

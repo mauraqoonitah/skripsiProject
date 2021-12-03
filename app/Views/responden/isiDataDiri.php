@@ -113,7 +113,7 @@
 
                                             <!-- jika pertanyaan pilihan -->
                                             <?php if ($data['jenis'] == 'pilihan') :  ?>
-                                                <select name="pilihan-<?= $pertanyaanId; ?>" class="form-select" aria-label="Default select example" required>
+                                                <select name="pilihan-<?= $pertanyaanId; ?>" class="form-select" aria-label="Default select example">
                                                     <option></option>
                                                     <?php foreach ($getPilihan as $pilihan) : ?>
                                                         <option value="<?= $pilihan['pilihan']; ?>" <?php echo ($pilihan['pilihan'] === $user->$oldJawaban) ? 'selected' : '' ?>> <?= $pilihan['pilihan']; ?></option>
@@ -126,7 +126,7 @@
                                             <?php else : ?>
 
                                                 <div class="form-group mb-3">
-                                                    <input type="text" class="form-control" name="isian[]" value="<?= $user->$oldJawaban; ?>" required>
+                                                    <input type="text" class="form-control" name="isian-<?= $pertanyaanId; ?>" value="<?= $user->$oldJawaban; ?>">
                                                 </div>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
