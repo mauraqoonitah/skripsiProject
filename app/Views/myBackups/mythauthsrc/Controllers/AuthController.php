@@ -345,7 +345,23 @@ class AuthController extends Controller
 		// check if already logged in.
 		if (logged_in()) {
 			$userRole = user()->role;
-			if ($userRole === 'Admin') {
+			$checkAddAkun = $this->mRequest->getVar('checkAddAkun');
+
+			if (!empty($checkAddAkun)) {
+				if ($this->config->requireActivation !== null) {
+					$activator = service('activator');
+					$sent = $activator->send($user);
+
+					if (!$sent) {
+						return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
+					}
+
+					// Success!
+					return redirect()->back()->with('message', lang('Auth.registerDosenSuccess'));
+				}
+				$usernameRegistering = $this->mRequest->getVar('username');
+				$this->session->set('username', $usernameRegistering);
+
 				return redirect()->back()->with('message', lang('Auth.registerDosenSuccess'));
 			}
 		}

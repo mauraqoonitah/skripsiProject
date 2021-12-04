@@ -131,6 +131,7 @@ use CodeIgniter\I18n\Time;
 
                                                             <!-- role-->
                                                             <input type="hidden" name="role" value="Dosen" />
+                                                            <input type="hidden" name="checkAddAkun" value="checkAddAkun" />
 
                                                             <!-- email -->
                                                             <div class="form-group my-3">

@@ -1,9 +1,9 @@
-<p>This is activation email for your account on <?= site_url() ?>.</p>
+<p>Ini adalah email aktivasi untuk akun Anda di <?= site_url() ?>.</p>
 
-<p>To activate your account use this URL.</p>
+<p>Untuk mengaktifkan akun Anda, gunakan URL ini.</p>
 
-<p><a href="<?= site_url('activate-account') . '?token=' . $hash ?>">Activate account</a>.</p>
+<p><a href="<?= site_url('activate-account') . '?token=' . $hash ?>">Aktifkan akun</a>.</p>
 
 <br>
 
-<p>If you did not registered on this website, you can safely ignore this email.</p>
+<p>Jika Anda tidak terdaftar di situs web ini, Anda dapat mengabaikan email ini dengan aman.</p>
