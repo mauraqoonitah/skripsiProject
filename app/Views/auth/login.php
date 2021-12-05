@@ -35,7 +35,12 @@
                         </div>
                         <!-- password -->
                         <div class="form-floating mb-3 pl-2">
-                            <input type="password" name="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
+                            <input type="password" name="password" id="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
+
+                            <span style="color: #7a797e;position: absolute; right: 12px;transform: translate(0,-55%);top: 55%;cursor: pointer; ">
+                                <i class="far fa-eye " id="eye" onclick="togglepasswordLogin()"></i>
+                            </span>
+
                             <label for="password" class="text-muted">Password</label>
                             <div class="invalid-feedback">
                                 <?= session('errors.password') ?>
@@ -79,4 +84,20 @@
 
     </div>
 </section>
+
+<script>
+    var state = false;
+
+    function togglepasswordLogin() {
+        if (state) {
+            document.getElementById("password").setAttribute("type", "password");
+            document.getElementById("eye").style.color = '#7a797e';
+            state = false;
+        } else {
+            document.getElementById("password").setAttribute("type", "text");
+            document.getElementById("eye").style.color = '#5887ef';
+            state = true;
+        }
+    }
+</script>
 <?= $this->endSection() ?>

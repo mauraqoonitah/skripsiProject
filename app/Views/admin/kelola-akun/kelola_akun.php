@@ -159,7 +159,11 @@ use CodeIgniter\I18n\Time;
                                                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                                                     <label for="password" class="form-label">Password</label>
                                                                     <input type="password" name="password" id="inputPasswordDosen" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
-                                                                    <input type="checkbox" onclick="showPasswordDosen()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
+
+                                                                    <span style="color: #7a797e;position: absolute; right: 22px;transform: translate(0,-55%);top: 75%;cursor: pointer; ">
+                                                                        <i class="far fa-eye " id="eyeinputPasswordDosen" onclick="toggleInputPasswordDosen()"></i>
+                                                                    </span>
+
                                                                     <div class="invalid-feedback">
                                                                         <?= session('errors.password') ?>
                                                                     </div>
@@ -167,7 +171,11 @@ use CodeIgniter\I18n\Time;
                                                                 <div class="col-sm-6">
                                                                     <label for="pass_confirm" class=" form-label">Repeat Password</label>
                                                                     <input type="password" name="pass_confirm" id="inputPasswordConfirmDosen" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
-                                                                    <input type="checkbox" onclick="showPasswordConfirmDosen()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
+
+                                                                    <span style="color: #7a797e;position: absolute; right: 22px;transform: translate(0,-55%);top: 75%;cursor: pointer; ">
+                                                                        <i class="far fa-eye " id="eyeinputPasswordConfirmDosen" onclick="toggleInputPasswordConfirmDosen()"></i>
+                                                                    </span>
+
                                                                     <div class="invalid-feedback">
                                                                         <?= session('errors.pass_confirm') ?>
                                                                     </div>
@@ -563,7 +571,10 @@ use CodeIgniter\I18n\Time;
                                                                         <label for="password" class="form-label">Password</label>
                                                                         <input type="password" name="password" id="inputPassword" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
 
-                                                                        <input type="checkbox" onclick="showPassword()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
+                                                                        <span style="color: #7a797e;position: absolute; right: 22px;transform: translate(0,-55%);top: 75%;cursor: pointer; ">
+                                                                            <i class="far fa-eye " id="eyeinputPassword" onclick="toggleinputPassword()"></i>
+                                                                        </span>
+
 
                                                                         <div class="invalid-feedback">
                                                                             <?= session('errors.password') ?>
@@ -573,7 +584,10 @@ use CodeIgniter\I18n\Time;
                                                                         <label for="pass_confirm" class=" form-label">Repeat Password</label>
                                                                         <input type="password" name="pass_confirm" id="inputPass_confirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
 
-                                                                        <input type="checkbox" onclick="showPasswordConfirm()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
+                                                                        <span style="color: #7a797e;position: absolute; right: 22px;transform: translate(0,-55%);top: 75%;cursor: pointer; ">
+                                                                            <i class="far fa-eye " id="eyeinputPass_confirm" onclick="toggleinputPass_confirm()"></i>
+                                                                        </span>
+
 
                                                                         <div class="invalid-feedback">
                                                                             <?= session('errors.pass_confirm') ?>
@@ -768,7 +782,10 @@ use CodeIgniter\I18n\Time;
                                                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                                                         <label for="password" class="form-label">Password</label>
                                                                         <input type="password" name="password" id="inputPasswordKontributor" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
-                                                                        <input type="checkbox" onclick="showPasswordKontributor()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
+
+                                                                        <span style="color: #7a797e;position: absolute; right: 22px;transform: translate(0,-55%);top: 75%;cursor: pointer; ">
+                                                                            <i class="far fa-eye " id="eyeinputPasswordKontributor" onclick="toggleinputPasswordKontributor()"></i>
+                                                                        </span>
 
                                                                         <div class="invalid-feedback">
                                                                             <?= session('errors.password') ?>
@@ -777,7 +794,11 @@ use CodeIgniter\I18n\Time;
                                                                     <div class="col-sm-6">
                                                                         <label for="pass_confirm" class=" form-label">Repeat Password</label>
                                                                         <input type="password" name="pass_confirm" id="inputPasswordConfirmKontributor" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
-                                                                        <input type="checkbox" onclick="showPasswordConfirmKontributor()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
+
+                                                                        <span style="color: #7a797e;position: absolute; right: 22px;transform: translate(0,-55%);top: 75%;cursor: pointer; ">
+                                                                            <i class="far fa-eye " id="eyeinputPasswordConfirmKontributor" onclick="toggleinputPasswordConfirmKontributor()"></i>
+                                                                        </span>
+
 
                                                                         <div class="invalid-feedback">
                                                                             <?= session('errors.pass_confirm') ?>
@@ -1079,61 +1100,98 @@ use CodeIgniter\I18n\Time;
 
 <!-- show password toggle -->
 <script>
-    function showPassword() {
-        var x = document.getElementById("inputPassword");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
+    var state = false;
 
-    function showPasswordConfirm() {
-        var x = document.getElementById("inputPass_confirm");
-        if (x.type === "password") {
-            x.type = "text";
+    function toggleInputPasswordDosen() {
+        if (state) {
+            document.getElementById("inputPasswordDosen").setAttribute("type", "password");
+            document.getElementById("eyeinputPasswordDosen").style.color = '#7a797e';
+            state = false;
         } else {
-            x.type = "password";
+            document.getElementById("inputPasswordDosen").setAttribute("type", "text");
+            document.getElementById("eyeinputPasswordDosen").style.color = '#5887ef';
+            state = true;
         }
     }
 </script>
 <script>
-    function showPasswordKontributor() {
-        var x = document.getElementById("inputPasswordKontributor");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
+    var state = false;
 
-    function showPasswordConfirmKontributor() {
-        var x = document.getElementById("inputPasswordConfirmKontributor");
-        if (x.type === "password") {
-            x.type = "text";
+    function toggleInputPasswordConfirmDosen() {
+        if (state) {
+            document.getElementById("inputPasswordConfirmDosen").setAttribute("type", "password");
+            document.getElementById("eyeinputPasswordConfirmDosen").style.color = '#7a797e';
+            state = false;
         } else {
-            x.type = "password";
+            document.getElementById("inputPasswordConfirmDosen").setAttribute("type", "text");
+            document.getElementById("eyeinputPasswordConfirmDosen").style.color = '#5887ef';
+            state = true;
         }
+
     }
 </script>
 <script>
-    function showPasswordDosen() {
-        var x = document.getElementById("inputPasswordDosen");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
+    var state = false;
 
-    function showPasswordConfirmDosen() {
-        var x = document.getElementById("inputPasswordConfirmDosen");
-        if (x.type === "password") {
-            x.type = "text";
+    function toggleinputPasswordKontributor() {
+        if (state) {
+            document.getElementById("inputPasswordKontributor").setAttribute("type", "password");
+            document.getElementById("eyeinputPasswordKontributor").style.color = '#7a797e';
+            state = false;
         } else {
-            x.type = "password";
+            document.getElementById("inputPasswordKontributor").setAttribute("type", "text");
+            document.getElementById("eyeinputPasswordKontributor").style.color = '#5887ef';
+            state = true;
         }
+
     }
 </script>
+<script>
+    var state = false;
 
+    function toggleinputPasswordConfirmKontributor() {
+        if (state) {
+            document.getElementById("inputPasswordConfirmKontributor").setAttribute("type", "password");
+            document.getElementById("eyeinputPasswordConfirmKontributor").style.color = '#7a797e';
+            state = false;
+        } else {
+            document.getElementById("inputPasswordConfirmKontributor").setAttribute("type", "text");
+            document.getElementById("eyeinputPasswordConfirmKontributor").style.color = '#5887ef';
+            state = true;
+        }
+
+    }
+</script>
+<script>
+    var state = false;
+
+    function toggleinputPassword() {
+        if (state) {
+            document.getElementById("inputPassword").setAttribute("type", "password");
+            document.getElementById("eyeinputPassword").style.color = '#7a797e';
+            state = false;
+        } else {
+            document.getElementById("inputPassword").setAttribute("type", "text");
+            document.getElementById("eyeinputPassword").style.color = '#5887ef';
+            state = true;
+        }
+
+    }
+</script>
+<script>
+    var state = false;
+
+    function toggleinputPass_confirm() {
+        if (state) {
+            document.getElementById("inputPass_confirm").setAttribute("type", "password");
+            document.getElementById("eyeinputPass_confirm").style.color = '#7a797e';
+            state = false;
+        } else {
+            document.getElementById("inputPass_confirm").setAttribute("type", "text");
+            document.getElementById("eyeinputPass_confirm").style.color = '#5887ef';
+            state = true;
+        }
+
+    }
+</script>
 <?= $this->endSection(); ?>
