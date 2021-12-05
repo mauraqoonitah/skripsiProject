@@ -14,7 +14,11 @@
                         </div>
                         <h3 class="text-center">Registrasi</h3>
                         <p class="text-muted text-center fs-6 fw-bold"> Daftar akun untuk mulai akses survei instrumen kepuasan</p>
-
+                        <p class="text-muted  text-center small">
+                            Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
+                                <u>Daftar Disini</u>
+                            </a>
+                        </p>
                     </div>
                 </div>
                 <div class="auth-wrapper-right">
@@ -215,11 +219,6 @@
                                         </div>
                                         <hr>
                                         <div class="text-center">
-                                            <p class="text-muted small">
-                                                Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
-                                                    <u>Daftar Disini</u>
-                                                </a>
-                                            </p>
                                             <p class="text-muted small pb-3">
                                                 Sudah punya akun? <a href="<?= url_to('login') ?>">
                                                     <u> <?= lang('Auth.signIn') ?> Disini</u>

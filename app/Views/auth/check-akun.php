@@ -9,7 +9,7 @@
             <div class="auth-wrapper-right col-md-4 d-flex align-items-center">
                 <div class="container pt-3 my-5">
                     <div class="row">
-                        <span class="">Anda harus memiliki akun SIAKAD yang dapat dimiliki oleh:
+                        <span class="">Anda harus memiliki Email UNJ yang terverifikasi di unj.ac.id yang dapat dimiliki oleh:
                         </span>
                         <ul>
                             <li>
@@ -30,15 +30,15 @@
 
 
             <div class="auth-wrapper-left align-middle col-md-8">
-                <div class="container pt-3 mt-3">
+                <div class="container pt-3 mt-4">
                     <div class="container">
                         <div class="row">
                             <div class="col-2 d-flex align-items-center justify-content-center">
                                 <img src=" <?= base_url(); ?>/img/unj.png" alt="unj" class="img-fluid">
                             </div>
-                            <div class="col-10">
-                                <h3 class="">Cek Akun</h3>
-                                <span class="text-muted fw-bold fs-6"> untuk mulai akses survei instrumen kepuasan</span>
+                            <div class="col-10 mt-2">
+                                <h3>Cek Akun</h3>
+                                <span class="text-muted fw-bold fs-6"> Masukkan Email yang terverifikasi di unj.ac.id atau NIM/NIDN Anda di bawah ini</span>
                             </div>
                         </div>
                     </div>

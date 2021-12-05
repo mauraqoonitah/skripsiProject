@@ -64,13 +64,19 @@
                     <div class="text-center">
                         <?php if ($config->allowRegistration) : ?>
                             <p class="text-muted small">
-                                Belum punya akun? <a href="<?= url_to('checkAkun') ?>"><u><?= lang('Auth.register') ?></u>
+                                Belum punya akun? <a href="<?= url_to('register') ?>"><u>Daftar Disini</u>
                                 </a>
                             </p>
                         <?php endif; ?>
+
+                        <p class="text-muted small">
+                            Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
+                                <u>Daftar Disini</u>
+                            </a>
+                        </p>
                         <?php if ($config->activeResetter) : ?>
                             <p class="small">
-                                <a href="<?= url_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?>
+                                <a href="<?= url_to('forgot') ?>"><u><?= lang('Auth.forgotYourPassword') ?></u>
                                 </a>
                             </p>
                         <?php endif; ?>
