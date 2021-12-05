@@ -12,7 +12,10 @@
                     <a class="nav-link active" href="<?= base_url(); ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#instrumen">Instrumen</a>
+                    <a class="nav-link" href="<?= base_url(); ?>/responden">Isi Survei</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#hasilsurvei">Hasil Survei</a>
                 </li>
                 <?php if (in_groups('Admin') || in_groups('Kontributor')) : ?>
                     <li class="nav-item">

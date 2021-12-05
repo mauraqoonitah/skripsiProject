@@ -21,13 +21,13 @@
 
                     <!-- carousel -->
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators" style="top: 100%; margin-top: 1rem;" data-aos="zoom-in-right" data-aos-delay="500">
+                        <div class="carousel-indicators" style="top: 100%; margin-top: 1rem;" data-aos="zoom-in-right" data-aos-delay="100">
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="margin-top: 2rem;"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2" style="margin-top: 2rem;"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3" style="margin-top: 2rem;"></button>
                         </div>
-                        <div class="carousel-inner mb-4" data-aos="zoom-in-down" data-aos-delay="500" data-aos-duration="2000">
-                            <div class="carousel-item active" data-bs-interval="5000">
+                        <div class="carousel-inner mb-4" data-aos="zoom-in-down" data-aos-delay="100" data-aos-duration="2000">
+                            <div class="carousel-item active" data-bs-interval="1000">
                                 <div class="d-md-block">
                                     <p class="fs-6">Memelihara dan meningkatkan mutu pendidikan FMIPA UNJ secara internal untuk mewujudkan visi serta untuk memenuhi kebutuhan stakeholders melalui penyelenggaraan Tridharma Perguruan Tinggi.
                                         </i>
@@ -59,7 +59,7 @@
                     </div>
                     <!-- ./carousel -->
                     <div class="d-flex flex-column flex-md-row">
-                        <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="1000">
+                        <a class="" href="<?= base_url(); ?>/responden" role="button" data-aos="fade-down" data-aos-delay="500">
                             <button type="button" class="btn btn-jumbotron btn-purple ">Isi Survei</button>
                         </a>
                     </div>
@@ -73,7 +73,7 @@
 </section>
 
 
-<section class="menu col-lg-8 mx-auto" id="instrumen">
+<section class="menu col-lg-8 mx-auto" id="hasilsurvei">
     <!-- sticky scrolled -->
     <div id=passageWrapper>
         <h2 class="section-title">Kriteria Kepuasan</h2>
@@ -84,7 +84,7 @@
         <!-- ./sticky scrolled -->
         <div class="row">
             <div class="mx-auto col-6">
-                <img src="<?= base_url(); ?>/img/undraw_Report.svg" class="img-fluid" />
+                <img src=" <?= base_url(); ?>/img/undraw_Report.svg" class="img-fluid" />
                 <?php if (empty($responseActiveShowGrafik)) : ?>
                     <p class="text-muted text-center my-4 fs-5"> No results found</p>
                 <?php endif; ?>
@@ -93,7 +93,7 @@
 
         <div class="row obyek-menu mt-5">
             <?php foreach ($responseActiveShowGrafik as $showGrafik) :  ?>
-                <div class="obyek-list col-sm shadow-sm">
+                <div class="obyek-list col-sm shadow-sm ">
                     <form action="<?= base_url(); ?>/grafik_kepuasan/<?= $showGrafik['id']; ?>" method="post" enctype="multipart/form-data">
                         <?= csrf_field(); ?>
                         <button class="btn btn-no-focus" type="submit">
@@ -109,16 +109,15 @@
     </div>
 </section>
 
-<section class="menu col-lg-8 mx-auto mt-5">
+<section class="menu col-lg-8 mx-auto mt-5" id="laporansurvei">
     <div class="container-fluid">
         <h2 class="section-title" id="obyek-menu">Laporan Instrumen Kepuasan</h3>
             <h5 class="text-center text-muted fs-5"> Penyusunan laporan diperlukan untuk memberikan gambaran kinerja FMIPA UNJ secara berkala sebagai rekomendasi tindak lanjut peningkatan kualitas mutu layanan.
             </h5>
-
             <div class="row mt-5">
-                <div class="mx-auto col-lg-4 col-sm-4">
-                    <a href="<?= base_url(''); ?>/admin/laporanSurvei" class="img-hover-zoom">
-                        <img src="<?= base_url(); ?>/img/undraw_Documents.png" class="img-fluid rounded-3 border border-2" />
+                <div class="mx-auto col-lg-4 col-md-8 col-sm-6">
+                    <a href="<?= base_url(''); ?>/admin/laporanSurvei" class="img-fluid img-hover-zoom">
+                        <img src="<?= base_url(); ?>/img/undraw_Documents.png" class="img-fluid rounded-3 border border-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Klik untuk Lihat Laporan" />
                     </a>
                 </div>
             </div>

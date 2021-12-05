@@ -1,6 +1,7 @@
 <div class="main-footer <?= logged_in() ? '' : 'mt-5'; ?>">
     <div class="text-center">
-        <span>Copyright &copy; <?= date('Y'); ?> Gugus Penjaminan Mutu FMIPA UNJ</span>
+        <span>&copy; <?= date('Y'); ?> Gugus Penjaminan Mutu, Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Negeri Jakarta
+        </span>
     </div>
 </div>
 

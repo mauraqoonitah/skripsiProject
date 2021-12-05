@@ -1,6 +1,8 @@
 <footer class="main-footer">
     <div class="text-center">
-        <span>Copyright &copy; FMIPA UNJ <?= date('Y'); ?></span>
+        <span>&copy; <?= date('Y'); ?> Gugus Penjaminan Mutu, Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Negeri Jakarta
+        </span>
+
 
     </div>
 </footer>

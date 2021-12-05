@@ -129,6 +129,15 @@
     </script>
 
 
+    <!-- tooltip -->
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+
 </body>
 
 <!-- ======= Footer ======= -->
@@ -136,29 +145,24 @@
     <div class="footer-top">
         <div class="container">
             <div class="row">
-
-                <div class="col-lg-4 col-md-6 footer-links">
-                    <h4>Useful Links</h4>
+                <div class="col-lg-6 col-md-6 footer-links">
+                    <h4>Links</h4>
                     <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url(); ?>">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url(); ?>/responden">Isi Survei Instrumen Kepuasan</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url(); ?>/#hasilsurvei">Hasil Survei Instrumen Kepuasan</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="<?= base_url(); ?>/#laporansurvei">Laporan Survei Instrumen Kepuasan</a></li>
                     </ul>
                 </div>
 
-                <div class="col-lg-4 col-md-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-6 footer-newsletter">
-                    <h4>Kontak</h4>
-                    <p>GPjM FMIPA UNJ </p>
-                    <p> Gedung Ki Hajar Dewantara Lantai 4, UNJ </p>
-                    <p> Jalan Pemuda Rawamangun Jakarta Timur 13220 </p>
-
+                <div class="col-lg-6 col-md-6 footer-newsletter">
+                    <h4>Contact</h4>
+                    <span> Gedung Hasjim Asj’arie Kampus A, Universitas Negeri Jakarta </span><br>
+                    <span> Jl. Rawamangun Muka, Rawamangun Muka, Jakarta Timur 13220</span><br>
+                    <span> 021 4894909</span><br>
+                    <span> fmipa@unj.ac.id</span><br>
+                    <span> <a href="www.fmipa.unj.ac.id" class="text-white"> www.fmipa.unj.ac.id</a>
+                    </span><br>
                 </div>
 
             </div>
@@ -167,7 +171,8 @@
 
     <div class="container">
         <div class="copyright">
-            Copyright &copy; <?= date('Y'); ?> <strong><span>Gugus Penjaminan Mutu FMIPA UNJ</span></strong>
+            <span>&copy; <?= date('Y'); ?> Gugus Penjaminan Mutu, Fakultas Matematika dan Ilmu Pengetahuan Alam, Universitas Negeri Jakarta
+            </span>
 
         </div>
 
