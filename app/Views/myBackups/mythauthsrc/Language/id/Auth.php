@@ -55,6 +55,7 @@ return [
     'passwordChangeSuccess'     => 'Kata sandi berhasil diubah',
     'userDoesNotExist'          => 'Kata sandi tidak berubah. Pengguna tidak ditemukan',
     'resetTokenExpired'         => 'Maaf. Token setel ulang Anda telah kedaluwarsa.',
+    'changePasswordWarning'      => 'Harap segera ganti password Anda untuk keamanan data',
 
     // Groups
     'groupNotFound'             => 'Tidak dapat menemukan grup: {0}.',
@@ -72,6 +73,7 @@ return [
     'home'                      => 'Home',
     'current'                   => 'Current',
     'forgotPassword'            => 'Lupa kata sandi Anda?',
+    'enterEmailForChangePassword' => 'Masukkan email Anda di bawah ini dan kami akan mengirimkan instruksi untuk mengatur ulang kata sandi Anda.',
     'enterEmailForInstructions' => 'Tidak masalah! Masukkan email Anda di bawah ini dan kami akan mengirimkan instruksi untuk mengatur ulang kata sandi Anda.',
     'email'                     => 'Email',
     'emailAddress'              => 'Alamat Email',

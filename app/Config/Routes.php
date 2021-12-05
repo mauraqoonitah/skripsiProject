@@ -41,6 +41,7 @@ $routes->post('/grafik_kepuasan/(:any)', 'Pages::hasilKepuasan/$1');
 $routes->group('', ['namespace' => 'Myth\Auth\Controllers'], function ($routes) {
 	$routes->post('register', 'AuthController::attemptRegister');
 	$routes->get('reset', 'AuthController::resetPassword');
+	$routes->get('changePassword', 'AuthController::forgotPassword');
 });
 
 

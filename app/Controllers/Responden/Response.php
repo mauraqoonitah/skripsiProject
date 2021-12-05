@@ -65,14 +65,17 @@ class Response extends BaseController
             // dd($columnPertanyaan);
         }
         $getDataUser = $this->userModel->getDataUser($userId);
-        foreach ($getDataUser as $userdata) {
-            $dataUser = $userdata->$columnPertanyaan;
-            // jika data diri user belum diisi lengkap
-            if (empty($dataUser)) {
-                session()->setFlashdata('messageWarning', 'Lengkapi data diri Anda sebelum isi survei instrumen kepuasan');
-                return redirect()->to('responden/isiDataDiri/' . $userId);
+        if (!empty($columnPertanyaan)) {
+            foreach ($getDataUser as $userdata) {
+                $dataUser = $userdata->$columnPertanyaan;
+                // jika data diri user belum diisi lengkap
+                if (empty($dataUser)) {
+                    session()->setFlashdata('messageWarning', 'Lengkapi data diri Anda sebelum isi survei instrumen kepuasan');
+                    return redirect()->to('responden/isiDataDiri/' . $userId);
+                }
             }
         }
+
 
 
         $data = [

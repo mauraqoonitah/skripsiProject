@@ -126,6 +126,14 @@ class AuthController extends Controller
 			$redirectURL = base_url('responden');
 		}
 
+		// check if account was created by admin, redirect to change password page
+		if (!empty(user()->status_message)) {
+			echo 'reset at nya empty';
+			return redirect()->to('forgot')->with('message', lang('Auth.resetPasswordWarning'));
+		}
+
+		// $isCreatedByAdmin = $this->mRequest->getVar('isCreatedByAdmin');
+
 		unset($_SESSION['redirect_url']);
 
 		return redirect()->to($redirectURL)->withCookies();
@@ -314,6 +322,7 @@ class AuthController extends Controller
 		}
 		// Save the user
 		$allowedPostFields = array_merge(['password'], $this->config->validFields, $this->config->personalFields);
+		// dd($allowedPostFields);
 		$user = new User($this->mRequest->getPost($allowedPostFields));
 
 		$this->config->requireActivation === null ? $user->activate() : $user->generateActivateHash();
@@ -340,7 +349,6 @@ class AuthController extends Controller
 		];
 		$this->userCheckModel->save($dataUserCheck);
 
-
 		// if role is admin, redirect to another page
 		// check if already logged in.
 		if (logged_in()) {
@@ -355,8 +363,6 @@ class AuthController extends Controller
 					if (!$sent) {
 						return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
 					}
-
-					// Success!
 					return redirect()->back()->with('message', lang('Auth.registerDosenSuccess'));
 				}
 				$usernameRegistering = $this->mRequest->getVar('username');

@@ -125,13 +125,16 @@ use CodeIgniter\I18n\Time;
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <!-- form tambah responden dosen -->
+                                                        <!-- form tambah akun responden dosen -->
                                                         <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
                                                             <?= csrf_field() ?>
 
                                                             <!-- role-->
                                                             <input type="hidden" name="role" value="Dosen" />
                                                             <input type="hidden" name="checkAddAkun" value="checkAddAkun" />
+                                                            <!-- status_message -->
+                                                            <input type="hidden" name="status_message" value="createdByAdmin" />
+
 
                                                             <!-- email -->
                                                             <div class="form-group my-3">
@@ -229,6 +232,7 @@ use CodeIgniter\I18n\Time;
                                                             ?>
 
                                                         </td>
+                                                        <!-- form on off status aktif akun -->
                                                         <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $allDosen->id; ?>" method="post" enctype="multipart/form-data">
                                                             <td class="text-center ">
                                                                 <?php
@@ -266,7 +270,7 @@ use CodeIgniter\I18n\Time;
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
+                                                                        <!-- form delete akun -->
                                                                         <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $allDosen->id; ?>" method="post">
                                                                             <?= csrf_field(); ?>
                                                                             <input type="hidden" name="_method" value="DELETE">
@@ -370,6 +374,7 @@ use CodeIgniter\I18n\Time;
                                                                                 <div class="container">
                                                                                     <?= csrf_field(); ?>
                                                                                     <!-- isi OLD -->
+                                                                                    <!-- form tambah permission akun pada isi instrumen -->
                                                                                     <form action="<?= base_url(); ?>/admin/kelolaAkun/addAkunPermission" method="post">
                                                                                         <div class="form-group">
                                                                                             <label class="col-form-label">Instrumen :</label>
@@ -456,7 +461,7 @@ use CodeIgniter\I18n\Time;
                                                                                             </div>
                                                                                             <div class="modal-footer">
                                                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
+                                                                                                <!-- form hapus permission pada akses isi instrumen -->
                                                                                                 <form action="<?= base_url(); ?>/admin/kelolaAkun/removePermission/<?= $permissionId; ?>/<?= $userID; ?>" method="post">
                                                                                                     <?= csrf_field(); ?>
                                                                                                     <button type="submit" class="btn btn-danger">Hapus</button>
@@ -525,12 +530,14 @@ use CodeIgniter\I18n\Time;
                                                         </div>
                                                         <div class="modal-body">
 
-                                                            <!-- form tambah admin gpjm -->
+                                                            <!-- form tambah akun admin gpjm -->
                                                             <form action="<?= url_to('register') ?>" method="post" class="user" accept-charset="utf-8">
                                                                 <?= csrf_field() ?>
 
                                                                 <!-- role-->
                                                                 <input type="hidden" name="role" value="Admin" />
+                                                                <!-- status_message -->
+                                                                <input type="hidden" name="status_message" value="createdByAdmin" />
 
                                                                 <!-- email -->
                                                                 <div class="form-group my-3">
@@ -617,7 +624,7 @@ use CodeIgniter\I18n\Time;
                                                         ?>
                                                         <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
                                                     </td>
-
+                                                    <!-- form on off status aktif admin -->
                                                     <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
                                                         <td>
                                                             <?php
@@ -678,7 +685,7 @@ use CodeIgniter\I18n\Time;
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
+                                                                <!-- form hapus akun admin -->
                                                                 <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $admin->id; ?>" method="post">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
@@ -733,6 +740,10 @@ use CodeIgniter\I18n\Time;
 
                                                                 <!-- role-->
                                                                 <input type="hidden" name="role" value="Kontributor" />
+                                                                <!-- status_message -->
+                                                                <input type="hidden" name="status_message" value="createdByAdmin" />
+                                                                <input type="hidden" name="programStudi" value="2" />
+
 
                                                                 <!-- email -->
                                                                 <div class="form-group my-3">
@@ -870,7 +881,7 @@ use CodeIgniter\I18n\Time;
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
+                                                                <!-- form hapus akun admin kontributor -->
                                                                 <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $kontributor->id; ?>" method="post">
                                                                     <?= csrf_field(); ?>
                                                                     <input type="hidden" name="_method" value="DELETE">
