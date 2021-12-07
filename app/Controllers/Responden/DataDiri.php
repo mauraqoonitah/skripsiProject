@@ -140,7 +140,7 @@ class DataDiri extends BaseController
         $pertId = $this->mRequest->getVar('delPertanyaanId');
         $this->dataDiriPertanyaanModel->delete($pertId);
 
-        session()->setFlashdata('message', 'Data Pernyataan berhasil dihapus');
+        session()->setFlashdata('message', 'Pertanyaan berhasil dihapus');
 
         return redirect()->to($_SERVER['HTTP_REFERER']);
     }

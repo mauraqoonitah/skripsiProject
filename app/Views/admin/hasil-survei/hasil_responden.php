@@ -120,7 +120,7 @@ use CodeIgniter\I18n\Time;
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                                        <form action="<?= base_url(); ?>/admin/deleteResponden/<?= $rpd['id']; ?>" method="post">
+                                                                        <form action="<?= base_url(); ?>/admin/deleteResponden/<?= $rpd['userID']; ?>" method="post">
                                                                             <?= csrf_field(); ?>
                                                                             <input type="hidden" name="_method" value="DELETE">
                                                                             <button type="submit" class="btn btn-danger">Hapus</button>

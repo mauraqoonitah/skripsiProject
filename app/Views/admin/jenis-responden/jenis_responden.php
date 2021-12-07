@@ -107,7 +107,7 @@
                                     <th>Kategori Responden</th>
                                     <th class="text-center ">Jumlah Responden</th>
                                     <th>Instrumen yang dapat diisi</th>
-                                    <th scope="col" class="align-middle text-center">Kelola Data Diri</th>
+                                    <th scope="col" class="align-middle text-center">Pertanyaan Data Diri</th>
                                     <?php if (in_groups('Admin')) : ?>
                                         <th scope="col" class="align-middle text-center">Aksi</th>
                                     <?php endif; ?>
@@ -148,7 +148,7 @@
                                         <?php if (in_groups('Admin')) : ?>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Data Diri Kategori Responden">
+                                                    <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Pertanyaan untuk Data Diri pada Kategori Responden">
                                                         <button type="button" class="btn btn-sm btn-success">
                                                             <i class="fas fa-th-list text-white"></i>
                                                         </button>

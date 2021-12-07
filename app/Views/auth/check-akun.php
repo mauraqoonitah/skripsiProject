@@ -9,9 +9,9 @@
             <div class="auth-wrapper-right col-md-4 d-flex align-items-center">
                 <div class="container pt-3 my-5">
                     <div class="row">
-                        <span class="">Anda harus memiliki Email UNJ yang terverifikasi di unj.ac.id yang dapat dimiliki oleh:
-                        </span>
-                        <ul>
+                        <p class="">Anda harus memiliki Email UNJ yang terverifikasi di unj.ac.id yang dapat dimiliki oleh:
+                        </p>
+                        <ul class="ml-3">
                             <li>
                                 <b>Mahasiswa UNJ</b>
                             </li>

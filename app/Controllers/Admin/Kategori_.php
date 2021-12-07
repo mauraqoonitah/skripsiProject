@@ -154,7 +154,7 @@ class Kategori_ extends BaseController
                 $this->adminModel->where($data)->delete();
             }
         }
-        session()->setFlashdata('message', ' berhasil edit responden');
+        session()->setFlashdata('message', ' Data Kategori Instrumen berhasil diubah');
 
         return redirect()->to('/admin/kelola-survei/instrumen_');
     }

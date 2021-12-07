@@ -36,7 +36,6 @@
                             <h3 class=""> <?= logged_in() ? 'Ganti Password' : lang('Auth.forgotPassword'); ?> </h3>
                         </div>
                         <div class="card-body">
-                            <?= view('Myth\Auth\Views\_message_block') ?>
                             <p> <?= logged_in() ? lang('Auth.enterEmailForChangePassword') : lang('Auth.enterEmailForInstructions'); ?></p>
                             <form action="<?= route_to('forgot') ?>" method="post">
                                 <?= csrf_field() ?>

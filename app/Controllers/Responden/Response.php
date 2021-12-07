@@ -69,7 +69,8 @@ class Response extends BaseController
             foreach ($getDataUser as $userdata) {
                 $dataUser = $userdata->$columnPertanyaan;
                 // jika data diri user belum diisi lengkap
-                if (empty($dataUser)) {
+                if ($dataUser === Null) {
+                    // dd('ada yg empty');
                     session()->setFlashdata('messageWarning', 'Lengkapi data diri Anda sebelum isi survei instrumen kepuasan');
                     return redirect()->to('responden/isiDataDiri/' . $userId);
                 }

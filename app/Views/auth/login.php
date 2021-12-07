@@ -47,44 +47,41 @@
                             </div>
                         </div>
 
-                        <?php if ($config->allowRemembering) : ?>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" name="remember" class="form-check-input rounded-pill" <?php if (old('remember')) : ?> checked <?php endif ?>>
-                                    <?= lang('Auth.rememberMe') ?>
-                                </label>
-                            </div>
-                        <?php endif; ?>
-
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-cosmic btn-user btn-block "><?= lang('Auth.loginAction') ?></button>
                         </div>
                     </form>
                     <hr>
-                    <div class="text-center">
-                        <?php if ($config->allowRegistration) : ?>
-                            <p class="text-muted small">
-                                Belum punya akun? <a href="<?= url_to('register') ?>"><u>Daftar Disini</u>
-                                </a>
-                            </p>
-                        <?php endif; ?>
-
-                        <p class="text-muted small">
-                            Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
-                                <u>Daftar Disini</u>
+                    <?php if ($config->activeResetter) : ?>
+                        <p class="small text-center">
+                            <a href="<?= url_to('forgot') ?>"><u><?= lang('Auth.forgotYourPassword') ?></u>
                             </a>
                         </p>
-                        <?php if ($config->activeResetter) : ?>
-                            <p class="small">
-                                <a href="<?= url_to('forgot') ?>"><u><?= lang('Auth.forgotYourPassword') ?></u>
-                                </a>
-                            </p>
-                        <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
+
                 </div>
             </div>
-            <div class="auth-wrapper-right col-md-4  d-flex align-items-center ">
+            <div class="auth-wrapper-right col-md-4 pt-5">
                 <img src="<?= base_url(); ?>/img/ex-jumbotron-img.png" alt="" class="img-fluid auth-header-img">
+                <div class="container mt-3">
+                    <div class="row">
+                        <div class="text-center">
+                            <?php if ($config->allowRegistration) : ?>
+                                <p class="text-muted small">
+                                    Belum punya akun? <a href="<?= url_to('register') ?>"><br><u>Daftar Disini</u>
+                                    </a>
+                                </p>
+                            <?php endif; ?>
+
+                            <p class="text-muted small">
+                                Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
+                                    <br><u>Daftar Disini</u>
+                                </a>
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 

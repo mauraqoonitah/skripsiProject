@@ -35,6 +35,16 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
+                        <i class="nav-icon fas fa-edit"></i>
+                        <p>
+                            Kelola Survei
+                        </p>
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
                     <a href="#" class="nav-link <?= $uri->getSegment(2) == 'hasilSurveiResponden' || $uri->getSegment(2) == 'hasilSurveiInstrumen' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-poll-h"></i>
                         <p>
@@ -59,16 +69,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Kelola Survei
-                        </p>
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
                     <a href="<?= base_url(); ?>/admin/jenisResponden" class="nav-link <?= $uri->getSegment(2) == 'kelolaResponden' ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
@@ -90,7 +90,7 @@
                     <div class="user-panel mb-2"> </div>
                     <li class="nav-item">
                         <a href="<?= base_url(); ?>/admin/kelolaAkun" class="nav-link <?= $uri->getSegment(2) == 'kelolaAkun' ? 'active"' : '' ?>">
-                            <i class="nav-icon fas fa-user-plus mx-2"></i>Kelola Akun<br>
+                            <i class="nav-icon fas fa-user-plus mx-2"></i>Kelola Akses Akun<br>
                             </p>
                         </a>
                     </li>

@@ -115,7 +115,7 @@ class Response extends BaseController
 
     public function deleteResponden($id)
     {
-        $this->respondenModel->delete($id);
+        $this->respondenModel->delete(['userID' => $id]);
 
         session()->setFlashdata('message', 'Responden berhasil dihapus');
 
