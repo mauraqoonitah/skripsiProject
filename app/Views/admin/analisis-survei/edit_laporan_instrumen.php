@@ -116,6 +116,7 @@ use CodeIgniter\I18n\Time;
                                                     </div>
                                                     <input type="hidden" name="instrumenID" value="<?= $instrumenID; ?>">
                                                     <input type="hidden" name="oldNamaFile" value="<?= $oldNamaFile; ?>">
+                                                    <input type="hidden" name="updated_by" value="<?= user()->username; ?>">
 
                                                     <button type="submit" class="btn btn-primary mb-3">Upload</button>
                                                 </div>

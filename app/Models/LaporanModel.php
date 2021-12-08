@@ -8,7 +8,9 @@ class LaporanModel extends Model
 {
     protected $table      = 'laporan';
     protected $useTimestamps = true;
-    protected $allowedFields = ['instrumenID', 'laporanInstrumen'];
+    // protected $allowedFields = ['instrumenID', 'laporanInstrumen'];
+    protected $protectFields = false;
+
 
     public function getLaporanInstrumen($id = false)
     {

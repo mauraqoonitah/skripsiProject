@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 07:34 PM
+-- Generation Time: Dec 08, 2021 at 05:22 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -407,7 +407,10 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (458, '::1', 'qpmaura@gmail.com', 113, '2021-12-07 14:43:26', 1),
 (459, '::1', 'mauraqoonitahputri_1313617009@mhs.unj.ac.id', 45, '2021-12-07 14:46:47', 1),
 (460, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-07 15:55:22', 1),
-(461, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-07 20:04:48', 1);
+(461, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-07 20:04:48', 1),
+(462, '::1', 'kontributor.instrumenkepuasan@gmail.com', 48, '2021-12-08 17:23:39', 1),
+(463, '::1', 'kontributor.instrumenkepuasan@gmail.com', 48, '2021-12-08 20:42:47', 1),
+(464, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-08 23:15:24', 1);
 
 -- --------------------------------------------------------
 
@@ -599,6 +602,8 @@ CREATE TABLE `laporan` (
   `id` int(11) NOT NULL,
   `laporanInstrumen` varchar(255) NOT NULL,
   `instrumenID` int(100) NOT NULL,
+  `created_by` varchar(255) NOT NULL,
+  `updated_by` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -607,13 +612,9 @@ CREATE TABLE `laporan` (
 -- Dumping data for table `laporan`
 --
 
-INSERT INTO `laporan` (`id`, `laporanInstrumen`, `instrumenID`, `created_at`, `updated_at`) VALUES
-(2, 'CV - Maura Qoonitah.pdf', 90, '2021-10-27 16:04:20', '2021-12-02 15:39:02'),
-(5, 'Tanggapan Responden Tata Kelola, Tata Pamong, dan Kerjasama oleh Mahasiswa_2.xlsx', 0, '2021-10-29 16:37:57', '2021-12-02 15:32:27'),
-(6, 'TOR Pelatihan UI UX - KKL ILKOM 2021.docx', 90, '2021-10-31 16:05:26', '2021-10-31 16:05:26'),
-(7, 'DHS_NIM_1313617009_20210727114112.pdf', 90, '2021-10-31 16:05:50', '2021-10-31 16:05:50'),
-(11, 'Tanggapan Responden Tata Kelola, Tata Pamong, dan Kerjasama oleh Mahasiswa_1.xlsx', 95, '2021-10-31 16:20:52', '2021-10-31 16:20:52'),
-(14, '1820-5628-2-SP.pdf', 0, '2021-12-07 23:57:06', '2021-12-07 23:57:06');
+INSERT INTO `laporan` (`id`, `laporanInstrumen`, `instrumenID`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(36, 'Representasi Floating Point 3.pdf', 89, 'admin_kontributor', 'admin_gpjm', '2021-12-08 23:11:23', '2021-12-08 23:18:26'),
+(37, 'Tanggapan Responden Tata Kelola, Tata Pamong, dan Kerjasama oleh Mahasiswa_2 (1).xlsx', 0, 'admin_kontributor', 'gpjm.instrumenkepuasan@gmail.com', '2021-12-08 23:11:31', '2021-12-08 23:16:52');
 
 -- --------------------------------------------------------
 
@@ -1221,7 +1222,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=462;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=465;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1263,7 +1264,7 @@ ALTER TABLE `jenis_responden`
 -- AUTO_INCREMENT for table `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `migrations`

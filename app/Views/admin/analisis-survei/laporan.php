@@ -11,7 +11,8 @@ use CodeIgniter\I18n\Time;
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-8">
-                    <h1 class="fw-bold"> Laporan Analisis Survei Instrumen Kepuasan</h1>
+                    <!-- laporan.php-  -->
+                    <h1 class="fw-bold">Laporan Analisis Survei Instrumen Kepuasan</h1>
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
@@ -93,11 +94,11 @@ use CodeIgniter\I18n\Time;
                                                             $timeCreated = Time::parse($laporanAnls['created_at'], 'Asia/Jakarta');
                                                             $timeUpdated = Time::parse($laporanAnls['updated_at'], 'Asia/Jakarta');
                                                             ?>
-                                                            <span class="text-muted small">Dibuat pada <?= $timeCreated->toLocalizedString('HH:mm, d MMM yyyy'); ?></span>
+                                                            <span class="text-muted small">Dibuat oleh <?= $laporanAnls['created_by']; ?>, pukul <?= $timeCreated->toLocalizedString('HH:mm, d MMM yyyy'); ?></span>
 
                                                             <?php if ($laporanAnls['created_at'] !== $laporanAnls['updated_at']) : ?>
                                                                 <br>
-                                                                <span class="text-muted small">telah di ubah pada <?= $timeUpdated->toLocalizedString('HH:mm, d MMM yyyy'); ?></span>
+                                                                <span class="text-muted small">telah di ubah oleh <?= $laporanAnls['updated_by']; ?>, pukul <?= $timeUpdated->toLocalizedString('HH:mm, d MMM yyyy'); ?> </span>
                                                             <?php endif; ?>
 
                                                             <div class="mt-2">
@@ -161,6 +162,8 @@ use CodeIgniter\I18n\Time;
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('laporanInstrumen'); ?>
                                             </div>
+                                            <input type="hidden" name="created_by" value="<?= user()->username; ?>">
+
 
                                             <button type="submit" class="btn btn-primary mb-3">Upload</button>
                                         </div>

@@ -45,9 +45,6 @@ class Analisis extends BaseController
             'category' => $this->adminModel->getCategory(),
             'getLaporanAnalisis' => $this->laporanModel->getLaporanAnalisis(),
             'validation' => \Config\Services::validation()
-
-
-
         ];
         return view('admin/analisis-survei/laporan', $data);
     }
@@ -115,15 +112,18 @@ class Analisis extends BaseController
         $laporanInstrumen->move('dokumenLaporan');
         $newNamaFile = $laporanInstrumen->getName();
         // hapus file lama
-        unlink('dokumenLaporan/' . $this->mRequest->getVar('oldNamaFile'));
+        // $oldNamaFile_strReplace = $this->mRequest->getVar('oldNamaFile');
+        // $oldNamaFile_ = str_replace(' ', '', $pertanyaanIsian);
 
-        $this->laporanModel->save(
-            [
-                'id' => $id,
-                'instrumenID' => $instrumenID,
-                'laporanInstrumen' => $newNamaFile
-            ]
-        );
+        unlink('dokumenLaporan/' .  $this->mRequest->getVar('oldNamaFile'));
+
+        $data =      [
+            'id' => $id,
+            'instrumenID' => $instrumenID,
+            'laporanInstrumen' => $newNamaFile,
+            'updated_by' => $this->mRequest->getVar('updated_by')
+        ];
+        $this->laporanModel->save($data);
 
         session()->setFlashdata('message', 'Dokumen berhasil diubah');
 
@@ -158,7 +158,8 @@ class Analisis extends BaseController
         $data =
             [
                 'instrumenID' => $this->mRequest->getVar('instrumenID'),
-                'laporanInstrumen' => $namaFileLaporanInstrumen
+                'laporanInstrumen' => $namaFileLaporanInstrumen,
+                'created_by' => $this->mRequest->getVar('created_by')
             ];
         $this->laporanModel->save($data);
 
@@ -209,7 +210,8 @@ class Analisis extends BaseController
 
         $data =
             [
-                'laporanInstrumen' => $namaFileLaporanInstrumen
+                'laporanInstrumen' => $namaFileLaporanInstrumen,
+                'created_by' => $this->mRequest->getVar('created_by')
             ];
         $this->laporanModel->save($data);
 
@@ -259,7 +261,9 @@ class Analisis extends BaseController
         $this->laporanModel->save(
             [
                 'id' => $id,
-                'laporanInstrumen' => $newNamaFile
+                'laporanInstrumen' => $newNamaFile,
+                'updated_by' => $this->mRequest->getVar('updated_by')
+
             ]
         );
 
