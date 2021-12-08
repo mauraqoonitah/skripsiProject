@@ -38,7 +38,7 @@
                     <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="nav-link <?= $uri->getSegment(2) == 'kelolaKategori' || $uri->getSegment(2) == 'instrumen_'  ? 'active"' : '' ?>">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
-                            Kelola Survei
+                            Kelola Instrumen
                         </p>
                     </a>
 

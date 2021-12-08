@@ -63,40 +63,8 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-lg-2 d-flex align-items-center">
-                                    <div class="form-check d-flex align-items-center">
-                                        <input class="form-check-input form-check-show-grafik-<?= $rspns['id']; ?>" type="checkbox" style="cursor: pointer;" <?= check_tampil($rspns['tampil_grafik']); ?> data-tampil="<?= $rspns['tampil_grafik']; ?>" data-id="<?= $rspns['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($rspns['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik pada beranda website<?php else : ?> Klik untuk menampilkan grafik kepuasan pada beranda website<?php endif; ?>">
-                                        <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
-                                            <?php if ($rspns['tampil_grafik'] == '1') :  ?>Grafik Ditampilkan<?php else : ?> Grafik Disembunyikan<?php endif; ?>
-                                    </div>
-                                </div>
+
                             </div>
-
-
-                            <script type="text/javascript">
-                                $('.form-check-show-grafik-<?= $rspns['id']; ?>').on('click', function() {
-                                    const tampilId = $(this).data('tampil');
-                                    const id = $(this).data('id');
-
-                                    $.ajax(
-                                        console.log('masuk <?= $rspns['id']; ?>'), {
-                                            url: "<?= base_url(); ?>/admin/saveTampilGrafikStatus/<?= $rspns['id']; ?>",
-                                            headers: {
-                                                'X-Requested-With': 'XMLHttpRequest'
-                                            },
-                                            type: 'POST',
-                                            data: {
-                                                tampilId: tampilId,
-                                                id: id
-                                            },
-                                            success: function() {
-                                                document.location.href = "<?= base_url(); ?>/admin/hasil-survei/instrumen"
-                                                console.log('success ubah tampil grafik')
-                                            }
-                                        })
-                                });
-                            </script>
-
                         </form>
                     <?php endforeach; ?>
                 </div>

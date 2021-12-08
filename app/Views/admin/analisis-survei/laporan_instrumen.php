@@ -31,7 +31,7 @@
     </section>
 
     <!-- Main content -->
-    <section class="content mx-auto">
+    <section class="content mx-auto pb-5">
         <div class="container-fluid">
             <div class="alert alert-primary fw-bold" role="alert">
                 <strong class=" fs-6">Pilih Instrumen </strong>
@@ -40,9 +40,9 @@
 
         <?php foreach ($getInstrumenBySlug as $ins) : ?>
             <form action="<?= base_url(); ?>/admin/saveTampilGrafik/<?= $ins['id']; ?>" method="post" enctype="multipart/form-data">
-                <div class="row p-4">
+                <div class="row py-2 px-4">
                     <div class="col-lg-8">
-                        <div class="mb-4">
+                        <div class="mb-2">
                             <?php
                             $insID = $ins['id'];
                             $responseModel = model('ResponseModel');
@@ -50,8 +50,8 @@
                             $jmlTanggapan =  $this->responseModel->getJumlahTanggapanIns($insID);
 
                             ?>
-                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst text-decoration-none">
-                                <span class="text-black"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
+                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst-muted text-decoration-none">
+                                <span class="text-rouge"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
                                 <div class="d-flex align-items-center ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Tanggapan">
                                     <span class=" badge badge-cosmic "><?= $jmlTanggapan; ?> </span>
                                 </div>
@@ -60,10 +60,24 @@
                     </div>
                     <div class=" col-lg-4 d-flex align-items-center">
                         <div class="form-check mr-4">
-                            <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($ins['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan grafik kepuasan pada beranda website<?php else : ?> Klik untuk menampilkan grafik kepuasan pada beranda website<?php endif; ?>">
-                            <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
-                                <?php if ($ins['tampil_grafik'] == '1') :  ?>Grafik Kepuasan Ditampilkan<?php else : ?> Grafik Kepuasan Disembunyikan<?php endif; ?>
-                            </label>
+                            <?php if (user()->role === 'Kontributor') : ?>
+                                <?php if ($ins['tampil_grafik'] == '1') :  ?>
+                                    <i class="fas fa-chart-bar text-primary mr-2"></i>
+                                    <span class="text-primary small"> Hasil Kepuasan Ditampilkan ke Pengunjung Website</span>
+                                <?php else : ?>
+                                    <i class="far fa-chart-bar text-secondary mr-2"></i>
+                                    <span class="text-muted small">Hasil kepuasan Disembunyikan dari Pengunjung Website</span>
+                                <?php endif; ?>
+
+
+                            <?php else : ?>
+                                <input class="form-check-input form-check-show-grafik-<?= $ins['id']; ?>" type="checkbox" <?= check_tampil($ins['tampil_grafik']); ?> data-tampil="<?= $ins['tampil_grafik']; ?>" data-id="<?= $ins['id']; ?>" id="flexCheckDefault" data-bs-toggle="tooltip" data-bs-placement="top" title="<?php if ($ins['tampil_grafik'] == '1') :  ?>Klik untuk sembunyikan hasil kepuasan dari pengunjung website<?php else : ?> Klik untuk menampilkan hasil kepuasan ke pengunjung website<?php endif; ?>">
+                                <label class="form-check-label ml-2 text-muted" for="flexCheckDefault">
+                                    <?php if ($ins['tampil_grafik'] == '1') :  ?>Hasil Kepuasan Ditampilkan<?php else : ?> Hasil Kepuasan Disembunyikan<?php endif; ?>
+                                </label>
+                            <?php endif; ?>
+
+
 
                         </div>
                     </div>
@@ -86,8 +100,6 @@
                                     },
                                     success: function() {
                                         document.location.href = "<?= base_url(); ?>/admin/laporanInstrumen/<?= $ins['slug']; ?>"
-                                        console.log('success ubah tampil grafik')
-
                                     }
                                 })
                         });
@@ -96,10 +108,7 @@
             </form>
         <?php endforeach; ?>
 </div>
-<div class="card-footer text-muted text-center">
-    Switch On Off untuk menampilkan grafik kepuasan ke website
-</div>
-</div>
+
 </section>
 
 <!-- /.content -->
