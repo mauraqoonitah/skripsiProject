@@ -179,15 +179,18 @@
                                 <!-- jenis responden untuk non siakad -->
                                 <div class="form-group mb-3">
                                     <label for="responden" class="form-label">Sebagai</label>
-                                    <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>">
+                                    <select class="form-select option-role <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>">
                                         <option>Pilih</option>
                                         <?php foreach ($jenisResponden as $r) : ?>
+                                            <?php if ($r['responden'] === 'Dosen') : ?>
+                                            <?php endif; ?>
                                             <option value="<?= $r['responden']; ?>"><?= $r['responden']; ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
                                         < ?=session('errors.role') ?>
                                     </div>
+
 
                                     <input type="hidden" name="role" id="respondenTxt" />
 
@@ -236,7 +239,25 @@
         </div>
 
 </section>
+<!-- jQuery -->
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
+
+<script type="text/javascript">
+    $('.option-role').on('click', function() {
+        $("option[value='dosen']").remove();
+        $("option[value='Dosen']").remove();
+        $("option[value='Mahasiswa']").remove();
+        $("option[value='mahasiswa']").remove();
+    });
+</script>
+
+<script type="text/javascript">
+    function myFunction() {
+        var x = document.getElementById("mySelect");
+        x.remove(x.selectedIndex);
+    }
+</script>
 <script type="text/javascript">
     function getText() {
         var select = document.getElementById('responden');
