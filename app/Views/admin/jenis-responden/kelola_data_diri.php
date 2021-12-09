@@ -168,12 +168,17 @@
                                                     <!-- isi -->
                                                     <div class="form-group">
                                                         <label class="form-label">Pertanyaan :</label>
-                                                        <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-3" name="pertanyaan">
+                                                        <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-2" name="pertanyaan" id="pertanyaan">
                                                         <input type="hidden" name="jenisRespondenID" value="<?= $responden['id'] ?>">
+
+                                                        <a href="#" class="text-muted small" onclick="templateProdi()">
+                                                            <i class=" fas fa-paint-brush"></i>
+                                                            Template pertanyaan program studi
+                                                        </a>
 
                                                         <div id="pilihanJwb">
                                                             <div class="row">
-                                                                <div class="col-10 pilihanCol mb-3">
+                                                                <div class="col-10 pilihanCol my-3">
                                                                     <label class="form-label">Pilihan Jawaban :</label>
                                                                     <input type="text" placeholder="Masukkan Pilihan Jawaban" class="form-control" name="pilihan[]">
                                                                     <input type="hidden" name="jenis" value="pilihan">
@@ -289,5 +294,66 @@
         z++;
     }
 </script>
+
+
+<script type="text/javascript">
+    function templateProdi() {
+
+
+        // var el_down = document.getElementById("GFG_DOWN");
+        var inputPertanyaan = document.getElementById("pertanyaan");
+        // var pilihanJawaban1 = document.getElementById("pilihan[0]");
+
+        inputPertanyaan.setAttribute('value', 'Program Studi');
+        // pilihanJawaban1.setAttribute('value', 'Program');
+        // pilihanJawaban1.setAttribute('value', 'Program Studi');
+
+
+        // el_down.innerHTML =
+        //     "Value = " + "'" + inputF.value + "'";
+
+        // var x = document.createElement("INPUT");
+        // x.setAttribute("type", "text");
+        // x.setAttribute("name", "pilihan");
+        // x.setAttribute("value", "Hello World!");
+        // document.body.appendChild(x);
+
+
+
+        var a = 1;
+        <?php foreach ($getAllProdi as $getProdi) : ?>
+            //Do something
+            var group = document.getElementById('pilihanJwb');
+
+            var row = document.createElement('div');
+            var pilihanCol = document.createElement('div');
+            var hapusColButir = document.createElement('div');
+            row.setAttribute('class', 'row')
+            pilihanCol.setAttribute('class', 'col-10 pilihanCol mb-3')
+            hapusColButir.setAttribute('class', 'col-2 HapusColButir d-flex align-items-center')
+
+            group.appendChild(row);
+            row.appendChild(pilihanCol);
+            row.appendChild(hapusColButir);
+
+            var butir = document.createElement('input');
+            butir.setAttribute('name', 'pilihan[' + a + ']');
+            butir.setAttribute('class', 'form-control');
+            butir.setAttribute('value', ' <?= $getProdi['nama_prodi']; ?>  ');
+
+
+            pilihanCol.appendChild(butir);
+
+            var hapus = document.createElement('span');
+            hapusColButir.appendChild(hapus);
+            hapus.innerHTML = '<button class="btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i></button>';
+            hapus.onclick = function() {
+                row.parentNode.removeChild(row);
+            };
+            a++;
+        <?php endforeach; ?>
+    }
+</script>
+
 
 <?= $this->endSection(); ?>

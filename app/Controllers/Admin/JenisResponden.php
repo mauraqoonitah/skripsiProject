@@ -10,6 +10,7 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
+use App\Models\ProdiModel;
 use App\Models\DataDiriPertanyaanModel;
 use App\Models\DataDiriJawabanModel;
 use Myth\Auth\Models\AuthGroupsModel;
@@ -26,6 +27,7 @@ class JenisResponden extends BaseController
     protected $authGroupsModel;
     protected $pilihanJawabanModel;
     protected $pertanyaanDataDiriModel;
+    protected $prodiModel;
 
     protected $mRequest;
 
@@ -40,6 +42,7 @@ class JenisResponden extends BaseController
         $this->respondenModel = new RespondenModel();
         $this->dataDiriJawabanModel = new DataDiriJawabanModel();
         $this->dataDiriPertanyaanModel = new DataDiriPertanyaanModel();
+        $this->prodiModel = new ProdiModel();
         $this->authGroupsModel = new AuthGroupsModel();
 
         $this->mRequest = service("request");
@@ -161,6 +164,7 @@ class JenisResponden extends BaseController
             'title' => 'Edit Jenis Responden',
             'responden' => $this->jenisRespondenModel->getJenisResponden($respondenId),
             'getPertanyaanByRespId' => $this->dataDiriPertanyaanModel->getPertanyaanByRespId($respondenId),
+            'getAllProdi' => $this->prodiModel->getProdi(),
 
             'validation' => \Config\Services::validation()
         ];
