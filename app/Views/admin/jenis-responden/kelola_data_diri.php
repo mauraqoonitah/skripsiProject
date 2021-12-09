@@ -133,6 +133,8 @@
 
                                     <?php if ($data['jenis'] == 'pilihan') :  ?>
                                         <select class="form-select" readonly>
+                                            <option selected disabled value="">Pilih...</option>
+
                                             <?php foreach ($getPilihan as $pilihan) : ?>
                                                 <option value="<?= $pilihan['pilihan']; ?>"> <?= $pilihan['pilihan']; ?></option>
 

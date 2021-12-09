@@ -153,7 +153,7 @@
                                 <div class="form-group my-3">
                                     <!-- email -->
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>">
+                                    <input type="email" class=" form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" value="<?= old('email') ?>" required>
                                     <div class="invalid-feedback">
                                         <?= session('errors.email') ?>
                                     </div>
@@ -162,15 +162,13 @@
                                 <div class="form-group mb-3">
                                     <!-- fullname -->
                                     <label for="fullname" class="form-label">Nama Lengkap</label>
-                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.fullname')) : ?>is-invalid<?php endif ?>" name="fullname" value="<?= old('fullname') ?>">
-                                    <div class="invalid-feedback">
-                                        <?= session('errors.fullname') ?>
-                                    </div>
+                                    <input type="text" class=" form-control form-control-user " name="fullname" value="<?= old('fullname') ?>" required>
                                 </div>
+
                                 <!-- username -->
                                 <div class="form-group mb-3">
                                     <label for="username" class="form-label">Username</label>
-                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>">
+                                    <input type="text" class=" form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" value="<?= old('username') ?>" required>
                                     <div class="invalid-feedback">
                                         <?= session('errors.username') ?>
                                     </div>
@@ -179,8 +177,8 @@
                                 <!-- jenis responden untuk non siakad -->
                                 <div class="form-group mb-3">
                                     <label for="responden" class="form-label">Sebagai</label>
-                                    <select class="form-select option-role <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>">
-                                        <option>Pilih</option>
+                                    <select class="form-select option-role <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>" required>
+                                        <option selected disabled value="">Pilih...</option>
                                         <?php foreach ($jenisResponden as $r) : ?>
                                             <?php if ($r['responden'] === 'Dosen') : ?>
                                             <?php endif; ?>
@@ -188,7 +186,7 @@
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
-                                        < ?=session('errors.role') ?>
+                                        <?= session('errors.role') ?>
                                     </div>
 
 
@@ -200,7 +198,7 @@
                                 <div class="form-group row mb-3">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label for="password" class="form-label">Password</label>
-                                        <input type="password" name="password" id="inputPassword" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                        <input type="password" name="password" id="inputPassword" class="form-control form-control-user  <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>" autocomplete="off" required>
                                         <input type="checkbox" onclick="showPassword()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
                                         <div class="invalid-feedback">
                                             <?= session('errors.password') ?>
@@ -208,7 +206,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="pass_confirm" class=" form-label">Repeat Password</label>
-                                        <input type="password" name="pass_confirm" id="inputPasswordConfirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                        <input type="password" name="pass_confirm" id="inputPasswordConfirm" class="form-control form-control-user  <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off" required>
                                         <input type="checkbox" onclick="showPasswordConfirm()" class="mt-2 ml-2"><small class="ml-2 mt-2 text-muted">Show Password</small>
                                         <div class="invalid-feedback">
                                             <?= session('errors.pass_confirm') ?>

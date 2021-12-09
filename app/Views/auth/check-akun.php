@@ -19,7 +19,7 @@
                                 <b> Dosen UNJ</b>
                             </li>
                         </ul>
-                        <p class="text-muted ">
+                        <p class="text-primary fw-bold">
                             Bukan diantaranya? <a href="<?= url_to('register') ?>"> <u>Klik Disini</u>
                             </a>
                         </p>
@@ -68,7 +68,7 @@
                         <?= csrf_field() ?>
 
                         <div class="form-floating mb-3 pl-2">
-                            <input type="text" class="form-control " name="nim" id="nim" placeholder="EMAIL / NIM / NIDN ">
+                            <input type="text" class="form-control " name="nim" id="nim" placeholder="EMAIL / NIM / NIDN " required>
                             <label for="nim">EMAIL UNJ / NIM / NIDN</label>
 
                             <input type="hidden" class="form-control " name="nidn" id="nidn">
