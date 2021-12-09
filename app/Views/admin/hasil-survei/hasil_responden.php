@@ -113,9 +113,10 @@ use CodeIgniter\I18n\Time;
                                                                         <h5 class="modal-title fw-bold">Hapus Responden</h5>
                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
-                                                                    <div class="modal-body text-center">
+                                                                    <div class="modal-body text-center fw-bold">
                                                                         <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                                        Yakin hapus <?= $rpd['fullname']; ?>?
+                                                                        Yakin hapus Responden: <?= $rpd['fullname']; ?>?
+                                                                        <p class="text-danger small">Tanggapan Survei akan ikut terhapus</p>
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>

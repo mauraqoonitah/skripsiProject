@@ -36,6 +36,25 @@
 <!-- My js -->
 <script src="<?= base_url(); ?>/../../js/main.js"></script>
 
+<!-- // spinner loader -->
+<script>
+    const preloader = document.querySelector('.preloader');
+    const fadeEffect = setInterval(() => {
+        // if we don't set opacity 1 in CSS, then
+        // it will be equaled to "" -- that's why
+        // we check it, and if so, set opacity to 1
+        if (!preloader.style.opacity) {
+            preloader.style.opacity = 1;
+        }
+        if (preloader.style.opacity > 0) {
+            preloader.style.opacity -= 0.1;
+        } else {
+            clearInterval(fadeEffect);
+            preloader.style.display = "none";
+        }
+    }, 100);
+    window.addEventListener('load', fadeEffect);
+</script>
 
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>/../../dist/js/adminlte.min.js"></script>
