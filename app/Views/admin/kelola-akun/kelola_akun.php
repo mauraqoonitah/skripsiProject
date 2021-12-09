@@ -96,7 +96,7 @@ use CodeIgniter\I18n\Time;
                             <div class="card-body">
                                 <!-- button collapse lihat Daftar Dosen -->
                                 <p>
-                                    <button class="btn btn-rouge btn-sm  px-3 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-dosen" aria-expanded="false">
+                                    <button class="btn btn-malibu btn-lg btn-block px-3 fs-6 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-dosen" aria-expanded="false">
                                         <i class="fas fa-chevron-down"> </i> List Responden: Dosen
                                     </button>
                                 </p>
@@ -104,7 +104,7 @@ use CodeIgniter\I18n\Time;
 
                                 <!-- content collapse  -->
                                 <div class="collapse my-3" id="collapse-list-dosen">
-                                    <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4 mb-3">
+                                    <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4 mb-4">
                                         <h3 class="card-title">List Dosen</h3>
                                         <?php if (in_groups('Admin')) : ?>
                                             <!-- Button trigger modal -->
@@ -197,7 +197,7 @@ use CodeIgniter\I18n\Time;
                                         <!-- end modal tambah responden dosen -->
                                     <?php endif; ?>
 
-                                    <div class="table-responsive">
+                                    <div class="table-responsive mb-5 pb-5">
                                         <table id="table-allDosen" class="table table-bordered display row-border">
 
                                             <thead>
@@ -207,7 +207,9 @@ use CodeIgniter\I18n\Time;
                                                     <th scope="col">Username</th>
                                                     <th scope="col">Instrumen</th>
                                                     <th scope="col" class="text-center">Status Aktif</th>
-                                                    <th scope="col">Hapus</th>
+                                                    <?php if (in_groups('Admin')) : ?>
+                                                        <th scope="col">Hapus</th>
+                                                    <?php endif; ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -256,40 +258,43 @@ use CodeIgniter\I18n\Time;
                                                             </td>
 
                                                         </form>
+                                                        <?php if (in_groups('Admin')) : ?>
 
-                                                        <td class="d-flex justify-content-center">
-                                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-allDosen-<?= $allDosen->id; ?>">
-                                                                <button type="button" class="btn btn-sm btn-danger">
-                                                                    <i class="fas fa-trash-alt text-white"></i>
-                                                                </button>
-                                                            </a>
-                                                        </td>
-                                                        <!-- modal hapus admin GPJM -->
-                                                        <div class="modal fade" id="modal-delete-allDosen-<?= $allDosen->id; ?>" tabindex="-1" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered ">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header bg-cosmic text-white">
-                                                                        <h5 class="modal-title fw-bold">Hapus </h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body text-center">
-                                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                                        Yakin hapus akun <u><?= $allDosen->email; ?></u>?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                                        <!-- form delete akun -->
-                                                                        <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $allDosen->id; ?>" method="post">
-                                                                            <?= csrf_field(); ?>
-                                                                            <input type="hidden" name="_method" value="DELETE">
-                                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                        </form>
+                                                            <td class="d-flex justify-content-center">
+                                                                <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-allDosen-<?= $allDosen->id; ?>">
+                                                                    <button type="button" class="btn btn-sm btn-danger">
+                                                                        <i class="fas fa-trash-alt text-white"></i>
+                                                                    </button>
+                                                                </a>
+                                                            </td>
+
+                                                            <!-- modal hapus admin GPJM -->
+                                                            <div class="modal fade" id="modal-delete-allDosen-<?= $allDosen->id; ?>" tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered ">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-cosmic text-white">
+                                                                            <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body text-center">
+                                                                            <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                            Yakin hapus akun <u><?= $allDosen->email; ?></u>?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                                            <!-- form delete akun -->
+                                                                            <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $allDosen->id; ?>" method="post">
+                                                                                <?= csrf_field(); ?>
+                                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                            </form>
 
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        <?php endif; ?>
                                                         <!-- ./modal hapus admin GPJM -->
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -301,7 +306,7 @@ use CodeIgniter\I18n\Time;
 
                                 <!-- button collapse list akses instrumen -->
                                 <p>
-                                    <button class="btn btn-rouge btn-sm mt-4 px-3 " type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-akses" aria-expanded="false">
+                                    <button class="btn btn-malibu btn-lg btn-block px-3 fs-6 mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-list-akses" aria-expanded="false">
                                         <i class="fas fa-chevron-down"> </i> Instrumen yang dapat diisi oleh Dosen
                                     </button>
                                 </p>
@@ -352,10 +357,12 @@ use CodeIgniter\I18n\Time;
                                                                     // echo "permission id " . $permissionId;
                                                                 }
                                                                 ?>
+                                                                <?php if (in_groups('Admin')) : ?>
+                                                                    <button type="button" class="btn btn-sm btn-warning mb-3 " data-bs-toggle="modal" data-bs-target="#tambahAkunPermissionModal-<?= $permissionId; ?>">
+                                                                        <i class=" fas fa-plus"></i> Tambah Akses Akun
+                                                                    </button>
+                                                                <?php endif; ?>
 
-                                                                <button type="button" class="btn btn-sm btn-warning mb-3 " data-bs-toggle="modal" data-bs-target="#tambahAkunPermissionModal-<?= $permissionId; ?>">
-                                                                    <i class=" fas fa-plus"></i> Tambah Akses Akun
-                                                                </button>
                                                                 <!-- modal tambah akun -->
                                                                 <div class="modal fade" id="tambahAkunPermissionModal-<?= $permissionId; ?>" tabindex="-1">
                                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
@@ -407,6 +414,7 @@ use CodeIgniter\I18n\Time;
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
                                                                 <?php
                                                                 $sql_2 = "SELECT * FROM auth_users_permissions WHERE permission_id = ? ";
                                                                 $getUsersPermissions =  $db->query($sql_2, [$permissionId]); ?>
@@ -613,7 +621,7 @@ use CodeIgniter\I18n\Time;
 
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="table-responsive">
+                                <div class="table-responsive pb-5 mb-5">
                                     <table id="table-admin-gpjm" class="table table-bordered display row-border">
                                         <thead>
                                             <tr>
@@ -621,8 +629,10 @@ use CodeIgniter\I18n\Time;
                                                 <th>Email</th>
                                                 <th>Username</th>
                                                 <th>Tgl Dibuat</th>
-                                                <th>Status Aktif</th>
-                                                <th class="text-center">Hapus</th>
+                                                <th class="text-center">Status Aktif</th>
+                                                <?php if (in_groups('Admin')) : ?>
+                                                    <th class="text-center">Hapus</th>
+                                                <?php endif; ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -640,14 +650,28 @@ use CodeIgniter\I18n\Time;
                                                     </td>
                                                     <!-- form on off status aktif admin -->
                                                     <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
-                                                        <td>
+                                                        <td class="text-center ">
                                                             <?php
                                                             $is_active = $admin->active;
+
+                                                            if ($is_active === true) {
+                                                                echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
+                                                            } else {
+                                                                echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
+                                                            }
                                                             ?>
-                                                            <div class="form-check mr-4">
-                                                                <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
-                                                            </div>
                                                         </td>
+
+                                                        <?php if (in_groups('Admin')) : ?>
+                                                            <td>
+                                                                <?php
+                                                                $is_active = $admin->active;
+                                                                ?>
+                                                                <div class="form-check mr-4">
+                                                                    <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
+                                                                </div>
+                                                            </td>
+                                                        <?php endif; ?>
 
                                                         <!-- is_active checkbox -->
                                                         <script>
@@ -676,42 +700,46 @@ use CodeIgniter\I18n\Time;
                                                         <!-- ./is_active checkbox -->
                                                     </form>
 
-
-                                                    <td class="align-middle">
-                                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
-                                                            <button type="button" class="btn btn-sm">
-                                                                <i class="fas fa-trash-alt text-white"></i>
-                                                            </button>
-                                                        </a>
-                                                    </td>
+                                                    <?php if (in_groups('Admin')) : ?>
+                                                        <td class="align-middle">
+                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
+                                                                <button type="button" class="btn btn-sm">
+                                                                    <i class="fas fa-trash-alt text-white"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>
+                                                    <?php endif; ?>
                                                 </tr>
-                                                <!-- modal hapus admin GPJM -->
-                                                <div class="modal fade" id="modal-delete-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered ">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-cosmic text-white">
-                                                                <h5 class="modal-title fw-bold">Hapus </h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body text-center">
-                                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                                Yakin hapus akun admin <?= $admin->username; ?>?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                                <!-- form hapus akun admin -->
-                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $admin->id; ?>" method="post">
-                                                                    <?= csrf_field(); ?>
-                                                                    <input type="hidden" name="_method" value="DELETE">
-                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                </form>
+                                                <?php if (in_groups('Admin')) : ?>
+                                                    <!-- modal hapus admin GPJM -->
+                                                    <div class="modal fade" id="modal-delete-adminGPJM-<?= $admin->id; ?>" tabindex="-1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered ">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-cosmic text-white">
+                                                                    <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                    Yakin hapus akun admin <?= $admin->username; ?>?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                                    <!-- form hapus akun admin -->
+                                                                    <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $admin->id; ?>" method="post">
+                                                                        <?= csrf_field(); ?>
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                    </form>
 
 
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- ./modal hapus admin GPJM -->
+                                                    <!-- ./modal hapus admin GPJM -->
+                                                <?php endif; ?>
+
                                             <?php endforeach; ?>
 
                                         </tbody>
@@ -823,7 +851,7 @@ use CodeIgniter\I18n\Time;
                                     </div>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="table-responsive">
+                                <div class="table-responsive mb-5 pb-5">
                                     <table id="table-admin-kontributor" class="table table-bordered display row-border">
                                         <thead>
                                             <tr>
@@ -831,8 +859,10 @@ use CodeIgniter\I18n\Time;
                                                 <th>Email</th>
                                                 <th>Username</th>
                                                 <th>Tgl Dibuat</th>
-                                                <th>Status Aktif</th>
-                                                <th>Hapus</th>
+                                                <th class="text-center">Status Aktif</th>
+                                                <?php if (in_groups('Admin')) : ?>
+                                                    <th>Hapus</th>
+                                                <?php endif; ?>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -848,12 +878,25 @@ use CodeIgniter\I18n\Time;
                                                         ?>
                                                         <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
                                                     </td>
-                                                    <td>
-                                                        <div class="form-check mr-4">
-                                                            <input class="form-check-input-status-kontributor-<?= $kontributor->id; ?>" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
+                                                    <td class="text-center ">
+                                                        <?php
+                                                        $is_active = $kontributor->active;
 
-                                                        </div>
+                                                        if ($is_active === true) {
+                                                            echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
+                                                        } else {
+                                                            echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
+                                                        }
+                                                        ?>
                                                     </td>
+                                                    <?php if (in_groups('Admin')) : ?>
+                                                        <td>
+                                                            <div class="form-check mr-4">
+                                                                <input class="form-check-input-status-kontributor-<?= $kontributor->id; ?>" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
+
+                                                            </div>
+                                                        </td>
+                                                    <?php endif; ?>
                                                     <!-- is_active checkbox -->
                                                     <script>
                                                         // get data
@@ -879,42 +922,47 @@ use CodeIgniter\I18n\Time;
                                                         });
                                                     </script>
                                                     <!-- ./is_active checkbox -->
+                                                    <?php if (in_groups('Admin')) : ?>
 
-                                                    <td class="align-middle">
-                                                        <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
-                                                            <button type="button" class="btn btn-sm">
-                                                                <i class="fas fa-trash-alt text-white"></i>
-                                                            </button>
-                                                        </a>
-                                                    </td>
+                                                        <td class="align-middle">
+                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
+                                                                <button type="button" class="btn btn-sm">
+                                                                    <i class="fas fa-trash-alt text-white"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>
+                                                    <?php endif; ?>
                                                 </tr>
-                                                <!-- modal hapus kontributor -->
-                                                <div class="modal fade" id="modal-delete-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered ">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header bg-cosmic text-white">
-                                                                <h5 class="modal-title fw-bold">Hapus </h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body text-center">
-                                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                                Yakin hapus akun admin <?= $kontributor->username; ?>?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                                <!-- form hapus akun admin kontributor -->
-                                                                <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $kontributor->id; ?>" method="post">
-                                                                    <?= csrf_field(); ?>
-                                                                    <input type="hidden" name="_method" value="DELETE">
-                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
-                                                                </form>
+                                                <?php if (in_groups('Admin')) : ?>
+
+                                                    <!-- modal hapus kontributor -->
+                                                    <div class="modal fade" id="modal-delete-kontributor-<?= $kontributor->id; ?>" tabindex="-1" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered ">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header bg-cosmic text-white">
+                                                                    <h5 class="modal-title fw-bold">Hapus </h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body text-center">
+                                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                    Yakin hapus akun admin <?= $kontributor->username; ?>?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                                                    <!-- form hapus akun admin kontributor -->
+                                                                    <form action="<?= base_url(); ?>/admin/kelolaAkun/deleteUser/<?= $kontributor->id; ?>" method="post">
+                                                                        <?= csrf_field(); ?>
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                    </form>
 
 
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- ./modal hapus kontributor -->
+                                                    <!-- ./modal hapus kontributor -->
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
 
                                         </tbody>

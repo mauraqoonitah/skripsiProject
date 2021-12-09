@@ -181,16 +181,16 @@ use CodeIgniter\I18n\Time;
                         <strong class=" fs-6">Export Data</strong>
                     </div>
                     <form action="<?= base_url(); ?>/admin/lihatKategori" method="get" class="mb-3  ">
-                        <button type="submit" class="btn btn-lg btn-rouge"><i class="far fa-file"></i> Tabel Kategori</button>
+                        <button type="submit" class="btn btn-lg btn-malibu"><i class="far fa-file"></i> Tabel Kategori</button>
                     </form>
                     <form action="<?= base_url(); ?>/admin/lihatInstrumen" method="get" class="mb-3">
-                        <button type="submit" class="btn btn-lg btn-rouge"><i class="far fa-file-alt"></i> Tabel Instrumen</button>
+                        <button type="submit" class="btn btn-lg btn-malibu"><i class="far fa-file-alt"></i> Tabel Instrumen</button>
                     </form>
                     <form action="<?= base_url(); ?>/admin/hasil-survei/responden" method="get" class="mb-3">
-                        <button type="submit" class="btn btn-lg btn-rouge"><i class="far fa-user"></i> Tabel Responden</button>
+                        <button type="submit" class="btn btn-lg btn-malibu"><i class="far fa-user"></i> Tabel Responden</button>
                     </form>
                     <form action="<?= base_url(); ?>/admin/jenisResponden" method="get" class="mb-3">
-                        <button type="submit" class="btn btn-lg btn-rouge"><i class="fas fa-users"></i> Tabel Kategori Responden</button>
+                        <button type="submit" class="btn btn-lg btn-malibu"><i class="fas fa-users"></i> Tabel Kategori Responden</button>
                     </form>
                 </div>
             </div>

@@ -85,7 +85,6 @@
                         </p>
                     </a>
                 </li>
-                <?php if (in_groups('Admin')) : ?>
                     <!-- Sidebar user panel (optional) -->
                     <div class="user-panel mb-2"> </div>
                     <li class="nav-item">
@@ -94,7 +93,6 @@
                             </p>
                         </a>
                     </li>
-                <?php endif; ?>
 
                 <div class="user-panel mb-2"> </div>
 

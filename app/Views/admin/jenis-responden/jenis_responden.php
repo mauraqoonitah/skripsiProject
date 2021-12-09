@@ -54,7 +54,7 @@
             <!-- ./ flash gagal tambah data  -->
 
             <div class="card">
-                <div class="card-body">
+                <div class="card-body py-5">
                     <?php if (in_groups('Admin')) : ?>
                         <!-- Button trigger modal -->
                         <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="ml-auto">
@@ -101,7 +101,7 @@
 
                     <!-- datatables -->
                     <div class="table-responsive">
-                        <table id="table-jenis-responden" class="display row-border table-hover striped table-bordered compact">
+                        <table id="table-jenis-responden" class="display table-hover table-bordered compact">
                             <thead class="card-header py-3 text-rouge fs-6">
                                 <tr>
                                     <th>Kategori Responden</th>
@@ -145,20 +145,18 @@
 
                                         </td>
 
-                                        <?php if (in_groups('Admin')) : ?>
-                                            <td>
-                                                <div class="btn-group" role="group">
-                                                    <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Pertanyaan untuk Data Diri pada Kategori Responden">
-                                                        <button type="button" class="btn btn-sm btn-success">
-                                                            <i class="fas fa-th-list text-white"></i>
-                                                        </button>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        <?php endif; ?>
+                                        <td class="text-center">
+                                            <div class="btn-group" role="group">
+                                                <a href="<?= base_url(); ?>/admin/kelolaDataDiri/<?= $resp['id']; ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="Kelola Pertanyaan untuk Data Diri pada Kategori Responden">
+                                                    <button type="button" class="btn btn-sm btn-success">
+                                                        <i class="fas fa-th-list text-white"></i>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </td>
 
                                         <?php if (in_groups('Admin')) : ?>
-                                            <td>
+                                            <td class="text-center">
                                                 <div class="btn-group" role="group">
                                                     <a href="<?= base_url(); ?>/admin/editJenisResponden/<?= $resp['id']; ?>" class="btn btn-sm btn-yellow-sea text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah Nama Jenis Responden">
                                                         <i class="fas fa-edit"></i>

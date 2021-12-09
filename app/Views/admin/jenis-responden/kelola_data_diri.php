@@ -88,47 +88,48 @@
                                     <?php $pertanyaan = $data['pertanyaan'];
                                     $columnPertanyaan = str_replace(' ', '', $pertanyaan);
                                     ?>
+                                    <?php if (in_groups('Admin')) : ?>
 
-                                    <!-- aksi -->
-                                    <div class="btn-group" role="group">
-                                        <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-pertanyaan-<?= $columnPertanyaan; ?>">
-                                            <button type="button" class="btn btn-sm " data-bs-placement="top" title="Hapus">
-                                                <i class="fas fa-trash-alt text-danger fs-6"></i>
-                                            </button>
-                                        </a>
-                                    </div>
+                                        <!-- aksi -->
+                                        <div class="btn-group" role="group">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-pertanyaan-<?= $columnPertanyaan; ?>">
+                                                <button type="button" class="btn btn-sm " data-bs-placement="top" title="Hapus">
+                                                    <i class="fas fa-trash-alt text-danger fs-6"></i>
+                                                </button>
+                                            </a>
+                                        </div>
 
-                                    <!-- ./aksi -->
+                                        <!-- ./aksi -->
 
-                                    <!-- modal hapus pertanyaan -->
-                                    <div class="modal fade" id="modal-delete-pertanyaan-<?= $columnPertanyaan; ?>" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered ">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-cosmic text-white">
-                                                    <h5 class="modal-title fw-bold" id="hapusKategoriLabel">Hapus Pertanyaan Data Diri</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body text-center">
-                                                    <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
-                                                    Yakin hapus pertanyaan <?= $data['pertanyaan']; ?> ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                        <!-- modal hapus pertanyaan -->
+                                        <div class="modal fade" id="modal-delete-pertanyaan-<?= $columnPertanyaan; ?>" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered ">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-cosmic text-white">
+                                                        <h5 class="modal-title fw-bold" id="hapusKategoriLabel">Hapus Pertanyaan Data Diri</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                        <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                        Yakin hapus pertanyaan <?= $data['pertanyaan']; ?> ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                    <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $columnPertanyaan; ?>" method="post">
-                                                        <?= csrf_field(); ?>
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="delPertanyaanId" value="<?= $data['id']; ?>">
-                                                        <button type="submit" class="btn btn-danger">Hapus</button>
-                                                    </form>
+                                                        <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $columnPertanyaan; ?>" method="post">
+                                                            <?= csrf_field(); ?>
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="delPertanyaanId" value="<?= $data['id']; ?>">
+                                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        </form>
 
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- end modal hapus pertanyaan -->
-
+                                        <!-- end modal hapus pertanyaan -->
+                                    <?php endif; ?>
 
                                     <?php if ($data['jenis'] == 'pilihan') :  ?>
                                         <select class="form-select" readonly>

@@ -50,8 +50,8 @@
                             $jmlTanggapan =  $this->responseModel->getJumlahTanggapanIns($insID);
 
                             ?>
-                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst-muted text-decoration-none">
-                                <span class="text-rouge"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
+                            <a href="<?= base_url(); ?>/admin/laporanKepuasan/<?= $ins['id']; ?>" class="pilih-inst-malibu text-decoration-none">
+                                <span class="fw-bold"><?= $ins['kodeInstrumen']; ?> <br> <?= $ins['namaInstrumen']; ?></span>
                                 <div class="d-flex align-items-center ml-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Jumlah Tanggapan">
                                     <span class=" badge badge-cosmic "><?= $jmlTanggapan; ?> </span>
                                 </div>

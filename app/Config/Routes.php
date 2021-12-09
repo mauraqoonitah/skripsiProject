@@ -143,7 +143,7 @@ $routes->post('/admin/updateDataDiri/(:any)', 'Admin\JenisResponden::updateDataD
 
 
 // menu kelola akun
-$routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index', ['filter' => 'role:Admin']);
+$routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index', ['filter' => 'role:Admin,Kontributor']);
 $routes->get('/admin/kelolaAkun/editAkunDosen/(:any)', 'Admin\kelolaAkun::editAkunDosen/$1');
 $routes->post('/admin/kelolaAkun/removePermission/(:any)', 'Admin\kelolaAkun::removePermission/$1');
 $routes->post('/admin/kelolaAkun/addAkunPermission', 'Admin\kelolaAkun::addAkunPermission');
