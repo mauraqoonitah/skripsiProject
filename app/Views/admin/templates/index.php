@@ -1,8 +1,15 @@
 <?= $this->include('admin/templates/head'); ?>
 
 <body class="hold-transition sidebar-mini">
+
     <!-- Site wrapper -->
     <div class="wrapper">
+        <!-- spinner loader -->
+        <div class="preloader">
+            <img src="<?= base_url(); ?>/img/spinner-cosmic.svg" alt="spinner">
+        </div>
+        <!-- ./spinner loader -->
+
         <!-- Navbar -->
         <?= $this->include('admin/templates/navbar'); ?>
         <!-- /.navbar -->

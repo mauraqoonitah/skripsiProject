@@ -51,7 +51,7 @@
 
     <!-- spinner loader -->
     <div class="preloader">
-        <img src="<?= base_url(); ?>/img/spinner.svg" alt="spinner">
+        <img src="<?= base_url(); ?>/img/spinner-cosmic.svg" alt="spinner">
     </div>
     <!-- ./spinner loader -->
     <?= $this->include('layout/navbar'); ?>
