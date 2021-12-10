@@ -54,7 +54,7 @@
             <!-- ./ flash gagal tambah data  -->
 
             <div class="card">
-                <div class="card-body py-5">
+                <div class="card-body pb-5 mt-2">
                     <?php if (in_groups('Admin')) : ?>
                         <!-- Button trigger modal -->
                         <a data-bs-toggle="modal" data-bs-target="#modal-tambah-jenisResponden" class="ml-auto">

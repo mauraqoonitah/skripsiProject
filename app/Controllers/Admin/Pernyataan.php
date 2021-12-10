@@ -151,7 +151,7 @@ class Pernyataan extends BaseController
 
         session()->setFlashdata('message', 'Data Pernyataan berhasil dihapus');
 
-        return redirect()->to($_SERVER['HTTP_REFERER']);
+        return redirect()->back();
     }
 
 

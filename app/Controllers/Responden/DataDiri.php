@@ -135,15 +135,23 @@ class DataDiri extends BaseController
     {
         $forge = \Config\Database::forge();
 
-        if ($columnPertanyaan != 'fullname') {
-            $forge->dropColumn('users', $columnPertanyaan); // to drop one single column
-        }
-
         $pertId = $this->mRequest->getVar('delPertanyaanId');
-        $this->dataDiriPertanyaanModel->delete($pertId);
+
+        if ($columnPertanyaan === 'fullname') {
+            $this->dataDiriPertanyaanModel->delete($pertId);
+        } elseif ($columnPertanyaan === 'ProgramStudi') {
+            $this->dataDiriPertanyaanModel->delete($pertId);
+        } elseif ($columnPertanyaan === 'Prodi') {
+            $this->dataDiriPertanyaanModel->delete($pertId);
+        } else {
+            // delete column di tabel users
+            $forge->dropColumn('users', $columnPertanyaan);
+            // delete column di tabel pertanyaan_data_diri
+            $this->dataDiriPertanyaanModel->delete($pertId);
+        }
 
         session()->setFlashdata('message', 'Pertanyaan berhasil dihapus');
 
-        return redirect()->to($_SERVER['HTTP_REFERER']);
+        return redirect()->back();
     }
 }

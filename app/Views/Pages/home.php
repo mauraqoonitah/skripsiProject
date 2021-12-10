@@ -76,7 +76,7 @@
 <section class="menu col-lg-8 mx-auto" id="hasilsurvei">
     <!-- sticky scrolled -->
     <div id=passageWrapper>
-        <h2 class="section-title">Kriteria Kepuasan</h2>
+        <h2 class="section-title">Hasil Survei Kepuasan</h2>
     </div>
     <h5 class="text-center text-muted">Silakan akses untuk melihat hasil Survei Kepuasan di FMIPA UNJ</h5>
 

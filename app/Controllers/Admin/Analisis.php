@@ -179,7 +179,7 @@ class Analisis extends BaseController
 
         session()->setFlashdata('message', 'File berhasil dihapus');
 
-        return redirect()->to($_SERVER['HTTP_REFERER']);
+        return redirect()->back();
     }
 
     // ===================== analisis ===========================

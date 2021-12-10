@@ -52,7 +52,6 @@
                         <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-3">
                             <h5>Data Diri: <?= $responden['responden'] ?></h5>
                             <?php if (in_groups('Admin')) : ?>
-                                <!-- Button trigger modal -->
                                 <div class="dropdown ml-auto">
                                     <button class="btn btn-rouge dropdown-toggle ml-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class=" fas fa-plus"></i> Buat Pertanyaan
@@ -62,18 +61,16 @@
                                         <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#tambahDataDiri_pilihan">Pilihan</a></li>
                                     </ul>
                                 </div>
-
-
                             <?php endif; ?>
                         </div>
 
                         <div class="card-body px-4 py-3">
-
                             <?php if (empty($getPertanyaanByRespId)) : ?>
                                 <div class="alert alert-rouge alert-dismissible fade show" role="alert">
                                     <span class="text-cosmic"><i> Pertanyaan Data Diri pada Kategori Responden ini belum dibuat.</i></span>
                                 </div>
                             <?php endif; ?>
+
                             <div class="mb-3">
                                 <?php foreach ($getPertanyaanByRespId as $data) : ?>
                                     <?php
@@ -87,7 +84,8 @@
                                     <label class="col-form-label mt-3">
                                         <?php echo ($pertanyaan === 'fullname') ? 'Nama Lengkap' : $pertanyaan; ?></label>
 
-                                    <?php $pertanyaan = $data['pertanyaan'];
+                                    <?php
+                                    $pertanyaan = $data['pertanyaan'];
                                     $columnPertanyaan = str_replace(' ', '', $pertanyaan);
                                     ?>
                                     <?php if (in_groups('Admin')) : ?>
@@ -100,7 +98,6 @@
                                                 </button>
                                             </a>
                                         </div>
-
                                         <!-- ./aksi -->
 
                                         <!-- modal hapus pertanyaan -->
@@ -124,8 +121,6 @@
                                                             <input type="hidden" name="delPertanyaanId" value="<?= $data['id']; ?>">
                                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                                         </form>
-
-
                                                     </div>
                                                 </div>
                                             </div>
