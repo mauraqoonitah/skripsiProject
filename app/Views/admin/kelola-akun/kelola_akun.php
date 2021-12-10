@@ -208,7 +208,7 @@ use CodeIgniter\I18n\Time;
                                                     <th scope="col">Instrumen</th>
                                                     <th scope="col" class="text-center">Status Aktif</th>
                                                     <?php if (in_groups('Admin')) : ?>
-                                                        <th scope="col">Hapus</th>
+                                                        <th scope="col" class="text-center">Hapus</th>
                                                     <?php endif; ?>
                                                 </tr>
                                             </thead>
@@ -628,7 +628,7 @@ use CodeIgniter\I18n\Time;
                                                 <th>No.</th>
                                                 <th>Email</th>
                                                 <th>Username</th>
-                                                <th>Tgl Dibuat</th>
+                                                <th class="text-center">Tgl Dibuat</th>
                                                 <th class="text-center">Status Aktif</th>
                                                 <?php if (in_groups('Admin')) : ?>
                                                     <th class="text-center">Hapus</th>
@@ -636,12 +636,18 @@ use CodeIgniter\I18n\Time;
                                             </tr>
                                         </thead>
                                         <tbody>
+
+
                                             <?php $i = 1; ?>
                                             <?php foreach ($getAdminUser as $admin) : ?>
                                                 <tr>
+                                                    <!-- no. -->
                                                     <td class="text-center fw-bold"><?= $i++; ?></td>
+                                                    <!-- email -->
                                                     <td class="fw-bold"><?= $admin->email; ?></td>
+                                                    <!-- username -->
                                                     <td><?= $admin->username; ?></td>
+                                                    <!-- tgl dibuat -->
                                                     <td>
                                                         <?php
                                                         $timeCreated = Time::parse($admin->created_at, 'Asia/Jakarta');
@@ -653,13 +659,27 @@ use CodeIgniter\I18n\Time;
 
 
                                                         <?php if (in_groups('Admin')) : ?>
-                                                            <td>
-                                                                <?php
-                                                                $is_active = $admin->active;
-                                                                ?>
-                                                                <div class="form-check mr-4">
-                                                                    <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
-                                                                </div>
+                                                            <!-- status aktif -->
+                                                            <td class="text-center">
+                                                                <?php if ($admin->email === user()->email) : ?>
+                                                                    <?php
+                                                                    $is_active = $admin->active;
+
+                                                                    if ($is_active === true) {
+                                                                        echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
+                                                                    } else {
+                                                                        echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
+                                                                    }
+                                                                    ?>
+                                                                <?php else :  ?>
+                                                                    <?php
+                                                                    $is_active = $admin->active;
+                                                                    ?>
+                                                                    <div class="form-check mr-4">
+                                                                        <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
+                                                                    </div>
+                                                                <?php endif; ?>
+
                                                             </td>
                                                         <?php else : ?>
                                                             <td class="text-center ">
@@ -703,7 +723,7 @@ use CodeIgniter\I18n\Time;
                                                     </form>
 
                                                     <?php if (in_groups('Admin')) : ?>
-                                                        <td class="align-middle">
+                                                        <td class="align-middle text-center">
                                                             <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
                                                                 <button type="button" class="btn btn-sm">
                                                                     <i class="fas fa-trash-alt text-white"></i>
@@ -860,7 +880,7 @@ use CodeIgniter\I18n\Time;
                                                 <th>No.</th>
                                                 <th>Email</th>
                                                 <th>Username</th>
-                                                <th>Tgl Dibuat</th>
+                                                <th class="text-center">Tgl Dibuat</th>
                                                 <th class="text-center">Status Aktif</th>
                                                 <?php if (in_groups('Admin')) : ?>
                                                     <th>Hapus</th>
@@ -928,7 +948,7 @@ use CodeIgniter\I18n\Time;
                                                     <!-- ./is_active checkbox -->
                                                     <?php if (in_groups('Admin')) : ?>
 
-                                                        <td class="align-middle">
+                                                        <td class="align-middle text-center">
                                                             <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-kontributor-<?= $kontributor->id; ?>">
                                                                 <button type="button" class="btn btn-sm">
                                                                     <i class="fas fa-trash-alt text-white"></i>
