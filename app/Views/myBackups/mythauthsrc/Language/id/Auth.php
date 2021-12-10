@@ -94,7 +94,7 @@ return [
     'resetYourPassword'         => 'Mereset password Anda',
     'enterCodeEmailPassword'    => 'Masukkan kode yang Anda terima melalui email, alamat email Anda, dan kata sandi baru Anda.',
     'token'                     => 'Token',
-    'newPassword'               => 'kata sandi baru',
+    'newPassword'               => 'Kata Sandi Baru',
     'newPasswordRepeat'         => 'Ulangi Kata Sandi Baru',
     'resetPassword'             => 'Atur Ulang Kata Sandi',
 ];

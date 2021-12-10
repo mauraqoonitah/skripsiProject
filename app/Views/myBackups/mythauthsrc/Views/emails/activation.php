@@ -1,9 +1,5 @@
-<p>Ini adalah email aktivasi untuk akun Anda di <?= site_url() ?>.</p>
+<p>Anda telah melakukan Registrasi Akun pada website <a href="<?= site_url() ?>">Instrumen Kepuasan FMIPA UNJ</a></p>
 
-<p>Untuk mengaktifkan akun Anda, gunakan URL ini.</p>
-
-<p><a href="<?= site_url('activate-account') . '?token=' . $hash ?>">Aktifkan akun</a>.</p>
-
+<p><b>Silakan klik tautan berikut untuk melakukan aktivasi akun. <a href="<?= site_url('activate-account') . '?token=' . $hash ?>">Aktifkan akun</a></b></p>
 <br>
-
-<p>Jika Anda tidak terdaftar di situs web ini, Anda dapat mengabaikan email ini dengan aman.</p>
+<p><i>Jika Anda tidak terdaftar di situs web ini, Anda dapat mengabaikan email ini.</i></p>
