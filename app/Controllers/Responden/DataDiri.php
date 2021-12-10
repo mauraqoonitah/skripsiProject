@@ -133,9 +133,11 @@ class DataDiri extends BaseController
 
     public function deleteColumnDataDiri($columnPertanyaan)
     {
-
         $forge = \Config\Database::forge();
-        $forge->dropColumn('users', $columnPertanyaan); // to drop one single column
+
+        if ($columnPertanyaan != 'fullname') {
+            $forge->dropColumn('users', $columnPertanyaan); // to drop one single column
+        }
 
         $pertId = $this->mRequest->getVar('delPertanyaanId');
         $this->dataDiriPertanyaanModel->delete($pertId);

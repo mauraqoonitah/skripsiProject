@@ -177,10 +177,16 @@ class JenisResponden extends BaseController
         $uniqueId = random_string('alnum', 16);
 
         // save to table pertanyaan_data_diri 
+        $inputPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
+        if (($inputPertanyaan === 'Nama Lengkap') || ($inputPertanyaan === 'Nama') || ($inputPertanyaan === 'Fullname')) {
+            $inputPertanyaan = 'fullname';
+        } else {
+            $inputPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
+        }
         $dataPertanyaan =
             [
                 'uniqueId' => $uniqueId,
-                'pertanyaan' => $this->mRequest->getPost('pertanyaan'),
+                'pertanyaan' => $inputPertanyaan,
                 'jenisRespondenID' => $this->mRequest->getPost('jenisRespondenID'),
                 'jenis' => $this->mRequest->getPost('jenis'),
             ];
@@ -194,6 +200,7 @@ class JenisResponden extends BaseController
         }
 
         $pilihan_jawaban = $this->mRequest->getVar('pilihan[]');
+
         if (!empty($pilihan_jawaban)) {
             foreach ($pilihan_jawaban as $cols_pilihan) {
                 $dataPilihanJawaban =
@@ -206,8 +213,13 @@ class JenisResponden extends BaseController
             }
         }
 
-        $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
-        // $columnToLower = strtolower($getPostPertanyaan);
+        $getPostPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
+        if (($getPostPertanyaan === 'Nama Lengkap') || ($getPostPertanyaan === 'Nama') || ($getPostPertanyaan === 'Fullname') || ($getPostPertanyaan === 'Name')) {
+            $getPostPertanyaan = 'fullname';
+        } else {
+            $getPostPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
+        }
+
         $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
 
         $fields = [

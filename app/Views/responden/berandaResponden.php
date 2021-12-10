@@ -33,7 +33,7 @@
                         <?php if (sizeof($permissionsForUser) === 0) : ?>
                             <div class="row mb-4 mx-auto" data-aos="zoom-in-up" data-aos-delay="500">
                                 <div class="pilih-inst fst-italic text-rouge fw-bold fs-6" style="cursor: default;">
-                                    Maaf, kuesioner belum tersedia.
+                                    Maaf, kuesioner belum tersedia. <br>Hubungi admin untuk mengaktifkan akses kuesioner pada akun Anda.
                                 </div>
                             </div>
                         <?php else : ?>

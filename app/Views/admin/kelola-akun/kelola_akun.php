@@ -650,17 +650,7 @@ use CodeIgniter\I18n\Time;
                                                     </td>
                                                     <!-- form on off status aktif admin -->
                                                     <form action="<?= base_url(); ?>/admin/kelolaAkun/activeStatus/<?= $admin->id; ?>" method="post" enctype="multipart/form-data">
-                                                        <td class="text-center ">
-                                                            <?php
-                                                            $is_active = $admin->active;
 
-                                                            if ($is_active === true) {
-                                                                echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
-                                                            } else {
-                                                                echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
-                                                            }
-                                                            ?>
-                                                        </td>
 
                                                         <?php if (in_groups('Admin')) : ?>
                                                             <td>
@@ -670,6 +660,18 @@ use CodeIgniter\I18n\Time;
                                                                 <div class="form-check mr-4">
                                                                     <input class="form-check-input-status-admin-<?= $admin->id; ?>" type="checkbox" <?= check_access($is_active); ?> data-active="<?= $is_active; ?>" data-id="<?= $admin->id; ?>">
                                                                 </div>
+                                                            </td>
+                                                        <?php else : ?>
+                                                            <td class="text-center ">
+                                                                <?php
+                                                                $is_active = $admin->active;
+
+                                                                if ($is_active === true) {
+                                                                    echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
+                                                                } else {
+                                                                    echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
+                                                                }
+                                                                ?>
                                                             </td>
                                                         <?php endif; ?>
 
@@ -878,23 +880,25 @@ use CodeIgniter\I18n\Time;
                                                         ?>
                                                         <?= $timeCreated->toLocalizedString('d MMM yyyy,  HH:mm'); ?>
                                                     </td>
-                                                    <td class="text-center ">
-                                                        <?php
-                                                        $is_active = $kontributor->active;
 
-                                                        if ($is_active === true) {
-                                                            echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
-                                                        } else {
-                                                            echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
-                                                        }
-                                                        ?>
-                                                    </td>
                                                     <?php if (in_groups('Admin')) : ?>
                                                         <td>
                                                             <div class="form-check mr-4">
                                                                 <input class="form-check-input-status-kontributor-<?= $kontributor->id; ?>" type="checkbox" <?= check_access($kontributor->active); ?> data-active="<?= $kontributor->active; ?>" data-id="<?= $kontributor->id; ?>">
 
                                                             </div>
+                                                        </td>
+                                                    <?php else : ?>
+                                                        <td class="text-center ">
+                                                            <?php
+                                                            $is_active = $kontributor->active;
+
+                                                            if ($is_active === true) {
+                                                                echo '<i class="fas fa-check" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Aktif"></i>';
+                                                            } else {
+                                                                echo '<i class="fas fa-user-slash" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Akun Belum Aktif"></i>';
+                                                            }
+                                                            ?>
                                                         </td>
                                                     <?php endif; ?>
                                                     <!-- is_active checkbox -->

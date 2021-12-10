@@ -77,13 +77,15 @@
                             <div class="mb-3">
                                 <?php foreach ($getPertanyaanByRespId as $data) : ?>
                                     <?php
+                                    $pertanyaan = $data['pertanyaan'];
                                     $pertanyaanId = $data['id'];
                                     $dataDiriJawabanModel = model('DataDiriJawabanModel');
                                     $this->dataDiriJawabanModel = new $dataDiriJawabanModel;
                                     $getPilihan =  $this->dataDiriJawabanModel->getPilihanByPertanyaanId($pertanyaanId);
                                     ?>
 
-                                    <label class="col-form-label mt-3"><?= $data['pertanyaan']; ?></label>
+                                    <label class="col-form-label mt-3">
+                                        <?php echo ($pertanyaan === 'fullname') ? 'Nama Lengkap' : $pertanyaan; ?></label>
 
                                     <?php $pertanyaan = $data['pertanyaan'];
                                     $columnPertanyaan = str_replace(' ', '', $pertanyaan);
@@ -142,7 +144,7 @@
                                         </select>
                                     <?php else : ?>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" readonly>
+                                            <input type="text" class="form-control">
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
@@ -171,20 +173,20 @@
                                                         <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-2" name="pertanyaan" id="pertanyaan">
                                                         <input type="hidden" name="jenisRespondenID" value="<?= $responden['id'] ?>">
 
-                                                        <a href="#" class="text-muted small" onclick="templateProdi()">
+                                                        <a href="#" class="text-muted small" id="templateHeading" onclick="open_TemplateProdi()">
                                                             <i class=" fas fa-paint-brush"></i>
-                                                            Template pertanyaan program studi
+                                                            Gunakan template pertanyaan: Program Studi
                                                         </a>
 
                                                         <div id="pilihanJwb">
                                                             <div class="row">
                                                                 <div class="col-10 pilihanCol my-3">
                                                                     <label class="form-label">Pilihan Jawaban :</label>
-                                                                    <input type="text" placeholder="Masukkan Pilihan Jawaban" class="form-control" name="pilihan[]">
+                                                                    <input type="text" placeholder="Masukkan Pilihan Jawaban" class="form-control" name="pilihan[]" id="firstOption">
                                                                     <input type="hidden" name="jenis" value="pilihan">
 
                                                                 </div>
-                                                                <div class="col-2 HapusColButir d-flex align-items-center">
+                                                                <div class="mt-4 col-2 HapusColButir d-flex align-items-center">
                                                                     <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahDataDiri(); return false">
                                                                         <i class="fas fa-plus"></i>
                                                                     </button>
@@ -227,7 +229,7 @@
                                                     <div class="form-group">
                                                         <label class="form-label">Pertanyaan :</label>
 
-                                                        <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-3" name="pertanyaan">
+                                                        <input type="text" placeholder="Masukkan pertanyaan" class="form-control mb-3" name="pertanyaan" id="pertanyaanIsian">
                                                         <input type="hidden" name="jenisRespondenID" value="<?= $responden['id'] ?>">
                                                         <input type="hidden" name="jenis" value="isian">
 
@@ -295,42 +297,43 @@
     }
 </script>
 
+<script type="text/javascript">
+    function close_TemplateProdi() {
+        document.getElementById('templateHeading').innerHTML = "<i class='fas fa-paint-brush'></i> Gunakan template pertanyaan: Program Studi";
+        var hideContent = document.getElementsByClassName('row actionRmv');
+        Array.from(hideContent).forEach((x) => {
+            x.parentNode.removeChild(x);
+        })
+        var firstOption = document.getElementById('firstOption');
+        firstOption.style.display = "block";
+
+        document.getElementById('templateHeading').setAttribute('onclick', 'open_TemplateProdi()');
+
+        var inputPertanyaan = document.getElementById("pertanyaan");
+        inputPertanyaan.setAttribute('value', '');
+
+
+    }
+</script>
 
 <script type="text/javascript">
-    function templateProdi() {
-
-
-        // var el_down = document.getElementById("GFG_DOWN");
+    function open_TemplateProdi() {
         var inputPertanyaan = document.getElementById("pertanyaan");
-        // var pilihanJawaban1 = document.getElementById("pilihan[0]");
-
         inputPertanyaan.setAttribute('value', 'Program Studi');
-        // pilihanJawaban1.setAttribute('value', 'Program');
-        // pilihanJawaban1.setAttribute('value', 'Program Studi');
 
+        document.getElementById('templateHeading').innerHTML = "<i class='fas fa-paint-brush'></i> Batalkan";
+        document.getElementById('templateHeading').setAttribute('onclick', 'close_TemplateProdi()');
 
-        // el_down.innerHTML =
-        //     "Value = " + "'" + inputF.value + "'";
-
-        // var x = document.createElement("INPUT");
-        // x.setAttribute("type", "text");
-        // x.setAttribute("name", "pilihan");
-        // x.setAttribute("value", "Hello World!");
-        // document.body.appendChild(x);
-
-
-
-        var a = 1;
+        var a = 0;
         <?php foreach ($getAllProdi as $getProdi) : ?>
-            //Do something
             var group = document.getElementById('pilihanJwb');
 
             var row = document.createElement('div');
             var pilihanCol = document.createElement('div');
             var hapusColButir = document.createElement('div');
-            row.setAttribute('class', 'row')
+            row.setAttribute('class', 'row actionRmv')
             pilihanCol.setAttribute('class', 'col-10 pilihanCol mb-3')
-            hapusColButir.setAttribute('class', 'col-2 HapusColButir d-flex align-items-center')
+            hapusColButir.setAttribute('class', 'col-2 mb-2 HapusColButir d-flex align-items-center')
 
             group.appendChild(row);
             row.appendChild(pilihanCol);
@@ -339,8 +342,7 @@
             var butir = document.createElement('input');
             butir.setAttribute('name', 'pilihan[' + a + ']');
             butir.setAttribute('class', 'form-control');
-            butir.setAttribute('value', ' <?= $getProdi['nama_prodi']; ?>  ');
-
+            butir.setAttribute('value', '<?= $getProdi['nama_prodi']; ?>');
 
             pilihanCol.appendChild(butir);
 
@@ -350,10 +352,13 @@
             hapus.onclick = function() {
                 row.parentNode.removeChild(row);
             };
+
+            var firstOption = document.getElementById('firstOption');
+            firstOption.style.display = "none";
+
             a++;
         <?php endforeach; ?>
     }
 </script>
-
 
 <?= $this->endSection(); ?>

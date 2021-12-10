@@ -168,13 +168,20 @@ class Response extends BaseController
             }
         }
         //insert log data responden 
+        if (!empty(user()->fullname)) {
+            $fullname = user()->fullname;
+        } else {
+            $fullname = user()->namalengkap;
+        }
+
         $data_responden =
             [
                 'userID'  => user()->id,
-                'fullname' => user()->fullname,
+                'fullname' => $fullname,
                 'role' => user()->role,
                 'email' => user()->email,
             ];
+        // dd($data_responden);
         $this->respondenModel->save($data_responden);
 
 
