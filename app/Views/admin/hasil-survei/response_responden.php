@@ -10,6 +10,11 @@ use CodeIgniter\I18n\Time;
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
+            <!-- flash success tambah data  -->
+            <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
+            <!-- ./ flash success tambah data  -->
+
+
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="fw-bold">Hasil Survei Kepuasan - Responden</h1>
@@ -45,7 +50,11 @@ use CodeIgniter\I18n\Time;
                                 <div class="user-block">
                                     <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>/../../img/user_profile.png" alt="user image">
                                     <span class="username">
-                                        <span class="text-rouge fs-5"><?= $fullname = $res['fullname']; ?></span>
+                                        <?php if (!empty($res['fullname'])) :  ?>
+                                            <span class="text-rouge fs-5"><?= $fullname = $res['fullname']; ?></span>
+                                        <?php else : ?>
+                                            <span class="text-rouge fs-5"><?= $res['email']; ?></span>
+                                        <?php endif; ?>
                                     </span>
                                     <span class="description">Last Activity -
                                         <?php foreach ($lastActivity as $last) : ?>
@@ -108,13 +117,14 @@ use CodeIgniter\I18n\Time;
                 </div>
             </div>
             <!-- ./data diri responden -->
-            <h5 class="fw-bold mb-4 text-cosmic">Hasil Pengisian Survei dari Responden:<br></h5>
+            <h5 class="fw-bold mb-4 text-cosmic">Tanggapan Survei dari Responden:<br></h5>
 
             <!-- list tanggapan per instrumen -->
             <div class="accordion accordion-flush mx-auto">
                 <?php foreach ($responseInsId as $rIns) : ?>
                     <?php $instrumenID =  $rIns['instrumenID'];  ?>
                     <?php $responseID =  $rIns['responseID'];  ?>
+                    <?php $uniqueID =  $rIns['uniqueID'];  ?>
                     <div class="accordion-item mb-5">
                         <!-- header collapse - kategori  -->
                         <h5 class="accordion-header" id="accord-<?= $rIns['responseID']; ?>">
@@ -137,6 +147,7 @@ use CodeIgniter\I18n\Time;
                             <div class="accordion-body">
                                 <section class="content">
                                     <div class="container-fluid">
+
                                         <section>
                                             <div class="table-responsive">
                                                 <table id="tableResponden-<?= $responseID; ?>" class="display table-bordered table-hover" style="width:100%">
@@ -162,7 +173,10 @@ use CodeIgniter\I18n\Time;
                                                         foreach ($sql as $row) : ?>
                                                             <?php $questionID = $row['questionID']; ?>
                                                             <tr>
+                                                                <!-- no. -->
                                                                 <td class="text-center"><?= $i++; ?></td>
+
+                                                                <!--Butir Pernyataan  -->
                                                                 <td>
                                                                     <?= $row['butir']; ?>
                                                                 </td>
@@ -177,6 +191,7 @@ use CodeIgniter\I18n\Time;
                                                                 $this->responseModel = new $responseModel;
                                                                 $sqlResponse =  $this->responseModel->getResponseByQuestID($userID, $questionID, $uniqueID);
                                                                 ?>
+                                                                <!-- jawaban -->
                                                                 <td class="text-center p-0 ">
                                                                     <?php foreach ($sqlResponse as $response) : ?>
                                                                         <?php $jwb = $response['jawaban']; ?>
@@ -188,6 +203,8 @@ use CodeIgniter\I18n\Time;
                                                                         <?php endif; ?>
                                                                     <?php endforeach; ?>
                                                                 </td>
+
+                                                                <!-- tingkat kepuasan -->
                                                                 <td>
                                                                     <?php if (empty($jwb)) : ?>
                                                                         <span class="text-muted"><i>null</i></span>
@@ -214,6 +231,43 @@ use CodeIgniter\I18n\Time;
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <?php if (in_groups('Admin')) : ?>
+
+                                                <div class="btn-group my-3" role="group">
+                                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modal-delete-tanggapan-<?= $uniqueID; ?>">
+                                                        <button type="button" class="btn btn-sm btn-danger">
+                                                            <i class="fas fa-trash-alt"></i> Hapus Tanggapan
+                                                        </button>
+                                                    </a>
+                                                </div>
+
+                                                <!-- modal hapus Tanggapan -->
+                                                <div class="modal fade" id="modal-delete-tanggapan-<?= $uniqueID; ?>" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered ">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-cosmic text-white">
+                                                                <h5 class="modal-title fw-bold">Hapus Tanggapan Survei</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body text-center fw-bold">
+                                                                <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
+                                                                Yakin Hapus Tanggapan?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+
+                                                                <form action="<?= base_url(); ?>/admin/deleteTanggapan/<?= $uniqueID; ?>" method="post">
+                                                                    <?= csrf_field(); ?>
+                                                                    <input type="hidden" name="_method" value="DELETE">
+                                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end modal hapus Tanggapan -->
+                                            <?php endif; ?>
+
                                             <!-- script export datatables -->
                                             <?php
                                             date_default_timezone_set('Asia/Jakarta');
@@ -225,7 +279,7 @@ use CodeIgniter\I18n\Time;
                                                         dom: 'Bfrtip',
                                                         buttons: [{
                                                                 extend: 'copy',
-                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
+                                                                title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?php echo (empty($fullname)) ? '' : $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
                                                                 exportOptions: {
                                                                     columns: [0, 1, ':visible']
                                                                 }
@@ -234,7 +288,7 @@ use CodeIgniter\I18n\Time;
                                                             {
                                                                 extend: 'excel',
                                                                 title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?>',
-                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
+                                                                messageTop: '<?= $role; ?> | <?php echo (empty($fullname)) ? '' : $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
                                                                 autoFilter: true,
                                                                 sheetName: 'Hasil Survei',
                                                                 download: 'open',
@@ -245,7 +299,7 @@ use CodeIgniter\I18n\Time;
                                                             {
                                                                 extend: 'pdf',
                                                                 title: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?>',
-                                                                messageTop: '<?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
+                                                                messageTop: 'sebagai: <?= $role; ?> | <?php echo (empty($fullname)) ? '' : $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
                                                                 orientation: 'potrait',
                                                                 pageSize: 'A4',
                                                                 // download: 'open',
@@ -257,7 +311,7 @@ use CodeIgniter\I18n\Time;
                                                             },
                                                             {
                                                                 extend: 'print',
-                                                                messageTop: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?= $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
+                                                                messageTop: 'Tanggapan Responden | <?= $rIns['namaInstrumen']; ?> | <?= $role; ?> | <?php echo (empty($fullname)) ? '' : $fullname; ?> | <?= $email; ?> | (tgl pengisian: <?= $rIns['created_at']; ?>)',
 
                                                             },
                                                             {

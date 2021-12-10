@@ -108,18 +108,25 @@ class Response extends BaseController
             'lastActivity' => $this->userModel->lastActivity($id),
             'getPertanyaanByRespId' => $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespondenId),
 
-
         ];
         return view('admin/hasil-survei/response_responden', $data);
     }
 
     public function deleteResponden($id)
     {
-        $this->respondenModel->where('userID', $id)->delete();
         $this->responseModel->where('userID', $id)->delete();
 
         session()->setFlashdata('message', 'Responden berhasil dihapus');
 
         return redirect()->to('/admin/hasil-survei/responden');
+    }
+
+    public function deleteTanggapan($uniqueID)
+    {
+        $this->responseModel->where('uniqueID', $uniqueID)->delete();
+
+        session()->setFlashdata('message', 'Tanggapan berhasil dihapus');
+
+        return redirect()->back();
     }
 }

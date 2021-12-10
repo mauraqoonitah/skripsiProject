@@ -54,6 +54,7 @@ $routes->get('/admin', 'Admin::index', ['filter' => 'role:Admin,Kontributor']);
 $routes->get('/admin/hasil-survei/responden', 'Admin\Response::hasilResponden');
 $routes->get('/admin/hasilSurveiResponden/(:any)', 'Admin\Response::responseResponden/$1');
 $routes->delete('/admin/deleteResponden/(:any)', 'Admin\Response::deleteResponden/$1');
+$routes->delete('/admin/deleteTanggapan/(:any)', 'Admin\Response::deleteTanggapan/$1');
 
 
 //survei data per instrumen

@@ -144,6 +144,8 @@ class ResponseModel extends Model
             ->findAll();
     }
 
+
+
     public function getAllResponses($instrumenId, $questionID)
     {
         return $this
