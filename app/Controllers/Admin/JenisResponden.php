@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\AdminModel;
+use App\Models\KategoriModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
@@ -18,7 +18,7 @@ use Myth\Auth\Models\AuthGroupsModel;
 
 class JenisResponden extends BaseController
 {
-    protected $adminModel;
+    protected $kategoriModel;
     protected $instrumenModel;
     protected $pernyataanModel;
     protected $jenisRespondenModel;
@@ -34,7 +34,7 @@ class JenisResponden extends BaseController
 
     public function __construct()
     {
-        $this->adminModel = new AdminModel();
+        $this->kategoriModel = new KategoriModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();

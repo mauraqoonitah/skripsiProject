@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\AdminModel;
+use App\Models\KategoriModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
@@ -12,7 +12,7 @@ use App\Models\ResponseModel;
 
 class Kategori_ extends BaseController
 {
-    protected $adminModel;
+    protected $kategoriModel;
     protected $instrumenModel;
     protected $pernyataanModel;
     protected $jenisRespondenModel;
@@ -22,7 +22,7 @@ class Kategori_ extends BaseController
 
     public function __construct()
     {
-        $this->adminModel = new AdminModel();
+        $this->kategoriModel = new KategoriModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
@@ -33,12 +33,12 @@ class Kategori_ extends BaseController
 
     public function kelolaKategori_()
     {
-        // $category = $this->adminModel->findAll();
+        // $category = $this->kategoriModel->findAll();
 
         $data = [
             'title' => 'Kelola Kategori',
-            'category' => $this->adminModel->getCategory(),
-            'getPeruntukkan' => $this->adminModel->getPeruntukkan(),
+            'category' => $this->kategoriModel->getCategory(),
+            'getPeruntukkan' => $this->kategoriModel->getPeruntukkan(),
             'slug' => $this->mRequest->getVar('slug'),
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
@@ -55,8 +55,8 @@ class Kategori_ extends BaseController
 
         $data = [
             'title' => 'Export Data Kategori',
-            'category' => $this->adminModel->getCategory(),
-            'getPeruntukkan' => $this->adminModel->getPeruntukkan(),
+            'category' => $this->kategoriModel->getCategory(),
+            'getPeruntukkan' => $this->kategoriModel->getPeruntukkan(),
             'slug' => $this->mRequest->getVar('slug'),
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
@@ -71,11 +71,11 @@ class Kategori_ extends BaseController
 
         $data = [
             'title' => 'Detail Kategori',
-            'category' => $this->adminModel->getCategory($slug),
-            'allCategory' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory($slug),
+            'allCategory' => $this->kategoriModel->getCategory(),
             'jenisResponden' => $this->jenisRespondenModel->getJenisResponden(),
-            'peruntukkan' => $this->adminModel->getPeruntukkan(),
-            'getSelectedResponden' => $this->adminModel->getSelectedResponden($slug),
+            'peruntukkan' => $this->kategoriModel->getPeruntukkan(),
+            'getSelectedResponden' => $this->kategoriModel->getSelectedResponden($slug),
             'validation' => \Config\Services::validation()
         ];
         // dd($data);
@@ -95,15 +95,15 @@ class Kategori_ extends BaseController
         $peruntukkanCategory = $this->mRequest->getPost('peruntukkanCategory');
         $slug = url_title($this->mRequest->getPost('kodeCategory'), '-', true);
 
-        $oldCtg = $this->adminModel->getCategoryById($id);
+        $oldCtg = $this->kategoriModel->getCategoryById($id);
         foreach ($oldCtg as $row) {
             $oldSlug = $row['slug'];
             $uniqueID =  $row['uniqueID'];
         }
 
-        $oldSelectedResponden = $this->adminModel->getSelectedResponden($oldSlug);
+        $oldSelectedResponden = $this->kategoriModel->getSelectedResponden($oldSlug);
         // dd($oldSelectedResponden);
-        $sizeSlug = $this->adminModel->sizeSlug($oldSlug);
+        $sizeSlug = $this->kategoriModel->sizeSlug($oldSlug);
 
         // update nama kategori
         for ($i = 0; $i < $sizeSlug; $i++) {
@@ -114,7 +114,7 @@ class Kategori_ extends BaseController
                 'namaCategory' => $this->mRequest->getVar('namaCategory'),
                 'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
             );
-            $this->adminModel->updateBatch($data, 'uniqueID');
+            $this->kategoriModel->updateBatch($data, 'uniqueID');
         }
 
         // get selected value (old data)
@@ -136,7 +136,7 @@ class Kategori_ extends BaseController
                 ];
                 dd($add_val);
                 // var_dump($add_val . " ADDED <br>");
-                $this->adminModel->insert($data);
+                $this->kategoriModel->insert($data);
             }
         }
 
@@ -151,7 +151,7 @@ class Kategori_ extends BaseController
                     'peruntukkanCategory' => $remove_val,
                 ];
                 // var_dump($remove_val . " REMOVED <br>");
-                $this->adminModel->where($data)->delete();
+                $this->kategoriModel->where($data)->delete();
             }
         }
         session()->setFlashdata('message', ' Data Kategori Instrumen berhasil diubah');
@@ -164,7 +164,7 @@ class Kategori_ extends BaseController
 
         $data = [
             'title' => 'Tambah Data Kategori',
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
@@ -215,10 +215,10 @@ class Kategori_ extends BaseController
                     'peruntukkanCategory' => $peruntukkanCategory[$i],
                     'uniqueID' => $uniqueID,
                 ];
-            $this->adminModel->save($data);
+            $this->kategoriModel->save($data);
         }
 
-        session()->setFlashdata('message', 'Data kategori berhasil ditambahkan');
+        session()->setFlashdata('message', 'Kategori Instrumen berhasil ditambahkan');
 
         return redirect()->to('/admin/kelola-survei/instrumen_');
     }
@@ -226,7 +226,7 @@ class Kategori_ extends BaseController
     public function deleteKategori_($slug)
     {
 
-        $this->adminModel->where('slug', $slug)->delete();
+        $this->kategoriModel->where('slug', $slug)->delete();
 
         session()->setFlashdata('message', 'Data kategori berhasil dihapus');
 

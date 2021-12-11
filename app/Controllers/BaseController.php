@@ -48,7 +48,7 @@ class BaseController extends Controller
 		// E.g.: $this->session = \Config\Services::session();
 
 		// kalo dibutuhin semua controller,lebih baik taruh disini, contoh: 
-		// $this->adminModel = new \App\Models\AdminModel();
+		// $this->kategoriModel = new \App\Models\KategoriModel();
 
 		//session utk ambil inputan saat validation 
 		session();

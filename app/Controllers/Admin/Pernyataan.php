@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\AdminModel;
+use App\Models\KategoriModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
@@ -13,7 +13,7 @@ use App\Models\PetunjukInstrumenModel;
 
 class Pernyataan extends BaseController
 {
-    protected $adminModel;
+    protected $kategoriModel;
     protected $instrumenModel;
     protected $pernyataanModel;
     protected $jenisRespondenModel;
@@ -24,7 +24,7 @@ class Pernyataan extends BaseController
 
     public function __construct()
     {
-        $this->adminModel = new AdminModel();
+        $this->kategoriModel = new KategoriModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
@@ -40,7 +40,7 @@ class Pernyataan extends BaseController
         $data = [
             'title' => 'Kelola Butir Pernyataan',
             'pernyataan' => $this->pernyataanModel->getPernyataan(),
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
             'instrumen' => $this->instrumenModel->getInstrumen()
         ];
 
@@ -53,7 +53,7 @@ class Pernyataan extends BaseController
             'lihatPernyataan' => $this->pernyataanModel->getPernyataanByInstrumenID($id),
 
             'pernyataan' => $this->pernyataanModel->getPernyataan($id),
-            'category' => $this->adminModel->getCategory($id),
+            'category' => $this->kategoriModel->getCategory($id),
             'instrumen' => $this->instrumenModel->getInstrumen($id),
             'petunjukInstrumenModel' => $this->petunjukInstrumenModel->getPetunjukIns($id),
             'getPetunjukIns' => $this->petunjukInstrumenModel->getPetunjukIns($id),
@@ -97,7 +97,7 @@ class Pernyataan extends BaseController
         $data = [
             'title' => 'Tambah Data Butir Pernyataan',
             'pernyataan' => $this->pernyataanModel->getPernyataan(),
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
 
             'validation' => \Config\Services::validation()
 

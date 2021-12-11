@@ -5,14 +5,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class AdminModel extends Model
+class KategoriModel extends Model
 {
     protected $table      = 'category_instrumen';
     protected $userTimestamps = true;
-    protected $allowedFields = ['id', 'slug', 'namaCategory', 'kodeCategory', 'peruntukkanCategory', 'uniqueID'];
     protected $primaryKey = 'id';
-    //kalo ada parameternya, cari yg pake where tadi
-    // kalo gaada, ambil ssemua data kategori
+    protected $protectFields = false;
+
     public function getCategoryById($id)
     {
         return $this

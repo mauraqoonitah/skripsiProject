@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\AdminModel;
+use App\Models\KategoriModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
@@ -11,7 +11,7 @@ use App\Models\RespondenModel;
 
 class Admin extends BaseController
 {
-    protected $adminModel;
+    protected $kategoriModel;
     protected $instrumenModel;
     protected $pernyataanModel;
     protected $jenisRespondenModel;
@@ -22,7 +22,7 @@ class Admin extends BaseController
 
     public function __construct()
     {
-        $this->adminModel = new AdminModel();
+        $this->kategoriModel = new KategoriModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
@@ -37,7 +37,7 @@ class Admin extends BaseController
             'title' => 'Dashboard Admin',
             'totalResponden' => count($this->respondenModel->getRespondenList()),
             'totalInstrumen' => count($this->instrumenModel->getInstrumen()),
-            'totalKategori' => count($this->adminModel->getCategory()),
+            'totalKategori' => count($this->kategoriModel->getCategory()),
             'totalTanggapan' => count($this->responseModel->getTotalResponse()),
             'totalPernyataan' => count($this->pernyataanModel->getPernyataan()),
 

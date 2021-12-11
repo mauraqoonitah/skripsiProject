@@ -3,7 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\AdminModel;
+use App\Models\KategoriModel;
 use App\Models\ResponseModel;
 use App\Models\InstrumenModel;
 use App\Models\LaporanModel;
@@ -13,7 +13,7 @@ use App\Models\LaporanModel;
 class Analisis extends BaseController
 {
     protected $mRequest;
-    protected $adminModel;
+    protected $kategoriModel;
     protected $instrumenModel;
     protected $responseModel;
     protected $laporanModel;
@@ -23,7 +23,7 @@ class Analisis extends BaseController
     public function __construct()
     {
         $this->mRequest = service("request");
-        $this->adminModel = new AdminModel();
+        $this->kategoriModel = new KategoriModel();
         $this->instrumenModel = new InstrumenModel();
         $this->responseModel = new ResponseModel();
         $this->laporanModel = new LaporanModel();
@@ -32,7 +32,7 @@ class Analisis extends BaseController
     {
         $data = [
             'title' => 'Kelola Instrumen',
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
 
 
         ];
@@ -42,7 +42,7 @@ class Analisis extends BaseController
     {
         $data = [
             'title' => 'Laporan Survei Kepuasan',
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
             'getLaporanAnalisis' => $this->laporanModel->getLaporanAnalisis(),
             'validation' => \Config\Services::validation()
         ];
@@ -52,7 +52,7 @@ class Analisis extends BaseController
     {
         $data = [
             'title' => 'Laporan Survei Kepuasan',
-            'category' => $this->adminModel->getCategory($slug),
+            'category' => $this->kategoriModel->getCategory($slug),
             'getInstrumenBySlug' => $this->instrumenModel->getInstrumenByCtg($slug),
         ];
         return view('admin/analisis-survei/laporan_instrumen', $data);

@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
-use App\Models\AdminModel;
+use App\Models\KategoriModel;
 use App\Models\InstrumenModel;
 use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
@@ -12,7 +12,7 @@ use App\Models\ResponseModel;
 
 class Instrumen_ extends BaseController
 {
-    protected $adminModel;
+    protected $kategoriModel;
     protected $instrumenModel;
     protected $pernyataanModel;
     protected $jenisRespondenModel;
@@ -22,7 +22,7 @@ class Instrumen_ extends BaseController
 
     public function __construct()
     {
-        $this->adminModel = new AdminModel();
+        $this->kategoriModel = new KategoriModel();
         $this->instrumenModel = new InstrumenModel();
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
@@ -39,8 +39,8 @@ class Instrumen_ extends BaseController
             'instrumen' => $this->instrumenModel->getInstrumen(),
             'instrumenByCtg' => $this->instrumenModel->getInstrumenByCtg(),
             'joinInsCtg' => $this->instrumenModel->joinInsdanCtg(),
-            'category' => $this->adminModel->getCategory(),
-            'peruntukkan' => $this->adminModel->getPeruntukkan(),
+            'category' => $this->kategoriModel->getCategory(),
+            'peruntukkan' => $this->kategoriModel->getPeruntukkan(),
             'responden' => $this->jenisRespondenModel->getJenisResponden(),
 
             'validation' => \Config\Services::validation()
@@ -55,7 +55,7 @@ class Instrumen_ extends BaseController
             'title' => 'Export Data Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen(),
 
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
 
             'validation' => \Config\Services::validation()
         ];
@@ -67,7 +67,7 @@ class Instrumen_ extends BaseController
         $data = [
             'title' => 'Edit Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen($id),
-            'category' => $this->adminModel->getCategory(),
+            'category' => $this->kategoriModel->getCategory(),
 
 
             'validation' => \Config\Services::validation()
@@ -158,7 +158,7 @@ class Instrumen_ extends BaseController
         $data = [
             'title' => 'Tambah Data Instrumen',
             'instrumen' => $this->instrumenModel->getInstrumen($slug),
-            'category' => $this->adminModel->getCategory($slug),
+            'category' => $this->kategoriModel->getCategory($slug),
 
             'validation' => \Config\Services::validation()
 
