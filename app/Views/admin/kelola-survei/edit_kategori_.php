@@ -84,6 +84,9 @@
                             <div class="collapse" id="popover-kode-kategori">
                                 <p class="text-secondary">
                                     <b>Kategori yang terdaftar :</b>
+                                    <?php if (empty($allCategory)) : ?>
+                                        <span><i>Data tidak tersedia.</i></span>
+                                    <?php endif; ?>
                                 <ul>
                                     <?php foreach ($allCategory as $ctg) :  ?>
                                         <li class="text-secondary">

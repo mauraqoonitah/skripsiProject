@@ -152,14 +152,14 @@ $routes->post('/admin/updateInsDosen/(:any)', 'Admin\kelolaAkun::updateInsDosen/
 
 
 // responden
-$routes->get('/responden/isiDataDiri/(:any)', 'Responden\DataDiri::isiDataDiri/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
-$routes->post('/responden/updateDataDiri/(:any)', 'Responden\DataDiri::updateDataDiri/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
-$routes->delete('/responden/deleteColumnDataDiri/(:any)', 'Responden\DataDiri::deleteColumnDataDiri/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+$routes->get('/responden/isiDataDiri/(:any)', 'Responden\DataDiri::isiDataDiri/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+$routes->post('/responden/updateDataDiri/(:any)', 'Responden\DataDiri::updateDataDiri/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
+$routes->delete('/responden/deleteColumnDataDiri/(:any)', 'Responden\DataDiri::deleteColumnDataDiri/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti, Pengabdi,Pengguna Lulusan']);
 
-$routes->get('/responden', 'Responden\Response::index', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
-$routes->get('/responden/riwayatSurvei/(:any)', 'Responden\Response::riwayatSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
-$routes->post('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
-$routes->post('/responden/saveSurvei/(:any)', 'Responden\Response::saveSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Pendidik,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
+$routes->get('/responden', 'Responden\Response::index', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
+$routes->get('/responden/riwayatSurvei/(:any)', 'Responden\Response::riwayatSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
+$routes->post('/responden/isiSurvei/(:any)', 'Responden\Response::isiSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
+$routes->post('/responden/saveSurvei/(:any)', 'Responden\Response::saveSurvei/$1', ['filter' => 'role:Admin,Kontributor,Dosen,Tenaga Kependidikan,Mahasiswa,Alumni/Lulusan,Mitra,Peneliti,Pengabdi,Pengguna Lulusan']);
 
 
 

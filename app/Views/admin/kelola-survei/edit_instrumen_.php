@@ -88,6 +88,9 @@
                                 ?>
                                 <p class="text-secondary">
                                     <b>Kode Instrumen yang sudah terdaftar untuk kategori instrumen ini :</b>
+                                    <?php if (empty($instrumenBySlug)) : ?>
+                                        <span><i>Data tidak tersedia.</i></span>
+                                    <?php endif; ?>
                                 <ul>
                                     <?php foreach ($instrumenBySlug as $kodeIns) :  ?>
                                         <li class="text-secondary">
@@ -141,6 +144,9 @@
                             <div class="collapse" id="popover-responden-kategori">
                                 <p class=" text-secondary">
                                     <b>Responden yang sudah terdaftar untuk kategori instrumen ini :</b>
+                                    <?php if (empty($peruntukkanInsBySlug)) : ?>
+                                        <span><i>Data tidak tersedia.</i></span>
+                                    <?php endif; ?>
                                 <ul>
                                     <?php foreach ($peruntukkanInsBySlug as $respondenCtg) :  ?>
                                         <li class="text-secondary"><?= $respondenCtg['peruntukkanInstrumen']; ?>
