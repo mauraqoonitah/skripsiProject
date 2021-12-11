@@ -21,16 +21,6 @@
 
     <section class="content">
         <div class="container-fluid">
-            <!-- jika belum ada responden -->
-            <?php if (empty($category)) : ?>
-                <div class="row mb-4">
-                    <div class="mx-auto col-lg-3 col-sm-3">
-                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                    </div>
-                    <p class="text-center my-4 fs-5 text-rouge"> Data belum ditambahkan.</p>
-                </div>
-            <?php endif; ?>
-
             <!-- flash success tambah data  -->
             <?php if (session()->getFlashdata('message')) :  ?>
                 <div class="col-lg-12">
@@ -67,6 +57,7 @@
             <!-- ./ flash gagal tambah data  -->
 
             <div class="card">
+
                 <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4">
                     <h5> Kategori </h5>
                     <?php if (in_groups('Admin')) : ?>
@@ -159,6 +150,17 @@
                 <?php endif; ?>
 
                 <div class="card-body">
+                    <!-- if no results found -->
+                    <?php if (empty($category)) : ?>
+                        <div class="row my-4">
+                            <div class="mx-auto col-lg-3 col-sm-3">
+                                <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                            </div>
+                            <p class="text-center my-4 fs-6 text-rouge"> Data belum ditambahkan.</p>
+                        </div>
+                    <?php endif; ?>
+
+
                     <div class="accordion accordion-flush mx-auto" id="accordionExample">
                         <?php foreach ($category as $ctg) : ?>
                             <div class="accordion-item mt-3 mb-5">

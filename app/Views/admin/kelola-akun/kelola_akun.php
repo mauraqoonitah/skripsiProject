@@ -317,6 +317,17 @@ use CodeIgniter\I18n\Time;
                                         <h3 class="card-title">Survei Instrumen Kepuasan yang dapat diisi oleh Responden: Dosen</h3>
                                     </div>
 
+                                    <!-- if no results found -->
+                                    <?php if (sizeof($instrumenByResponden) === 0) : ?>
+                                        <div class="row my-5">
+                                            <div class="mx-auto col-lg-3 col-sm-3">
+                                                <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                                            </div>
+                                            <p class="text-center mt-4 fs-6 text-rouge">Data tidak tersedia. <br>Dosen belum mengisi survei.</p>
+                                        </div>
+                                    <?php endif; ?>
+
+
                                     <div class="accordion" id="accordionExample">
 
                                         <?php foreach ($instrumenByResponden as $insDosen) : ?>

@@ -30,21 +30,22 @@ use CodeIgniter\I18n\Time;
             <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
             <!-- ./ flash success tambah data  -->
 
-            <!-- jika belum ada responden -->
-            <?php if (sizeof($responden) === 0) : ?>
-                <div class="row mb-4">
-                    <div class="mx-auto col-lg-3 col-sm-3">
-                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                    </div>
-                    <p class="text-center my-4 fs-5 text-rouge">Responden belum mengisi survei.</p>
-                </div>
-            <?php endif; ?>
-
             <!-- DataTales Example -->
             <div class="card shadow mb-4 shadow">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-rouge">Hasil Survei Per-Responden</h6>
                 </div>
+
+                <!-- if no results found -->
+                <?php if (sizeof($responden) === 0) : ?>
+                    <div class="row my-4">
+                        <div class="mx-auto col-lg-3 col-sm-3">
+                            <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                        </div>
+                        <p class="text-center my-4 fs-6 text-rouge">Data tidak tersedia. <br>Responden belum mengisi survei.</p>
+                    </div>
+                <?php endif; ?>
+
                 <div class="card-body">
                     <div class="p-0">
                         <div class="table-responsive">

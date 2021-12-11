@@ -23,15 +23,6 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- jika belum ada data -->
-            <?php if (empty($responden)) : ?>
-                <div class="row mb-4">
-                    <div class="mx-auto col-lg-3 col-sm-3">
-                        <img src="<?= base_url(); ?>/img/.svg" class="img-fluid" />
-                    </div>
-                    <p class="text-center my-4 fs-5 text-rouge">Kategori Responden belum ditambahkan.</p>
-                </div>
-            <?php endif; ?>
 
             <!-- flash success tambah data  -->
             <div class="flash-data" data-flashdata="<?= session()->getFlashdata('message'); ?>"></div>
@@ -54,6 +45,7 @@
             <!-- ./ flash gagal tambah data  -->
 
             <div class="card">
+
                 <div class="card-body pb-5 mt-2">
                     <?php if (in_groups('Admin')) : ?>
                         <!-- Button trigger modal -->
@@ -99,10 +91,20 @@
                     <?php endif; ?>
                     <!-- end modal tambah kategori -->
 
+                    <!-- if no results found -->
+                    <?php if (empty($responden)) : ?>
+                        <div class="row my-4">
+                            <div class="mx-auto col-lg-3 col-sm-3">
+                                <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                            </div>
+                            <p class="text-center my-4 fs-6 text-rouge">Kategori Responden belum ditambahkan.</p>
+                        </div>
+                    <?php endif; ?>
+
                     <!-- datatables -->
                     <div class="table-responsive">
                         <table id="table-jenis-responden" class="display table-hover table-bordered compact">
-                            <thead class="card-header py-3 text-rouge fs-6">
+                            <thead class="card-header py-3">
                                 <tr>
                                     <th>Kategori Responden</th>
                                     <th class="text-center ">Jumlah Responden</th>

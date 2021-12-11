@@ -25,20 +25,21 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- jika belum ada response -->
-            <?php if (sizeof($response) === 0) : ?>
-                <div class="row mb-4">
-                    <div class="mx-auto col-lg-3 col-sm-3">
-                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
-                    </div>
-                    <p class="text-center my-4 fs-5 text-rouge">Responden belum mengisi survei.</p>
-                </div>
-            <?php endif; ?>
-
             <div class="col-12">
                 <div class="alert alert-primary fw-bold mb-3ft" role="alert">
                     Pilih instrumen untuk melihat tanggapan responden</div>
             </div>
+
+            <!-- if no results found -->
+            <?php if (sizeof($response) === 0) : ?>
+                <div class="row my-4">
+                    <div class="mx-auto col-lg-3 col-sm-3">
+                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                    </div>
+                    <p class="text-center my-4 fs-6 text-rouge">Data tidak tersedia. <br>Responden belum mengisi survei.</p>
+                </div>
+            <?php endif; ?>
+
 
             <div class="container">
                 <div class="list-group center">

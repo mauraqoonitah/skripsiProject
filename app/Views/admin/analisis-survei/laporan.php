@@ -198,6 +198,15 @@ use CodeIgniter\I18n\Time;
             <div class="alert alert-primary fw-bold mt-5" role="alert">
                 <strong class=" fs-6">Pilih Kategori untuk Melihat Hasil Analisis Instrumen Kepuasan </strong>
             </div>
+            <!-- if no results found -->
+            <?php if (sizeof($category) === 0) : ?>
+                <div class="row my-5">
+                    <div class="mx-auto col-lg-3 col-sm-3">
+                        <img src="<?= base_url(); ?>/img/undraw_void.svg" class="img-fluid" />
+                    </div>
+                    <p class="text-center my-4 fs-6 text-rouge">Data tidak tersedia. <br>Kategori instrumen belum ditambahkan.</p>
+                </div>
+            <?php endif; ?>
 
             <div class="col-lg-8">
                 <div class="list-group center">
