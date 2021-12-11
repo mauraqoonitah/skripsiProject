@@ -46,11 +46,6 @@ class Admin extends BaseController
     }
 
 
-    // ---------------- MENU HASIL SURVEI - INSTRUMEN --------------------------
-
-
-    // ---------------- MENU KELOLA SURVEI --------------------------
-
     // --------------------------- kelola responden ---------------------------------------------
     public function kelolaResponden()
     {

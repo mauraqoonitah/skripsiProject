@@ -22,12 +22,6 @@
                         <a class=" nav-link" href="<?= base_url('admin'); ?>"> Admin</a>
                     </li>
                 <?php endif; ?>
-                <?php if (in_groups('Dosen')) : ?>
-                    <li class="nav-item">
-                        <a class=" nav-link" href="<?= base_url('responden'); ?>"> Isi Survei</a>
-                    </li>
-                <?php endif; ?>
-
                 <?php if (logged_in()) : ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= base_url('logout'); ?>">Logout</a>

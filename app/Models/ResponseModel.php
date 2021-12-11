@@ -29,8 +29,9 @@ class ResponseModel extends Model
         if ($id == false) {
             return $this
                 ->orderBy('id', 'desc')
-                ->groupBy('questionID')
+                ->groupBy('uniqueID')
                 ->findAll();
+
         }
 
         return $this->where(['id' => $id])->first();

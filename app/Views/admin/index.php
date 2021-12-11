@@ -48,9 +48,24 @@
                                     <p>Responden</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-user-check"></i>
                                 </div>
                                 <a href="<?= base_url(); ?>/admin/hasil-survei/responden" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-cosmic">
+                                <div class="inner text-white">
+                                    <h3><?= $totalTanggapan; ?></h3>
+                                    <p>Tanggapan</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-reply-all"></i>
+                                </div>
+                                <a href="<?= base_url(); ?>/admin/hasil-survei/instrumen" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -63,7 +78,7 @@
                                     <p>Instrumen Kepuasan</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-clipboard-list"></i>
                                 </div>
                                 <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
@@ -78,7 +93,7 @@
                                     <p>Butir Pernyataan</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fas fa-users"></i>
+                                    <i class="fas fa-tasks"></i>
                                 </div>
                                 <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>

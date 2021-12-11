@@ -8,8 +8,7 @@ class InstrumenModel extends Model
 {
     protected $table      = 'instrumen';
     protected $userTimestamps = true;
-    protected $allowedFields = ['slug', 'kodeCategory', 'kodeInstrumen', 'tampil_grafik', 'namaInstrumen', 'peruntukkanInstrumen'];
-    protected $useTimestamps = true;
+    protected $protectFields = false;
 
 
     public function getInstrumen($id = false)
