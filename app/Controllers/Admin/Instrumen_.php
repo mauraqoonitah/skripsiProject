@@ -169,39 +169,29 @@ class Instrumen_ extends BaseController
     public function saveInstrumen_()
     {
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
-        $peruntukkanInstrumen = $this->mRequest->getVar('peruntukkanInstrumen');
-        // dd($peruntukkanInstrumen);
 
         // validasi input
-        // if (!$this->validate([
-        //     'kodeInstrumen' => [
-        //         'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
-        //         'errors' => [
-        //             'required' => 'Kode Instrumen harus diisi.',
-        //             'is_unique' => 'Kode Instrumen sudah terdaftar.'
-        //         ]
-        //     ],
-        //     'peruntukkanInstrumen' => [
-        //         'rules'  => 'required|is_unique[instrumen.peruntukkanInstrumen]',
-        //         'errors' => [
-        //             'required' => 'Nama Instrumen harus diisi.',
-        //             'is_unique' => 'Peruntukkan Instrumen sudah terdaftar.'
-        //         ]
-        //     ],
-        //     'namaInstrumen' => [
-        //         'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
-        //         'errors' => [
-        //             'required' => 'Nama Instrumen harus diisi.',
-        //             'is_unique' => 'Nama Instrumen sudah terdaftar.'
-        //         ]
-        //     ],
+        if (!$this->validate([
+            'kodeInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.kodeInstrumen]',
+                'errors' => [
+                    'required' => 'Kode Instrumen harus diisi.',
+                    'is_unique' => 'Kode Instrumen sudah terdaftar.'
+                ]
+            ],
+            'namaInstrumen' => [
+                'rules'  => 'required|is_unique[instrumen.namaInstrumen]',
+                'errors' => [
+                    'required' => 'Nama Instrumen harus diisi.',
+                    'is_unique' => 'Nama Instrumen sudah terdaftar.'
+                ]
+            ],
 
-        // ])) {
-        //     session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen pada kategori sudah pernah terdaftar.');
+        ])) {
+            session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen pada kategori sudah pernah terdaftar.');
 
-        //     // return redirect()->to('/admin/kelola-survei/instrumen_')->withInput();
-        //     return redirect()->to('/admin/kelola-survei/tambah_instrumen_/' . $slug)->withInput();
-        // }
+            return redirect()->to('/admin/kelola-survei/instrumen_')->withInput();
+        }
 
         $data =
             [
