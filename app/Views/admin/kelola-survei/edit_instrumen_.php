@@ -87,7 +87,7 @@
                                 $instrumenBySlug =  $this->instrumenModel->getInstrumenByCtg($slug);
                                 ?>
                                 <p class="text-secondary">
-                                    <b>Kode Instrumen yang terdaftar pada kategori ini :</b>
+                                    <b>Kode Instrumen yang sudah terdaftar untuk kategori instrumen ini :</b>
                                 <ul>
                                     <?php foreach ($instrumenBySlug as $kodeIns) :  ?>
                                         <li class="text-secondary">
@@ -140,7 +140,7 @@
                             </div>
                             <div class="collapse" id="popover-responden-kategori">
                                 <p class=" text-secondary">
-                                    <b>Responden yang terdaftar pada kategori ini :</b>
+                                    <b>Responden yang sudah terdaftar untuk kategori instrumen ini :</b>
                                 <ul>
                                     <?php foreach ($peruntukkanInsBySlug as $respondenCtg) :  ?>
                                         <li class="text-secondary"><?= $respondenCtg['peruntukkanInstrumen']; ?>

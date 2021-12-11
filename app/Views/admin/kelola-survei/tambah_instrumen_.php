@@ -74,10 +74,35 @@
                             <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2" value="<?= old('kodeInstrumen'); ?>">
+                                <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" value="<?= old('kodeInstrumen'); ?>" required>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('kodeInstrumen'); ?>
                                 </div>
+
+                                <!-- popover -->
+                                <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-kode-instrumen" aria-expanded="false" aria-controls="popover-kode-instrumen" style="cursor: pointer;">
+                                    <i class="fas fa-info"></i>
+                                </span>
+
+                            </div>
+                            <div class="collapse" id="popover-kode-instrumen">
+                                <?php
+                                $slug = $category['slug'];
+                                $instrumenModel = model('InstrumenModel');
+                                $this->instrumenModel = new $instrumenModel;
+                                $instrumenBySlug =  $this->instrumenModel->getInstrumenByCtg($slug);
+                                ?>
+                                <p class="text-secondary">
+                                    <b>Kode Instrumen yang sudah terdaftar untuk kategori instrumen ini :</b>
+                                <ul>
+                                    <?php foreach ($instrumenBySlug as $kodeIns) :  ?>
+                                        <li class="text-secondary">
+                                            <?= $kodeIns['kodeInstrumen'] . ' (' .  $kodeIns['namaInstrumen'] . ')'; ?>
+                                        </li>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </ul>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -90,14 +115,18 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><?= $category['namaCategory']; ?> oleh </span>
-                                <select class="form-select form-select-lg <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" name="namaInstrumen" id="peruntukkanIns" onChange="getText()">
+                                <select class="form-select form-select-lg <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" name="namaInstrumen" id="peruntukkanIns" onChange="getText()" required>
                                     <?php
                                     $db = db_connect();
                                     $slug = $category['slug'];
 
                                     $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
 
-                                    $peruntukkan =  $db->query($sql, [$slug]);
+                                    $peruntukkan =  $db->query($sql, [$slug]); ?>
+
+                                    <option selected disabled value="">Pilih...</option>
+
+                                    <?php
                                     foreach ($peruntukkan->getResultArray() as $row) : ?>
 
                                         <option value="<?= $category['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?>"><?= $row['peruntukkanCategory']; ?></option>
@@ -109,10 +138,29 @@
                                 <div class=" invalid-feedback">
                                     <?= $validation->getError('namaInstrumen'); ?>
                                 </div>
+                                <span class="input-group-text" data-bs-toggle="collapse" data-bs-target="#popover-responden-kategori" aria-expanded="false" aria-controls="popover-responden-kategori" style="cursor: pointer;">
+                                    <i class="fas fa-info"></i>
+                                </span>
+
+
                                 <!--  peruntukkan instrumen -->
                                 <input type="hidden" name="peruntukkanInstrumen" id="peruntukkanInsTxt" />
                                 <!-- ./peruntukkan instrumen -->
+                                <?php $peruntukkanInsBySlug =  $this->instrumenModel->getPeruntukkanBySlug($slug);
+                                ?>
 
+
+                            </div>
+                            <div class="collapse" id="popover-responden-kategori">
+                                <p class=" text-secondary">
+                                    <b>Responden yang sudah terdaftar untuk kategori instrumen ini :</b>
+                                <ul>
+                                    <?php foreach ($peruntukkanInsBySlug as $respondenCtg) :  ?>
+                                        <li class="text-secondary"><?= $respondenCtg['peruntukkanInstrumen']; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -142,6 +190,7 @@
         var option = select.options[select.selectedIndex];
 
         document.getElementById('peruntukkanInsTxt').value = option.text;
+        console.log(document.getElementById('peruntukkanInsTxt').value);
     }
 
     getText();

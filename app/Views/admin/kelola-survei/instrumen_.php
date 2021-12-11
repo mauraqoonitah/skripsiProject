@@ -342,91 +342,11 @@
 
                                                                 <?php if (in_groups('Admin')) : ?>
                                                                     <!-- Button trigger modal -->
-                                                                    <button type="button" class="btn btn-sm btn-success my-3" data-bs-toggle="modal" data-bs-target="#modal-tambah-instrumen-<?= $ctg['slug']; ?>">
-                                                                        <i class=" fas fa-plus"></i> Tambah Instrumen
-                                                                    </button>
-                                                                    <!-- modal tambah instrumen -->
-                                                                    <div class="modal fade" id="modal-tambah-instrumen-<?= $ctg['slug']; ?>" tabindex="-1" aria-hidden="true">
-                                                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                                                                            <div class="modal-content">
-                                                                                <div class="modal-header bg-cosmic text-white ">
-                                                                                    <h5 class="modal-title text-center">Tambah Instrumen</h5>
-                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                                </div>
-                                                                                <div class="modal-body">
-                                                                                    <!-- form tambah instrumen -->
-                                                                                    <form action="<?= base_url(); ?>/admin/saveInstrumen_/<?= $ctg['slug']; ?>" method="post" id="form">
-                                                                                        <?= csrf_field(); ?>
-
-                                                                                        <!--  kode kategori -->
-                                                                                        <div class="col-sm-10">
-                                                                                            <input type="hidden" class="form-control" value="<?= $ctg['kodeCategory']; ?>" name="kodeCategory">
-                                                                                        </div>
-                                                                                        <!--  ./kode kategori -->
-
-                                                                                        <!-- kode instrumen -->
-                                                                                        <div class="form-group">
-                                                                                            <div class="mb-3 row">
-                                                                                                <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
-
-                                                                                                <div class="input-group mb-3">
-                                                                                                    <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" placeholder="C.4.2" value="<?= old('kodeInstrumen'); ?>">
-                                                                                                    <div class="invalid-feedback">
-                                                                                                        <?= $validation->getError('kodeInstrumen'); ?>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <!-- ./kode instrumen -->
-
-                                                                                        <!-- PILIH nama instrumen -->
-                                                                                        <div class="form-group">
-                                                                                            <div class="mb-3 row">
-                                                                                                <label for="namaInstrumen" class="col-form-label">Nama instrumen:</label>
-
-                                                                                                <div class="input-group mb-3">
-                                                                                                    <span class="input-group-text"><?= $ctg['namaCategory']; ?> oleh </span>
-                                                                                                    <select class="form-select form-select-lg <?= ($validation->hasError('namaInstrumen')) ? 'is-invalid' : ''; ?>" name="namaInstrumen" id="peruntukkanIns" onChange="getText()">
-                                                                                                        <?php
-                                                                                                        $db = db_connect();
-                                                                                                        $slug = $ctg['slug'];
-
-                                                                                                        $sql = "SELECT peruntukkanCategory FROM category_instrumen WHERE slug = ?";
-
-                                                                                                        $peruntukkan =  $db->query($sql, [$slug]);
-                                                                                                        foreach ($peruntukkan->getResultArray() as $row) : ?>
-
-                                                                                                            <option value="<?= $ctg['namaCategory']; ?> oleh <?= $row['peruntukkanCategory']; ?>"><?= $row['peruntukkanCategory']; ?></option>
-
-                                                                                                            <?php $selected_peruntukkan = $row['peruntukkanCategory'];
-                                                                                                            ?>
-                                                                                                        <?php endforeach; ?>
-                                                                                                    </select>
-                                                                                                    <div class=" invalid-feedback">
-                                                                                                        <?= $validation->getError('namaInstrumen'); ?>
-                                                                                                    </div>
-                                                                                                    <!--  peruntukkan instrumen -->
-                                                                                                    <input type="hidden" name="peruntukkanInstrumen" id="peruntukkanInsTxt" />
-                                                                                                    <!-- ./peruntukkan instrumen -->
-
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <!-- ./PILIH nama instrumen -->
-
-                                                                                        <div class="d-flex align-items-center">
-                                                                                            <button type="submit" class="btn btn-success ml-auto mt-3">
-                                                                                                <i class="fas fa-save"></i> Simpan
-                                                                                            </button>
-                                                                                        </div>
-                                                                                    </form>
-                                                                                    <!-- end form tambah instrmen -->
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- end modal tambah kategori -->
-
+                                                                    <a href="<?= base_url(); ?>/admin/kelola-survei/tambah_instrumen_/<?= $ctg['slug']; ?>">
+                                                                        <button type="button" class="btn btn-sm btn-success my-3">
+                                                                            <i class=" fas fa-plus"></i> Tambah Instrumen
+                                                                        </button>
+                                                                    </a>
                                                                 <?php endif; ?>
                                                             </div>
                                                             <!-- content collapse - instrumen  -->
@@ -449,18 +369,6 @@
     </section>
     <!-- /.content -->
 </div>
-
-<script type="text/javascript">
-    function getText() {
-        var select = document.getElementById('peruntukkanIns');
-        var option = select.options[select.selectedIndex];
-
-        document.getElementById('peruntukkanInsTxt').value = option.text;
-    }
-
-    getText();
-</script>
-
 
 
 <?= $this->endSection(); ?>

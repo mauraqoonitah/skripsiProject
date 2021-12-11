@@ -190,7 +190,7 @@ class Instrumen_ extends BaseController
         ])) {
             session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen pada kategori sudah pernah terdaftar.');
 
-            return redirect()->to('/admin/kelola-survei/instrumen_')->withInput();
+            return redirect()->to('/admin/kelola-survei/tambah_instrumen_/' . $slug)->withInput();
         }
 
         $data =
