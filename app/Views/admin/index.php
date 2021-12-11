@@ -5,18 +5,20 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header p-4">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
+                <div class="col-lg-8">
                     <?php if (in_groups('Admin')) : ?>
-                        <h1>Dashboard Admin GPjM</h1>
+                        <h3>Dashboard Instrumen Kepuasan</h3>
+                        <h4 class="text-muted">Admin GPjM</h4>
                     <?php endif; ?>
                     <?php if (in_groups('Kontributor')) : ?>
-                        <h1>Dashboard Admin Kontributor</h1>
+                        <h3>Dashboard Instrumen Kepuasan</h3>
+                        <h4 class="text-muted">Admin Kontributor</h4>
                     <?php endif; ?>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>

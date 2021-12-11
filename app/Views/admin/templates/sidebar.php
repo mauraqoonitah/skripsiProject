@@ -16,6 +16,9 @@
         <div class="user-panel mt-3 pb-3 mb-3">
             <?php if (user()->fullname) :  ?>
                 <i class="nav-icon fas fa-user mr-2 ml-4"></i> <?= user()->fullname; ?><br>
+            <?php else : ?>
+                <i class="nav-icon fas fa-user mr-2 ml-4"></i> <?= user()->username; ?><br>
+
             <?php endif; ?>
         </div>
 
@@ -85,14 +88,14 @@
                         </p>
                     </a>
                 </li>
-                    <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mb-2"> </div>
-                    <li class="nav-item">
-                        <a href="<?= base_url(); ?>/admin/kelolaAkun" class="nav-link <?= $uri->getSegment(2) == 'kelolaAkun' ? 'active"' : '' ?>">
-                            <i class="nav-icon fas fa-user-plus mx-2"></i>Kelola Akses Akun<br>
-                            </p>
-                        </a>
-                    </li>
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mb-2"> </div>
+                <li class="nav-item">
+                    <a href="<?= base_url(); ?>/admin/kelolaAkun" class="nav-link <?= $uri->getSegment(2) == 'kelolaAkun' ? 'active"' : '' ?>">
+                        <i class="nav-icon fas fa-user-plus mx-2"></i>Kelola Akses Akun<br>
+                        </p>
+                    </a>
+                </li>
 
                 <div class="user-panel mb-2"> </div>
 
