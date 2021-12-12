@@ -121,7 +121,7 @@ use CodeIgniter\I18n\Time;
                         ?>
 
                         <?php
-                        $date = Time::parse($getUser->date, 'Asia/Jakarta');
+                        $time = Time::parse($getUser->date);
                         ?>
 
                         <div class="container">
@@ -133,7 +133,7 @@ use CodeIgniter\I18n\Time;
                                             <span class="username">
                                                 <span class="fw-bold text-primary"><?= $dataUser->username; ?></span>
                                                 <span class="small text-muted"> | <?= $dataUser->email; ?></span>
-                                                <p class="fw-bold small">Last login - <?= $date->toLocalizedString(' HH:mm, d MMM yyyy'); ?></p>
+                                                <p class="fw-bold small">Last login - <?= $time->humanize(); ?></p>
                                             </span>
                                         </div>
                                     </div>
