@@ -134,7 +134,6 @@ class Kategori_ extends BaseController
                     'namaCategory' => $this->mRequest->getVar('namaCategory'),
                     'peruntukkanCategory' => $add_val,
                 ];
-                dd($add_val);
                 // var_dump($add_val . " ADDED <br>");
                 $this->kategoriModel->insert($data);
             }

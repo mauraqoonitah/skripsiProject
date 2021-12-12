@@ -74,6 +74,9 @@
                             <label for="kode-instrumen" class="col-form-label">Kode instrumen:</label>
 
                             <div class="input-group mb-3">
+                                <span class="input-group-text"><?= $category['kodeCategory']; ?>.</span>
+                                <input type="hidden" name="kodeCategory" value="<?= $category['kodeCategory']; ?>">
+
                                 <input type="text" class="form-control <?= ($validation->hasError('kodeInstrumen')) ? 'is-invalid' : ''; ?>" id="kodeInstrumen" name="kodeInstrumen" value="<?= old('kodeInstrumen'); ?>" required>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('kodeInstrumen'); ?>
@@ -127,7 +130,7 @@
 
                                     $peruntukkan =  $db->query($sql, [$slug]); ?>
 
-                                    <option selected disabled value="">Pilih...</option>
+                                    <option selected disabled>Pilih...</option>
 
                                     <?php
                                     foreach ($peruntukkan->getResultArray() as $row) : ?>

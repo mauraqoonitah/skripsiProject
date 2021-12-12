@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class ResponseModel extends Model
 {
     protected $table      = 'response';
-    protected $userTimestamps = true;
+    protected $useTimestamps = true;
     protected $allowedFields = ['questionID', 'kodeInstrumen', 'instrumenID', 'slug', 'jawaban', 'responden', 'userID', 'uniqueID', 'created_at'];
 
     //kalo ada parameternya, cari yg pake where tadi
@@ -31,7 +31,6 @@ class ResponseModel extends Model
                 ->orderBy('id', 'desc')
                 ->groupBy('uniqueID')
                 ->findAll();
-
         }
 
         return $this->where(['id' => $id])->first();

@@ -8,7 +8,7 @@ use CodeIgniter\Model;
 class KategoriModel extends Model
 {
     protected $table      = 'category_instrumen';
-    protected $userTimestamps = true;
+    protected $useTimestamps = true;
     protected $primaryKey = 'id';
     protected $protectFields = false;
 

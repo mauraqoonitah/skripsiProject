@@ -58,6 +58,7 @@ class KelolaAkun extends BaseController
 
             'validation' => \Config\Services::validation()
         ];
+        // dd($data);
         return view('admin/kelola-akun/kelola_akun', $data);
     }
 

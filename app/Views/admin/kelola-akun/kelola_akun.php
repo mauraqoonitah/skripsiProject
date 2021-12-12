@@ -32,22 +32,7 @@ use CodeIgniter\I18n\Time;
     <section class="content">
         <div class="container-fluid">
 
-            <!-- flash success tambah data  -->
-            <?php if (session()->getFlashdata('message')) :  ?>
-                <div class="alert alert-success d-flex align-items-center fw-bold" role="alert">
-                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-                        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                        </symbol>
-                        <use xlink:href="#check-circle-fill" />
-                    </svg>
-                    <div class="fs-6">
-                        <?= session()->getFlashData('message'); ?>
-                    </div>
-                </div>
-            <?php endif; ?>
 
-            <!-- ./ flash success tambah data  -->
 
             <!-- flash gagal tambah data  -->
             <?php if (session()->getFlashdata('messageError')) :  ?>
@@ -65,6 +50,26 @@ use CodeIgniter\I18n\Time;
             <?php endif; ?>
             <!-- ./ flash gagal tambah data  -->
 
+            <?php if (!empty(view('Myth\Auth\Views\_message_block'))) : ?>
+                <?= view('Myth\Auth\Views\_message_block') ?>
+            <?php else : ?>
+                <!-- flash success tambah data  -->
+                <?php if (session()->getFlashdata('message')) :  ?>
+                    <div class="alert alert-success d-flex align-items-center fw-bold" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </symbol>
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div class="fs-6">
+                            <?= session()->getFlashData('message'); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <!-- ./ flash success tambah data  -->
+            <?php endif; ?>
 
             <div class="card card-primary card-outline card-outline-tabs">
                 <div class="card-header p-0 border-bottom-0">
@@ -331,15 +336,16 @@ use CodeIgniter\I18n\Time;
                                     <div class="accordion" id="accordionExample">
 
                                         <?php foreach ($instrumenByResponden as $insDosen) : ?>
+                                            <?php $kodeIns = str_replace('.', '', $insDosen['kodeInstrumen']);
+                                            ?>
                                             <div class="accordion-item my-3">
                                                 <h5 class="accordion-header" id="headingOne">
-                                                    <button class="accordion-button rounded d-flex align-items-center col-lg-12" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIns-<?= $insDosen['slug']; ?>" aria-expanded="true" aria-controls="collapseIns-<?= $insDosen['slug']; ?>">
+                                                    <button class="accordion-button rounded d-flex align-items-center col-lg-12" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIns-<?= $kodeIns; ?>" aria-expanded="true" aria-controls="collapseIns-<?= $kodeIns; ?>">
                                                         <span class="fw-bold fs-6"> <?= $insDosen['kodeInstrumen']; ?> - <?= $insDosen['namaInstrumen']; ?></span>
-
                                                     </button>
                                                 </h5>
 
-                                                <div id="collapseIns-<?= $insDosen['slug']; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                <div id="collapseIns-<?= $kodeIns; ?>" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                                     <div class="accordion-body">
                                                         <div class="table-responsive">
                                                             <?php $permissionNameDosen = $insDosen['id']; ?>
@@ -359,13 +365,13 @@ use CodeIgniter\I18n\Time;
                                                                 <?php
                                                                 $db = db_connect();
                                                                 $name = $permissionNameDosen;
+                                                                // dd($name);
                                                                 $sql = "SELECT * FROM auth_permissions WHERE name = ? ";
                                                                 $getAuthPermissions =  $db->query($sql, [$name]);
                                                                 $i = 1;
 
                                                                 foreach ($getAuthPermissions->getResultArray() as $getPermissionId) {
                                                                     $permissionId = $getPermissionId['id'];
-                                                                    // echo "permission id " . $permissionId;
                                                                 }
                                                                 ?>
                                                                 <?php if (in_groups('Admin')) : ?>
@@ -412,9 +418,12 @@ use CodeIgniter\I18n\Time;
                                                                                                     <option value="<?= $allDosen->id; ?>" <?php echo in_array($allDosen->id, $userIdnya) ? 'selected' : '' ?>> <?= $allDosen->email; ?></option>
                                                                                                 <?php endforeach; ?>
                                                                                             </select>
+
+
                                                                                             <input type="hidden" name="permission_id" value="<?= $permissionId; ?>">
 
                                                                                         </div>
+                                                                                        <span class="text-muted small mt-5">*Anda dapat langsung memilih lebih dari satu akun.</span>
                                                                                         <div class="modal-footer mt-5">
                                                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                                                                             <button type="submit" class="btn btn-success">Simpan</button>

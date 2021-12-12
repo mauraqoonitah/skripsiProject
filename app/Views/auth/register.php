@@ -178,7 +178,7 @@
                                 <div class="form-group mb-3">
                                     <label for="responden" class="form-label">Sebagai</label>
                                     <select class="form-select option-role <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>" required>
-                                        <option selected disabled value="">Pilih...</option>
+                                        <option selected disabled>Pilih...</option>
                                         <?php foreach ($jenisResponden as $r) : ?>
                                             <?php if ($r['responden'] === 'Dosen') : ?>
                                             <?php endif; ?>

@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class InstrumenModel extends Model
 {
     protected $table      = 'instrumen';
-    protected $userTimestamps = true;
-    protected $protectFields = false;
+    protected $allowedFields = ['slug', 'kodeCategory', 'kodeInstrumen', 'tampil_grafik', 'namaInstrumen', 'peruntukkanInstrumen', 'created_at', 'updated_at'];
+    protected $useTimestamps = true;
 
 
     public function getInstrumen($id = false)
@@ -106,5 +106,13 @@ class InstrumenModel extends Model
         return $this
             ->join('auth_permissions', 'auth_permissions.name = instrumen.id')
             ->get()->getResultArray();
+    }
+
+    public function getIDByKodeIns($kodeIns)
+    {
+        return $this
+            ->select('id')
+            ->where('kodeInstrumen', $kodeIns)
+            ->findAll();
     }
 }

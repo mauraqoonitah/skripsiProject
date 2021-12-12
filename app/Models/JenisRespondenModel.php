@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class JenisRespondenModel extends Model
 {
     protected $table      = 'jenis_responden';
-    protected $userTimestamps = true;
+    protected $useTimestamps = true;
     protected $allowedFields = ['responden'];
 
     //kalo ada parameternya, cari yg pake where tadi

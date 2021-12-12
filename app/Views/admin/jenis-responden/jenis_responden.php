@@ -103,7 +103,7 @@
                                             <?php endif; ?>
                                         </td>
                                         <!-- Instrumen yang dapat diisi -->
-                                        <td class="text-center">
+                                        <td>
                                             <?php
                                             $jenisResponden = $resp['responden'];
                                             $instrumenModel = model('InstrumenModel');
@@ -112,7 +112,7 @@
                                             ?>
 
                                             <?php if (empty($sql)) : ?>
-                                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small"><i>Buat disini</i></a>
+                                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small d-flex justify-content-center"><i>klik untuk buat instrumen</i></a>
                                             <?php else : ?>
                                                 <ul>
                                                     <?php foreach ($sql as $row) : ?>

@@ -17,6 +17,8 @@ class Instrumen_ extends BaseController
     protected $pernyataanModel;
     protected $jenisRespondenModel;
     protected $responseModel;
+    protected $authorize;
+
     protected $mRequest;
 
 
@@ -27,6 +29,8 @@ class Instrumen_ extends BaseController
         $this->pernyataanModel = new PernyataanModel();
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
+        $this->authorize = service('authorization');
+
         $this->mRequest = service("request");
     }
 
@@ -169,6 +173,7 @@ class Instrumen_ extends BaseController
     public function saveInstrumen_()
     {
         $slug = url_title($this->mRequest->getVar('kodeCategory'), '-', true);
+        $kodeCategory = $this->mRequest->getVar('kodeCategory');
 
         // validasi input
         if (!$this->validate([
@@ -188,20 +193,33 @@ class Instrumen_ extends BaseController
             ],
 
         ])) {
-            session()->setFlashdata('messageError', 'Gagal menyimpan. Responden Instrumen pada kategori sudah pernah terdaftar.');
+            session()->setFlashdata('messageError', 'Gagal menyimpan. Periksa kembali data yang dimasukkan.');
 
             return redirect()->to('/admin/kelola-survei/tambah_instrumen_/' . $slug)->withInput();
         }
-
+        $kodeInstrumen = $this->mRequest->getVar('kodeInstrumen');
+        $peruntukkanInstrumen = $this->mRequest->getVar('peruntukkanInstrumen');
+        $kodeIns = $kodeCategory . '.' . $kodeInstrumen;
         $data =
             [
                 'kodeCategory' => $this->mRequest->getVar('kodeCategory'),
-                'kodeInstrumen' => $this->mRequest->getVar('kodeInstrumen'),
+                'kodeInstrumen' => $kodeIns,
                 'namaInstrumen' => $this->mRequest->getVar('namaInstrumen'),
                 'slug' => $slug,
-                'peruntukkanInstrumen' => $this->mRequest->getVar('peruntukkanInstrumen')
+                'peruntukkanInstrumen' =>  $peruntukkanInstrumen
             ];
         $this->instrumenModel->save($data);
+
+        $getIDByKodeIns = $this->instrumenModel->getIDByKodeIns($kodeIns);
+
+        foreach ($getIDByKodeIns as $getInsID) {
+            $insID = $getInsID['id'];
+        }
+
+        // create permission to table auth_permissions if instrumen is for Dosen
+        if ($peruntukkanInstrumen === 'Dosen') {
+            $this->authorize->createPermission($insID, 'instrumen ' . $kodeIns);
+        }
 
         session()->setFlashdata('message', 'Data instrumen berhasil ditambahkan');
 

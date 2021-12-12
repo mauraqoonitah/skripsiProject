@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class PetunjukInstrumenModel extends Model
 {
     protected $table      = 'petunjuk_instrumen';
-    protected $userTimestamps = true;
+    protected $useTimestamps = true;
     protected $allowedFields = ['id', 'isiPetunjuk', 'instrumenID'];
 
     public function getIsiPetunjuk($id)

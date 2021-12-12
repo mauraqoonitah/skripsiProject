@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class RespondenModel extends Model
 {
     protected $table      = 'responden';
-    protected $userTimestamps = true;
+    protected $useTimestamps = true;
     protected $allowedFields = ['userID', 'role', 'fullname'];
 
 
