@@ -112,4 +112,13 @@ class LoginModel extends Model
             ->where('expires <=', date('Y-m-d H:i:s'))
             ->delete();
     }
+
+
+    public function getLoginDate()
+    {
+        return $this
+            ->orderBy('date', 'desc')
+            ->groupBy('user_id')
+            ->findAll();
+    }
 }

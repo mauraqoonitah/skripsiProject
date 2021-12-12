@@ -8,6 +8,9 @@ use App\Models\PernyataanModel;
 use App\Models\JenisRespondenModel;
 use App\Models\ResponseModel;
 use App\Models\RespondenModel;
+use Myth\Auth\Models\LoginModel;
+use Myth\Auth\Models\UserModel;
+
 
 class Admin extends BaseController
 {
@@ -17,6 +20,8 @@ class Admin extends BaseController
     protected $jenisRespondenModel;
     protected $responseModel;
     protected $respondenModel;
+    protected $loginModel;
+    protected $userModel;
     protected $mRequest;
 
 
@@ -28,6 +33,8 @@ class Admin extends BaseController
         $this->jenisRespondenModel = new JenisRespondenModel();
         $this->responseModel = new ResponseModel();
         $this->respondenModel = new RespondenModel();
+        $this->loginModel = new LoginModel();
+        $this->userModel = new UserModel();
         $this->mRequest = service("request");
     }
 
@@ -40,8 +47,10 @@ class Admin extends BaseController
             'totalKategori' => count($this->kategoriModel->getCategory()),
             'totalTanggapan' => count($this->responseModel->getTotalResponse()),
             'totalPernyataan' => count($this->pernyataanModel->getPernyataan()),
+            'getLoginDate' => $this->loginModel->getLoginDate(),
 
         ];
+        // dd($data);
         return view('admin/index', $data);
     }
 

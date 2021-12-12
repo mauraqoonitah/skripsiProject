@@ -170,14 +170,9 @@ class UserModel extends Model
             ->join('auth_logins', 'auth_logins.user_id = users.id')
             ->where('users.id', $id)
             ->groupBy('auth_logins.date')
-            // ->orderBy('auth_logins.id', 'asc')
             ->orderBy('auth_logins.id', 'desc')
             ->limit(1)
             ->get()->getResultObject();
-        // ->findAll();
-
-        // ->getRow();
-        // ->get()->getLastRow();
     }
 
 

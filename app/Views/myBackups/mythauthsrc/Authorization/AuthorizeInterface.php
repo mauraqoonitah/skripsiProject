@@ -1,6 +1,9 @@
-<?php namespace  Myth\Auth\Authorization;
+<?php
 
-interface AuthorizeInterface  {
+namespace  Myth\Auth\Authorization;
+
+interface AuthorizeInterface
+{
 
     /**
      * Returns the latest error string.
@@ -103,7 +106,7 @@ interface AuthorizeInterface  {
      *
      * @return mixed
      */
-    public function createGroup(string $name, string $description='');
+    public function createGroup(string $name, string $description = '');
 
     /**
      * Deletes a single group.
@@ -123,7 +126,7 @@ interface AuthorizeInterface  {
      *
      * @return mixed
      */
-    public function updateGroup(int $id, string $name, string $description='');
+    public function updateGroup(int $id, string $name, string $description = '');
 
     //--------------------------------------------------------------------
     // Permissions
@@ -153,7 +156,7 @@ interface AuthorizeInterface  {
      *
      * @return mixed
      */
-    public function createPermission(string $name, string $description='');
+    public function createPermission(string $name, string $description = '');
 
     /**
      * Deletes a single permission and removes that permission from all groups.
@@ -173,6 +176,5 @@ interface AuthorizeInterface  {
      *
      * @return bool
      */
-    public function updatePermission(int $id, string $name, string $description='');
-
+    public function updatePermission(int $id, string $name, string $description = '');
 }

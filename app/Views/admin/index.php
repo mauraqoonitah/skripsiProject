@@ -2,6 +2,10 @@
 
 <?= $this->section('admin-body-content'); ?>
 
+<?php
+
+use CodeIgniter\I18n\Time;
+?>
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -28,19 +32,14 @@
         </div><!-- /.container-fluid -->
     </section>
 
-    <section class="content mb-5">
+    <section class="content px-4 mb-5">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-4 mx-auto">
-                    <div class="my-4 ">
-                        <img src="<?= base_url(); ?>/img/undraw_Organize.svg" class="img-fluid" />
-                    </div>
-                </div>
 
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <!-- Info boxes -->
                     <div class="row mt-2">
-                        <div class="col-lg-4 col-6">
+                        <div class="col-lg-3 col-sm-4">
                             <!-- small box -->
                             <div class="small-box bg-cosmic">
                                 <div class="inner text-white">
@@ -55,7 +54,7 @@
                         </div>
                         <!-- ./col -->
 
-                        <div class="col-lg-4 col-6">
+                        <div class="col-lg-3 col-sm-4">
                             <!-- small box -->
                             <div class="small-box bg-cosmic">
                                 <div class="inner text-white">
@@ -70,7 +69,22 @@
                         </div>
                         <!-- ./col -->
 
-                        <div class="col-lg-4 col-6">
+                        <div class="col-lg-3 col-sm-4">
+                            <!-- small box -->
+                            <div class="small-box bg-cosmic">
+                                <div class="inner text-white">
+                                    <h3><?= $totalKategori; ?></h3>
+                                    <p>Kriteria Kepuasan</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                                <a target="_blank" href="<?= base_url(); ?>/admin/lihatKategori" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <div class="col-lg-3 col-sm-4">
                             <!-- small box -->
                             <div class="small-box bg-cosmic">
                                 <div class="inner text-white">
@@ -80,26 +94,10 @@
                                 <div class="icon">
                                     <i class="fas fa-clipboard-list"></i>
                                 </div>
-                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a target="_blank" href="<?= base_url(); ?>/admin/lihatInstrumen" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
-
-                        <div class="col-lg-4 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-cosmic">
-                                <div class="inner text-white">
-                                    <h3><?= $totalPernyataan; ?></h3>
-                                    <p>Butir Pernyataan</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fas fa-tasks"></i>
-                                </div>
-                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-
 
                         <!-- fix for small devices only -->
                         <div class="clearfix hidden-md-up"></div>
@@ -107,6 +105,44 @@
                     </div>
                     <!-- ./Info boxes -->
                 </div>
+
+                <!-- recent activities -->
+                <div class="col-lg-12 mt-3">
+                    <h5 class="mb-4">Aktivitas</h5>
+
+                    <?php foreach ($getLoginDate as $getUser) : ?>
+
+                        <?php
+                        $userID = $getUser->user_id;
+
+                        $userModel = model('UserModel');
+                        $this->userModel = new $userModel;
+                        $getDataUser =  $this->userModel->getDataUser($userID);
+                        ?>
+
+                        <?php
+                        $date = Time::parse($getUser->date, 'Asia/Jakarta');
+                        ?>
+
+                        <div class="container">
+                            <div class="row">
+                                <?php foreach ($getDataUser as $dataUser) : ?>
+                                    <div class="col-12 mb-3">
+                                        <div class="user-block">
+                                            <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>/../../img/user_profile.png" alt="user image">
+                                            <span class="username">
+                                                <span class="fw-bold text-primary"><?= $dataUser->username; ?></span>
+                                                <span class="small text-muted"> | <?= $dataUser->email; ?></span>
+                                                <p class="fw-bold small">Last login - <?= $date->toLocalizedString(' HH:mm, d MMM yyyy'); ?></p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
             </div>
         </div>
     </section>
