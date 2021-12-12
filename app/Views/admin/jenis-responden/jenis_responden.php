@@ -96,7 +96,11 @@
                                             $this->respondenModel = new $respondenModel;
                                             $jumlahResponden =  $this->respondenModel->getJumlahRespondenByRole($jenisResponden);
                                             ?>
-                                            <?= $jumlahResponden; ?>
+                                            <?php if ($jumlahResponden === 0) : ?>
+                                                <i class="text-muted small">Responden belum isi survei</i>
+                                            <?php else : ?>
+                                                <?= $jumlahResponden; ?>
+                                            <?php endif; ?>
                                         </td>
                                         <!-- Instrumen yang dapat diisi -->
                                         <td class="text-center">
@@ -108,7 +112,7 @@
                                             ?>
 
                                             <?php if (empty($sql)) : ?>
-                                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_">Buat disini</a>
+                                                <a href="<?= base_url(); ?>/admin/kelola-survei/instrumen_" class="small"><i>Buat disini</i></a>
                                             <?php else : ?>
                                                 <ul>
                                                     <?php foreach ($sql as $row) : ?>
