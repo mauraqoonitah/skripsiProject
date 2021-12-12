@@ -241,7 +241,7 @@ use CodeIgniter\I18n\Time;
                                                                 foreach ($getSelectedInsByPermission as $rowIns) {
                                                                     $selectedInstrumen = $rowIns['namaInstrumen'];
                                                                     $selectedKodeIns = $rowIns['kodeInstrumen'];
-                                                                    echo '<ul><li>' . $selectedKodeIns . ' - ' . $selectedInstrumen . '</li></ul> ';
+                                                                    echo '<ul><li data-bs-toggle="tooltip" data-bs-placement="bottom" title="' . $selectedInstrumen . '">' . $selectedKodeIns . '</li></ul> ';
                                                                 }
                                                             }
                                                             ?>
@@ -318,9 +318,7 @@ use CodeIgniter\I18n\Time;
                                 <!-- ./button collapse list akses instrumen  -->
 
                                 <div class="collapse mt-3" id="collapse-list-akses">
-                                    <div class="card-header text-rouge d-flex align-items-center col-lg-12 py-4 mb-3">
-                                        <h3 class="card-title">Survei Instrumen Kepuasan yang dapat diisi oleh Responden: Dosen</h3>
-                                    </div>
+
 
                                     <!-- if no results found -->
                                     <?php if (sizeof($instrumenByResponden) === 0) : ?>
