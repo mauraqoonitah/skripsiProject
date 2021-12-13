@@ -8,7 +8,7 @@ class RespondenModel extends Model
 {
     protected $table      = 'responden';
     protected $useTimestamps = true;
-    protected $allowedFields = ['userID', 'role', 'fullname'];
+    protected $allowedFields = ['userID', 'role', 'fullname', 'created_at', 'updated_at'];
 
 
     public function getRespondenList($id = false)

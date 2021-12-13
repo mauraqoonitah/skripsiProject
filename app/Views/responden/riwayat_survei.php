@@ -187,18 +187,6 @@ use CodeIgniter\I18n\Time;
                 </div>
                 <!-- ./list tanggapan per instrumen -->
 
-                <!-- data diri responden -->
-                <div class="col-lg-3 col-sm-6">
-                    <?php foreach ($respondenData as $res) :  ?>
-                        <p class="text-muted scroll-horiz">
-                            <?= $res['fullname']; ?>
-                        </p>
-                        <p class="text-muted"><?= $res['role']; ?></p>
-                        <p class="text-muted">userID <?= $userID = $res['userID']; ?></p>
-                    <?php endforeach; ?>
-                </div>
-                <!-- ./data diri responden -->
-
 
             </div>
         </div>

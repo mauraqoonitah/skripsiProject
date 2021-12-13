@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2021 at 08:08 AM
+-- Generation Time: Dec 13, 2021 at 08:25 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -148,7 +148,10 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (14, '::1', 'mauraqoonitah', 60, '2021-12-13 12:02:27', 0),
 (15, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-13 12:02:51', 1),
 (16, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 12:15:39', 1),
-(17, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-13 14:07:55', 1);
+(17, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-13 14:07:55', 1),
+(18, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 14:18:42', 1),
+(19, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-13 14:20:09', 1),
+(20, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 14:24:43', 1);
 
 -- --------------------------------------------------------
 
@@ -602,9 +605,9 @@ INSERT INTO `questions` (`id`, `butir`, `kodeCategory`, `instrumenID`, `namaInst
 (18, 'Pimpinan unit kerja menilai dan mengevaluasi pekerjaan yang dilakukan dosen secara periodik.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
 (19, 'Pimpinan unit kerja memberikan pujian dan penghargaan terhadap prestasi yang dicapai dalam pengembangan karir.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
 (20, 'Pimpinan Unit Kerja menanggapi dan menindak lanjuti kritik, saran, dan keluhan yang disampaikan dosen.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
-(21, 'Bagaimana tanggapan anda mengenai layanan akademik:\r\nRencana pembelajaran dari dosen (SAP/Silabus)          \r\n', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:31:30'),
+(21, 'Bagaimana tanggapan anda mengenai layanan akademik:\r\nRencana pembelajaran dari dosen (SAP/Silabus)					\r\n', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:31:30'),
 (22, 'Bagaimana tanggapan anda mengenai layanan akademik: Layanan KRS Online', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:08'),
-(23, 'Bagaimana tanggapan anda mengenai layanan Non akademik berikut:         \r\nKegiatan pendukung akademik untuk pengembangan diri         ', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:25'),
+(23, 'Bagaimana tanggapan anda mengenai layanan Non akademik berikut:					\r\nKegiatan pendukung akademik untuk pengembangan diri					', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:25'),
 (24, 'Bagaimana tanggapan anda mengenai layanan Non akademik berikut:\r\nLayanan kegiatan mahasiswa', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:48'),
 (25, 'Bagaimana tanggapan anda mengenai Akses/Kemudahan untuk melakukan bimbingan dan konseling', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:33:16'),
 (26, 'Bagaimana tanggapan anda mengenai mutu bimbingan dan konseling yang disediakan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:33:41'),
@@ -635,8 +638,17 @@ CREATE TABLE `responden` (
   `id` int(255) NOT NULL,
   `userID` int(11) UNSIGNED NOT NULL,
   `role` varchar(255) NOT NULL,
-  `fullname` varchar(255) NOT NULL
+  `fullname` varchar(255) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `responden`
+--
+
+INSERT INTO `responden` (`id`, `userID`, `role`, `fullname`, `created_at`, `updated_at`) VALUES
+(2, 60, 'Mahasiswa', 'Maura Qoonitah Putri', '2021-12-13 14:21:21', '2021-12-13 14:21:21');
 
 -- --------------------------------------------------------
 
@@ -654,8 +666,37 @@ CREATE TABLE `response` (
   `responden` varchar(100) NOT NULL,
   `userID` int(11) NOT NULL,
   `uniqueID` varchar(255) NOT NULL,
-  `created_at` datetime DEFAULT NULL
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `response`
+--
+
+INSERT INTO `response` (`id`, `slug`, `kodeInstrumen`, `instrumenID`, `questionID`, `jawaban`, `responden`, `userID`, `uniqueID`, `created_at`, `updated_at`) VALUES
+(45, 'c2', 'C.2.3', 7, 21, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:19', '2021-12-13 14:21:19'),
+(46, 'c2', 'C.2.3', 7, 22, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:19', '2021-12-13 14:21:19'),
+(47, 'c2', 'C.2.3', 7, 23, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:19', '2021-12-13 14:21:19'),
+(48, 'c2', 'C.2.3', 7, 24, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:19', '2021-12-13 14:21:19'),
+(49, 'c2', 'C.2.3', 7, 25, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:19', '2021-12-13 14:21:19'),
+(50, 'c2', 'C.2.3', 7, 26, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(51, 'c2', 'C.2.3', 7, 27, '3', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(52, 'c2', 'C.2.3', 7, 28, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(53, 'c2', 'C.2.3', 7, 29, '3', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(54, 'c2', 'C.2.3', 7, 30, '3', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(55, 'c2', 'C.2.3', 7, 31, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(56, 'c2', 'C.2.3', 7, 32, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(57, 'c2', 'C.2.3', 7, 33, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(58, 'c2', 'C.2.3', 7, 34, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(59, 'c2', 'C.2.3', 7, 35, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(60, 'c2', 'C.2.3', 7, 36, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(61, 'c2', 'C.2.3', 7, 37, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(62, 'c2', 'C.2.3', 7, 38, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(63, 'c2', 'C.2.3', 7, 39, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(64, 'c2', 'C.2.3', 7, 40, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(65, 'c2', 'C.2.3', 7, 41, '3', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
+(66, 'c2', 'C.2.3', 7, 42, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:21', '2021-12-13 14:21:21');
 
 -- --------------------------------------------------------
 
@@ -703,7 +744,7 @@ INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`
 (55, 'gpjm.instrumenkepuasan@gmail.com', 'admin', 'Admin', 'Eka Azrai', 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-12-11 00:12:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (56, 'dosen.instrumenkepuasan@gmail.com', 'dosenIlkom', 'Dosen', NULL, 'default.svg', '$2y$10$QoAJW3RvWT8kQoH52f3A7OVMeekd33VQRmld4eTqtA53T5HpkvjZq', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 16:06:54', '2021-12-12 16:25:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (59, 'qpmaura@gmail.com', 'dosenBiologi', 'Dosen', NULL, 'default.svg', '$2y$10$lT6prYzqCgcCNj9D5t4lzuI/Uc.FcAsJ/u/AzQC3inbpyKZNaZkYC', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 19:24:54', '2021-12-12 21:58:20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(60, 'mauraqoonitah@gmail.com', 'mauraqoonitah', 'Mahasiswa', 'Maura Qoonitah Putri', 'default.svg', '$2y$10$2DVqg5oXjXACMxBvLhC.guW0/h70GlwHSd5aVYtz0DgjxSUoaWXAu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 12:00:15', '2021-12-13 12:04:14', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(60, 'mauraqoonitah@gmail.com', 'mauraqoonitah', 'Mahasiswa', 'Maura Qoonitah Putri', 'default.svg', '$2y$10$2DVqg5oXjXACMxBvLhC.guW0/h70GlwHSd5aVYtz0DgjxSUoaWXAu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 12:00:15', '2021-12-13 14:21:21', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -931,7 +972,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1015,13 +1056,13 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `responden`
 --
 ALTER TABLE `responden`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `response`
 --
 ALTER TABLE `response`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `users`
