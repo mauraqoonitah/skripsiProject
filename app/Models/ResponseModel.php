@@ -155,4 +155,13 @@ class ResponseModel extends Model
             ->groupBy('response.id')
             ->findAll();
     }
+
+    public function getCreatedAtByUniqueID($uniqueID)
+    {
+        return $this
+            ->select('created_at')
+            ->where('response.uniqueID', $uniqueID)
+            ->groupBy('created_at')
+            ->findAll();
+    }
 }

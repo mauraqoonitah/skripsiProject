@@ -98,12 +98,19 @@ use CodeIgniter\I18n\Time;
                                 $this->dataDiriJawabanModel = new $dataDiriJawabanModel;
                                 $getPilihan =  $this->dataDiriJawabanModel->getPilihanByPertanyaanId($pertanyaanId);
                                 $oldJawaban = str_replace(' ', '', $data['pertanyaan']);
+
+
+                                $strReplace1 = str_replace('(', '-', $oldJawaban);
+                                $strReplace2 = str_replace(')', '-', $strReplace1);
+                                $strReplace3 = str_replace('?', '-', $strReplace2);
+                                $strReplace4 = str_replace('/', 'atau', $strReplace3);
+                                $oldJawaban_ = str_replace('*', '-', $strReplace4);
                             ?>
 
                             <div class="form-group row p-0 m-0">
                                 <span class="col-sm-4 col-form-label p-0"><strong><?= $data['pertanyaan']; ?> </strong></span>
                                 <span class="col-sm-8 col-form-label p-0">
-                                    <?= $res[$oldJawaban]; ?>
+                                    <?= $res[$oldJawaban_]; ?>
 
                                 </span>
                             </div>

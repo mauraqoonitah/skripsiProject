@@ -92,7 +92,7 @@
                                     $strReplace1 = str_replace('(', '-', $strReplace);
                                     $strReplace3 = str_replace(')', '-', $strReplace1);
                                     $strReplace4 = str_replace('?', '-', $strReplace3);
-                                    $strReplace5 = str_replace('/', '-', $strReplace4);
+                                    $strReplace5 = str_replace('/', 'atau', $strReplace4);
                                     $columnPertanyaan = str_replace('*', '-', $strReplace5);
 
                                     ?>
@@ -123,8 +123,8 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-
-                                                        <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $strReplace; ?>" method="post">
+                                                        <?php var_dump($columnPertanyaan); ?>
+                                                        <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $columnPertanyaan; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="delPertanyaanId" value="<?= $data['id']; ?>">

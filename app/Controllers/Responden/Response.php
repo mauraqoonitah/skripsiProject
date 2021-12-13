@@ -189,6 +189,13 @@ class Response extends BaseController
         // insert new field jawaban
         $getPostPertanyaan = $this->mRequest->getVar('pertanyaan');
         $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
+
+        $strReplace1 = str_replace('(', '-', $columnPertanyaan);
+        $strReplace3 = str_replace(')', '-', $strReplace1);
+        $strReplace4 = str_replace('?', '-', $strReplace3);
+        $strReplace5 = str_replace('/', 'atau', $strReplace4);
+        $newColumnPertanyaan = str_replace('*', '-', $strReplace5);
+
         // dd(sizeof($columnPertanyaan));
 
         for ($i = 0; $i < sizeof($getPostPertanyaan); $i++) {
@@ -214,7 +221,7 @@ class Response extends BaseController
                     $dataIsian =
                         [
                             'id' => $userID,
-                            $columnPertanyaan[$j] => $newFieldJawabanIsian[$j],
+                            $newColumnPertanyaan[$j] => $newFieldJawabanIsian[$j],
                         ];
                     $this->userModel->save($dataIsian);
                 }
@@ -230,6 +237,13 @@ class Response extends BaseController
                         $pertanyaan = $jenisPilihan['pertanyaan'];
                         $columnPertanyaanIsian = str_replace(' ', '', $pertanyaan);
 
+                        $strReplace1 = str_replace('(', '-', $columnPertanyaanIsian);
+                        $strReplace3 = str_replace(')', '-', $strReplace1);
+                        $strReplace4 = str_replace('?', '-', $strReplace3);
+                        $strReplace5 = str_replace('/', 'atau', $strReplace4);
+                        $newColumnPertanyaanIsian = str_replace('*', '-', $strReplace5);
+
+
                         if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
                             $jawaban = $this->mRequest->getVar('pilihan-' . $jenisPilihan['id']);
                             // dd($jawaban);
@@ -237,10 +251,10 @@ class Response extends BaseController
                             $dataPilihan =
                                 [
                                     'id' => $userID,
-                                    $columnPertanyaanIsian => $jawaban,
+                                    $newColumnPertanyaanIsian => $jawaban,
                                 ];
                             // dd($pert);
-                            // dd($dataPilihan);
+                            // dd($newColumnPertanyaanIsian);
 
                             $this->userModel->save($dataPilihan);
                         }

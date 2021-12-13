@@ -91,7 +91,12 @@ class DataDiri extends BaseController
 
                     $pertanyaanIsian = $jenisIsian['pertanyaan'];
 
-                    $columnPertanyaanIsian = str_replace(' ', '', $pertanyaanIsian);
+                    $strReplace = str_replace(' ', '', $pertanyaanIsian);
+                    $strReplace1 = str_replace('(', '-', $strReplace);
+                    $strReplace2 = str_replace(')', '-', $strReplace1);
+                    $strReplace3 = str_replace('?', '-', $strReplace2);
+                    $strReplace4 = str_replace('/', 'atau', $strReplace3);
+                    $columnPertanyaanIsian = str_replace('*', '-', $strReplace4);
 
                     if ($newFieldJawabanIsian != Null) {
                         $dataIsian =

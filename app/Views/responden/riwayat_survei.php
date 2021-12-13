@@ -47,6 +47,18 @@ use CodeIgniter\I18n\Time;
                 <div class="col-lg-12">
                     <div class="accordion accordion-flush mx-auto">
                         <?php foreach ($responseInsId as $rIns) : ?>
+                            <?php
+                            $resUniqueID = $rIns['uniqueID'];
+                            $responseModel = model('ResponseModel');
+                            $this->responseModel = new $responseModel;
+                            $responseCreatedAt =  $this->responseModel->getCreatedAtByUniqueID($resUniqueID);
+                            foreach ($responseCreatedAt as $date) {
+                                $ddateCreated = $date['created_at'];
+                            }
+
+                            $date_created_response = Time::parse($ddateCreated, 'Asia/Jakarta');
+                            $dateCreated =  $date_created_response->toLocalizedString('d MMM yyyy, HH:mm');
+                            ?>
                             <div class="accordion-item mb-5">
                                 <!-- header collapse - kategori  -->
                                 <h5 class="accordion-header" id="accord-<?= $rIns['responseID']; ?>">
@@ -59,10 +71,7 @@ use CodeIgniter\I18n\Time;
                                 <!-- content collapse - kategori  -->
                                 <div class="container my-3">
                                     <span class="text-muted mt-2">Tgl Pengisian :
-                                        <?php
-                                        $date_created_response = Time::parse($rIns['created_at'], 'Asia/Jakarta');
-                                        echo $date_created_response->toLocalizedString('d MMM yyyy, HH:mm');
-                                        ?>
+                                        <?= $dateCreated; ?>
                                     </span>
                                 </div>
 

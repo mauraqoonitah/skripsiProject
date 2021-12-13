@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2021 at 05:00 PM
+-- Generation Time: Dec 13, 2021 at 07:01 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -175,7 +175,24 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (31, '::1', 'alumni.instrumenkepuasan@gmail.com', 64, '2021-12-13 21:48:17', 1),
 (32, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 21:49:43', 1),
 (33, '::1', 'alumni.instrumenkepuasan@gmail.com', 64, '2021-12-13 21:50:53', 1),
-(34, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 21:52:32', 1);
+(34, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 21:52:32', 1),
+(35, '::1', 'dfatriandira@gmail.com', 63, '2021-12-13 23:06:32', 1),
+(36, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 23:15:31', 1),
+(37, '::1', 'dfatriandira@gmail.com', 63, '2021-12-13 23:34:09', 1),
+(38, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 23:44:47', 1),
+(39, '::1', 'dosen.instrumenkepuasan@gmail.com', 56, '2021-12-13 23:51:31', 1),
+(40, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 00:06:32', 1),
+(41, '::1', 'dosen.instrumenkepuasan@gmail.com', 56, '2021-12-14 00:09:57', 1),
+(42, '::1', 'dosenBiologi', NULL, '2021-12-14 00:11:32', 0),
+(43, '::1', 'dosenBiologi', NULL, '2021-12-14 00:15:00', 0),
+(44, '::1', 'qpmaura', NULL, '2021-12-14 00:15:09', 0),
+(45, '::1', 'qpmaura@gmail.com', NULL, '2021-12-14 00:15:23', 0),
+(46, '::1', 'qpmaura@gmail.com', NULL, '2021-12-14 00:15:51', 0),
+(47, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-14 00:16:15', 1),
+(48, '::1', 'nurzaakiahulfah@gmail.com', 61, '2021-12-14 00:17:08', 1),
+(49, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 00:27:43', 1),
+(50, '::1', 'nurzaakiahulfah@gmail.com', 61, '2021-12-14 00:31:33', 1),
+(51, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 00:45:10', 1);
 
 -- --------------------------------------------------------
 
@@ -241,6 +258,7 @@ CREATE TABLE `auth_users_permissions` (
 --
 
 INSERT INTO `auth_users_permissions` (`user_id`, `permission_id`) VALUES
+(56, 3),
 (59, 3);
 
 -- --------------------------------------------------------
@@ -424,7 +442,6 @@ INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uni
 (5, 'fullname', 3, 'ZBmYA65LczKEtIfh', 'isian'),
 (6, 'Program Studi', 3, 'gcHKPI3D2sxUjodz', 'pilihan'),
 (7, 'fullname', 2, 'zhVnPwq4CiWYLEbk', 'isian'),
-(9, 'fullname', 6, 'me4ls2cfLgkXoIKO', 'isian'),
 (13, 'Name', 7, 'UFm7GtZ8d1YHovbO', 'isian'),
 (16, 'fullname', 8, 'B9aHpMYKDmejZstr', 'isian'),
 (17, 'Program Studi', 8, 'xbHQgjusi4BWRNPL', 'pilihan'),
@@ -434,12 +451,13 @@ INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uni
 (23, 'fullname', 11, 'V5I8KJpNUjTH0EAi', 'isian'),
 (24, 'Unit', 11, 'MEtCw85JV3GSyfRg', 'isian'),
 (51, 'Unit/Biro/Lembaga', 2, 'Vq6O5IPYWfykvtab', 'isian'),
-(52, 'Lembaga/Unit/Institusi/Industri', 6, 'SN1cB86g9RyVZFzX', 'isian'),
-(53, 'Alamat', 6, '6nNVHydZ9CE0WYmu', 'isian'),
 (54, 'Institution/Workplace', 7, 'vKRDUkfJmwQd1B2O', 'isian'),
 (55, 'Address', 7, 'pEkeClFLKVjGqtbh', 'isian'),
 (56, 'Institusi/Tempat Kerja', 5, 'cgkLR75NxZOQ4Frv', 'isian'),
-(57, 'Asal Program Studi Yang Dinilai', 5, '6yzVTkWSsfDUZp2Q', 'pilihan');
+(57, 'Asal Program Studi Yang Dinilai', 5, '6yzVTkWSsfDUZp2Q', 'pilihan'),
+(59, 'fullname', 6, 'P4uvGDfajpXBeYsZ', 'isian'),
+(60, 'Lembaga/Unit/Institusi/Industri', 6, 'tij1SKEPJyDvZC6X', 'isian'),
+(61, 'Program Studi (jika Alumni Unj)', 6, 'PyfuG5iQN21t8br9', 'pilihan');
 
 -- --------------------------------------------------------
 
@@ -552,7 +570,17 @@ INSERT INTO `pilihan_jawaban_data_diri` (`id`, `pertanyaanID`, `pilihan`) VALUES
 (93, 57, 'Pendidikan Kimia'),
 (94, 57, 'Kimia'),
 (95, 57, 'Pendidikan Biologi'),
-(96, 57, 'Biologi');
+(96, 57, 'Biologi'),
+(97, 61, 'Pendidikan Matematika'),
+(98, 61, 'Matematika'),
+(99, 61, 'Statistika'),
+(100, 61, 'Ilmu Komputer'),
+(101, 61, 'Pendidikan Fisika'),
+(102, 61, 'Fisika'),
+(103, 61, 'Pendidikan Kimia'),
+(104, 61, 'Kimia'),
+(105, 61, 'Pendidikan Biologi'),
+(106, 61, 'Biologi');
 
 -- --------------------------------------------------------
 
@@ -813,7 +841,18 @@ CREATE TABLE `responden` (
 --
 
 INSERT INTO `responden` (`id`, `userID`, `role`, `fullname`, `created_at`, `updated_at`) VALUES
-(2, 60, 'Mahasiswa', 'Maura Qoonitah Putri', '2021-12-13 14:21:21', '2021-12-13 14:21:21');
+(2, 60, 'Mahasiswa', 'Maura Qoonitah Putri', '2021-12-13 14:21:21', '2021-12-13 14:21:21'),
+(3, 56, 'Dosen', 'Dosen 1 Ilmu Komputer', '2021-12-14 00:10:53', '2021-12-14 00:10:53'),
+(4, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:20:06', '2021-12-14 00:20:06'),
+(5, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:20:57', '2021-12-14 00:20:57'),
+(6, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:23:58', '2021-12-14 00:23:58'),
+(7, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:24:19', '2021-12-14 00:24:19'),
+(8, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:25:04', '2021-12-14 00:25:04'),
+(9, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:25:29', '2021-12-14 00:25:29'),
+(10, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:26:03', '2021-12-14 00:26:03'),
+(11, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:26:33', '2021-12-14 00:26:33'),
+(12, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:32:10', '2021-12-14 00:32:10'),
+(13, 61, 'Pengguna Lulusan', 'Ulfah nurzaakiah', '2021-12-14 00:44:17', '2021-12-14 00:44:17');
 
 -- --------------------------------------------------------
 
@@ -861,7 +900,50 @@ INSERT INTO `response` (`id`, `slug`, `kodeInstrumen`, `instrumenID`, `questionI
 (63, 'c2', 'C.2.3', 7, 39, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
 (64, 'c2', 'C.2.3', 7, 40, '4', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
 (65, 'c2', 'C.2.3', 7, 41, '3', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:20', '2021-12-13 14:21:20'),
-(66, 'c2', 'C.2.3', 7, 42, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:21', '2021-12-13 14:21:21');
+(66, 'c2', 'C.2.3', 7, 42, '5', 'Mahasiswa', 60, 'nZm9Aaet2RPFO4jW', '2021-12-13 14:21:21', '2021-12-13 14:21:21'),
+(67, 'c4', 'C.4.1', 15, 1, '5', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:51', '2021-12-14 00:10:51'),
+(68, 'c4', 'C.4.1', 15, 2, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:51', '2021-12-14 00:10:51'),
+(69, 'c4', 'C.4.1', 15, 3, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:51', '2021-12-14 00:10:51'),
+(70, 'c4', 'C.4.1', 15, 4, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:51', '2021-12-14 00:10:51'),
+(71, 'c4', 'C.4.1', 15, 5, '5', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:51', '2021-12-14 00:10:51'),
+(72, 'c4', 'C.4.1', 15, 6, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:51', '2021-12-14 00:10:51'),
+(73, 'c4', 'C.4.1', 15, 7, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(74, 'c4', 'C.4.1', 15, 8, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(75, 'c4', 'C.4.1', 15, 9, '5', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(76, 'c4', 'C.4.1', 15, 10, '3', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(77, 'c4', 'C.4.1', 15, 11, '3', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(78, 'c4', 'C.4.1', 15, 12, '3', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(79, 'c4', 'C.4.1', 15, 13, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(80, 'c4', 'C.4.1', 15, 14, '3', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(81, 'c4', 'C.4.1', 15, 15, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(82, 'c4', 'C.4.1', 15, 16, '5', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(83, 'c4', 'C.4.1', 15, 17, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:52', '2021-12-14 00:10:52'),
+(84, 'c4', 'C.4.1', 15, 18, '3', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:53', '2021-12-14 00:10:53'),
+(85, 'c4', 'C.4.1', 15, 19, '5', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:53', '2021-12-14 00:10:53'),
+(86, 'c4', 'C.4.1', 15, 20, '4', 'Dosen', 56, 'JZzwgT6jtdpF9Grc', '2021-12-14 00:10:53', '2021-12-14 00:10:53'),
+(111, 'c2', 'C.2.5', 9, 60, '5', 'Pengguna Lulusan', 61, 'FqzeXAia0fsjGrKk', '2021-12-14 00:32:10', '2021-12-14 00:32:10'),
+(112, 'c2', 'C.2.5', 9, 61, '5', 'Pengguna Lulusan', 61, 'FqzeXAia0fsjGrKk', '2021-12-14 00:32:10', '2021-12-14 00:32:10'),
+(113, 'c2', 'C.2.5', 9, 62, '4', 'Pengguna Lulusan', 61, 'FqzeXAia0fsjGrKk', '2021-12-14 00:32:10', '2021-12-14 00:32:10'),
+(114, 'c9', 'C.9.1', 29, 170, '5', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:15', '2021-12-14 00:44:15'),
+(115, 'c9', 'C.9.1', 29, 171, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:15', '2021-12-14 00:44:15'),
+(116, 'c9', 'C.9.1', 29, 172, '3', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:15', '2021-12-14 00:44:15'),
+(117, 'c9', 'C.9.1', 29, 173, '3', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:15', '2021-12-14 00:44:15'),
+(118, 'c9', 'C.9.1', 29, 174, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:15', '2021-12-14 00:44:15'),
+(119, 'c9', 'C.9.1', 29, 175, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(120, 'c9', 'C.9.1', 29, 176, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(121, 'c9', 'C.9.1', 29, 177, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(122, 'c9', 'C.9.1', 29, 178, '5', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(123, 'c9', 'C.9.1', 29, 179, '5', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(124, 'c9', 'C.9.1', 29, 180, '5', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(125, 'c9', 'C.9.1', 29, 181, '5', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(126, 'c9', 'C.9.1', 29, 182, '5', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(127, 'c9', 'C.9.1', 29, 183, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(128, 'c9', 'C.9.1', 29, 184, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(129, 'c9', 'C.9.1', 29, 185, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(130, 'c9', 'C.9.1', 29, 186, '4', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(131, 'c9', 'C.9.1', 29, 187, '3', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:16', '2021-12-14 00:44:16'),
+(132, 'c9', 'C.9.1', 29, 188, '3', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:17', '2021-12-14 00:44:17'),
+(133, 'c9', 'C.9.1', 29, 189, '3', 'Pengguna Lulusan', 61, 's4YBRm0UQ3tia1NO', '2021-12-14 00:44:17', '2021-12-14 00:44:17');
 
 -- --------------------------------------------------------
 
@@ -891,26 +973,26 @@ CREATE TABLE `users` (
   `ProgramStudi` varchar(255) DEFAULT NULL,
   `AsalProgramStudi` varchar(255) DEFAULT NULL,
   `UnitatauBiroatauLembaga` varchar(255) DEFAULT NULL,
-  `LembagaatauUnitatauInstitusiatauIndustri` varchar(255) DEFAULT NULL,
-  `Alamat` varchar(255) DEFAULT NULL,
   `InstitutionatauWorkplace` varchar(255) DEFAULT NULL,
   `Address` varchar(255) DEFAULT NULL,
   `InstitusiatauTempatKerja` varchar(255) DEFAULT NULL,
-  `AsalProgramStudiYangDinilai` varchar(255) DEFAULT NULL
+  `AsalProgramStudiYangDinilai` varchar(255) DEFAULT NULL,
+  `LembagaatauUnitatauInstitusiatauIndustri` varchar(255) DEFAULT NULL,
+  `ProgramStudi-jikaAlumniUnj-` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`, `ProgramStudi`, `AsalProgramStudi`, `UnitatauBiroatauLembaga`, `LembagaatauUnitatauInstitusiatauIndustri`, `Alamat`, `InstitutionatauWorkplace`, `Address`, `InstitusiatauTempatKerja`, `AsalProgramStudiYangDinilai`) VALUES
+INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`, `ProgramStudi`, `AsalProgramStudi`, `UnitatauBiroatauLembaga`, `InstitutionatauWorkplace`, `Address`, `InstitusiatauTempatKerja`, `AsalProgramStudiYangDinilai`, `LembagaatauUnitatauInstitusiatauIndustri`, `ProgramStudi-jikaAlumniUnj-`) VALUES
 (48, 'kontributor.instrumenkepuasan@gmail.com', 'kontributor', 'Kontributor', 'Kontributor: TPjM', 'default.svg', '$2y$10$cWI.2uYscaseBsiVwz3VCuqIXzGFKpmfnxncLx4ldBFsh1z8Zwl7q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 22:23:04', '2021-10-11 22:23:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (55, 'gpjm.instrumenkepuasan@gmail.com', 'admin', 'Admin', 'Eka Azrai', 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-12-11 00:12:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(56, 'dosen.instrumenkepuasan@gmail.com', 'dosenIlkom', 'Dosen', NULL, 'default.svg', '$2y$10$QoAJW3RvWT8kQoH52f3A7OVMeekd33VQRmld4eTqtA53T5HpkvjZq', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 16:06:54', '2021-12-12 16:25:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(56, 'dosen.instrumenkepuasan@gmail.com', 'dosenIlkom', 'Dosen', 'Dosen 1 Ilmu Komputer', 'default.svg', '$2y$10$QoAJW3RvWT8kQoH52f3A7OVMeekd33VQRmld4eTqtA53T5HpkvjZq', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 16:06:54', '2021-12-14 00:10:53', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (59, 'qpmaura@gmail.com', 'dosenBiologi', 'Dosen', NULL, 'default.svg', '$2y$10$lT6prYzqCgcCNj9D5t4lzuI/Uc.FcAsJ/u/AzQC3inbpyKZNaZkYC', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 19:24:54', '2021-12-12 21:58:20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (60, 'mauraqoonitah@gmail.com', 'mauraqoonitah', 'Mahasiswa', 'Maura Qoonitah Putri', 'default.svg', '$2y$10$2DVqg5oXjXACMxBvLhC.guW0/h70GlwHSd5aVYtz0DgjxSUoaWXAu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 12:00:15', '2021-12-13 14:21:21', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(61, 'nurzaakiahulfah@gmail.com', 'ulfahnrz', 'Pengguna Lulusan', 'Ulfah nurzaakiah', 'default.svg', '$2y$10$W7JbkYqyET9lUAxo0srd.O/fGqXpVU7.hDqSWwlouAOspqtBovAE6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:42:12', '2021-12-13 16:59:29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(63, 'dfatriandira@gmail.com', 'divinadira', 'Mitra', 'Divina Fatriandira', 'default.svg', '$2y$10$DW/bCvgYAWvWlvtn0iEfA.hSMlMelA15Qx8Cp0.SpePFCXpcUuG2W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:53:33', '2021-12-13 16:53:50', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(61, 'nurzaakiahulfah@gmail.com', 'ulfahnrz', 'Pengguna Lulusan', 'Ulfah nurzaakiah', 'default.svg', '$2y$10$W7JbkYqyET9lUAxo0srd.O/fGqXpVU7.hDqSWwlouAOspqtBovAE6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:42:12', '2021-12-14 00:44:17', NULL, NULL, NULL, NULL, NULL, NULL, 'Zalora', 'Ilmu Komputer', NULL, NULL),
+(63, 'dfatriandira@gmail.com', 'divinadira', 'Mitra', 'Divina Fatriandira', 'default.svg', '$2y$10$DW/bCvgYAWvWlvtn0iEfA.hSMlMelA15Qx8Cp0.SpePFCXpcUuG2W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:53:33', '2021-12-13 23:34:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (64, 'alumni.instrumenkepuasan@gmail.com', 'farahayu', 'Alumni/Lulusan', 'Maura Qoonitah', 'default.svg', '$2y$10$sTUlfF4Hc.hb8Q6foGE2au9qxGNM4Ab4MeYRv//CZ3tzbyfrdrCeK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 17:14:56', '2021-12-13 21:51:15', NULL, NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -1143,7 +1225,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1197,7 +1279,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pertanyaan_data_diri`
 --
 ALTER TABLE `pertanyaan_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `petunjuk_instrumen`
@@ -1209,7 +1291,7 @@ ALTER TABLE `petunjuk_instrumen`
 -- AUTO_INCREMENT for table `pilihan_jawaban_data_diri`
 --
 ALTER TABLE `pilihan_jawaban_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `prodi`
@@ -1227,13 +1309,13 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `responden`
 --
 ALTER TABLE `responden`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `response`
 --
 ALTER TABLE `response`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `users`

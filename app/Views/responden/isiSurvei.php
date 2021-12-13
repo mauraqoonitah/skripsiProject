@@ -251,13 +251,30 @@
                                                                     $dataDiriJawabanModel = model('DataDiriJawabanModel');
                                                                     $this->dataDiriJawabanModel = new $dataDiriJawabanModel;
                                                                     $getPilihan =  $this->dataDiriJawabanModel->getPilihanByPertanyaanId($pertanyaanId);
+
+                                                                    $question = $data['pertanyaan'];
+
+                                                                    if (user()->role != 'Partners') {
+                                                                        if ($question === 'fullname') {
+                                                                            $pertanyaan = 'Nama Lengkap';
+                                                                        } else {
+                                                                            $pertanyaan = $data['pertanyaan'];
+                                                                        }
+                                                                    }
+
                                                                     ?>
 
-                                                                    <label class="col-form-label"><?= $data['pertanyaan']; ?> :</label>
+                                                                    <label class="col-form-label"><?= $pertanyaan; ?> :</label>
                                                                     <input type="hidden" name="pertanyaan[]" value="<?= $data['pertanyaan']; ?> 
                                             ">
                                                                     <?php
                                                                     $oldJawaban = str_replace(' ', '', $data['pertanyaan']);
+
+                                                                    $strReplace1 = str_replace('(', '-', $oldJawaban);
+                                                                    $strReplace2 = str_replace(')', '-', $strReplace1);
+                                                                    $strReplace3 = str_replace('?', '-', $strReplace2);
+                                                                    $strReplace4 = str_replace('/', 'atau', $strReplace3);
+                                                                    $oldJawaban_ = str_replace('*', '-', $strReplace4);
                                                                     ?>
 
                                                                     <!-- jika pertanyaan pilihan -->
@@ -265,7 +282,7 @@
                                                                         <select name="pilihan-<?= $pertanyaanId; ?>" class="form-select" aria-label="Default select example" required>
                                                                             <option></option>
                                                                             <?php foreach ($getPilihan as $pilihan) : ?>
-                                                                                <option value="<?= $pilihan['pilihan']; ?>" <?php echo ($pilihan['pilihan'] === $user->$oldJawaban) ? 'selected' : '' ?>> <?= $pilihan['pilihan']; ?></option>
+                                                                                <option value="<?= $pilihan['pilihan']; ?>" <?php echo ($pilihan['pilihan'] === $user->$oldJawaban_) ? 'selected' : '' ?>> <?= $pilihan['pilihan']; ?></option>
 
                                                                             <?php endforeach; ?>
                                                                         </select>
@@ -275,7 +292,7 @@
                                                                     <?php else : ?>
 
                                                                         <div class="form-group mb-3">
-                                                                            <input type="text" class="form-control" name="isian[]" value="<?= $user->$oldJawaban; ?>" required>
+                                                                            <input type="text" class="form-control" name="isian[]" value="<?= $user->$oldJawaban_; ?>" required>
                                                                         </div>
                                                                     <?php endif; ?>
                                                                 <?php endforeach; ?>
