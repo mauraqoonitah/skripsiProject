@@ -67,6 +67,7 @@ class Pernyataan extends BaseController
         }
         return view('admin/kelola-survei/pernyataan_detail', $data);
     }
+
     public function editPernyataan($id)
     {
         $data = [

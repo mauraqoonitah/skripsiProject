@@ -7,8 +7,8 @@ use CodeIgniter\Model;
 class PernyataanModel extends Model
 {
     protected $table      = 'questions';
-    protected $useTimestamps = true;
     protected $allowedFields = ['kodeCategory', 'instrumenID', 'namaInstrumen', 'butir', 'slug', 'created_at', 'updated_at'];
+    protected $useTimestamps = true;
 
     public function getPernyataan($id = false)
     {

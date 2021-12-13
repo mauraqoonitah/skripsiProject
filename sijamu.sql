@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2021 at 02:10 PM
+-- Generation Time: Dec 13, 2021 at 08:08 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -44,7 +44,9 @@ INSERT INTO `auth_activation_attempts` (`id`, `ip_address`, `user_agent`, `token
 (1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '894c6de233875f1e271c61b954f06948', '2021-12-12 16:25:58'),
 (2, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '894c6de233875f1e271c61b954f06948', '2021-12-12 18:25:26'),
 (3, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '894c6de233875f1e271c61b954f06948', '2021-12-12 18:25:44'),
-(4, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '03811e9c27a106d5630bb11f8fb4d98d', '2021-12-12 19:16:44');
+(4, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '03811e9c27a106d5630bb11f8fb4d98d', '2021-12-12 19:16:44'),
+(5, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '6a15244beb40e5fa4c487ef34d150064', '2021-12-12 21:58:19'),
+(6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', 'eab1adcef18fdefe22d9a61bb325e67b', '2021-12-13 12:02:36');
 
 -- --------------------------------------------------------
 
@@ -107,7 +109,8 @@ INSERT INTO `auth_groups_users` (`group_id`, `user_id`) VALUES
 (1, 55),
 (2, 48),
 (3, 56),
-(3, 59);
+(3, 59),
+(5, 60);
 
 -- --------------------------------------------------------
 
@@ -136,7 +139,16 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (5, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-12 14:42:49', 1),
 (6, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-12 14:47:31', 1),
 (7, '::1', 'dosen.instrumenkepuasan@gmail.com', 56, '2021-12-12 18:26:13', 1),
-(8, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-12 18:37:22', 1);
+(8, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-12 18:37:22', 1),
+(9, '::1', 'qpmaura', 59, '2021-12-12 21:57:36', 0),
+(10, '::1', 'qpmaura@gmail.com', 59, '2021-12-12 21:58:30', 1),
+(11, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-12 21:59:07', 1),
+(12, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 11:20:07', 1),
+(13, '::1', 'mauraqoonitah@gmail.com', NULL, '2021-12-13 11:57:39', 0),
+(14, '::1', 'mauraqoonitah', 60, '2021-12-13 12:02:27', 0),
+(15, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-13 12:02:51', 1),
+(16, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-13 12:15:39', 1),
+(17, '::1', 'mauraqoonitah@gmail.com', 60, '2021-12-13 14:07:55', 1);
 
 -- --------------------------------------------------------
 
@@ -208,6 +220,7 @@ CREATE TABLE `auth_users_permissions` (
 INSERT INTO `auth_users_permissions` (`user_id`, `permission_id`) VALUES
 (56, 2),
 (56, 7),
+(59, 2),
 (59, 3);
 
 -- --------------------------------------------------------
@@ -429,15 +442,18 @@ INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uni
 CREATE TABLE `petunjuk_instrumen` (
   `id` int(11) NOT NULL,
   `isiPetunjuk` text NOT NULL,
-  `instrumenID` int(11) NOT NULL
+  `instrumenID` int(11) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `petunjuk_instrumen`
 --
 
-INSERT INTO `petunjuk_instrumen` (`id`, `isiPetunjuk`, `instrumenID`) VALUES
-(2, '<p>a) Kami mohon Bapak/Ibu memberikan penilaian terhadap standar pengelolaan SDM UNJ selama menjadi dosen dalam kurun waktu 5 (lima) tahun terakhir.<br>b) Informasi yang Bapak/Ibu berikan sangat besar manfaatnya untuk perbaikan dan peningkatan mutu UNJ di masa datang. Oleh karena itu, kami mohon Bapak/Ibu memberikan penilaian sesuai dengan keadaan yang sebenarnya.<br>c) Setiap jawaban Bapak/Ibu dijamin kerahasiaannya.<br>d) Berilah tanda centang (√) pada kolom yang disediakan sesuai dengan tingkat kepuasan Bapak/Ibu.<br>Keterangan:<br>5 = Sangat Puas<br>4 = Puas<br>3 = Cukup Puas<br>2 = Tidak Puas<br>1 = Sangat Tidak Puas<br></p>', 15);
+INSERT INTO `petunjuk_instrumen` (`id`, `isiPetunjuk`, `instrumenID`, `created_at`, `updated_at`) VALUES
+(2, '<p>a) Kami mohon Bapak/Ibu memberikan penilaian terhadap standar pengelolaan SDM UNJ selama menjadi dosen dalam kurun waktu 5 (lima) tahun terakhir.<br>b) Informasi yang Bapak/Ibu berikan sangat besar manfaatnya untuk perbaikan dan peningkatan mutu UNJ di masa datang. Oleh karena itu, kami mohon Bapak/Ibu memberikan penilaian sesuai dengan keadaan yang sebenarnya.<br>c) Setiap jawaban Bapak/Ibu dijamin kerahasiaannya.<br>d) Berilah tanda centang (√) pada kolom yang disediakan sesuai dengan tingkat kepuasan Bapak/Ibu.<br>Keterangan:<br>5 = Sangat Puas<br>4 = Puas<br>3 = Cukup Puas<br>2 = Tidak Puas<br>1 = Sangat Tidak Puas<br></p>', 15, NULL, NULL),
+(3, '<p>a)&nbsp;&nbsp;&nbsp; Saudara adalah mahasiswa UNJ. Saudara diminta untuk memberikan penilaian terhadap layanan yang diberikan selama mengikuti pendidikan di UNJ sesuai dengan keadaan yang sebenarnya. <br>b)&nbsp;&nbsp;&nbsp; Setiap informasi yang Saudara berikan sangat besar manfaatnya untuk perbaikan dan peningkatan layanan UNJ di masa datang. <br>c)&nbsp;&nbsp;&nbsp; Setiap jawaban Saudara akan dijamin kerahasiaannya. <br>d)&nbsp;&nbsp;&nbsp; Berilah tanda centang (√) pada pernyataan pada kolom yang disediakan dibawah ini.<br>e)&nbsp;&nbsp;&nbsp; Keterangan:<br><br>5 &nbsp;&nbsp;&nbsp; = Sangat Puas<br>4&nbsp;&nbsp;&nbsp; = Puas&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br>3&nbsp;&nbsp;&nbsp; = Kurang Puas<br>2&nbsp;&nbsp;&nbsp; = Tidak Puas&nbsp;&nbsp;&nbsp; <br>1&nbsp;&nbsp;&nbsp; = Sangat Tidak Puas&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <br><br></p>', 7, '2021-12-13 12:24:06', '2021-12-13 12:24:06');
 
 -- --------------------------------------------------------
 
@@ -585,7 +601,29 @@ INSERT INTO `questions` (`id`, `butir`, `kodeCategory`, `instrumenID`, `namaInst
 (17, 'Pimpinan unit kerja memberikan sanksi secara tepat dan adil terhadap kesalahan yang dilakukan dosen.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
 (18, 'Pimpinan unit kerja menilai dan mengevaluasi pekerjaan yang dilakukan dosen secara periodik.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
 (19, 'Pimpinan unit kerja memberikan pujian dan penghargaan terhadap prestasi yang dicapai dalam pengembangan karir.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
-(20, 'Pimpinan Unit Kerja menanggapi dan menindak lanjuti kritik, saran, dan keluhan yang disampaikan dosen.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL);
+(20, 'Pimpinan Unit Kerja menanggapi dan menindak lanjuti kritik, saran, dan keluhan yang disampaikan dosen.', 'C.4', 15, 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'c4', NULL, NULL),
+(21, 'Bagaimana tanggapan anda mengenai layanan akademik:\r\nRencana pembelajaran dari dosen (SAP/Silabus)          \r\n', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:31:30'),
+(22, 'Bagaimana tanggapan anda mengenai layanan akademik: Layanan KRS Online', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:08'),
+(23, 'Bagaimana tanggapan anda mengenai layanan Non akademik berikut:         \r\nKegiatan pendukung akademik untuk pengembangan diri         ', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:25'),
+(24, 'Bagaimana tanggapan anda mengenai layanan Non akademik berikut:\r\nLayanan kegiatan mahasiswa', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:32:48'),
+(25, 'Bagaimana tanggapan anda mengenai Akses/Kemudahan untuk melakukan bimbingan dan konseling', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:56', '2021-12-13 12:33:16'),
+(26, 'Bagaimana tanggapan anda mengenai mutu bimbingan dan konseling yang disediakan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:33:41'),
+(27, 'Bagaimana tanggapan anda mengenai Akses/Kemudahan untuk mendapatkan beasiswa', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:34:15'),
+(28, 'Bagaimana tanggapan anda mengenai Mutu pelayanan beasiswa', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:34:33'),
+(29, 'Bagaimana tanggapan anda terhadap Akses/Kemudahan untuk mendapatkan layanan kesehatan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:34:56'),
+(30, 'Bagaimana tanggapan anda terhadap Mutu layanan kesehatan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:35:15'),
+(31, 'Bagaimana Tanggapan anda mengenai layanan Staf Administrasi berikut:\r\nKecepatan layanan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:30:57'),
+(32, 'Bagaimana Tanggapan anda mengenai layanan Staf Administrasi berikut:\r\nKemudahan layanan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:30:57'),
+(33, 'Bagaimana Tanggapan anda mengenai layanan Staf Administrasi berikut:\r\nKeramahan Staf', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:30:57'),
+(34, 'Bagaimana Tanggapan anda mengenai layanan Staf Administrasi berikut:\r\nKerapihan Staf', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:30:57'),
+(35, 'Bagaimana Tanggapan anda mengenai layanan Staf Administrasi berikut:\r\nKetanggapan Staf', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:57', '2021-12-13 12:30:57'),
+(36, 'Bagaimana Tanggapan anda mengenai layanan administratif berikut:\r\nPangajuan izin kegiatan', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58'),
+(37, 'Bagaimana Tanggapan anda mengenai layanan administratif berikut:\r\nKemudahan administrasi akademik (transkip nilai, ijin penelitian, ijin magang, dll)', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58'),
+(38, 'Bagaimana Tanggapan anda mengenai layanan administratif berikut:\r\nAdministrasi registrasi', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58'),
+(39, 'Bagaimana Tanggapan anda mengenai layanan administratif berikut:\r\nAdministrasi nilai mata kuliah', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58'),
+(40, 'Bagaimana Tanggapan anda mengenai layanan administratif berikut:\r\nSiakad', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58'),
+(41, 'Fasilitas sarana (peralatan kuliah, peralatan kegiatan diluar kelas)', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58'),
+(42, 'Fasilitas prasarana (tempat parkir, ruang kuliah,ruang laboratorium, tempat ibadah/masjid, toilet,poli klinik,olahraga kantin dll ) ', 'C.2', 7, 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Mahasiswa', 'c2', '2021-12-13 12:30:58', '2021-12-13 12:30:58');
 
 -- --------------------------------------------------------
 
@@ -664,7 +702,8 @@ INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`
 (48, 'kontributor.instrumenkepuasan@gmail.com', 'kontributor', 'Kontributor', 'Kontributor: TPjM', 'default.svg', '$2y$10$cWI.2uYscaseBsiVwz3VCuqIXzGFKpmfnxncLx4ldBFsh1z8Zwl7q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 22:23:04', '2021-10-11 22:23:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (55, 'gpjm.instrumenkepuasan@gmail.com', 'admin', 'Admin', 'Eka Azrai', 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-12-11 00:12:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (56, 'dosen.instrumenkepuasan@gmail.com', 'dosenIlkom', 'Dosen', NULL, 'default.svg', '$2y$10$QoAJW3RvWT8kQoH52f3A7OVMeekd33VQRmld4eTqtA53T5HpkvjZq', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 16:06:54', '2021-12-12 16:25:58', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(59, 'qpmaura@gmail.com', 'qpmaura', 'Dosen', NULL, 'default.svg', '$2y$10$lT6prYzqCgcCNj9D5t4lzuI/Uc.FcAsJ/u/AzQC3inbpyKZNaZkYC', NULL, NULL, NULL, '6a15244beb40e5fa4c487ef34d150064', NULL, 'createdByAdmin', 0, 0, '2021-12-12 19:24:54', '2021-12-12 19:24:54', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(59, 'qpmaura@gmail.com', 'dosenBiologi', 'Dosen', NULL, 'default.svg', '$2y$10$lT6prYzqCgcCNj9D5t4lzuI/Uc.FcAsJ/u/AzQC3inbpyKZNaZkYC', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 19:24:54', '2021-12-12 21:58:20', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(60, 'mauraqoonitah@gmail.com', 'mauraqoonitah', 'Mahasiswa', 'Maura Qoonitah Putri', 'default.svg', '$2y$10$2DVqg5oXjXACMxBvLhC.guW0/h70GlwHSd5aVYtz0DgjxSUoaWXAu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 12:00:15', '2021-12-13 12:04:14', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -698,7 +737,9 @@ INSERT INTO `user_check` (`id`, `email`, `role`, `nim`, `namaLengkap`, `programS
 (5, 'dosen.instrumenkepuasan@gmail.com', 'Dosen', NULL, '', '', NULL, NULL, '', '2021-12-12 16:06:55', '2021-12-12 16:06:55'),
 (6, 'qpmaura@gmail.com', 'Dosen', NULL, '', '', NULL, NULL, '', '2021-12-12 19:10:15', '2021-12-12 19:10:15'),
 (7, 'qpmaura@gmail.com', 'Dosen', NULL, '', '', NULL, NULL, '', '2021-12-12 19:22:00', '2021-12-12 19:22:00'),
-(8, 'qpmaura@gmail.com', 'Dosen', NULL, '', '', NULL, NULL, '', '2021-12-12 19:24:54', '2021-12-12 19:24:54');
+(8, 'qpmaura@gmail.com', 'Dosen', NULL, '', '', NULL, NULL, '', '2021-12-12 19:24:54', '2021-12-12 19:24:54'),
+(9, 'mauraqoonitah@gmail.com', 'Mahasiswa', '1313617009', 'Maura Qoonitah Putri', 'Ilmu Komputer', NULL, NULL, '', NULL, NULL),
+(10, 'mauraqoonitah@gmail.com', 'Mahasiswa', NULL, '', '', NULL, NULL, '', '2021-12-13 12:00:16', '2021-12-13 12:00:16');
 
 --
 -- Indexes for dumped tables
@@ -878,7 +919,7 @@ ALTER TABLE `user_check`
 -- AUTO_INCREMENT for table `auth_activation_attempts`
 --
 ALTER TABLE `auth_activation_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `auth_groups`
@@ -890,7 +931,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -950,7 +991,7 @@ ALTER TABLE `pertanyaan_data_diri`
 -- AUTO_INCREMENT for table `petunjuk_instrumen`
 --
 ALTER TABLE `petunjuk_instrumen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pilihan_jawaban_data_diri`
@@ -968,7 +1009,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `responden`
@@ -986,13 +1027,13 @@ ALTER TABLE `response`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `user_check`
 --
 ALTER TABLE `user_check`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables

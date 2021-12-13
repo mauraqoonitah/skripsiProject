@@ -132,7 +132,7 @@ use CodeIgniter\I18n\Time;
                                             <img class="img-circle img-bordered-sm" src="<?= base_url(); ?>/../../img/user_profile.png" alt="user image">
                                             <span class="username">
                                                 <span class="fw-bold text-primary"><?= $dataUser->username; ?></span>
-                                                <span class="small text-muted"> | <?= $dataUser->email; ?></span>
+                                                <span class="small text-muted"> | <?= $dataUser->email; ?> | <?= $dataUser->role; ?></span>
                                                 <p class="fw-bold small">Last login - <?= $time->humanize(); ?></p>
                                             </span>
                                         </div>

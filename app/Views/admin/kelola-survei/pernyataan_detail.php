@@ -1,6 +1,11 @@
 <?= $this->extend('admin/templates/index'); ?>
 
 <?= $this->section('admin-body-content'); ?>
+<?php
+
+use CodeIgniter\I18n\Time;
+?>
+
 <div class="content-wrapper px-2 pb-5">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -194,14 +199,57 @@
                     <?php if (in_groups('Admin')) : ?>
                         <div class="card-header d-flex align-items-center py-3">
                             <!-- Button trigger modal -->
-                            <a class="">
-                                <button type="button" class="btn btn-rouge " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
-                                    <i class=" fas fa-plus"></i> Tambah Butir
-                                </button></a>
+                            <button type="button" class="btn btn-rouge " data-bs-toggle="modal" data-bs-target="#tambahButirModal">
+                                <i class=" fas fa-plus"></i> Tambah Butir
+                            </button>
+
+
+                            <button type="button" class="btn btn-primary btn-sm ml-auto" data-bs-toggle="modal" data-bs-target="#modal-export-butir">
+                                <i class="fas fa-file-export"></i> Export Tabel
+                            </button>
+
+                            <!-- modal export table -->
+                            <div class="modal fade" id="modal-export-butir" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-cosmic text-white">
+                                            <h5 class="modal-title fw-bold">Export Data Tabel Butir Pernyataan</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h6 class="mt-2 mb-4"> <?= $instrumen['kodeInstrumen'] ?> - <?= $instrumen['namaInstrumen'] ?></h6>
+                                            <div class="table-responsive">
+
+                                                <table id="table_id" class="display table table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="width: 5px;" class="text-center">No.</th>
+                                                            <th>Butir Pernyataan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php $i = 1; ?>
+                                                        <?php foreach ($lihatPernyataan as $questions) : ?>
+                                                            <tr>
+                                                                <td class="text-center"><?= $i++; ?></td>
+                                                                <td><?= $questions['butir']; ?></td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end modal export tabel -->
+
                         </div>
                     <?php endif; ?>
+
+
                     <div class="table-responsive-sm">
-                        <table id="example2" class="table table-bordered table-hover align-middle ">
+                        <table id="tableButirPernyataan" class="table table-bordered table-hover align-middle ">
                             <thead class="table-light">
 
                                 <tr>
@@ -235,6 +283,7 @@
                                 <?php foreach ($lihatPernyataan as $questions) : ?>
                                     <tr>
                                         <td class="text-center"><?= $i++; ?></td>
+                                        <!-- butir pernyataan -->
                                         <td><?= $questions['butir']; ?></td>
                                         <td>
                                             <div class="form-check">
@@ -438,6 +487,7 @@
         </div>
     </div>
 </div>
+
 <!-- end modal tambah butir -->
 
 <script type="text/javascript">
@@ -474,6 +524,64 @@
 
         z++;
     }
+</script>
+
+
+<?php
+date_default_timezone_set('Asia/Jakarta');
+$timeNow = Time::now()->toDateTimeString(); ?>
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#table_id').DataTable({
+            "pageLength": 25,
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copy',
+                    title: '<?php echo $instrumen['kodeInstrumen'] ?> - <?= $instrumen['namaInstrumen'] ?> | <?php echo $instrumen['peruntukkanInstrumen'] ?>',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+
+                },
+                {
+                    extend: 'excel',
+                    title: '<?php echo $instrumen['kodeInstrumen'] ?> - <?= $instrumen['namaInstrumen'] ?> | <?php echo $instrumen['peruntukkanInstrumen'] ?>',
+                    messageTop: '(downloaded on: <?php echo $timeNow; ?>)',
+                    autoFilter: true,
+                    sheetName: 'Hasil Survei',
+                    download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    }
+                },
+                {
+                    extend: 'pdf',
+                    title: '<?php echo $instrumen['kodeInstrumen'] ?> - <?= $instrumen['namaInstrumen'] ?> | <?php echo $instrumen['peruntukkanInstrumen'] ?>',
+                    messageTop: '(downloaded on: <?php echo $timeNow; ?>)',
+                    orientation: 'potrait',
+                    pageSize: 'A4',
+                    // download: 'open',
+                    exportOptions: {
+                        columns: [0, 1, ':visible']
+                    },
+                    footer: true
+
+                },
+                {
+                    extend: 'print',
+                    messageTop: '<?php echo $instrumen['kodeInstrumen'] ?> - <?= $instrumen['namaInstrumen'] ?> | <?php echo $instrumen['peruntukkanInstrumen'] ?>',
+
+                },
+                {
+                    extend: 'colvis',
+                    postfixButtons: ['colvisRestore']
+                },
+
+            ]
+        });
+    });
 </script>
 
 <?= $this->endSection(); ?>

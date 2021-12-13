@@ -8,7 +8,7 @@ class PetunjukInstrumenModel extends Model
 {
     protected $table      = 'petunjuk_instrumen';
     protected $useTimestamps = true;
-    protected $allowedFields = ['id', 'isiPetunjuk', 'instrumenID'];
+    protected $allowedFields = ['id', 'isiPetunjuk', 'instrumenID', 'created_at', 'updated_at'];
 
     public function getIsiPetunjuk($id)
     {
