@@ -85,8 +85,16 @@
                                         <?php echo ($pertanyaan === 'fullname') ? 'Nama Lengkap' : $pertanyaan; ?></label>
 
                                     <?php
+                                    $oriColumnPertanyaan = $data['pertanyaan'];
+
                                     $pertanyaan = $data['pertanyaan'];
-                                    $columnPertanyaan = str_replace(' ', '', $pertanyaan);
+                                    $strReplace = str_replace(' ', '', $pertanyaan);
+                                    $strReplace1 = str_replace('(', '-', $strReplace);
+                                    $strReplace3 = str_replace(')', '-', $strReplace1);
+                                    $strReplace4 = str_replace('?', '-', $strReplace3);
+                                    $strReplace5 = str_replace('/', '-', $strReplace4);
+                                    $columnPertanyaan = str_replace('*', '-', $strReplace5);
+
                                     ?>
                                     <?php if (in_groups('Admin')) : ?>
 
@@ -111,11 +119,12 @@
                                                     <div class="modal-body text-center">
                                                         <i class="fas fa-exclamation-circle fa-3x" style="width: 3rem; color: #D60C0C"></i> <br>
                                                         Yakin hapus pertanyaan <?= $data['pertanyaan']; ?> ?
+
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
 
-                                                        <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $columnPertanyaan; ?>" method="post">
+                                                        <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $strReplace; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
                                                             <input type="hidden" name="delPertanyaanId" value="<?= $data['id']; ?>">

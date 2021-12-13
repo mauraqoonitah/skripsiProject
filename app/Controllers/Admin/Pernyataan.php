@@ -208,7 +208,7 @@ class Pernyataan extends BaseController
         ];
         $this->petunjukInstrumenModel->save($data);
 
-        session()->setFlashdata('message', 'Data Pertanyaan berhasil diubah');
+        session()->setFlashdata('message', 'Petunjuk Pengisian Instrumen berhasil diubah.');
 
         return redirect()->back();
     }

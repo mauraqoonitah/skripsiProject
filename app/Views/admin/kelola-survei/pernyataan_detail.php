@@ -208,12 +208,13 @@ use CodeIgniter\I18n\Time;
                                 <i class="fas fa-file-export"></i> Export Tabel
                             </button>
 
+
                             <!-- modal export table -->
                             <div class="modal fade" id="modal-export-butir" tabindex="-1" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-xl">
                                     <div class="modal-content">
                                         <div class="modal-header bg-cosmic text-white">
-                                            <h5 class="modal-title fw-bold">Export Data Tabel Butir Pernyataan</h5>
+                                            <h5 class="modal-title fw-bold">Export Butir Pernyataan</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -415,7 +416,7 @@ use CodeIgniter\I18n\Time;
 
 <!-- modal tambah butir -->
 <div class="modal fade" id="tambahButirModal" tabindex="-1" aria-labelledby="tambahButirLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-cosmic text-white">
                 <h5 class="modal-title" id="tambahButirLabel">Tambah Butir Pernyataan</h5>
@@ -459,20 +460,23 @@ use CodeIgniter\I18n\Time;
                             <div id="isianButir">
                                 <div class="row">
                                     <div class="col-10 isianColButir mb-3">
-                                        <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir[]" placeholder="Isi Butir Pernyataan"></textarea>
+                                        <textarea class="form-control <?= ($validation->hasError('butir')) ? 'is-invalid' : ''; ?>" id="summernote-petunjuk-pengisian" name="butir[]" placeholder="Isi Butir Pernyataan" required></textarea>
 
                                         <div class=" invalid-feedback">
                                             <?= $validation->getError('butir'); ?>
                                         </div>
                                     </div>
-                                    <div class="col-2 HapusColButir d-flex align-items-center">
-                                        <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahBarisButir(); return false">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
 
-                                    </div>
+
                                 </div>
                             </div>
+                            <!-- button tambah baris butir -->
+                            <div class="col-2 HapusColButir d-flex align-items-center">
+                                <button type="button" class="btn btn-sm btn-info" type="button" onclick="tambahBarisButir(); return false" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Tambah Baris Baru">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <!-- ./button tambah baris butir -->
                         </div>
 
                         <div class="modal-footer">
@@ -511,6 +515,7 @@ use CodeIgniter\I18n\Time;
         butir.setAttribute('name', 'butir[' + z + ']');
         butir.setAttribute('class', 'form-control');
         butir.setAttribute('placeholder', 'Isi Butir Pernyataan selanjutnya');
+        butir.setAttribute("required", "");
 
         var hapus = document.createElement('span');
 

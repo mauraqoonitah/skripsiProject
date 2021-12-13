@@ -178,15 +178,23 @@ class JenisResponden extends BaseController
 
         // save to table pertanyaan_data_diri 
         $inputPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
-        if (($inputPertanyaan === 'Nama Lengkap') || ($inputPertanyaan === 'Nama') || ($inputPertanyaan === 'Fullname')) {
-            $inputPertanyaan = 'fullname';
+
+        $strReplace1 = str_replace('(', '-', $inputPertanyaan);
+        $strReplace3 = str_replace(')', '-', $strReplace1);
+        $strReplace4 = str_replace('?', '-', $strReplace3);
+        $strReplace5 = str_replace('/', ' atau ', $strReplace4);
+        $newInputPertanyaan = str_replace('*', '-', $strReplace5);
+
+        if (($newInputPertanyaan === 'Nama Lengkap') || ($newInputPertanyaan === 'Nama') || ($newInputPertanyaan === 'Fullname')) {
+            $newInputPertanyaan = 'fullname';
         } else {
-            $inputPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
+            $newInputPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
         }
+
         $dataPertanyaan =
             [
                 'uniqueId' => $uniqueId,
-                'pertanyaan' => $inputPertanyaan,
+                'pertanyaan' => $newInputPertanyaan,
                 'jenisRespondenID' => $this->mRequest->getPost('jenisRespondenID'),
                 'jenis' => $this->mRequest->getPost('jenis'),
             ];
@@ -220,7 +228,14 @@ class JenisResponden extends BaseController
             $getPostPertanyaan = ucwords($this->mRequest->getPost('pertanyaan'));
         }
 
-        $columnPertanyaan = str_replace(' ', '', $getPostPertanyaan);
+        $strReplace = str_replace(' ', '', $getPostPertanyaan);
+        $strReplace1 = str_replace('(', '-', $strReplace);
+        $strReplace2 = str_replace(')', '-', $strReplace1);
+        $strReplace3 = str_replace('?', '-', $strReplace2);
+        $strReplace4 = str_replace('/', ' atau ', $strReplace3);
+        $strReplace5 = str_replace(' ', '', $strReplace4);
+
+        $columnPertanyaan = str_replace('*', '-', $strReplace5);
 
         $fields = [
             $columnPertanyaan => [
