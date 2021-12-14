@@ -14,11 +14,11 @@
                         </div>
                         <h3 class="text-center">Registrasi</h3>
                         <p class="text-muted text-center fs-6 fw-bold"> Daftar akun untuk mulai akses survei instrumen kepuasan</p>
-                        <p class="text-muted  text-center small">
+                        <!-- <p class="text-muted  text-center small">
                             Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
                                 <u>Daftar Disini</u>
                             </a>
-                        </p>
+                        </p> -->
                     </div>
                 </div>
                 <div class="auth-wrapper-right">
@@ -177,7 +177,7 @@
                                 <!-- jenis responden untuk non siakad -->
                                 <div class="form-group mb-3">
                                     <label for="responden" class="form-label">Sebagai</label>
-                                    <select class="form-select option-role <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>" required>
+                                    <select class="form-select <?php if (session('errors.role')) : ?>is-invalid<?php endif ?>" name="role" id="responden" onChange="getText()" value="<?= old('role') ?>" required>
                                         <option selected disabled>Pilih...</option>
                                         <?php foreach ($jenisResponden as $r) : ?>
                                             <?php if ($r['responden'] === 'Dosen') : ?>
@@ -241,14 +241,14 @@
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $('.option-role').on('click', function() {
         $("option[value='dosen']").remove();
         $("option[value='Dosen']").remove();
         $("option[value='Mahasiswa']").remove();
         $("option[value='mahasiswa']").remove();
     });
-</script>
+</script> -->
 
 <script type="text/javascript">
     function myFunction() {

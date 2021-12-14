@@ -62,22 +62,22 @@
                 </div>
             </div>
             <div class="auth-wrapper-right col-md-4 pt-5">
-                <img src="<?= base_url(); ?>/img/ex-jumbotron-img.png" alt="" class="img-fluid auth-header-img">
+                <img src="<?= base_url(); ?>/img/ex-jumbotron-img.png" alt="" class="pt-3 img-fluid auth-header-img">
                 <div class="container mt-3">
                     <div class="row">
                         <div class="text-center">
                             <?php if ($config->allowRegistration) : ?>
-                                <p class="text-muted small">
-                                    Belum punya akun? <a href="<?= url_to('register') ?>"><br><u>Daftar Disini</u>
-                                    </a>
+                                <p class="text-muted">
+                                    Belum punya akun? <strong><a href="<?= url_to('register') ?>"><br><u>Daftar Disini</u>
+                                    </strong></a>
                                 </p>
                             <?php endif; ?>
 
-                            <p class="text-muted small">
+                            <!-- <p class="text-muted">
                                 Dosen/Mahasiswa UNJ? <a href="<?= url_to('checkAkun') ?>">
                                     <br><u>Daftar Disini</u>
                                 </a>
-                            </p>
+                            </p> -->
 
                         </div>
                     </div>
