@@ -1,7 +1,7 @@
 <?= $this->extend('responden/templates/index'); ?>
 
 <?= $this->section('responden-body-content'); ?>
-<div class="content-wrapper pt-5" style="min-height: 80vh;">
+<div class="content-wrapper py-5" style="min-height: 80vh;">
 
     <!-- Content Header (Page header) -->
     <div class="content-header">

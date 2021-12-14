@@ -117,6 +117,12 @@ class DataDiri extends BaseController
                     $pertanyaan = $jenisPilihan['pertanyaan'];
                     $columnPertanyaanPilihan = str_replace(' ', '', $pertanyaan);
 
+                    $strReplace1 = str_replace('(', '-', $columnPertanyaanPilihan);
+                    $strReplace2 = str_replace(')', '-', $strReplace1);
+                    $strReplace3 = str_replace('?', '-', $strReplace2);
+                    $strReplace4 = str_replace('/', 'atau', $strReplace3);
+                    $columnPertanyaanPilihan = str_replace('*', '-', $strReplace4);
+
                     if ($this->mRequest->getVar("pilihan-" . $jenisPilihan['id']) != Null) {
                         $jawaban = $this->mRequest->getVar('pilihan-' . $jenisPilihan['id']);
 

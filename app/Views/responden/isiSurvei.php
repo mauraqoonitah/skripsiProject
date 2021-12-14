@@ -88,7 +88,7 @@
                                     <!-- jika butir pernyataan tidak ada -->
                                     <?php if (sizeof($lihatPernyataan) === 0) : ?>
                                         <div class="alert alert-rouge alert-dismissible fade show" role="alert">
-                                            <span class="text-rouge"><strong>Oops! </strong> butir pernyataan belum ditambahkan.</span>
+                                            <span class="text-rouge"><i><strong>Maaf, </strong> butir pernyataan belum tersedia.</i></span>
                                         </div>
                                         <div class="card-footer clearfix">
                                             <div class="d-flex justify-content-center">
@@ -198,7 +198,7 @@
                         </div>
                         <div class="card-footer clearfix py-5">
                             <div class="d-flex justify-content-center">
-                                <a href="<?= base_url(); ?>/responden/isiDataDiri">
+                                <a href="<?= base_url(); ?>/responden">
                                     <button type="submit" class="btn btn-outline-purple mr-3">
                                         <i class="fas fa-chevron-left mr-3"></i> Kembali
                                     </button>

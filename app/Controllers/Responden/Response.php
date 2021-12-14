@@ -62,6 +62,13 @@ class Response extends BaseController
         foreach ($getPertanyaanByRespId as $getPertanyaan) {
             $pertanyaan = $getPertanyaan['pertanyaan'];
             $columnPertanyaan = str_replace(' ', '', $pertanyaan);
+
+            $strReplace1 = str_replace('(', '-', $columnPertanyaan);
+            $strReplace2 = str_replace(')', '-', $strReplace1);
+            $strReplace3 = str_replace('?', '-', $strReplace2);
+            $strReplace4 = str_replace('/', 'atau', $strReplace3);
+            $columnPertanyaan = str_replace('*', '-', $strReplace4);
+
             // dd($columnPertanyaan);
         }
         $getDataUser = $this->userModel->getDataUser($userId);
