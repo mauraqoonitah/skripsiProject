@@ -129,99 +129,100 @@
 
                                 <div class="content">
                                     <div class="container">
-                                        <table id="datatable-chart-instrumen" class="table table-bordered table-hover mb-5 mt-3 border rounded-3 border-secondary">
-                                            <thead class="bg-rouge">
-                                                <tr class="text-center">
-                                                    <th>Butir Pernyataan</th>
-                                                    <th>Sangat Puas</th>
-                                                    <th>Puas</th>
-                                                    <th>Cukup Puas</th>
-                                                    <th>Tidak Puas</th>
-                                                    <th>Sangat Tidak Puas</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php foreach ($responsePertanyaan as $rID) :  ?>
-                                                    <?php
-                                                    $skor5 = 0;
-                                                    $skor4 = 0;
-                                                    $skor3 = 0;
-                                                    $skor2 = 0;
-                                                    $skor1 = 0;
-                                                    $skorNull = '';
-                                                    ?>
-                                                    <tr>
-                                                        <th>
-                                                            <?php $questionID = $rID['id']; ?>
-                                                            <?= $rID['butir']; ?>
-                                                        </th>
-                                                        <?php
-                                                        // get jawaban by questionID
-                                                        $responseModel = model('ResponseModel');
-                                                        $this->responseModel = new $responseModel;
-                                                        $sqlResponse =  $this->responseModel->getAllResponses($instrumenID, $questionID); ?>
-                                                        <td class="text-center">
-                                                            <?php foreach ($sqlResponse as $response) : ?>
-                                                                <?php $jawaban = $response['jawaban']; ?>
-                                                                <?php $questID = $response['questionID']; ?>
-                                                                <?php if ($jawaban == '5' && $questID == $questionID) {
-                                                                    $skor5++;
-                                                                }
-                                                                ?>
-                                                            <?php endforeach; ?>
-                                                            <?= $skor5; ?>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <?php foreach ($sqlResponse as $response) : ?>
-                                                                <?php $jawaban = $response['jawaban']; ?>
-                                                                <?php $questID = $response['questionID']; ?>
-                                                                <?php if ($jawaban == '4' && $questID == $questionID) {
-                                                                    $skor4++;
-                                                                }
-                                                                ?>
-                                                            <?php endforeach; ?>
-                                                            <?= $skor4; ?>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <?php foreach ($sqlResponse as $response) : ?>
-                                                                <?php $jawaban = $response['jawaban']; ?>
-                                                                <?php $questID = $response['questionID']; ?>
-                                                                <?php if ($jawaban == '3' && $questID == $questionID) {
-                                                                    $skor3++;
-                                                                }
-                                                                ?>
-                                                            <?php endforeach; ?>
-                                                            <?= $skor3; ?>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <?php foreach ($sqlResponse as $response) : ?>
-                                                                <?php $jawaban = $response['jawaban']; ?>
-                                                                <?php $questID = $response['questionID']; ?>
-                                                                <?php if ($jawaban == '2' && $questID == $questionID) {
-                                                                    $skor2++;
-                                                                }
-                                                                ?>
-                                                            <?php endforeach; ?>
-                                                            <?= $skor2; ?>
-                                                        </td>
-                                                        <td class="text-center">
-                                                            <?php foreach ($sqlResponse as $response) : ?>
-                                                                <?php $jawaban = $response['jawaban']; ?>
-                                                                <?php $questID = $response['questionID']; ?>
-                                                                <?php if ($jawaban == '1' && $questID == $questionID) {
-                                                                    $skor1++;
-                                                                }
-                                                                ?>
-                                                            <?php endforeach; ?>
-                                                            <?= $skor1; ?>
-                                                        </td>
+                                        <div class="table-responsive">
+                                            <table id="datatable-chart-instrumen" class="table table-bordered table-hover mb-5 mt-3 border rounded-3 border-secondary">
+                                                <thead class="bg-rouge">
+                                                    <tr class="text-center">
+                                                        <th>Butir Pernyataan</th>
+                                                        <th>Sangat Puas</th>
+                                                        <th>Puas</th>
+                                                        <th>Cukup Puas</th>
+                                                        <th>Tidak Puas</th>
+                                                        <th>Sangat Tidak Puas</th>
                                                     </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($responsePertanyaan as $rID) :  ?>
+                                                        <?php
+                                                        $skor5 = 0;
+                                                        $skor4 = 0;
+                                                        $skor3 = 0;
+                                                        $skor2 = 0;
+                                                        $skor1 = 0;
+                                                        $skorNull = '';
+                                                        ?>
+                                                        <tr>
+                                                            <th>
+                                                                <?php $questionID = $rID['id']; ?>
+                                                                <?= $rID['butir']; ?>
+                                                            </th>
+                                                            <?php
+                                                            // get jawaban by questionID
+                                                            $responseModel = model('ResponseModel');
+                                                            $this->responseModel = new $responseModel;
+                                                            $sqlResponse =  $this->responseModel->getAllResponses($instrumenID, $questionID); ?>
+                                                            <td class="text-center">
+                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                    <?php $jawaban = $response['jawaban']; ?>
+                                                                    <?php $questID = $response['questionID']; ?>
+                                                                    <?php if ($jawaban == '5' && $questID == $questionID) {
+                                                                        $skor5++;
+                                                                    }
+                                                                    ?>
+                                                                <?php endforeach; ?>
+                                                                <?= $skor5; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                    <?php $jawaban = $response['jawaban']; ?>
+                                                                    <?php $questID = $response['questionID']; ?>
+                                                                    <?php if ($jawaban == '4' && $questID == $questionID) {
+                                                                        $skor4++;
+                                                                    }
+                                                                    ?>
+                                                                <?php endforeach; ?>
+                                                                <?= $skor4; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                    <?php $jawaban = $response['jawaban']; ?>
+                                                                    <?php $questID = $response['questionID']; ?>
+                                                                    <?php if ($jawaban == '3' && $questID == $questionID) {
+                                                                        $skor3++;
+                                                                    }
+                                                                    ?>
+                                                                <?php endforeach; ?>
+                                                                <?= $skor3; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                    <?php $jawaban = $response['jawaban']; ?>
+                                                                    <?php $questID = $response['questionID']; ?>
+                                                                    <?php if ($jawaban == '2' && $questID == $questionID) {
+                                                                        $skor2++;
+                                                                    }
+                                                                    ?>
+                                                                <?php endforeach; ?>
+                                                                <?= $skor2; ?>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <?php foreach ($sqlResponse as $response) : ?>
+                                                                    <?php $jawaban = $response['jawaban']; ?>
+                                                                    <?php $questID = $response['questionID']; ?>
+                                                                    <?php if ($jawaban == '1' && $questID == $questionID) {
+                                                                        $skor1++;
+                                                                    }
+                                                                    ?>
+                                                                <?php endforeach; ?>
+                                                                <?= $skor1; ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-
                             </figure>
                         </div>
                     </div>

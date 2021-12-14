@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 07:37 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Host: localhost:3306
+-- Generation Time: Dec 14, 2021 at 04:26 PM
+-- Server version: 10.3.32-MariaDB-cll-lve
+-- PHP Version: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sijamu`
+-- Database: `u8810863_instrumen-kepuasan`
 --
 
 -- --------------------------------------------------------
@@ -56,7 +56,10 @@ INSERT INTO `auth_activation_attempts` (`id`, `ip_address`, `user_agent`, `token
 (13, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', 'cb277718ff7e36092cfc4e7630f86591', '2021-12-13 17:15:37'),
 (14, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '8815ca065d4f5791970152c56005622f', '2021-12-14 12:18:36'),
 (15, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.93 Safari/537.36', '8815ca065d4f5791970152c56005622f', '2021-12-14 12:18:49'),
-(16, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0', 'd653dec81d0afba4012637b54c05390d', '2021-12-14 13:08:14');
+(16, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0', 'd653dec81d0afba4012637b54c05390d', '2021-12-14 13:08:14'),
+(17, '180.252.114.4', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36', '655edaaafbdbf132cfa68514119f0689', '2021-12-14 15:44:33'),
+(18, '180.244.172.201', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36', '2dca2cd878fe592393111e47eee55166', '2021-12-14 15:56:08'),
+(19, '103.11.28.197', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', '655edaaafbdbf132cfa68514119f0689', '2021-12-14 16:12:47');
 
 -- --------------------------------------------------------
 
@@ -117,10 +120,12 @@ CREATE TABLE `auth_groups_users` (
 
 INSERT INTO `auth_groups_users` (`group_id`, `user_id`) VALUES
 (1, 55),
+(1, 68),
 (2, 48),
 (3, 56),
 (3, 65),
 (5, 60),
+(5, 69),
 (6, 64),
 (6, 67),
 (7, 63),
@@ -213,7 +218,11 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (65, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 12:36:49', 1),
 (66, '::1', 'vivirofiah25@gmail.com', 67, '2021-12-14 13:08:29', 1),
 (67, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 13:11:53', 1),
-(68, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 13:32:19', 1);
+(68, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 13:32:19', 1),
+(69, '180.244.172.201', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 15:39:29', 1),
+(70, '180.252.114.4', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 15:45:28', 1),
+(71, '180.244.172.201', 'mauraqipi@gmail.com', 69, '2021-12-14 15:56:18', 1),
+(72, '180.252.114.4', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 15:57:28', 1);
 
 -- --------------------------------------------------------
 
@@ -357,14 +366,14 @@ INSERT INTO `instrumen` (`id`, `kodeCategory`, `kodeInstrumen`, `namaInstrumen`,
 (12, 'C.3', 'C.3.1', 'Instrumen Kepuasan atas Standar Layanan Kemahasiswaan oleh Mahasiswa', 'Mahasiswa', 'c3', 0, NULL, NULL),
 (13, 'C.3', 'C.3.2', 'Instrumen Kepuasan atas Standar Layanan Kemahasiswaan oleh Alumni/Lulusan', 'Alumni/Lulusan', 'c3', 0, NULL, NULL),
 (14, 'C.3', 'C.3.3', 'Instrumen Kepuasan atas Standar Layanan Kemahasiswaan oleh Pengguna Lulusan', 'Pengguna Lulusan', 'c3', 0, NULL, NULL),
-(15, 'C.4', 'C.4.1', 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'Dosen', 'c4', 0, NULL, '2021-12-14 12:53:49'),
+(15, 'C.4', 'C.4.1', 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Dosen', 'Dosen', 'c4', 1, NULL, '2021-12-14 15:58:18'),
 (16, 'C.4', 'C.4.2', 'Instrumen Kepuasan atas Standar Pengelolaan SDM UNJ oleh Tenaga Kependidikan', 'Tenaga Kependidikan', 'c4', 0, NULL, NULL),
-(19, 'C.7', 'C.7.2', 'Instrumen atas Proses Penelitian UNJ oleh Mitra', 'Mitra', 'c7', 0, NULL, '2021-12-13 18:10:15'),
+(19, 'C.7', 'C.7.2', 'Instrumen atas Proses Penelitian UNJ oleh Mitra', 'Mitra', 'c7', 1, NULL, '2021-12-14 15:59:36'),
 (20, 'C.8', 'C.8.1', 'Instrumen Kepuasan Atas Proses Pengabdian Kepada Masyarakat - UNJ oleh Pengabdi', 'Pengabdi', 'c8', 0, NULL, NULL),
 (21, 'C.9', 'C.9.2', 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Mitra', 'Mitra', 'c9', 0, NULL, NULL),
 (27, 'C.7', 'C.7.1', 'Instrumen atas Proses Penelitian UNJ oleh Peneliti', 'Peneliti', 'c7', 0, '2021-12-13 18:10:40', '2021-12-13 18:10:40'),
-(28, 'C.8', 'C.8.2', 'Instrumen Kepuasan Atas Proses Pengabdian Kepada Masyarakat - UNJ oleh Mitra', 'Mitra', 'c8', 0, '2021-12-13 18:15:51', '2021-12-13 18:15:51'),
-(29, 'C.9', 'C.9.1', 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'Pengguna Lulusan', 'c9', 0, '2021-12-13 18:18:24', '2021-12-13 18:18:24'),
+(28, 'C.8', 'C.8.2', 'Instrumen Kepuasan Atas Proses Pengabdian Kepada Masyarakat - UNJ oleh Mitra', 'Mitra', 'c8', 1, '2021-12-13 18:15:51', '2021-12-14 15:58:57'),
+(29, 'C.9', 'C.9.1', 'Instrumen Kepuasan atas Luaran dan Capaian Tridharma UNJ oleh Pengguna Lulusan', 'Pengguna Lulusan', 'c9', 1, '2021-12-13 18:18:24', '2021-12-14 15:58:41'),
 (30, 'C.2', 'C.2.1', 'TATA KELOLA, TATA PAMONG, DAN KERJASAMA oleh Dosen', 'Dosen', 'c2', 1, '2021-12-14 12:22:55', '2021-12-14 12:56:05');
 
 -- --------------------------------------------------------
@@ -900,7 +909,8 @@ INSERT INTO `responden` (`id`, `userID`, `role`, `fullname`, `created_at`, `upda
 (18, 63, 'Mitra', 'Divina Fatriandira', '2021-12-14 12:07:01', '2021-12-14 12:07:01'),
 (19, 65, 'Dosen', 'Sri Rahayu', '2021-12-14 12:30:33', '2021-12-14 12:30:33'),
 (20, 56, 'Dosen', 'Ari Hendarno, S.Pd, M.Kom.', '2021-12-14 12:35:21', '2021-12-14 12:35:21'),
-(21, 67, 'Mahasiswa', 'Vivi Rofiah', '2021-12-14 13:10:16', '2021-12-14 13:10:16');
+(21, 67, 'Mahasiswa', 'Vivi Rofiah', '2021-12-14 13:10:16', '2021-12-14 13:10:16'),
+(22, 69, 'Mahasiswa', 'Mauraqipi', '2021-12-14 15:57:02', '2021-12-14 15:57:02');
 
 -- --------------------------------------------------------
 
@@ -1115,7 +1125,29 @@ INSERT INTO `response` (`id`, `slug`, `kodeInstrumen`, `instrumenID`, `questionI
 (254, 'c2', 'C.2.3', 7, 39, '4', 'Mahasiswa', 67, '6rucdshDIaAH4Xyi', '2021-12-14 13:10:16', '2021-12-14 13:10:16'),
 (255, 'c2', 'C.2.3', 7, 40, '5', 'Mahasiswa', 67, '6rucdshDIaAH4Xyi', '2021-12-14 13:10:16', '2021-12-14 13:10:16'),
 (256, 'c2', 'C.2.3', 7, 41, '3', 'Mahasiswa', 67, '6rucdshDIaAH4Xyi', '2021-12-14 13:10:16', '2021-12-14 13:10:16'),
-(257, 'c2', 'C.2.3', 7, 42, '5', 'Mahasiswa', 67, '6rucdshDIaAH4Xyi', '2021-12-14 13:10:16', '2021-12-14 13:10:16');
+(257, 'c2', 'C.2.3', 7, 42, '5', 'Mahasiswa', 67, '6rucdshDIaAH4Xyi', '2021-12-14 13:10:16', '2021-12-14 13:10:16'),
+(258, 'c2', 'C.2.3', 7, 21, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(259, 'c2', 'C.2.3', 7, 22, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(260, 'c2', 'C.2.3', 7, 23, '3', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(261, 'c2', 'C.2.3', 7, 24, '3', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(262, 'c2', 'C.2.3', 7, 25, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(263, 'c2', 'C.2.3', 7, 26, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(264, 'c2', 'C.2.3', 7, 27, '3', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(265, 'c2', 'C.2.3', 7, 28, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(266, 'c2', 'C.2.3', 7, 29, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(267, 'c2', 'C.2.3', 7, 30, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(268, 'c2', 'C.2.3', 7, 31, '3', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(269, 'c2', 'C.2.3', 7, 32, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(270, 'c2', 'C.2.3', 7, 33, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(271, 'c2', 'C.2.3', 7, 34, '3', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(272, 'c2', 'C.2.3', 7, 35, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(273, 'c2', 'C.2.3', 7, 36, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(274, 'c2', 'C.2.3', 7, 37, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(275, 'c2', 'C.2.3', 7, 38, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(276, 'c2', 'C.2.3', 7, 39, '4', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(277, 'c2', 'C.2.3', 7, 40, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(278, 'c2', 'C.2.3', 7, 41, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02'),
+(279, 'c2', 'C.2.3', 7, 42, '5', 'Mahasiswa', 69, 'rixQHGdlPSFugpcN', '2021-12-14 15:57:02', '2021-12-14 15:57:02');
 
 -- --------------------------------------------------------
 
@@ -1168,7 +1200,9 @@ INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`
 (63, 'dfatriandira@gmail.com', 'divinadira', 'Mitra', 'Divina Fatriandira', 'default.svg', '$2y$10$DW/bCvgYAWvWlvtn0iEfA.hSMlMelA15Qx8Cp0.SpePFCXpcUuG2W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:53:33', '2021-12-14 12:07:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mitra10', 'Pendidikan Kimia', NULL, NULL),
 (64, 'alumni.instrumenkepuasan@gmail.com', 'farahayu', 'Alumni/Lulusan', 'Farah Ayu', 'default.svg', '$2y$10$sTUlfF4Hc.hb8Q6foGE2au9qxGNM4Ab4MeYRv//CZ3tzbyfrdrCeK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 17:14:56', '2021-12-14 11:51:00', NULL, NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (65, 'qpmaura@gmail.com', 'dosenBiologi', 'Dosen', 'Sri Rahayu', 'default.svg', '$2y$10$CbhZYamUKU1aTjjIu7CsCO8TyOrU1QB4PrAcfUw0pQXAVXT9ZvtEm', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-14 12:17:28', '2021-12-14 12:30:33', NULL, 'Biologi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2220415 39332011 2 02', NULL),
-(67, 'vivirofiah25@gmail.com', 'vivirofiah', 'Mahasiswa', 'Vivi Rofiah', 'default.svg', '$2y$10$GElTLqc6vJyEUA38jWDbzOmZ27wS4bY8DI44rocuxWoFJzvbdyasK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-14 13:06:22', '2021-12-14 13:10:17', NULL, 'Ilmu Komputer', 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1313617001');
+(67, 'vivirofiah25@gmail.com', 'vivirofiah', 'Mahasiswa', 'Vivi Rofiah', 'default.svg', '$2y$10$GElTLqc6vJyEUA38jWDbzOmZ27wS4bY8DI44rocuxWoFJzvbdyasK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-14 13:06:22', '2021-12-14 13:10:17', NULL, 'Ilmu Komputer', 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1313617001'),
+(68, 'mauraqoonitah15@gmail.com', 'mauraqoonitah15', 'Admin', NULL, 'default.svg', '$2y$10$ScvMU0cKZLosEk9s5GuHaORfutd5molgvcwGmplf8/KG/rxNj1Cqa', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-14 15:43:53', '2021-12-14 15:44:33', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(69, 'mauraqipi@gmail.com', 'mauraqipi', 'Mahasiswa', 'Mauraqipi', 'default.svg', '$2y$10$nbauxoPgT.SlYOuc14XC3O5m.oM9KRlkwnHUYNi8AmDAAPyklLW9q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-14 15:55:49', '2021-12-14 15:57:02', NULL, 'Matematika', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '131136171671');
 
 -- --------------------------------------------------------
 
@@ -1206,7 +1240,9 @@ INSERT INTO `user_check` (`id`, `email`, `role`, `nim`, `namaLengkap`, `programS
 (14, 'alumni.instrumenkepuasan@gmail.com', 'Alumni/Lulusan', NULL, '', '', NULL, NULL, '', '2021-12-13 17:14:56', '2021-12-13 17:14:56'),
 (15, 'qpmaura@gmail.com', 'Dosen', NULL, '', '', NULL, NULL, '', '2021-12-14 12:17:28', '2021-12-14 12:17:28'),
 (16, 'vivirofiah_1313617001@mhs.unj.ac.id', 'Mahasiswa', NULL, '', '', NULL, NULL, '', '2021-12-14 13:01:08', '2021-12-14 13:01:08'),
-(17, 'vivirofiah25@gmail.com', 'Alumni/Lulusan', NULL, '', '', NULL, NULL, '', '2021-12-14 13:06:23', '2021-12-14 13:06:23');
+(17, 'vivirofiah25@gmail.com', 'Alumni/Lulusan', NULL, '', '', NULL, NULL, '', '2021-12-14 13:06:23', '2021-12-14 13:06:23'),
+(18, 'mauraqoonitah15@gmail.com', 'Admin', NULL, '', '', NULL, NULL, '', '2021-12-14 15:43:53', '2021-12-14 15:43:53'),
+(19, 'mauraqipi@gmail.com', 'Mahasiswa', NULL, '', '', NULL, NULL, '', '2021-12-14 15:55:49', '2021-12-14 15:55:49');
 
 --
 -- Indexes for dumped tables
@@ -1386,7 +1422,7 @@ ALTER TABLE `user_check`
 -- AUTO_INCREMENT for table `auth_activation_attempts`
 --
 ALTER TABLE `auth_activation_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `auth_groups`
@@ -1398,7 +1434,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1482,25 +1518,25 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `responden`
 --
 ALTER TABLE `responden`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `response`
 --
 ALTER TABLE `response`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `user_check`
 --
 ALTER TABLE `user_check`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

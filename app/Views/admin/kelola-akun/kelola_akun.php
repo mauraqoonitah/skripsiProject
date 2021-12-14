@@ -741,13 +741,18 @@ use CodeIgniter\I18n\Time;
                                                     </form>
 
                                                     <?php if (in_groups('Admin')) : ?>
-                                                        <td class="align-middle text-center">
-                                                            <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
-                                                                <button type="button" class="btn btn-sm">
-                                                                    <i class="fas fa-trash-alt text-white"></i>
-                                                                </button>
-                                                            </a>
-                                                        </td>
+                                                        <?php if ($admin->email === user()->email) : ?>
+                                                            <td class="align-middle text-center">
+                                                            </td>
+                                                        <?php else : ?>
+                                                            <td class="align-middle text-center">
+                                                                <a href="#" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal" data-bs-target="#modal-delete-adminGPJM-<?= $admin->id; ?>">
+                                                                    <button type="button" class="btn btn-sm">
+                                                                        <i class="fas fa-trash-alt text-white"></i>
+                                                                    </button>
+                                                                </a>
+                                                            </td>
+                                                        <?php endif; ?>
                                                     <?php endif; ?>
                                                 </tr>
                                                 <?php if (in_groups('Admin')) : ?>
