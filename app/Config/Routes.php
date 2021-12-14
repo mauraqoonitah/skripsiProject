@@ -139,15 +139,15 @@ $routes->post('/admin/updateDataDiri/(:any)', 'Admin\JenisResponden::updateDataD
 
 
 // menu kelola akun
-$routes->get('/admin/kelolaAkun', 'Admin\kelolaAkun::index', ['filter' => 'role:Admin,Kontributor']);
-$routes->get('/admin/kelolaAkun/editAkunDosen/(:any)', 'Admin\kelolaAkun::editAkunDosen/$1');
-$routes->post('/admin/kelolaAkun/removePermission/(:any)', 'Admin\kelolaAkun::removePermission/$1');
-$routes->post('/admin/kelolaAkun/addAkunPermission', 'Admin\kelolaAkun::addAkunPermission');
+$routes->get('/admin/kelolaAkun', 'Admin\KelolaAkun::index', ['filter' => 'role:Admin,Kontributor']);
+$routes->get('/admin/kelolaAkun/editAkunDosen/(:any)', 'Admin\KelolaAkun::editAkunDosen/$1');
+$routes->post('/admin/kelolaAkun/removePermission/(:any)', 'Admin\KelolaAkun::removePermission/$1');
+$routes->post('/admin/kelolaAkun/addAkunPermission', 'Admin\KelolaAkun::addAkunPermission');
 
 
-$routes->post('/admin/kelolaAkun/activeStatus/(:any)', 'Admin\kelolaAkun::activeStatus/$1');
-$routes->delete('/admin/kelolaAkun/deleteUser/(:any)', 'Admin\kelolaAkun::deleteUser/$1');
-$routes->post('/admin/updateInsDosen/(:any)', 'Admin\kelolaAkun::updateInsDosen/$1');
+$routes->post('/admin/kelolaAkun/activeStatus/(:any)', 'Admin\KelolaAkun::activeStatus/$1');
+$routes->delete('/admin/kelolaAkun/deleteUser/(:any)', 'Admin\KelolaAkun::deleteUser/$1');
+$routes->post('/admin/updateInsDosen/(:any)', 'Admin\KelolaAkun::updateInsDosen/$1');
 
 
 
