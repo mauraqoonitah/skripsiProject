@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 07:20 AM
+-- Generation Time: Dec 14, 2021 at 07:37 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -212,7 +212,8 @@ INSERT INTO `auth_logins` (`id`, `ip_address`, `email`, `user_id`, `date`, `succ
 (64, '::1', 'admin', NULL, '2021-12-14 12:36:41', 0),
 (65, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 12:36:49', 1),
 (66, '::1', 'vivirofiah25@gmail.com', 67, '2021-12-14 13:08:29', 1),
-(67, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 13:11:53', 1);
+(67, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 13:11:53', 1),
+(68, '::1', 'gpjm.instrumenkepuasan@gmail.com', 55, '2021-12-14 13:32:19', 1);
 
 -- --------------------------------------------------------
 
@@ -481,7 +482,9 @@ INSERT INTO `pertanyaan_data_diri` (`id`, `pertanyaan`, `jenisRespondenID`, `uni
 (57, 'Asal Program Studi Yang Dinilai', 5, '6yzVTkWSsfDUZp2Q', 'pilihan'),
 (59, 'fullname', 6, 'P4uvGDfajpXBeYsZ', 'isian'),
 (60, 'Lembaga/Unit/Institusi/Industri', 6, 'tij1SKEPJyDvZC6X', 'isian'),
-(61, 'Program Studi (jika Alumni Unj)', 6, 'PyfuG5iQN21t8br9', 'pilihan');
+(61, 'Program Studi (jika Alumni Unj)', 6, 'PyfuG5iQN21t8br9', 'pilihan'),
+(62, 'NIP/NIDN', 1, 'fQckh3vnHZV8GoRj', 'isian'),
+(63, 'Nomor Registrasi Mahasiswa (NRM)', 3, '0IDmw5zEjBSFQWPL', 'isian');
 
 -- --------------------------------------------------------
 
@@ -1147,23 +1150,25 @@ CREATE TABLE `users` (
   `InstitusiatauTempatKerja` varchar(255) DEFAULT NULL,
   `AsalProgramStudiYangDinilai` varchar(255) DEFAULT NULL,
   `LembagaatauUnitatauInstitusiatauIndustri` varchar(255) DEFAULT NULL,
-  `ProgramStudi-jikaAlumniUnj-` varchar(255) DEFAULT NULL
+  `ProgramStudi-jikaAlumniUnj-` varchar(255) DEFAULT NULL,
+  `NIPatauNIDN` varchar(255) DEFAULT NULL,
+  `NomorRegistrasiMahasiswa-NRM-` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`, `ProgramStudi`, `AsalProgramStudi`, `UnitatauBiroatauLembaga`, `InstitutionatauWorkplace`, `Address`, `InstitusiatauTempatKerja`, `AsalProgramStudiYangDinilai`, `LembagaatauUnitatauInstitusiatauIndustri`, `ProgramStudi-jikaAlumniUnj-`) VALUES
-(48, 'kontributor.instrumenkepuasan@gmail.com', 'kontributor', 'Kontributor', 'Kontributor: TPjM', 'default.svg', '$2y$10$cWI.2uYscaseBsiVwz3VCuqIXzGFKpmfnxncLx4ldBFsh1z8Zwl7q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 22:23:04', '2021-10-11 22:23:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(55, 'gpjm.instrumenkepuasan@gmail.com', 'admin', 'Admin', 'Eka Azrai', 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-12-11 00:12:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(56, 'dosen.instrumenkepuasan@gmail.com', 'dosenIlkom', 'Dosen', 'Ari Hendarno, S.Pd, M.Kom.', 'default.svg', '$2y$10$QoAJW3RvWT8kQoH52f3A7OVMeekd33VQRmld4eTqtA53T5HpkvjZq', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 16:06:54', '2021-12-14 12:35:21', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(60, 'mauraqoonitah@gmail.com', 'mauraqoonitah', 'Mahasiswa', 'Maura Qoonitah Putri', 'default.svg', '$2y$10$2DVqg5oXjXACMxBvLhC.guW0/h70GlwHSd5aVYtz0DgjxSUoaWXAu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 12:00:15', '2021-12-13 14:21:21', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(61, 'nurzaakiahulfah@gmail.com', 'ulfahnrz', 'Pengguna Lulusan', 'Ulfah nurzaakiah', 'default.svg', '$2y$10$W7JbkYqyET9lUAxo0srd.O/fGqXpVU7.hDqSWwlouAOspqtBovAE6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:42:12', '2021-12-14 00:44:17', NULL, NULL, NULL, NULL, NULL, NULL, 'Zalora', 'Ilmu Komputer', NULL, NULL),
-(63, 'dfatriandira@gmail.com', 'divinadira', 'Mitra', 'Divina Fatriandira', 'default.svg', '$2y$10$DW/bCvgYAWvWlvtn0iEfA.hSMlMelA15Qx8Cp0.SpePFCXpcUuG2W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:53:33', '2021-12-14 12:07:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mitra10', 'Pendidikan Kimia'),
-(64, 'alumni.instrumenkepuasan@gmail.com', 'farahayu', 'Alumni/Lulusan', 'Farah Ayu', 'default.svg', '$2y$10$sTUlfF4Hc.hb8Q6foGE2au9qxGNM4Ab4MeYRv//CZ3tzbyfrdrCeK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 17:14:56', '2021-12-14 11:51:00', NULL, NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(65, 'qpmaura@gmail.com', 'dosenBiologi', 'Dosen', 'Sri Rahayu', 'default.svg', '$2y$10$CbhZYamUKU1aTjjIu7CsCO8TyOrU1QB4PrAcfUw0pQXAVXT9ZvtEm', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-14 12:17:28', '2021-12-14 12:30:33', NULL, 'Biologi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(67, 'vivirofiah25@gmail.com', 'vivirofiah', 'Mahasiswa', 'Vivi Rofiah', 'default.svg', '$2y$10$GElTLqc6vJyEUA38jWDbzOmZ27wS4bY8DI44rocuxWoFJzvbdyasK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-14 13:06:22', '2021-12-14 13:10:17', NULL, 'Ilmu Komputer', 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `email`, `username`, `role`, `fullname`, `user_image`, `password_hash`, `reset_hash`, `reset_at`, `reset_expires`, `activate_hash`, `status`, `status_message`, `active`, `force_pass_reset`, `created_at`, `updated_at`, `deleted_at`, `ProgramStudi`, `AsalProgramStudi`, `UnitatauBiroatauLembaga`, `InstitutionatauWorkplace`, `Address`, `InstitusiatauTempatKerja`, `AsalProgramStudiYangDinilai`, `LembagaatauUnitatauInstitusiatauIndustri`, `ProgramStudi-jikaAlumniUnj-`, `NIPatauNIDN`, `NomorRegistrasiMahasiswa-NRM-`) VALUES
+(48, 'kontributor.instrumenkepuasan@gmail.com', 'kontributor', 'Kontributor', 'Kontributor: TPjM', 'default.svg', '$2y$10$cWI.2uYscaseBsiVwz3VCuqIXzGFKpmfnxncLx4ldBFsh1z8Zwl7q', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-10-11 22:23:04', '2021-10-11 22:23:17', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(55, 'gpjm.instrumenkepuasan@gmail.com', 'admin', 'Admin', 'Eka Azrai', 'default.svg', '$2y$10$DG61t8YRixc9Y1q8HbztvusT2LfWYStwhCZrMMAWKh733mH.UQms.', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-11-16 23:37:20', '2021-12-11 00:12:35', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(56, 'dosen.instrumenkepuasan@gmail.com', 'dosenIlkom', 'Dosen', 'Ari Hendarno, S.Pd, M.Kom.', 'default.svg', '$2y$10$QoAJW3RvWT8kQoH52f3A7OVMeekd33VQRmld4eTqtA53T5HpkvjZq', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-12 16:06:54', '2021-12-14 12:35:21', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1920415 3972011 2 00', NULL),
+(60, 'mauraqoonitah@gmail.com', 'mauraqoonitah', 'Mahasiswa', 'Maura Qoonitah Putri', 'default.svg', '$2y$10$2DVqg5oXjXACMxBvLhC.guW0/h70GlwHSd5aVYtz0DgjxSUoaWXAu', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 12:00:15', '2021-12-13 14:21:21', NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1313617009'),
+(61, 'nurzaakiahulfah@gmail.com', 'ulfahnrz', 'Pengguna Lulusan', 'Ulfah nurzaakiah', 'default.svg', '$2y$10$W7JbkYqyET9lUAxo0srd.O/fGqXpVU7.hDqSWwlouAOspqtBovAE6', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:42:12', '2021-12-14 00:44:17', NULL, NULL, NULL, NULL, NULL, NULL, 'Zalora', 'Ilmu Komputer', NULL, NULL, NULL, NULL),
+(63, 'dfatriandira@gmail.com', 'divinadira', 'Mitra', 'Divina Fatriandira', 'default.svg', '$2y$10$DW/bCvgYAWvWlvtn0iEfA.hSMlMelA15Qx8Cp0.SpePFCXpcUuG2W', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 16:53:33', '2021-12-14 12:07:02', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Mitra10', 'Pendidikan Kimia', NULL, NULL),
+(64, 'alumni.instrumenkepuasan@gmail.com', 'farahayu', 'Alumni/Lulusan', 'Farah Ayu', 'default.svg', '$2y$10$sTUlfF4Hc.hb8Q6foGE2au9qxGNM4Ab4MeYRv//CZ3tzbyfrdrCeK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-13 17:14:56', '2021-12-14 11:51:00', NULL, NULL, 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(65, 'qpmaura@gmail.com', 'dosenBiologi', 'Dosen', 'Sri Rahayu', 'default.svg', '$2y$10$CbhZYamUKU1aTjjIu7CsCO8TyOrU1QB4PrAcfUw0pQXAVXT9ZvtEm', NULL, NULL, NULL, NULL, NULL, 'createdByAdmin', 1, 0, '2021-12-14 12:17:28', '2021-12-14 12:30:33', NULL, 'Biologi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2220415 39332011 2 02', NULL),
+(67, 'vivirofiah25@gmail.com', 'vivirofiah', 'Mahasiswa', 'Vivi Rofiah', 'default.svg', '$2y$10$GElTLqc6vJyEUA38jWDbzOmZ27wS4bY8DI44rocuxWoFJzvbdyasK', NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2021-12-14 13:06:22', '2021-12-14 13:10:17', NULL, 'Ilmu Komputer', 'Ilmu Komputer', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1313617001');
 
 -- --------------------------------------------------------
 
@@ -1393,7 +1398,7 @@ ALTER TABLE `auth_groups`
 -- AUTO_INCREMENT for table `auth_logins`
 --
 ALTER TABLE `auth_logins`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `auth_permissions`
@@ -1447,7 +1452,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pertanyaan_data_diri`
 --
 ALTER TABLE `pertanyaan_data_diri`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `petunjuk_instrumen`

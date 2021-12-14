@@ -123,7 +123,6 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
-                                                        <?php var_dump($columnPertanyaan); ?>
                                                         <form action="<?= base_url(); ?>/responden/deleteColumnDataDiri/<?= $columnPertanyaan; ?>" method="post">
                                                             <?= csrf_field(); ?>
                                                             <input type="hidden" name="_method" value="DELETE">
