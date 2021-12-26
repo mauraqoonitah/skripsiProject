@@ -278,7 +278,7 @@
     }
 
     function showPasswordConfirm() {
-        var x = document.getElementById("inputPass_confirm");
+        var x = document.getElementById("inputPasswordConfirm");
         if (x.type === "password") {
             x.type = "text";
         } else {

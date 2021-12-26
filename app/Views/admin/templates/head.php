@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $title; ?></title>
+    <title>
+        < ?=$title; ?>
+    </title>
 
     <!-- Favicon-->
     <link href="<?= base_url(); ?>/img/unj.png" rel="shortcut icon" type="image/icon" />

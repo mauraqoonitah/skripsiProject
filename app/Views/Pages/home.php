@@ -2,12 +2,30 @@
 
 <?= $this->section('content'); ?>
 
-
 <section class="landing-page d-flex justify-content-center">
 
     <div class="bd-masthead mb-3" id="content">
         <div class="container px-4 px-md-3">
             <div class="row align-items-lg-center">
+
+                <!-- flash success tambah data  -->
+                <?php if (session()->getFlashdata('message')) :  ?>
+                    <div class="alert alert-success d-flex align-items-center fw-bold" role="alert">
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                            </symbol>
+                            <use xlink:href="#check-circle-fill" />
+                        </svg>
+                        <div class="fs-6">
+                            <?= session()->getFlashData('message'); ?>
+
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <!-- ./ flash success tambah data  -->
+
                 <div class="col-8 mx-auto col-md-4 order-md-2 col-lg-5">
 
                     <div class="imgBox" data-aos="zoom-in-up" data-aos-duration="1000">

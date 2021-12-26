@@ -25,6 +25,7 @@ class App extends BaseConfig
 	 */
 	// public $baseURL = 'http://dprompt.id/instrumen-kepuasan/';
 	public $baseURL = 'http://localhost:8080/';
+	// public $baseURL = 'https://mauraqp.site/';
 
 	/**
 	 * --------------------------------------------------------------------------
