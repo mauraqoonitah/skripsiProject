@@ -10,9 +10,6 @@ class ResponseModel extends Model
     protected $useTimestamps = true;
     protected $allowedFields = ['questionID', 'kodeInstrumen', 'instrumenID', 'slug', 'jawaban', 'responden', 'userID', 'uniqueID', 'created_at', 'updated_at'];
 
-    //kalo ada parameternya, cari yg pake where tadi
-    // kalo gaada, ambil ssemua data kategori
-
     public function getResponse($id = false)
     {
         if ($id == false) {
@@ -81,7 +78,6 @@ class ResponseModel extends Model
             ->where('instrumenID', $instrumenID)
             ->groupBy('userID')
             ->countAllResults();
-        // ->findAll();
     }
     public function getJumlahTanggapanIns($instrumenID)
     {
@@ -89,7 +85,6 @@ class ResponseModel extends Model
             ->select('userID')
             ->where('instrumenID', $instrumenID)
             ->groupBy('uniqueID')
-            // ->findAll();
             ->countAllResults();
     }
 
@@ -117,7 +112,6 @@ class ResponseModel extends Model
     public function getRespondenData($id)
     {
         return $this
-            // ->select('*', 'response.userID as idUser')
             ->join('responden', 'responden.userID = response.userID')
             ->where('response.userID', $id)
             ->groupBy('response.userID')
