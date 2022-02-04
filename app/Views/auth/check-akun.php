@@ -9,7 +9,7 @@
             <div class="auth-wrapper-right col-md-4 d-flex align-items-center">
                 <div class="container pt-3 my-5">
                     <div class="row">
-                        <p class="">Anda harus memiliki Email UNJ yang terverifikasi di unj.ac.id yang dapat dimiliki oleh:
+                        <p class=""><i class="fas fa-check text-rouge"></i>Anda harus memiliki Email UNJ yang terverifikasi di <a href="https://www.unj.ac.id/en/" target="_blank"><u>unj.ac.id</u></a> yang dapat dimiliki oleh:
                         </p>
                         <ul class="ml-3">
                             <li>
@@ -19,7 +19,7 @@
                                 <b> Dosen UNJ</b>
                             </li>
                         </ul>
-                        <p class="text-primary fw-bold">
+                        <p class="text-muted">
                             Bukan diantaranya? <a href="<?= url_to('register') ?>"> <u>Klik Disini</u>
                             </a>
                         </p>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-10 mt-2">
                                 <h3>Cek Akun</h3>
-                                <span class="text-muted fw-bold fs-6"> Masukkan Email yang terverifikasi di unj.ac.id atau NIM/NIDN Anda di bawah ini</span>
+                                <span class="text-muted fw-bold fs-6"> Masukkan Email yang terverifikasi di <a href="https://www.unj.ac.id/en/" target="_blank" class="text-muted"><u>unj.ac.id</u></a> atau NIM/NIDN Anda di bawah ini</span>
                             </div>
                         </div>
                     </div>
