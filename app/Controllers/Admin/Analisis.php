@@ -86,11 +86,9 @@ class Analisis extends BaseController
         return view('admin/analisis-survei/edit_laporan_instrumen', $data);
     }
 
-    //ubah 
     public function updateLaporanInstrumen($id)
     {
         $instrumenID = $this->mRequest->getVar('instrumenID');
-        // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
                 'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
@@ -106,14 +104,9 @@ class Analisis extends BaseController
 
             return redirect()->to('/admin/editLaporanInstrumen/' . $id)->withInput();
         }
-        // get value file baru
         $laporanInstrumen = $this->mRequest->getFile('laporanInstrumen');
-        // pindahkan file
         $laporanInstrumen->move('dokumenLaporan');
         $newNamaFile = $laporanInstrumen->getName();
-        // hapus file lama
-        // $oldNamaFile_strReplace = $this->mRequest->getVar('oldNamaFile');
-        // $oldNamaFile_ = str_replace(' ', '', $pertanyaanIsian);
 
         unlink('dokumenLaporan/' .  $this->mRequest->getVar('oldNamaFile'));
 
@@ -132,7 +125,6 @@ class Analisis extends BaseController
 
     public function saveLaporanInstrumen($insID)
     {
-        // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
                 'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
@@ -148,11 +140,8 @@ class Analisis extends BaseController
 
             return redirect()->to('/admin/laporanKepuasan/' . $insID)->withInput();
         }
-        // ambil file
         $fileLaporanInstrumen = $this->mRequest->getFile('laporanInstrumen');
-        // pindahin path simpan file
         $fileLaporanInstrumen->move('dokumenLaporan');
-        // ambil nama file
         $namaFileLaporanInstrumen = $fileLaporanInstrumen->getName();
 
         $data =
@@ -169,10 +158,8 @@ class Analisis extends BaseController
     }
     public function deleteLaporanInstrumen($id)
     {
-        // cari file berdasarkan id
         $namaFile = $this->laporanModel->find($id);
 
-        // hapus file di path
         unlink('dokumenLaporan/' . $namaFile['laporanInstrumen']);
 
         $this->laporanModel->delete($id);
@@ -185,7 +172,6 @@ class Analisis extends BaseController
     // ===================== analisis ===========================
     public function saveLaporanAnalisis()
     {
-        // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
                 'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
@@ -201,11 +187,8 @@ class Analisis extends BaseController
 
             return redirect()->to('/admin/laporanSurvei')->withInput();
         }
-        // ambil file
         $fileLaporanInstrumen = $this->mRequest->getFile('laporanInstrumen');
-        // pindahin path simpan file
         $fileLaporanInstrumen->move('dokumenLaporan');
-        // ambil nama file
         $namaFileLaporanInstrumen = $fileLaporanInstrumen->getName();
 
         $data =
@@ -231,10 +214,8 @@ class Analisis extends BaseController
 
         return view('admin/analisis-survei/edit_laporan_analisis', $data);
     }
-    //ubah 
     public function updateLaporanAnalisis($id)
     {
-        // validasi input
         if (!$this->validate([
             'laporanInstrumen' => [
                 'rules' => 'uploaded[laporanInstrumen]|mime_in[laporanInstrumen,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation]|ext_in[laporanInstrumen,docx,doc,pdf,xls,xlsx,ppt,pptx]',
@@ -250,12 +231,9 @@ class Analisis extends BaseController
 
             return redirect()->to('/admin/editLaporanAnalisis/' . $id)->withInput();
         }
-        // get value file baru
         $laporanInstrumen = $this->mRequest->getFile('laporanInstrumen');
-        // pindahkan file
         $laporanInstrumen->move('dokumenLaporan');
         $newNamaFile = $laporanInstrumen->getName();
-        // hapus file lama
         unlink('dokumenLaporan/' . $this->mRequest->getVar('oldNamaFile'));
 
         $this->laporanModel->save(
@@ -274,8 +252,6 @@ class Analisis extends BaseController
 
     public function saveTampilGrafikStatus($id)
     {
-        // dd('oke');
-
         $tampil_grafik = $this->mRequest->getPost('tampilId');
         $id = $this->mRequest->getPost('id');
 
