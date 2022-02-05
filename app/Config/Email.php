@@ -9,7 +9,8 @@ class Email extends BaseConfig
 	/**
 	 * @var string
 	 */
-	public $fromEmail = 'instrumenkepuasan.fmipaunj@gmail.com';
+	public $fromEmail = 'auth@instrumen-kepuasan.dprompt.id';
+	// 	public $fromEmail = 'instrumenkepuasan.fmipaunj@gmail.com';
 
 	/**
 	 * @var string
@@ -33,7 +34,8 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $protocol = 'smtp';
+	// 	public $protocol = 'smtp';
+	public $protocol = 'mail';
 
 	/**
 	 * The server path to Sendmail.
@@ -47,21 +49,24 @@ class Email extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $SMTPHost = 'smtp.googlemail.com';
+	public $SMTPHost = 'smtp.gmail.com';
+	// 	public $SMTPHost = 'smtp.googlemail.com';
+
 
 	/**
 	 * SMTP Username
 	 *
 	 * @var string
 	 */
-	public $SMTPUser = 'instrumenkepuasan.fmipaunj@gmail.com';
+	public $SMTPUser = 'auth@instrumen-kepuasan.dprompt.id';
+	// 	public $SMTPUser = 'instrumenkepuasan.fmipaunj@gmail.com';
 
 	/**
 	 * SMTP Password
 	 *
 	 * @var string
 	 */
-	public $SMTPPass = 'skripsi21';
+	public $SMTPPass = 'Skripsi21';
 
 	/**
 	 * SMTP Port

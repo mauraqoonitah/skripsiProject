@@ -98,7 +98,7 @@
                                             </div>
                                             <div class="collapse" id="popover-kode-kategori">
                                                 <p class="text-secondary">
-                                                    <b>Kategori yang terdaftar :</b>
+                                                    <b>Kode Kategori yang terdaftar :</b>
                                                     <?php if (empty($category)) : ?>
                                                         <span><i>Data tidak tersedia.</i></span>
                                                     <?php endif; ?>
@@ -106,7 +106,7 @@
 
                                                     <?php foreach ($category as $ctg) :  ?>
                                                         <li class="text-secondary">
-                                                            <?= $ctg['kodeCategory'] . ' (' .  $ctg['namaCategory'] . ')'; ?>
+                                                            <?= $ctg['kodeCategory']; ?>
                                                         </li>
                                                         </span>
                                                     <?php endforeach; ?>
@@ -120,9 +120,30 @@
                                         <div class="form-group">
                                             <label for="nama-kategori" class="col-form-label">Nama Kategori:</label>
                                             <textarea class="form-control <?= ($validation->hasError('namaCategory')) ? 'is-invalid' : ''; ?>" id="namaCategory" name="namaCategory" value="<?= old('namaCategory'); ?>"></textarea>
+                                            <!-- popover -->
+                                            <span class="input-group-text text-center" data-bs-toggle="collapse" data-bs-target="#popover-nama-kategori" aria-expanded="false" aria-controls="popover-nama-kategori" style="cursor: pointer;">
+                                                <i class="fas fa-chevron-down"></i>
+                                            </span>
                                             <div class=" invalid-feedback">
                                                 <?= $validation->getError('namaCategory'); ?>
                                             </div>
+                                        </div>
+                                        <div class="collapse" id="popover-nama-kategori">
+                                            <p class="text-secondary">
+                                                <b>Nama Kategori yang terdaftar :</b>
+                                                <?php if (empty($category)) : ?>
+                                                    <span><i>Data tidak tersedia.</i></span>
+                                                <?php endif; ?>
+                                            <ul>
+
+                                                <?php foreach ($category as $ctg) :  ?>
+                                                    <li class="text-secondary">
+                                                        <?= $ctg['kodeCategory']; ?> - <?= $ctg['namaCategory']; ?>
+                                                    </li>
+                                                    </span>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                            </p>
                                         </div>
 
                                         <!-- peruntukkan kategori -->

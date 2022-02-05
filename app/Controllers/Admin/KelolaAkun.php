@@ -74,7 +74,7 @@ class KelolaAkun extends BaseController
                     'active' => '0'
                 ]
             );
-            session()->setFlashdata('message', 'Admin dinonaktifkan');
+            session()->setFlashdata('message', 'Akun berhasil dinonaktifkan');
         }
         if ($is_active == null) {
             $this->userModel->save(
@@ -83,7 +83,7 @@ class KelolaAkun extends BaseController
                     'active' => '1'
                 ]
             );
-            session()->setFlashdata('message', 'Admin diaktifkan ');
+            session()->setFlashdata('message', 'Akun berhasil diaktifkan ');
         }
     }
 

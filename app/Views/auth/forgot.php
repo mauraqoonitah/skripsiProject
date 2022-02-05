@@ -11,8 +11,7 @@
     <?= $this->section('auth-content'); ?>
 <?php endif; ?>
 
-
-<?php if ((user()->role == 'Kontributor') || (user()->role == 'Admin')) : ?>
+<?php if (!empty(user()->role) && ((user()->role == 'Kontributor') || (user()->role == 'Admin'))) : ?>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header p-4">
@@ -109,7 +108,7 @@
                                 <p> <?= logged_in() ? lang('Auth.enterEmailForChangePassword') : lang('Auth.enterEmailForInstructions'); ?></p>
                                 <form action="<?= route_to('forgot') ?>" method="post">
                                     <?= csrf_field() ?>
-
+                                    <?= view('Myth\Auth\Views\_message_block') ?>
                                     <div class="form-group">
                                         <input type="email" class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" placeholder="<?= lang('Auth.email') ?>" <?= logged_in() ? 'value="' . user()->email . '"' : ''; ?>>
                                         <div class="invalid-feedback">
@@ -139,4 +138,6 @@
         </div>
     </section>
 <?php endif; ?>
+
+
 <?= $this->endSection(); ?>

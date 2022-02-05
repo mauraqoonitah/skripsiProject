@@ -11,8 +11,7 @@
     <?= $this->section('auth-content'); ?>
 <?php endif; ?>
 
-
-<?php if ((user()->role == 'Kontributor') || (user()->role == 'Admin')) : ?>
+<?php if (!empty(user()->role) && ((user()->role == 'Kontributor') || (user()->role == 'Admin'))) : ?>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header p-4">
@@ -140,5 +139,6 @@
         </div>
     </section>
 <?php endif; ?>
+
 
 <?= $this->endSection(); ?>

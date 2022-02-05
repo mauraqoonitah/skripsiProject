@@ -380,6 +380,11 @@ class AuthController extends Controller
 				return redirect()->back()->withInput()->with('error', $activator->error() ?? lang('Auth.unknownError'));
 			}
 
+			if (logged_in()) {
+				// Success!
+				return redirect()->back()->with('message', lang('Auth.registerDosenSuccess'));
+			}
+
 			// Success!
 			return redirect()->route('login')->with('message', lang('Auth.activationSuccess'));
 		}

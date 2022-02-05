@@ -107,8 +107,8 @@ use CodeIgniter\I18n\Time;
                 </div>
 
                 <!-- recent activities -->
-                <div class="col-lg-12 mt-3">
-                    <h5 class="mb-4">Aktivitas</h5>
+                <h5 class="mb-4 mt-5">Aktivitas</h5>
+                <div class="col-lg-12 py-3 mx-2 bg-white border border-1 rounded  " style="overflow:scroll; height:300px; width: 600px;">
 
                     <?php foreach ($getLoginDate as $getUser) : ?>
 
@@ -133,7 +133,7 @@ use CodeIgniter\I18n\Time;
                                             <span class="username">
                                                 <span class="fw-bold text-primary"><?= $dataUser->username; ?></span>
                                                 <span class="small text-muted"> | <?= $dataUser->email; ?> | <?= $dataUser->role; ?></span>
-                                                <p class="fw-bold small">Last login - <?= $time->humanize(); ?></p>
+                                                <p class="fw-bold small">Registered - <?= $time->humanize(); ?></p>
                                             </span>
                                         </div>
                                     </div>
