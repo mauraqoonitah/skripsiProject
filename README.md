@@ -1,63 +1,65 @@
-# CodeIgniter 4 Application Starter
+<h1 align="center">Sistem Informasi Survei Kepuasan Pengguna Layanan Berbasis Web untuk Penjaminan Mutu Internal di FMIPA UNJ</h1>
 
-## What is CodeIgniter?
+<p align="center">
+<strong> Aplikasi ini dibuat sebagai alat bantu pengukuran sekaligus peningkatan kualitas mutu layanan di FMIPA UNJ dengan mengetahui kepuasan responden melalui survei, dan mempermudah proses analisis tingkat kepuasan.</strong>
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](http://codeigniter.com).
+<sub> Project dibuat sebagai syarat untuk memperoleh gelar Sarjana Komputer dari<br> Program Studi Ilmu Komputer Universitas Negeri Jakarta</sub>
+<sub>- Februari 2022 - </sub>
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+</p>
 
-More information about the plans for version 4 can be found in [the announcement](http://forum.codeigniter.com/thread-62615.html) on the forums.
+[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/mauraqoonitah)
+<a href="#tada-php-support" title="PHP Versions Supported"><img alt="PHP Versions Supported" src="https://img.shields.io/badge/php-5.3%20to%208.1-777bb3.svg?logo=php&logoColor=white&labelColor=555555"></a>
 
-The user guide corresponding to this version of the framework can be found
-[here](https://codeigniter4.github.io/userguide/).
+<br>
+## Aktor
+Aktor adalah seseorang yang akan menggunakan sistem untuk melakukan sesuatu. Terdapat 4 aktor pada sistem.
+1. Responden
+2. GPjM (Gugus Penjaminan Mutu) FMIPA UNJ
 
-## Installation & updates
+3. Kontributor
+   - TPjM (Tim Penjaminan Mutu) setiap Program Studi di FMIPA UNJ
+   - Pemimpin FMIPA UNJ
+4. Pengunjung Website
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+# Fitur
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+**1. GPjM**
 
-## Setup
+- mengelola data instrumen berupa kuesioner yang akan diisi oleh responden.
+- melihat hasil tanggapan survei.
+- mengelola data responden beserta tanggapannya.
+- mengelola laporan hasil analisis kepuasan.
+- melihat hasil analisis kepuasan dari setiap instrumen dan setiap butir pernyataannya.
+- melihat kategori responden.
+- mengelola pertanyaan untuk data diri kategori responden.
+- membuat akun GPjM yang lainnya dan akun Kontributor agar mendapat akses ke halaman dashboard.
+- mengelola akun dosen untuk akses instrumen tertentu beserta mengelola akun GPjM lainnya dan akun kontributor.
+- menampilkan atau menyembunyikan hasil survei kepuasan pada instrumen tertentu ke website.
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+**2. Kontributor**
 
-## Important Change with index.php
+- melakukan Login dengan akun SIAKAD yang untuk masuk ke sistem.
+- melihat data instrumen.
+- melihat hasil tanggapan survei .
+- melihat data responden.
+- melihat laporan hasil analisis kepuasan.
+- melihat grafik tingkat kepuasan dari setiap instrumen dan setiap butir pernyataannya.
+- melihat kategori responden.
+- melihat pertanyaan untuk data diri kategori responden.
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+**3. Responden**
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+- mengisi survei dengan menjawab butir pernyataan pada instrumen yang dipilih, berupa skala tingkat kepuasan dari Sangat Puas hingga Sangat Tidak Puas. Instrumen tertentu hanya dapat diisi oleh responden tertentu saja.
+- melihat Riwayat pengisian survei yang sudah pernah diisi oleh responden tersebut.
+- mengubah profil data diri.
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## Screenshot
 
-## Repository Management
+![](/../docs/assets/landing-page-1.png)
 
-We use Github issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+<img src="https://github.com/mauraqoonitah/skripsiProject/docs/assets/landing-page-2.png" width="800">
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## Contact
 
-## Server Requirements
-
-PHP version 7.3 or higher is required, with the following extensions installed:
-
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
-
-Additionally, make sure that the following extensions are enabled in your PHP:
-
-- json (enabled by default - don't turn it off)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php)
-- xml (enabled by default - don't turn it off)
+- **Maura Qoonitah Putri** - _Initial work_ - [mauraqoonitah](https://github.com/mauraqoonitah)
