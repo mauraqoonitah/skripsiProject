@@ -50,13 +50,24 @@ class Response extends BaseController
         $role = user()->role;
         $userId = user()->id;
 
+        if (($role === 'Admin') || ($role === 'Kontributor')) {
+            $data = [
+                'title' => 'Pilih Instrumen',
+                'instrumen' => $this->instrumenModel->getInstrumen(),
+                'instrumenByResponden' => $this->instrumenModel->getInstrumenByResponden($role),
+                'permissionsForUser' => $this->permissionModel->getPermissionsForUser($userId),
+            ];
+
+            return view('responden/berandaResponden', $data);
+        }
+
         $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($role);
+        // dd($getJenisRespondenID);
         foreach ($getJenisRespondenID as $jenisRespondenId) {
             $jenisRespId =  $jenisRespondenId['id'];
         }
 
         $getPertanyaanByRespId = $this->dataDiriPertanyaanModel->getPertanyaanByRespId($jenisRespId);
-        // dd($getPertanyaanByRespId);
 
 
         foreach ($getPertanyaanByRespId as $getPertanyaan) {

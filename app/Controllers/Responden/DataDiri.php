@@ -50,6 +50,14 @@ class DataDiri extends BaseController
         $userID  = user()->id;
         $userRole  = user()->role;
 
+        if (($userRole === 'Admin') || ($userRole === 'Kontributor')) {
+            $data = [
+                'title' => 'Profil Saya',
+                'getDataUser' => $this->userModel->getDataUser($userID),
+                'getProdi' => $this->prodiModel->getProdi(),
+            ];
+            return view('responden/isiDataDiri', $data);
+        }
         $getJenisRespondenID = $this->jenisRespondenModel->getJenisRespondenID($userRole);
 
         foreach ($getJenisRespondenID as $data) {
